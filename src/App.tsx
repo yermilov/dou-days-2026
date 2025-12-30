@@ -9,8 +9,8 @@ const slides: SlideDefinition[] = [
     id: 'intro',
     content: (
       <>
-        <h1 className="hero">Pragmatic Vibe Clauding</h1>
-        <p>Building with Claude Code</p>
+        <h1 className="hero">Прагматичний вайб клодінг</h1>
+        <p>Ярослав Єрмілов, Principal Software Engineer @ Superhuman/Grammarly</p>
       </>
     ),
     notes: 'Welcome everyone to this presentation about Claude Code!',

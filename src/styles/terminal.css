@@ -223,30 +223,9 @@
   overflow: hidden;
 }
 
-/* Gradient border effect on focus */
-.terminal-input-wrapper::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: calc(var(--input-border-radius) + 1px);
-  background: linear-gradient(
-    90deg,
-    var(--terminal-orange) 0%,
-    var(--terminal-orange-dim) 50%,
-    var(--terminal-orange) 100%
-  );
-  opacity: 0;
-  transition: opacity var(--transition-fast);
-  z-index: -1;
-}
-
 .terminal-input-wrapper:focus-within {
-  border-color: transparent;
+  border-color: var(--terminal-orange);
   box-shadow: var(--glow-orange);
-}
-
-.terminal-input-wrapper:focus-within::before {
-  opacity: 1;
 }
 
 .terminal-input-prompt {
