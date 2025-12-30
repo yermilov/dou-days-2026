@@ -79,3 +79,9 @@ body {
 :focus:not(:focus-visible) {
   outline: none;
 }
+
+/* Terminal input uses wrapper border for focus, not outline */
+.terminal-input-field:focus,
+.terminal-input-field:focus-visible {
+  outline: none;
+}
