@@ -6,7 +6,7 @@ import { SlideProgress } from './SlideProgress';
 import { Timer } from './Timer';
 
 export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
-  const { currentSlide, handleCommand } = useSlideNavigation(
+  const { currentSlide, handleCommand, revealed } = useSlideNavigation(
     slides.length,
     initialSlide
   );
@@ -17,6 +17,11 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
     return null;
   }
 
+  const slideContent =
+    typeof activeSlide.content === 'function'
+      ? activeSlide.content({ revealed })
+      : activeSlide.content;
+
   return (
     <div className="presentation">
       <div className="slide-container" key={activeSlide.id}>
@@ -25,7 +30,7 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
           notes={activeSlide.notes}
           background={activeSlide.background}
         >
-          {activeSlide.content}
+          {slideContent}
         </Slide>
       </div>
       <Timer />

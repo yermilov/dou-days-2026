@@ -1,8 +1,12 @@
 import { ReactNode } from 'react';
 
+export interface SlideContentProps {
+  revealed: boolean;
+}
+
 export interface SlideDefinition {
   id: string;
-  content: ReactNode;
+  content: ReactNode | ((props: SlideContentProps) => ReactNode);
   notes?: string;
   background?: string;
 }
