@@ -3,6 +3,7 @@ import { useSlideNavigation } from '../hooks/useSlideNavigation';
 import { Slide } from './Slide';
 import { TerminalInput } from './TerminalInput';
 import { SlideProgress } from './SlideProgress';
+import { Timer } from './Timer';
 
 export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
   const { currentSlide, handleCommand } = useSlideNavigation(
@@ -27,6 +28,7 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
           {activeSlide.content}
         </Slide>
       </div>
+      <Timer />
       <SlideProgress current={currentSlide + 1} total={slides.length} />
       <TerminalInput
         onCommand={handleCommand}

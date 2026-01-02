@@ -302,6 +302,37 @@
   font-family: var(--font-mono);
 }
 
+/* === TIMER === */
+.timer {
+  position: fixed;
+  bottom: calc(var(--input-height) + var(--space-xl) + var(--space-md));
+  left: var(--space-xl);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  z-index: 100;
+}
+
+.timer-display {
+  color: var(--terminal-white-muted);
+  font-size: var(--font-size-small);
+  font-family: var(--font-mono);
+}
+
+.timer-btn {
+  background: none;
+  border: none;
+  color: var(--terminal-white-muted);
+  font-size: var(--font-size-small);
+  font-family: var(--font-mono);
+  cursor: pointer;
+  padding: 0;
+}
+
+.timer-btn:hover {
+  color: var(--terminal-orange);
+}
+
 /* === CODE BLOCK === */
 .code-block {
   text-align: left;
