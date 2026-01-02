@@ -26,6 +26,9 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
     initialSlide
   );
 
+  // Track current input text for interactive slides
+  const [inputText, setInputText] = useState('');
+
   // Timer state with localStorage persistence
   const [timerSeconds, setTimerSeconds] = useState(() => getInitialTimerState().seconds);
   const [timerRunning, setTimerRunning] = useState(() => getInitialTimerState().running);
@@ -115,7 +118,7 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
 
   const slideContent =
     typeof activeSlide.content === 'function'
-      ? activeSlide.content({ revealed })
+      ? activeSlide.content({ revealed, inputText })
       : activeSlide.content;
 
   return (
@@ -138,6 +141,7 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
       <SlideProgress current={currentSlide + 1} total={slides.length} />
       <TerminalInput
         onCommand={handleCommand}
+        onInputChange={setInputText}
         placeholder="type anything to continue, 'prev' to go back, or slide number..."
       />
     </div>

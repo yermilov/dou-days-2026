@@ -3,6 +3,7 @@ import { TerminalInputProps } from '../types/slides';
 
 export function TerminalInput({
   onCommand,
+  onInputChange,
   placeholder = 'type a command...',
   disabled = false,
 }: TerminalInputProps) {
@@ -17,13 +18,16 @@ export function TerminalInput({
   }, [disabled]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
+    const newValue = e.target.value;
+    setValue(newValue);
+    onInputChange?.(newValue);
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && value.trim()) {
       onCommand(value);
       setValue('');
+      onInputChange?.('');
     }
   };
 

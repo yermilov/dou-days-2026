@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 
 export interface SlideContentProps {
   revealed: boolean;
+  inputText: string;
 }
 
 export interface SlideDefinition {
@@ -21,6 +22,7 @@ export interface CodeBlockProps {
 
 export interface TerminalInputProps {
   onCommand: (command: string) => void;
+  onInputChange?: (value: string) => void;
   placeholder?: string;
   disabled?: boolean;
 }

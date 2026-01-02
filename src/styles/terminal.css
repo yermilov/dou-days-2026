@@ -519,3 +519,170 @@
   transform: scale(1.02) rotate(1deg);
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
 }
+
+/* === AI TOOLS LOGO GRID === */
+.tool-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-xl);
+  margin-top: var(--space-2xl);
+  padding: 0 var(--space-lg);
+}
+
+.tool-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  opacity: 0;
+  animation: toolFadeIn 0.4s ease-out forwards;
+}
+
+@keyframes toolFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tool-logo-wrapper {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: var(--terminal-bg-secondary);
+  border: 1px solid var(--terminal-border);
+  padding: var(--space-md);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tool-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* Ghostly silhouette - dormant state */
+  filter: grayscale(100%) brightness(0.5) opacity(0.4);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Question mark SVG styling */
+.question-mark-icon {
+  color: var(--terminal-white-muted);
+  width: 100%;
+  height: 100%;
+}
+
+.tool-glow {
+  position: absolute;
+  inset: -4px;
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    var(--terminal-orange-glow) 0%,
+    transparent 70%
+  );
+  filter: blur(8px);
+}
+
+.tool-name {
+  font-size: var(--font-size-small);
+  color: var(--terminal-white-muted);
+  font-family: var(--font-mono);
+  text-transform: lowercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease-out;
+}
+
+/* Hover state - subtle warmth */
+.tool-item:hover .tool-logo-wrapper {
+  border-color: var(--terminal-border-bright);
+  background: var(--terminal-bg-elevated);
+}
+
+.tool-item:hover .tool-logo {
+  filter: grayscale(100%) brightness(0.7) opacity(0.6);
+}
+
+.tool-item:hover .tool-name {
+  color: var(--terminal-white-dim);
+}
+
+/* === ACTIVE STATE - TERMINAL BOOT SEQUENCE === */
+.tool-item.active .tool-logo-wrapper {
+  border-color: var(--terminal-orange);
+  background: var(--terminal-bg-elevated);
+  box-shadow:
+    0 0 0 1px var(--terminal-orange-dim),
+    0 4px 24px rgba(240, 136, 62, 0.15);
+}
+
+.tool-item.active .tool-logo {
+  /* Power on - full color with subtle boost */
+  filter: grayscale(0%) brightness(1.1) opacity(1);
+}
+
+.tool-item.active .question-mark-icon {
+  color: var(--terminal-orange);
+}
+
+.tool-item.active .tool-glow {
+  opacity: 1;
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.tool-item.active .tool-name {
+  color: var(--terminal-orange);
+  text-shadow: var(--glow-text-orange);
+}
+
+/* CRT flicker on activation */
+.tool-item.active .tool-logo-wrapper {
+  animation: crtFlicker 0.15s ease-out;
+}
+
+@keyframes crtFlicker {
+  0% { opacity: 0.8; }
+  25% { opacity: 1; }
+  50% { opacity: 0.9; }
+  75% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .tool-grid {
+    gap: var(--space-lg);
+  }
+
+  .tool-logo-wrapper {
+    width: 56px;
+    height: 56px;
+    padding: var(--space-sm);
+  }
+
+  .tool-name {
+    font-size: 0.75rem;
+  }
+}
