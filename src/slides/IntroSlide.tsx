@@ -1,84 +1,69 @@
 import { SlideDefinition, SlideContentProps } from '../types/slides';
 
 // Logo configuration with keywords for activation
+const BASE_URL = import.meta.env.BASE_URL;
+
 const AI_TOOLS = [
   {
     id: 'claude',
     name: 'Claude Code',
-    url: 'https://upload.wikimedia.org/wikipedia/commons/8/8a/Claude_AI_logo.svg',
+    url: `${BASE_URL}logos/claude.svg`,
     keywords: ['claude', 'claude code', 'anthropic'],
   },
   {
     id: 'codex',
     name: 'Codex',
-    url: 'https://upload.wikimedia.org/wikipedia/commons/c/c9/OpenAI_Logo_%282%29.svg',
+    url: `${BASE_URL}logos/openai.svg`,
     keywords: ['codex', 'openai'],
   },
   {
     id: 'cursor',
     name: 'Cursor',
-    url: 'https://svgl.app/cursor.svg',
+    url: `${BASE_URL}logos/cursor.svg`,
     keywords: ['cursor'],
   },
   {
     id: 'amp',
     name: 'Amp',
-    url: 'https://svgl.app/sourcegraph.svg',
+    url: `${BASE_URL}logos/sourcegraph.svg`,
     keywords: ['amp', 'sourcegraph'],
   },
   {
     id: 'gemini',
     name: 'Gemini CLI',
-    url: 'https://upload.wikimedia.org/wikipedia/commons/d/d9/Google_Gemini_logo_2025.svg',
+    url: `${BASE_URL}logos/gemini.svg`,
     keywords: ['gemini', 'gemini-cli', 'google'],
   },
   {
     id: 'copilot',
     name: 'Copilot',
-    url: 'https://svgl.app/github-copilot.svg',
+    url: `${BASE_URL}logos/github-copilot.svg`,
     keywords: ['copilot', 'github copilot'],
   },
   {
     id: 'lovable',
     name: 'Lovable',
-    url: 'https://svgl.app/lovable.svg',
+    url: `${BASE_URL}logos/lovable.svg`,
     keywords: ['lovable'],
   },
 ];
 
-// Check if tool is active (either persisted or currently typing)
+// Check if tool is active (only after Enter press, stored in activatedTools)
 function isToolActive(
   tool: typeof AI_TOOLS[0],
-  input: string,
   activatedTools: Set<string>
 ): boolean {
-  // Check if already activated (persisted)
-  if (activatedTools.has(tool.id)) return true;
-
-  // Check if currently typing matches
-  if (!input.trim()) return false;
-  const normalizedInput = input.toLowerCase().trim();
-  return tool.keywords.some(keyword =>
-    normalizedInput.includes(keyword) || keyword.includes(normalizedInput)
-  );
+  return activatedTools.has(tool.id);
 }
 
-// Check if question mark should be active
-function isQuestionMarkActive(input: string, activatedTools: Set<string>): boolean {
-  // Check if already activated
-  if (activatedTools.has('other')) return true;
-
-  if (!input.trim()) return false;
-  const normalizedInput = input.toLowerCase().trim();
-  return normalizedInput.includes('?') ||
-         normalizedInput.includes('other') ||
-         normalizedInput.includes('else') ||
-         normalizedInput.includes('something');
+// Check if question mark should be active (only after Enter press)
+function isQuestionMarkActive(activatedTools: Set<string>): boolean {
+  return activatedTools.has('other');
 }
 
 export const IntroSlide: SlideDefinition = {
   id: 'intro',
-  content: ({ inputText, activatedTools }: SlideContentProps) => (
+  content: ({ activatedTools }: SlideContentProps) => (
     <>
       <h2>давайте знайомитися далі</h2>
       <h1 className="hero">розкажіть про свій досвід ai кодінгу</h1>
@@ -87,7 +72,7 @@ export const IntroSlide: SlideDefinition = {
         {AI_TOOLS.map((tool, index) => (
           <div
             key={tool.id}
-            className={`tool-item ${isToolActive(tool, inputText, activatedTools) ? 'active' : ''}`}
+            className={`tool-item ${isToolActive(tool, activatedTools) ? 'active' : ''}`}
             style={{ animationDelay: `${index * 0.08}s` }}
           >
             <div className="tool-logo-wrapper">
@@ -105,7 +90,7 @@ export const IntroSlide: SlideDefinition = {
 
         {/* Question mark for "something else" */}
         <div
-          className={`tool-item ${isQuestionMarkActive(inputText, activatedTools) ? 'active' : ''}`}
+          className={`tool-item ${isQuestionMarkActive(activatedTools) ? 'active' : ''}`}
           style={{ animationDelay: `${AI_TOOLS.length * 0.08}s` }}
         >
           <div className="tool-logo-wrapper">

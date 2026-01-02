@@ -109,10 +109,9 @@ export function useSlideNavigation(
           return;
         case 'next':
         case 'n':
-        default:
-          // Any unrecognized command advances to next slide
           nextSlide();
           return;
+        // No default - unrecognized commands do nothing
       }
     },
     [goToSlide, nextSlide, prevSlide, totalSlides]
