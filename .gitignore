@@ -29,6 +29,12 @@ lerna-debug.log*
 
 # Local env files
 *.local
+.env
+.env.local
+
+# Generated images (keep directory, ignore contents except .gitkeep)
+src/assets/generated/*
+!src/assets/generated/.gitkeep
 
 # TypeScript cache
 *.tsbuildinfo

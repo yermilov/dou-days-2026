@@ -153,6 +153,38 @@ This ensures:
 
 Automatic deployment on push to `main` via GitHub Actions. The site deploys to the `gh-pages` branch.
 
+## Image Generation
+
+Use the `generate-image` skill for creating slide visuals with Google Gemini 3 Pro.
+
+### Setup
+
+1. Copy `.env.local.example` to `.env.local`
+2. Add your Gemini API key (get one at https://ai.google.dev/)
+3. Run `bun install` to get `@google/genai`
+
+### Usage
+
+Ask Claude to generate images for slides:
+- "Generate an image of a futuristic terminal interface"
+- "Create a minimalist diagram showing code compilation"
+- "Design an abstract background for the intro slide"
+
+### Manual Usage
+
+```bash
+bun --env-file=.env.local .claude/skills/generate-image/scripts/generate.ts \
+  --prompt "description" \
+  --ratio "16:9" \
+  --output "filename.png"
+```
+
+**Options:**
+- `--ratio`: 16:9 (default), 4:3, 1:1, 4:5
+- `--output`: custom filename (auto-generated if omitted)
+
+Generated images are saved to `src/assets/generated/`.
+
 ## Git Conventions
 
 - Commit messages: `Add/Update/Fix/Remove [description]`
