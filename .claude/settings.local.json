@@ -24,7 +24,8 @@
       "Bash(cat:*)",
       "Bash(ls:*)",
       "Skill(generate-image)",
-      "Bash(bun:*)"
+      "Bash(bun:*)",
+      "Bash(cp:*)"
     ]
   }
 }
