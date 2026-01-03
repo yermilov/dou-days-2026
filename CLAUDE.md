@@ -80,6 +80,19 @@ const slides: SlideDefinition[] = [
 />
 ```
 
+### Using Images
+
+Images in `public/` must be imported with `?url` suffix for GitHub Pages compatibility:
+
+```tsx
+import myImage from '/my-image.png?url';
+
+// In slide content:
+<img src={myImage} alt="Description" />
+```
+
+**Important:** Do NOT use direct paths like `src="/image.png"` — they break on GitHub Pages due to the base URL (`/pragmatic-vibe-clauding-ua`).
+
 ### Slide Content Classes
 
 - `h1.hero` - Extra large hero heading
