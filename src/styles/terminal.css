@@ -768,3 +768,207 @@
     max-height: calc(100vh - 180px);
   }
 }
+
+/* === TITLE SLIDE ANIMATIONS === */
+/* CRT-style animations for the waiting/intro screen */
+
+.title-slide {
+  position: relative;
+  z-index: 1;
+}
+
+/* Animated scan lines that drift down (title slide only) */
+.title-slide::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 1000;
+  animation: scanlineDrift 8s linear infinite;
+}
+
+@keyframes scanlineDrift {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100vh; }
+}
+
+/* Pulsing vignette overlay for CRT edge effect */
+.title-slide::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 40%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  pointer-events: none;
+  z-index: 999;
+  animation: vignettePulse 5s ease-in-out infinite;
+}
+
+@keyframes vignettePulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+}
+
+/* Phosphor breathing glow on hero title */
+.title-glow {
+  animation:
+    phosphorBreath 4s ease-in-out infinite,
+    subtleFlicker 6s step-end infinite;
+  will-change: text-shadow, filter, opacity;
+}
+
+@keyframes phosphorBreath {
+  0%, 100% {
+    text-shadow:
+      0 0 10px var(--terminal-orange-glow),
+      0 0 20px var(--terminal-orange-glow);
+    filter: brightness(1);
+  }
+  50% {
+    text-shadow:
+      0 0 20px var(--terminal-orange-glow),
+      0 0 40px var(--terminal-orange-glow),
+      0 0 60px var(--terminal-orange-glow);
+    filter: brightness(1.08);
+  }
+}
+
+@keyframes subtleFlicker {
+  0%, 89%, 91%, 93%, 95%, 100% { opacity: 1; }
+  90% { opacity: 0.85; }
+  92% { opacity: 0.9; }
+  94% { opacity: 0.88; }
+}
+
+/* Subtitle soft pulse */
+.title-subtitle {
+  animation: subtitlePulse 4s ease-in-out infinite;
+  will-change: opacity, text-shadow;
+}
+
+@keyframes subtitlePulse {
+  0%, 100% {
+    opacity: 0.7;
+    text-shadow: none;
+  }
+  50% {
+    opacity: 0.9;
+    text-shadow: 0 0 8px rgba(226, 232, 240, 0.3);
+  }
+}
+
+/* === CLAUDE CODE SLIDE - REVEAL STAGE 3 === */
+.claude-code-reveal {
+  margin-top: var(--space-xl);
+  animation: revealFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: center;
+}
+
+@keyframes revealFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Repository link styled as terminal command */
+.reveal-repo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: var(--terminal-bg-secondary);
+  border: 1px solid var(--terminal-border);
+  border-radius: var(--input-border-radius);
+  padding: var(--space-sm) var(--space-lg);
+  margin-bottom: var(--space-lg);
+  font-size: var(--font-size-body);
+}
+
+.reveal-prompt {
+  color: var(--terminal-green);
+  font-weight: bold;
+  text-shadow: var(--glow-text-green);
+}
+
+.reveal-repo a {
+  color: var(--terminal-cyan);
+  border-bottom: none;
+  font-family: var(--font-mono);
+  transition: all var(--transition-fast);
+}
+
+.reveal-repo a:hover {
+  color: var(--terminal-cyan);
+  text-shadow: 0 0 12px var(--terminal-cyan-glow);
+}
+
+/* Intro text */
+.reveal-intro {
+  font-size: 1.5rem;
+  color: var(--terminal-white-dim);
+  margin-bottom: var(--space-md);
+}
+
+/* Staggered list animation */
+.reveal-list {
+  display: inline-block;
+  text-align: left;
+  margin: 0;
+}
+
+.reveal-list li {
+  opacity: 0;
+  animation: listItemReveal 0.35s ease-out forwards;
+  font-size: 1.35rem;
+  margin-bottom: var(--space-sm);
+  padding-left: var(--space-lg);
+}
+
+.reveal-list li::before {
+  content: '>';
+  color: var(--terminal-orange);
+  text-shadow: var(--glow-text-orange);
+}
+
+@keyframes listItemReveal {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive adjustments for reveal */
+@media (max-width: 768px) {
+  .reveal-repo {
+    font-size: 1rem;
+    padding: var(--space-xs) var(--space-md);
+  }
+
+  .reveal-intro {
+    font-size: 1.125rem;
+  }
+
+  .reveal-list li {
+    font-size: 1rem;
+  }
+}

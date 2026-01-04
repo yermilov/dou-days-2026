@@ -44,7 +44,7 @@ function getInitialTimerState(): { seconds: number; running: boolean } {
 }
 
 export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
-  const { currentSlide, handleCommand: handleNavCommand, revealed } = useSlideNavigation(
+  const { currentSlide, handleCommand: handleNavCommand, revealStage } = useSlideNavigation(
     slides.length,
     initialSlide
   );
@@ -154,7 +154,7 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
 
   const slideContent =
     typeof activeSlide.content === 'function'
-      ? activeSlide.content({ revealed, inputText, activatedTools })
+      ? activeSlide.content({ revealStage, inputText, activatedTools })
       : activeSlide.content;
 
   return (

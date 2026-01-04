@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 export interface SlideContentProps {
-  revealed: boolean;
+  revealStage: number;
   inputText: string;
   activatedTools: Set<string>;
 }

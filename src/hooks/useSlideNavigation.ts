@@ -8,7 +8,7 @@ interface UseSlideNavigationReturn {
   handleCommand: (command: string) => void;
   isFirstSlide: boolean;
   isLastSlide: boolean;
-  revealed: boolean;
+  revealStage: number;
 }
 
 export function useSlideNavigation(
@@ -30,7 +30,7 @@ export function useSlideNavigation(
   };
 
   const [currentSlide, setCurrentSlide] = useState(getInitialSlide);
-  const [revealed, setRevealed] = useState(false);
+  const [revealStage, setRevealStage] = useState(0);
 
   // Clamp slide index to valid range
   const clampIndex = useCallback(
@@ -54,7 +54,7 @@ export function useSlideNavigation(
     (index: number) => {
       const clampedIndex = clampIndex(index);
       setCurrentSlide(clampedIndex);
-      setRevealed(false);
+      setRevealStage(0);
       updateHash(clampedIndex);
     },
     [clampIndex, updateHash]
@@ -105,7 +105,7 @@ export function useSlideNavigation(
           return;
         case 'reveal':
         case 'r':
-          setRevealed(true);
+          setRevealStage(prev => prev + 1);
           return;
         case 'next':
         case 'n':
@@ -185,6 +185,6 @@ export function useSlideNavigation(
     handleCommand,
     isFirstSlide: currentSlide === 0,
     isLastSlide: currentSlide === totalSlides - 1,
-    revealed,
+    revealStage,
   };
 }
