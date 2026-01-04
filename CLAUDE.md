@@ -39,7 +39,8 @@ src/
 │   ├── Slide.tsx              # Fullscreen slide wrapper
 │   ├── TerminalInput.tsx      # Command input box
 │   ├── CodeBlock.tsx          # Syntax-highlighted code
-│   └── SlideProgress.tsx      # Slide counter
+│   ├── SlideProgress.tsx      # Slide counter
+│   └── OnboardingTooltip.tsx  # Navigation help tooltip
 └── styles/
     ├── theme.css              # CSS design tokens
     └── terminal.css           # Component styles
@@ -93,6 +94,29 @@ import myImage from '/my-image.png?url';
 
 **Important:** Do NOT use direct paths like `src="/image.png"` — they break on GitHub Pages due to the base URL (`/pragmatic-vibe-clauding-ua`).
 
+### Full-Screen Image Slides
+
+For slides that display a single image filling the available space:
+
+```tsx
+import myImage from '/my-image.png?url';
+
+{
+  id: 'image-slide-id',
+  content: (
+    <div className="image-slide">
+      <img src={myImage} alt="Description" />
+    </div>
+  ),
+}
+```
+
+The `.image-slide` class automatically:
+- Constrains image to viewport (accounts for timer/input bar)
+- Centers the image
+- Applies terminal-themed border and shadow
+- Uses `object-fit: contain` to preserve aspect ratio
+
 ### Slide Content Classes
 
 - `h1.hero` - Extra large hero heading
@@ -103,11 +127,12 @@ import myImage from '/my-image.png?url';
 ## Navigation Commands
 
 Type in the input box:
-- Any text + Enter → Next slide
+- `next` or `n` → Next slide
 - `prev`, `back`, `p`, `b` → Previous slide
 - Number (e.g., `3`) → Go to slide 3
-- `first`, `home` → First slide
+- `first`, `start`, `home` → First slide
 - `last`, `end` → Last slide
+- `reveal` or `r` → Reveal next content stage
 
 Keyboard (when not typing):
 - Arrow keys, Space, PageDown/Up → Navigate

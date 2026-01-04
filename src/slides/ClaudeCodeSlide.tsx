@@ -18,7 +18,7 @@ export const ClaudeCodeSlide: SlideDefinition = {
               github.com/yermilov/pragmatic-vibe-clauding-ua
             </a>
           </div>
-          <p className="reveal-intro">I just open Claude Code and give it instructions:</p>
+          <p className="reveal-intro">відкриваю Claude Code і даю йому задачі</p>
           <ul className="reveal-list">
             <li style={{ animationDelay: '0.1s' }}>build static web site from scratch using Bun + React stack</li>
             <li style={{ animationDelay: '0.2s' }}>research internet for materials</li>

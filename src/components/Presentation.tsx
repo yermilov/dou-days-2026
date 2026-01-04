@@ -5,6 +5,7 @@ import { Slide } from './Slide';
 import { TerminalInput } from './TerminalInput';
 import { SlideProgress } from './SlideProgress';
 import { Timer } from './Timer';
+import { OnboardingTooltip } from './OnboardingTooltip';
 
 const TIMER_STARTED_AT_KEY = 'timerStartedAt';
 const TIMER_ACCUMULATED_KEY = 'timerAccumulated';
@@ -54,6 +55,9 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
 
   // Track activated tools (persists after Enter)
   const [activatedTools, setActivatedTools] = useState<Set<string>>(new Set());
+
+  // Track if user has interacted (for onboarding tooltip)
+  const [hasInteracted, setHasInteracted] = useState(false);
 
   // Timer state with localStorage persistence
   const [timerSeconds, setTimerSeconds] = useState(() => getInitialTimerState().seconds);
@@ -119,6 +123,9 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
   const handleCommand = useCallback((command: string) => {
     const trimmed = command.trim().toLowerCase();
 
+    // Mark as interacted (hides onboarding tooltip)
+    setHasInteracted(true);
+
     // Check for tool activation before other commands
     const matchingTools = getMatchingToolIds(command);
     if (matchingTools.length > 0) {
@@ -175,6 +182,7 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
         onReset={handleTimerReset}
       />
       <SlideProgress current={currentSlide + 1} total={slides.length} />
+      {currentSlide === 0 && !hasInteracted && <OnboardingTooltip />}
       <TerminalInput
         onCommand={handleCommand}
         onInputChange={setInputText}

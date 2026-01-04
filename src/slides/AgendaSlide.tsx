@@ -94,6 +94,10 @@ export const AgendaSlide: SlideDefinition = {
         <span className="text-dim">$</span> ./talk <span className="text-orange">--help</span>
       </h2>
 
+      <p style={{ marginBottom: '1.5rem', fontSize: '1.1rem' }}>
+        про що ми сьогодні будемо і не будемо говорити?
+      </p>
+
       <div
         style={{
           textAlign: 'left',
@@ -103,19 +107,19 @@ export const AgendaSlide: SlideDefinition = {
         }}
       >
         <AgendaSection title="tools">
-          <AgendaItem level="high" label="claude code" desc="багато" />
-          <AgendaItem level="medium" label="codex, cursor" desc="трохи" />
-          <AgendaItem level="low" label="інші тули" desc="майже ні" />
+          <AgendaItem level="high" label="claude code" desc="будемо багато" />
+          <AgendaItem level="medium" label="codex, cursor" desc="будемо мало" />
+          <AgendaItem level="low" label="інші тули" desc="майже не будемо" />
         </AgendaSection>
 
         <AgendaSection title="scope">
-          <AgendaItem level="high" label="хакатон режим" desc="основний фокус" />
-          <AgendaItem level="medium" label="довгостроковий розвиток" desc="трохи" />
+          <AgendaItem level="high" label="як прагматично використати claude code в хакатон режимі?" desc="будемо" />
+          <AgendaItem level="medium" label="як довгостроково розвивати продукт використовуючи claude code?" desc="будемо трохи" />
         </AgendaSection>
 
         <AgendaSection title="audience">
-          <AgendaItem level="high" label="для інженерів" desc="так" />
-          <AgendaItem level="low" label="для не-інженерів" desc="майже ні" />
+          <AgendaItem level="high" label="claude code для інженерів" desc="будемо" />
+          <AgendaItem level="low" label="claude code для не-інженерів" desc="майже не будемо" />
         </AgendaSection>
       </div>
     </>

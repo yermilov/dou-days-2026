@@ -271,6 +271,114 @@
   flex-shrink: 0;
 }
 
+/* === ONBOARDING TOOLTIP === */
+.onboarding-tooltip {
+  position: fixed;
+  bottom: calc(var(--input-height) + var(--space-xl) + var(--space-lg) + var(--space-md));
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--terminal-bg-elevated);
+  border: 1px solid var(--terminal-border);
+  border-radius: var(--input-border-radius);
+  padding: var(--space-md) var(--space-lg);
+  z-index: 1002;
+  max-width: 380px;
+  animation: tooltipSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes tooltipSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.onboarding-tooltip-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.onboarding-tooltip-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--terminal-orange);
+  color: var(--terminal-bg);
+  font-size: 0.75rem;
+  font-weight: bold;
+  font-family: var(--font-mono);
+}
+
+.onboarding-tooltip-title {
+  color: var(--terminal-orange);
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  text-shadow: var(--glow-text-orange);
+}
+
+.onboarding-tooltip-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.onboarding-tooltip-list li {
+  font-size: 0.9rem;
+  color: var(--terminal-white-dim);
+  font-family: var(--font-mono);
+  padding: var(--space-xs) 0;
+  padding-left: var(--space-md);
+  position: relative;
+}
+
+.onboarding-tooltip-list li::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: var(--terminal-green);
+  font-size: 0.8rem;
+}
+
+.onboarding-tooltip-list code {
+  background: var(--terminal-bg-secondary);
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--terminal-cyan);
+  font-size: 0.85em;
+  border: 1px solid var(--terminal-border);
+}
+
+/* Responsive tooltip */
+@media (max-width: 640px) {
+  .onboarding-tooltip {
+    left: var(--space-md);
+    right: var(--space-md);
+    transform: none;
+    max-width: none;
+  }
+
+  @keyframes tooltipSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
 /* === SLIDE PROGRESS === */
 .slide-progress {
   position: fixed;
@@ -970,5 +1078,34 @@
 
   .reveal-list li {
     font-size: 1rem;
+  }
+}
+
+/* === IMAGE SLIDE === */
+/* For slides that display a single image filling available space */
+.image-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 220px);
+  max-height: calc(100vh - 220px);
+  overflow: hidden;
+  padding: 0 var(--space-lg);
+}
+
+.image-slide img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: var(--input-border-radius);
+  border: 1px solid var(--terminal-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+  .image-slide {
+    height: calc(100vh - 180px);
+    max-height: calc(100vh - 180px);
   }
 }
