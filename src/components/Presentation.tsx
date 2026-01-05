@@ -125,6 +125,10 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
     localStorage.removeItem(TIMER_ACCUMULATED_KEY);
   }, []);
 
+  const handleToolsReset = useCallback(() => {
+    setActivatedTools(new Set());
+  }, []);
+
   // Command handler that intercepts timer commands and activates tools
   const handleCommand = useCallback((command: string) => {
     const trimmed = command.trim().toLowerCase();
@@ -153,12 +157,12 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
         return;
       case 'reset':
         handleTimerReset();
-        setActivatedTools(new Set());
+        handleToolsReset();
         return;
       default:
         handleNavCommand(command);
     }
-  }, [handleNavCommand, handleTimerStart, handleTimerPause, handleTimerReset]);
+  }, [handleNavCommand, handleTimerStart, handleTimerPause, handleTimerReset, handleToolsReset]);
 
   const activeSlide = slides[currentSlide];
 
