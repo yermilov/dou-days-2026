@@ -1,5 +1,5 @@
 import { SlideDefinition } from '../types/slides';
-import comparisonImage from '/src/assets/generated/junior-engineer-comparison.png?url';
+import comparisonImage from '../assets/generated/junior-engineer-comparison.png?url';
 
 type PointLevel = 'insight' | 'primary' | 'secondary';
 
