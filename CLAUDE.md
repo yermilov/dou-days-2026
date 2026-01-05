@@ -94,16 +94,6 @@ import myImage from '/my-image.png?url';
 
 **Important:** Do NOT use direct paths like `src="/image.png"` — they break on GitHub Pages due to the base URL (`/pragmatic-vibe-clauding-ua`).
 
-**Gotcha:** For images in `src/assets/` (not `public/`), use relative imports:
-
-```tsx
-// Correct - relative path
-import myImage from '../assets/generated/image.png?url';
-
-// Wrong - absolute /src/ path breaks production builds
-import myImage from '/src/assets/generated/image.png?url';
-```
-
 ### Full-Screen Image Slides
 
 For slides that display a single image filling the available space:
@@ -231,7 +221,7 @@ bun --env-file=.env.local .claude/skills/generate-image/scripts/generate.ts \
 - `--ratio`: 16:9 (default), 4:3, 1:1, 4:5
 - `--output`: custom filename (auto-generated if omitted)
 
-Generated images are saved to `src/assets/generated/`.
+Generated images are saved to `public/`.
 
 ## Troubleshooting
 

@@ -15,7 +15,7 @@ import { existsSync } from 'fs';
 
 // Configuration
 const GEMINI_MODEL = 'gemini-3-pro-image-preview';
-const OUTPUT_DIR = 'src/assets/generated';
+const OUTPUT_DIR = 'public';
 
 // Valid aspect ratios
 const VALID_RATIOS = ['16:9', '4:3', '1:1', '4:5'] as const;
