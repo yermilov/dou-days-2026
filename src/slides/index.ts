@@ -11,5 +11,6 @@ import { DisclaimerSlide } from './DisclaimerSlide';
 import { TheorySlide } from './TheorySlide';
 import { ContextSlide } from './ContextSlide';
 import { ContextPrinciplesSlide } from './ContextPrinciplesSlide';
+import { ClaudeMdSlide } from './ClaudeMdSlide';
 
-export const slides = [TitleSlide, BioSlide, ClaudeCodeSlide, IntroSlide, AgendaSlide, InstallSlide, BillionDollarSlide, PeterMobileSlide, JuniorEngineerSlide, DisclaimerSlide, TheorySlide, ContextSlide, ContextPrinciplesSlide];
+export const slides = [TitleSlide, BioSlide, ClaudeCodeSlide, IntroSlide, AgendaSlide, InstallSlide, BillionDollarSlide, PeterMobileSlide, JuniorEngineerSlide, DisclaimerSlide, TheorySlide, ContextSlide, ContextPrinciplesSlide, ClaudeMdSlide];
