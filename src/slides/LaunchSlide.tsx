@@ -117,19 +117,23 @@ export const LaunchSlide: SlideDefinition = {
         </LaunchItem>
 
         <LaunchItem delay={0.1}>
+          <Command>/plugin marketplace add anthropics/claude-code</Command>
+        </LaunchItem>
+
+        <LaunchItem delay={0.15}>
           також зробіть зразу{' '}
           <Command>/plugin install commit-commands@claude-plugin-directory</Command>,{' '}
           <Command>/plugin install frontend-design@claude-plugin-directory</Command>,{' '}
           <Command>/plugin install code-review@claude-plugin-directory</Command>
         </LaunchItem>
 
-        <LaunchItem delay={0.15}>
+        <LaunchItem delay={0.2}>
           якщо клод код питає вас чи можна зробити щось read-only і не дуже
           небезпечне — завжди вибирайте{' '}
           <Code>Yes, and don't ask me again</Code>
         </LaunchItem>
 
-        <LaunchItem delay={0.2}>
+        <LaunchItem delay={0.25}>
           починайте завжди з <Code>plan mode</Code> (shift+tab двічі), ітеріться
           по плану і далі переходьте в <Code>Auto-accept everything</Code>
         </LaunchItem>
