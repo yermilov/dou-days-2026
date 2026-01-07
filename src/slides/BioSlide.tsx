@@ -87,10 +87,11 @@ export const BioSlide: SlideDefinition = {
 
         <div style={{ textAlign: 'left' }}>
           <BioSection title="8 років в греммерлі / суперхьюмані">
-            <BioItem level="high">зараз займаюся АІ-дев агентами</BioItem>
-            <BioItem level="medium">техлідив платформену організацію</BioItem>
-            <BioItem level="medium">лідив продуктові фічі</BioItem>
-            <BioItem level="low">працював на бекенді</BioItem>
+            <BioItem level="high">зараз займаюся АІ-кодінг агентами</BioItem>
+            <BioItem level="high">не написав вручну жодного рядка коду з травня минулого року</BioItem>
+            <BioItem level="medium">до цього: техлідив платформену організацію</BioItem>
+            <BioItem level="medium">до цього: лідив продуктові фічі</BioItem>
+            <BioItem level="low">до цього: працював на бекенді</BioItem>
           </BioSection>
 
           <BioSection title="connect">
