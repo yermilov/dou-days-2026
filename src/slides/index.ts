@@ -20,5 +20,6 @@ import { LaunchSlide } from './LaunchSlide';
 import { TryItSlide } from './TryItSlide';
 import { VibeFlowSlide } from './VibeFlowSlide';
 import { ContextToolsSlide } from './ContextToolsSlide';
+import { CodeSlopSlide } from './CodeSlopSlide';
 
-export const slides = [TitleSlide, BioSlide, ClaudeCodeSlide, IntroSlide, AgendaSlide, InstallSlide, BillionDollarSlide, PeterMobileSlide, JuniorEngineerSlide, DisclaimerSlide, TheorySlide, ContextSlide, ContextPrinciplesSlide, ClaudeMdSlide, McpSlide, TheoryCompleteSlide, ResearchSlide, TechnicalSlide, LaunchSlide, TryItSlide, VibeFlowSlide, ContextToolsSlide];
+export const slides = [TitleSlide, BioSlide, ClaudeCodeSlide, IntroSlide, AgendaSlide, InstallSlide, BillionDollarSlide, PeterMobileSlide, JuniorEngineerSlide, DisclaimerSlide, TheorySlide, ContextSlide, ContextPrinciplesSlide, ClaudeMdSlide, McpSlide, TheoryCompleteSlide, ResearchSlide, TechnicalSlide, LaunchSlide, TryItSlide, VibeFlowSlide, ContextToolsSlide, CodeSlopSlide];

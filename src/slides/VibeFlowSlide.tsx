@@ -139,7 +139,7 @@ export const VibeFlowSlide: SlideDefinition = {
         </VibeItem>
 
         <VibeItem delay={0.4}>
-          <Command>/review</Command>
+          <Command>/review</Command> або <Command>take a look at the current pr - if you would have a chance to implement it from scratch what would you do differently? clean all ai artifacts, comments, code duplication, unoptimal structures, ...</Command>
         </VibeItem>
       </div>
     </>
