@@ -120,7 +120,7 @@ export const VibeFlowSlide: SlideDefinition = {
           переходимо у <Code>plan mode</Code>
         </VibeItem>
 
-        <VibeItem delay={0.15}>описуємо проблему, формуємо контекст</VibeItem>
+        <VibeItem delay={0.15}>описуємо фічу / багу, формуємо контекст</VibeItem>
 
         <VibeItem delay={0.2}>
           чекаємо і чекаємо план, вичитуємо його і ітеруємося
@@ -132,6 +132,14 @@ export const VibeFlowSlide: SlideDefinition = {
 
         <VibeItem delay={0.3}>
           <Command>/commit-push-pr</Command>
+        </VibeItem>
+
+        <VibeItem delay={0.35}>
+          <Command>/clear</Command>
+        </VibeItem>
+
+        <VibeItem delay={0.4}>
+          <Command>/review</Command>
         </VibeItem>
       </div>
     </>
