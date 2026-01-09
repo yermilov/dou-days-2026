@@ -78,7 +78,7 @@ export const IntroSlide: SlideDefinition = {
   ),
   content: ({ activatedTools }: SlideContentProps) => (
     <>
-      <h2>давайте знайомитися далі</h2>
+      <h2>давайте знайомитися з вами</h2>
       <h1 className="hero">розкажіть про свій досвід ai кодінгу</h1>
 
       <div className="tool-grid">

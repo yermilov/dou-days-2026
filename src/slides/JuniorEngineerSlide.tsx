@@ -172,6 +172,7 @@ export const JuniorEngineerSlide: SlideDefinition = {
           alt="Чат інтерфейс з'єднується з терміналом — однакова взаємодія, різний інтерфейс"
           className="junior-engineer-image"
           style={{
+            maxWidth: '520px',
             animation: 'imageFloat 6s ease-in-out infinite, glowBreath 4s ease-in-out infinite',
           }}
         />
