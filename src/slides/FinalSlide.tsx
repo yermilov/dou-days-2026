@@ -30,33 +30,33 @@ export const FinalSlide: SlideDefinition = {
             textAlign: 'left',
           }}
         >
-          <SlideItem size="compact" delay={0.05}>
+          <SlideItem delay={0.05}>
             не обмежуйте себе образом автокомпліта чи код генератора,
             імпровізуйте, спілкуйтеся наче з{' '}
             <Emphasis color="green">партнером в чаті</Emphasis>
           </SlideItem>
 
-          <SlideItem size="compact" delay={0.10}>
+          <SlideItem delay={0.10}>
             зареєструйтеся в твіттері (хоч ілон маск і лох), слідкуйте за
             важливими АІ-інженерами
           </SlideItem>
 
-          <SlideItem size="compact" delay={0.15}>
+          <SlideItem delay={0.15}>
             лайкайте твіти про клод код щоб натренувати алгоритм, але фільтруйте
             хайп і пустий трьоп
           </SlideItem>
 
-          <SlideItem size="compact" delay={0.20}>
+          <SlideItem delay={0.20}>
             пробуйте нові підходи, але адаптуйте їх до своїх потреб
           </SlideItem>
 
-          <SlideItem size="compact" delay={0.25}>
+          <SlideItem delay={0.25}>
             використовуйте клод код щоб збільшити свій{' '}
             <Emphasis color="green">throughput</Emphasis> а не{' '}
             <Emphasis color="orange">latency</Emphasis>
           </SlideItem>
 
-          <SlideItem size="compact" delay={0.30}>
+          <SlideItem delay={0.30}>
             пишіть мені в лінкедіні{' '}
             <span style={{ color: 'var(--terminal-blue)' }}>→</span>
           </SlideItem>
@@ -68,7 +68,7 @@ export const FinalSlide: SlideDefinition = {
           alt="LinkedIn QR code - Yarik Yermilov"
           style={{
             flexShrink: 0,
-            maxWidth: '320px',
+            maxWidth: '400px',
             maxHeight: 'calc(100vh - 280px)',
             objectFit: 'contain',
             borderRadius: 'var(--input-border-radius)',
