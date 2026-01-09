@@ -1,0 +1,7 @@
+{
+  "filename": "ide-fighter.png",
+  "prompt": "Digital art of a high-tech warrior representing IDE Code Editor, fighting game character portrait style. The character is a sleek, modern tech-knight in armor made of colorful IDE panels and syntax-highlighted code windows. Chest plate displays a miniature code editor with multiple tabs. Helmet has a visor showing autocomplete suggestions floating. One shoulder has floating debug breakpoints (red dots). The other has git branch indicators. Holding a weapon that looks like a glowing cursor/caret beam. Background: Pure black with faint blue circuit patterns. Lighting: Strong blue rim light on right side, multicolor glow from the IDE panels (blue, purple, cyan). Style: Stylized digital art, semi-realistic with cel-shading edges. NOT pixel art. Pose: Three-quarter view facing left (mirrored from Terminal), defensive fighting stance, shield-like IDE panel raised. Mood: Modern, precise, feature-rich but complex. Color palette: Dominant black, blue (#79c0ff) primary, purple (#d2a8ff) and cyan (#76e4f7) accents.",
+  "ratio": "4:5",
+  "timestamp": "2026-01-09T22:28:37.715Z",
+  "model": "gemini-3-pro-image-preview"
+}

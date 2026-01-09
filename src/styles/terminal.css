@@ -1471,3 +1471,275 @@
     display: none;
   }
 }
+
+/* === VS BATTLE SLIDE === */
+/* Mortal Kombat style fighting game VS screen layout */
+
+.vs-battle-slide {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.5rem;
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+  height: calc(100vh - 220px);
+  padding: 1rem 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* Fighter containers */
+.vs-fighter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100%;
+  max-height: calc(100vh - 280px);
+}
+
+.vs-fighter--left {
+  justify-self: start;
+  animation: fighterEnterLeft 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.vs-fighter--right {
+  justify-self: end;
+  animation: fighterEnterRight 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: 0.15s;
+}
+
+@keyframes fighterEnterLeft {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fighterEnterRight {
+  0% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Fighter images */
+.vs-fighter-image {
+  max-width: 400px;
+  max-height: 500px;
+  object-fit: contain;
+  border-radius: 0.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Orange glow for Terminal fighter + mirror to face right */
+.vs-fighter--left .vs-fighter-image {
+  transform: scaleX(-1);
+  animation: terminalPulse 2.5s ease-in-out infinite;
+  border: 2px solid rgba(240, 136, 62, 0.5);
+}
+
+/* Blue glow for IDE fighter */
+.vs-fighter--right .vs-fighter-image {
+  animation: idePulse 2.5s ease-in-out infinite;
+  animation-delay: 0.3s;
+  border: 2px solid rgba(121, 192, 255, 0.5);
+}
+
+@keyframes terminalPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(240, 136, 62, 0.4))
+            drop-shadow(0 0 40px rgba(240, 136, 62, 0.2));
+  }
+  50% {
+    filter: drop-shadow(0 0 30px rgba(240, 136, 62, 0.7))
+            drop-shadow(0 0 60px rgba(240, 136, 62, 0.4))
+            drop-shadow(0 0 90px rgba(240, 136, 62, 0.2));
+  }
+}
+
+@keyframes idePulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(121, 192, 255, 0.4))
+            drop-shadow(0 0 40px rgba(121, 192, 255, 0.2));
+  }
+  50% {
+    filter: drop-shadow(0 0 30px rgba(121, 192, 255, 0.7))
+            drop-shadow(0 0 60px rgba(121, 192, 255, 0.4))
+            drop-shadow(0 0 90px rgba(121, 192, 255, 0.2));
+  }
+}
+
+/* Fighter name plates */
+.vs-fighter-name {
+  font-family: var(--font-mono);
+  font-size: 1.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-top: 1rem;
+  padding: 0.6rem 2rem;
+  background: linear-gradient(180deg, rgba(10, 14, 20, 0.9) 0%, rgba(10, 14, 20, 0.7) 100%);
+  border: 2px solid;
+  clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+}
+
+.vs-fighter--left .vs-fighter-name {
+  color: var(--terminal-orange);
+  border-color: var(--terminal-orange);
+  text-shadow: 0 0 20px rgba(240, 136, 62, 0.8);
+}
+
+.vs-fighter--right .vs-fighter-name {
+  color: var(--terminal-blue);
+  border-color: var(--terminal-blue);
+  text-shadow: 0 0 20px rgba(121, 192, 255, 0.8);
+}
+
+/* Center content */
+.vs-center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 3;
+  padding: 1rem;
+}
+
+/* VS Badge */
+.vs-badge {
+  font-family: var(--font-mono);
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--terminal-white);
+  text-shadow:
+    0 0 40px rgba(255, 255, 255, 0.9),
+    0 0 80px rgba(240, 136, 62, 0.6),
+    0 0 120px rgba(121, 192, 255, 0.4);
+  letter-spacing: 0.3em;
+  margin-bottom: 1.5rem;
+  position: relative;
+  animation: vsPulse 1.5s ease-in-out infinite;
+}
+
+.vs-badge::before,
+.vs-badge::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--terminal-white), transparent);
+}
+
+.vs-badge::before {
+  right: 100%;
+  margin-right: 0.75rem;
+}
+
+.vs-badge::after {
+  left: 100%;
+  margin-left: 0.75rem;
+}
+
+@keyframes vsPulse {
+  0%, 100% {
+    transform: scale(1);
+    text-shadow:
+      0 0 40px rgba(255, 255, 255, 0.9),
+      0 0 80px rgba(240, 136, 62, 0.6),
+      0 0 120px rgba(121, 192, 255, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    text-shadow:
+      0 0 60px rgba(255, 255, 255, 1),
+      0 0 100px rgba(240, 136, 62, 0.8),
+      0 0 150px rgba(121, 192, 255, 0.6);
+  }
+}
+
+/* Disclaimer content (floating, no box) */
+.vs-disclaimer-content {
+  font-size: 1.25rem;
+  max-width: 100%;
+  text-align: left;
+  padding: 0.5rem;
+}
+
+
+/* Responsive adjustments for VS battle slide */
+@media (max-width: 1200px) {
+  .vs-battle-slide {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .vs-fighter {
+    flex-direction: row;
+    gap: 1rem;
+    max-height: none;
+  }
+
+  .vs-fighter--left {
+    justify-self: center;
+    order: 1;
+  }
+
+  .vs-center-content {
+    order: 2;
+  }
+
+  .vs-fighter--right {
+    justify-self: center;
+    order: 3;
+  }
+
+  .vs-fighter-image {
+    max-width: 180px;
+    max-height: 220px;
+  }
+
+  .vs-fighter-name {
+    font-size: 1rem;
+  }
+
+  .vs-badge {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .vs-disclaimer-content {
+    font-size: 0.9rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .vs-fighter-image {
+    max-width: 140px;
+    max-height: 170px;
+  }
+
+  .vs-badge {
+    font-size: 1.5rem;
+  }
+
+  .vs-disclaimer-content {
+    font-size: 0.85rem;
+  }
+}
