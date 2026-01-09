@@ -62,7 +62,7 @@ export function SlideItem({
 }
 
 // Styled quote text
-export function Quote({ children }: { children: string }) {
+export function Quote({ children }: { children: React.ReactNode }) {
   return <span className="text-quote">'{children}'</span>;
 }
 

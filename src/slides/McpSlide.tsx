@@ -1,11 +1,6 @@
 import { SlideDefinition } from '../types/slides';
 import { Code, SlideItem, SlideLink } from '../components/SlideElements';
 
-// Hint styling (orange code) - for quoted instructions
-function Hint({ children }: { children: string }) {
-  return <code className="code-inline code-inline--orange">{children}</code>;
-}
-
 export const McpSlide: SlideDefinition = {
   id: 'mcp',
   content: (
@@ -48,7 +43,7 @@ export const McpSlide: SlideDefinition = {
 
         <SlideItem delay={0.3}>
           єдиний MCP сервер який майже без вагань можу порекомендувати - це{' '}
-          <SlideLink href="https://github.com/ChromeDevTools/chrome-devtools-mcp" target="_blank" rel="noopener noreferrer">
+          <SlideLink href="https://github.com/ChromeDevTools/chrome-devtools-mcp">
             chrome-devtools-mcp
           </SlideLink>
         </SlideItem>
