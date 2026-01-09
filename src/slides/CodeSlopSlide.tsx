@@ -5,27 +5,7 @@ export const CodeSlopSlide: SlideDefinition = {
   id: 'code-slop',
   content: (
     <>
-      <style>
-        {`
-          @keyframes noSlopPulse {
-            0%, 100% {
-              text-shadow: 0 0 10px var(--terminal-green-glow);
-              filter: brightness(1);
-            }
-            50% {
-              text-shadow: 0 0 25px var(--terminal-green-glow), 0 0 40px var(--terminal-green-glow);
-              filter: brightness(1.1);
-            }
-          }
-        `}
-      </style>
-
-      <h2
-        style={{
-          marginBottom: '2rem',
-          animation: 'noSlopPulse 2.5s ease-in-out infinite',
-        }}
-      >
+      <h2 style={{ marginBottom: '2rem' }}>
         <span className="text-dim">$</span>{' '}
         <span className="text-green">code</span>{' '}
         <span className="text-orange">--no-slop</span>
@@ -34,36 +14,36 @@ export const CodeSlopSlide: SlideDefinition = {
       <div
         style={{
           textAlign: 'left',
-          maxWidth: '1100px',
+          maxWidth: '1000px',
           width: '100%',
           margin: '0 auto',
         }}
       >
-        <SlideItem size="compact" delay={0.05}>
+        <SlideItem delay={0.05}>
           якщо робите зміни в web ui: додавайте{' '}
           <Quote>use frontend-design skill to create well-crafted ui/ux</Quote>
         </SlideItem>
 
-        <SlideItem size="compact" delay={0.12}>
+        <SlideItem delay={0.12}>
           просіть його{' '}
           <Quote>take a look how similar functionality is already implemented in the repo and follow the same patterns</Quote>
         </SlideItem>
 
-        <SlideItem size="compact" delay={0.19}>
+        <SlideItem delay={0.19}>
           якщо клод робить помилку виправляйте його так:{' '}
           <Quote>instead do X and remember this gotcha in CLAUDE.md</Quote>
         </SlideItem>
 
-        <SlideItem size="compact" delay={0.26}>
+        <SlideItem delay={0.26}>
           просіть клод писати тести (<Code>TDD</Code> працює дуже добре)
         </SlideItem>
 
-        <SlideItem size="compact" delay={0.33}>
+        <SlideItem delay={0.33}>
           <Emphasis>repeat after me:</Emphasis> напишіть стаб фічі вручну і
           попросіть клод закінчити
         </SlideItem>
 
-        <SlideItem size="compact" delay={0.40}>
+        <SlideItem delay={0.40}>
           <span style={{ textDecoration: 'line-through', opacity: 0.6 }}>
             для дуже складних задач додавайте{' '}
             <Quote>
@@ -83,7 +63,7 @@ export const CodeSlopSlide: SlideDefinition = {
           </span>
         </SlideItem>
 
-        <SlideItem size="compact" delay={0.47}>
+        <SlideItem delay={0.47}>
           просіть клод документувати все що він робить (наприклад в{' '}
           <Code>docs/</Code> папку) і потім реферінсіть її в наступних сесіях
         </SlideItem>

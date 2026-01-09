@@ -13,7 +13,7 @@ function AnimatedSectionHeader({
 }) {
   return (
     <div
-      className={`section-header section-header--compact section-header--${color}`}
+      className={`section-header section-header--${color}`}
       style={{
         opacity: 0,
         animation: 'slideItemFadeIn 0.35s ease-out forwards',
@@ -30,25 +30,7 @@ export const LifeAfterCommitSlide: SlideDefinition = {
   id: 'life-after-commit',
   content: (
     <>
-      <style>
-        {`
-          @keyframes deployPulse {
-            0%, 100% {
-              text-shadow: 0 0 10px var(--terminal-green-glow);
-            }
-            50% {
-              text-shadow: 0 0 20px var(--terminal-green-glow), 0 0 35px var(--terminal-green-glow);
-            }
-          }
-        `}
-      </style>
-
-      <h2
-        style={{
-          marginBottom: '1.8rem',
-          animation: 'deployPulse 3s ease-in-out infinite',
-        }}
-      >
+      <h2 style={{ marginBottom: '2rem' }}>
         <span className="text-dim">$</span>{' '}
         <span className="text-green">deploy</span>{' '}
         <span className="text-orange">--aftercare</span>
@@ -57,7 +39,7 @@ export const LifeAfterCommitSlide: SlideDefinition = {
       <div
         style={{
           textAlign: 'left',
-          maxWidth: '1100px',
+          maxWidth: '1000px',
           width: '100%',
           margin: '0 auto',
         }}
@@ -66,16 +48,16 @@ export const LifeAfterCommitSlide: SlideDefinition = {
           logging
         </AnimatedSectionHeader>
 
-        <SlideItem size="compact" delay={0.08}>
+        <SlideItem delay={0.08}>
           попросіть клод додавати багато логів і поясніть як отримати до них
           доступ (в <Code>CLAUDE.md</Code>)
         </SlideItem>
 
-        <SlideItem size="compact" delay={0.14}>
+        <SlideItem delay={0.14}>
           якщо запускаєте локально — вкажіть де лежить лог файл
         </SlideItem>
 
-        <SlideItem size="compact" delay={0.20}>
+        <SlideItem delay={0.20}>
           якщо в клауді — налаштуйте відправку логів в{' '}
           <SlideLink href="https://betterstack.com/">betterstack.com</SlideLink> і
           налаштуйте <Code>cli</Code> щоб мати до них доступ
@@ -85,13 +67,13 @@ export const LifeAfterCommitSlide: SlideDefinition = {
           web testing
         </AnimatedSectionHeader>
 
-        <SlideItem size="compact" delay={0.32}>
+        <SlideItem delay={0.32}>
           встановіть хром плагін{' '}
           <SlideLink href="https://claude.com/chrome">claude.com/chrome</SlideLink> і
           налаштуйте його за допомогою <Code>/chrome</Code>
         </SlideItem>
 
-        <SlideItem size="compact" delay={0.38}>
+        <SlideItem delay={0.38}>
           поясніть клод як "проклацати ваш сервіс" щоб він міг його потестувати
           (в <Code>CLAUDE.md</Code>)
         </SlideItem>
@@ -100,7 +82,7 @@ export const LifeAfterCommitSlide: SlideDefinition = {
           mcp
         </AnimatedSectionHeader>
 
-        <SlideItem size="compact" delay={0.50}>
+        <SlideItem delay={0.50}>
           <SlideLink href="https://github.com/anthropics/anthropic-quickstarts/tree/main/mcp-chrome-devtools">
             chrome-devtools-mcp
           </SlideLink>{' '}

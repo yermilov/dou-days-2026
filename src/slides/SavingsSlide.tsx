@@ -31,7 +31,7 @@ function AnimatedSectionHeader({
 }) {
   return (
     <div
-      className={`section-header section-header--dense section-header--${color}`}
+      className={`section-header section-header--${color}`}
       style={{
         opacity: 0,
         animation: 'slideItemFadeIn 0.35s ease-out forwards',
@@ -48,27 +48,7 @@ export const SavingsSlide: SlideDefinition = {
   id: 'savings',
   content: (
     <>
-      <style>
-        {`
-          @keyframes coinPulse {
-            0%, 100% {
-              text-shadow: 0 0 10px var(--terminal-green-glow);
-              filter: brightness(1);
-            }
-            50% {
-              text-shadow: 0 0 25px var(--terminal-green-glow), 0 0 45px var(--terminal-green-glow);
-              filter: brightness(1.15);
-            }
-          }
-        `}
-      </style>
-
-      <h2
-        style={{
-          marginBottom: '1.5rem',
-          animation: 'coinPulse 2s ease-in-out infinite',
-        }}
-      >
+      <h2 style={{ marginBottom: '2rem' }}>
         <span className="text-dim">$</span>{' '}
         <span className="text-green">budget</span>{' '}
         <span className="text-orange">--optimize</span>
@@ -77,7 +57,7 @@ export const SavingsSlide: SlideDefinition = {
       <div
         style={{
           textAlign: 'left',
-          maxWidth: '1150px',
+          maxWidth: '1000px',
           width: '100%',
           margin: '0 auto',
         }}
@@ -86,17 +66,17 @@ export const SavingsSlide: SlideDefinition = {
           pricing tiers
         </AnimatedSectionHeader>
 
-        <SlideItem size="dense" delay={0.08}>
+        <SlideItem delay={0.08}>
           антропік видає певну кількість токенів на 5 годин — і зупинить вас як
           тільки ви їх використаєте
         </SlideItem>
 
-        <SlideItem size="dense" delay={0.14}>
+        <SlideItem delay={0.14}>
           з мого досвіду: <Price>$17</Price> — 1-1.5 години вайб-кодінгу,{' '}
           <Price>$100</Price> — 3-4 години, <Price>$200</Price> — повні 5 годин
         </SlideItem>
 
-        <SlideItem size="dense" delay={0.20}>
+        <SlideItem delay={0.20}>
           <Price>$100</Price> — sweet spot, але гроші немаленькі; якщо ви багаті — купіть{' '}
           <Price>$200</Price> або <Price>$100</Price> + один-два на{' '}
           <Price>$17</Price>
@@ -106,17 +86,17 @@ export const SavingsSlide: SlideDefinition = {
           якщо ви не багачі
         </AnimatedSectionHeader>
 
-        <SlideItem size="dense" delay={0.32}>
+        <SlideItem delay={0.32}>
           оформіть <Price>$20</Price> підписку на ChatGPT (можливо вона у вас вже є) і встановіть{' '}
           <Code>codex cli</Code>
         </SlideItem>
 
-        <SlideItem size="dense" delay={0.38}>
+        <SlideItem delay={0.38}>
           <Code>codex</Code> — клон клод кода: він погано працює в довгих сесіях, але добре
           ван-шотить майже робочі стаби
         </SlideItem>
 
-        <SlideItem size="dense" delay={0.44}>
+        <SlideItem delay={0.44}>
           стратегія: ван-шот в <Code>codex</Code> → переходьте в{' '}
           <Code>claude code</Code> і попередьте його що стаб вже готовий
         </SlideItem>
@@ -125,12 +105,12 @@ export const SavingsSlide: SlideDefinition = {
           ще дешевші варіанти
         </AnimatedSectionHeader>
 
-        <SlideItem size="dense" delay={0.56}>
+        <SlideItem delay={0.56}>
           <Dim>перевірено</Dim> тріал <Code>Cursor</Code> — IDE або{' '}
           <Code>cursor-cli</Code>
         </SlideItem>
 
-        <SlideItem size="dense" delay={0.62}>
+        <SlideItem delay={0.62}>
           <Dim>не перевірено</Dim>{' '}
           <SlideLink href="https://ampcode.com/free">ampcode.com/free</SlideLink> —
           безкоштовний клон з рейт лімітом і рекламою (не жарт)
