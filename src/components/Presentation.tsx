@@ -192,7 +192,10 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
         onStartPause={handleTimerStartPause}
         onReset={handleTimerReset}
       />
-      <SlideProgress current={currentSlide + 1} total={slides.length} />
+      {/* Show context progress starting from context-principles slide */}
+      {currentSlide >= slides.findIndex(s => s.id === 'context-principles') && (
+        <SlideProgress current={currentSlide + 1} total={slides.length} />
+      )}
       {currentSlide === 0 && !slideInteracted && <OnboardingTooltip />}
       {activeSlide.tooltip &&
         (activeSlide.maxRevealStages
@@ -208,16 +211,6 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
           </div>
           <p className="pointer-tooltip-text">
             допомагає відстежити тривалість презентації. натисни <code>[start]</code> або введи <code>start</code> щоб почати
-          </p>
-        </PointerTooltip>
-      )}
-      {currentSlide === 0 && !slideInteracted && (
-        <PointerTooltip position="right">
-          <div className="pointer-tooltip-header">
-            <span className="onboarding-tooltip-icon">?</span>
-          </div>
-          <p className="pointer-tooltip-text">
-            прогрес по слайдам
           </p>
         </PointerTooltip>
       )}
