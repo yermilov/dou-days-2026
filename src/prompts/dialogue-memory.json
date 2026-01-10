@@ -1,0 +1,7 @@
+{
+  "filename": "dialogue-memory.png",
+  "prompt": "Messy whiteboard/drawingboard visualization on dark background (#0a0e14). Hand-drawn sketchy style showing memory fading concept. A glowing brain or lightbulb at the top, radiating bright orange light. Below it, a vertical stack of abstract thought bubbles or memory fragments - the ones near the top GLOW INTENSELY in orange (#f0883e), middle ones in green (#7ee787) dimmer, bottom ones in blue (#79c0ff) very faint and ghostly. Scribbled labels: 'NOW' with bright glow at top, 'PAST' fading at bottom. Wavy lines suggesting fading/dissolving memories. Hand-drawn arrows showing flow of time downward. Chalk/marker aesthetic, messy annotations, imperfect lines like someone explaining recency bias on a blackboard.",
+  "ratio": "1:1",
+  "timestamp": "2026-01-10T20:00:25.608Z",
+  "model": "gemini-3-pro-image-preview"
+}

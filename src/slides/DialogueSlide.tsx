@@ -1,22 +1,23 @@
 import { SlideDefinition } from '../types/slides';
 import { Quote, SlideItem } from '../components/SlideElements';
+import dialogueFlow from '/dialogue-flow.png?url';
+import dialogueMemory from '/dialogue-memory.png?url';
 
 export const DialogueSlide: SlideDefinition = {
   id: 'dialogue',
   content: (
-    <>
-      <h2 style={{ marginBottom: '2rem' }}>
-        <span className="text-dim">$</span> діалог
-      </h2>
+    <div className="mcp-slide">
+      <img
+        src={dialogueFlow}
+        alt="Step-by-step dialogue flow"
+        className="mcp-slide-image-left"
+      />
 
-      <div
-        style={{
-          textAlign: 'left',
-          maxWidth: '1000px',
-          width: '100%',
-          margin: '0 auto',
-        }}
-      >
+      <div className="mcp-slide-content">
+        <h2 style={{ marginBottom: '2rem' }}>
+          <span className="text-dim">$</span> діалог
+        </h2>
+
         <SlideItem delay={0.05}>
           використовуйте принцип <Quote>сім раз відмір - один раз відріж</Quote>
         </SlideItem>
@@ -36,7 +37,13 @@ export const DialogueSlide: SlideDefinition = {
           тоді дайте задачу на вирішення останнім промптом
         </SlideItem>
       </div>
-    </>
+
+      <img
+        src={dialogueMemory}
+        alt="LLM memory recency"
+        className="mcp-slide-image-right"
+      />
+    </div>
   ),
   notes: 'Dialogue principles for working with LLMs - measure twice, cut once',
 };
