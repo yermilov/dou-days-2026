@@ -1,0 +1,7 @@
+{
+  "filename": "mcp-tool-call-flow.png",
+  "prompt": "Messy whiteboard/drawingboard visualization on dark background (#0a0e14). Hand-drawn sketchy style showing LLM tool calling flow. Sketchy box labeled 'LLM' at top with glowing orange border, messy hand-drawn arrows pointing down with scribbled text 'tool_call | Edit | app.ts | const value = ...' in green. Middle sketchy box labeled 'Agent Runtime' in blue. More arrows pointing to a file icon 'app.ts'. Return arrow going back up with 'tool_result | success' scribbled along it. Informal annotations, circles, underlines scattered around. Whiteboard marker aesthetic, imperfect lines, like someone explaining on a blackboard. Colors: orange (#f0883e), green (#7ee787), blue (#79c0ff) on dark background.",
+  "ratio": "1:1",
+  "timestamp": "2026-01-10T19:16:43.679Z",
+  "model": "gemini-3-pro-image-preview"
+}

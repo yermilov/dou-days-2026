@@ -36,9 +36,11 @@ export const ClaudeCodeSlide: SlideDefinition = {
           <ul className="reveal-list">
             <li style={{ animationDelay: '0.1s' }}>build static web site from scratch using Bun + React stack</li>
             <li style={{ animationDelay: '0.2s' }}>research internet for materials</li>
-            <li style={{ animationDelay: '0.3s' }}>find and download images</li>
-            <li style={{ animationDelay: '0.4s' }}>create interactive slides</li>
-            <li style={{ animationDelay: '0.5s' }}>generate images using Nano Banana Pro</li>
+            <li style={{ animationDelay: '0.3s' }}>compose slide ideas</li>
+            <li style={{ animationDelay: '0.4s' }}>design layouts, aesthetics</li>
+            <li style={{ animationDelay: '0.5s' }}>find and download images</li>
+            <li style={{ animationDelay: '0.6s' }}>create interactive slides</li>
+            <li style={{ animationDelay: '0.7s' }}>generate images using Nano Banana Pro</li>
           </ul>
         </div>
       )}

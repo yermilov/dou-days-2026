@@ -14,11 +14,11 @@ interface TimelineItem {
 }
 
 const timelineItems: TimelineItem[] = [
-  { time: '15 місяців назад', text: 'cursor? прикольний автокомпліт', image: null },
-  { time: '14 місяців назад', text: 'я не вмію у фронтенд, cursor допоможи', image: cursorFrontend },
-  { time: '10 місяців назад', text: 'а що якщо це не тільки про код генерацію а про парне програмування?', image: mentoringLlm },
-  { time: '9 місяців назад', text: 'але це все ще іграшкова технологія, так?', image: aiTechDebt },
-  { time: '8 місяців назад', text: 'клод код? давайте спробуємо', image: claudeCodeEmail },
+  { time: '15 місяців тому', text: 'cursor? прикольний автокомпліт', image: null },
+  { time: '14 місяців тому', text: 'я не вмію у фронтенд, cursor допоможи', image: cursorFrontend },
+  { time: '10 місяців тому', text: 'а що якщо це не тільки про код генерацію а про парне програмування?', image: mentoringLlm },
+  { time: '9 місяців тому', text: 'але це все ще іграшкова технологія, так?', image: aiTechDebt },
+  { time: '8 місяців тому', text: 'клод код? давайте спробуємо', image: claudeCodeEmail },
   { time: 'з тих пір', text: 'жодного рядка коду я не написав руками', image: null, emphasis: true },
 ];
 

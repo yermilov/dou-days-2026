@@ -1,24 +1,25 @@
 import { SlideDefinition } from '../types/slides';
 import { Code, SlideItem, SlideLink } from '../components/SlideElements';
+import mcpToolCallFlow from '/mcp-tool-call-flow.png?url';
+import mcpContextPollution from '/mcp-context-pollution.png?url';
 
 export const McpSlide: SlideDefinition = {
   id: 'mcp',
   content: (
-    <>
-      <h2 style={{ marginBottom: '2rem' }}>
-        <span className="text-dim">$</span>{' '}
-        <span className="text-green">mcp</span>{' '}
-        <span className="text-orange">--list</span>
-      </h2>
+    <div className="mcp-slide">
+      <img
+        src={mcpToolCallFlow}
+        alt="LLM tool call token flow"
+        className="mcp-slide-image-left"
+      />
 
-      <div
-        style={{
-          textAlign: 'left',
-          maxWidth: '1000px',
-          width: '100%',
-          margin: '0 auto',
-        }}
-      >
+      <div className="mcp-slide-content">
+        <h2 style={{ marginBottom: '2rem' }}>
+          <span className="text-dim">$</span>{' '}
+          <span className="text-green">mcp</span>{' '}
+          <span className="text-orange">--list</span>
+        </h2>
+
         <SlideItem delay={0.05}>
           <Code>MCP</Code> (Model Context Protocol) — хайповий стандарт інтеграції
           LLM-застосунків з інструментами
@@ -52,7 +53,13 @@ export const McpSlide: SlideDefinition = {
           не забувайте підказувати клоду що ви би хотіли щоб він використав певний MCP
         </SlideItem>
       </div>
-    </>
+
+      <img
+        src={mcpContextPollution}
+        alt="MCP context window pollution"
+        className="mcp-slide-image-right"
+      />
+    </div>
   ),
   notes: 'MCP servers overview - what they are, how to use them, and current recommendations',
 };
