@@ -1,4 +1,8 @@
 :root {
+  /* === DYNAMIC VIEWPORT HEIGHT === */
+  --vh-full: 100vh;
+  --vh-full: 100dvh; /* cascade override for supporting browsers */
+
   /* === CRT TERMINAL COLOR PALETTE === */
 
   /* Deep blacks with subtle blue undertone */
@@ -109,4 +113,17 @@
   --scanline-opacity: 0.03;
   --noise-opacity: 0.015;
   --flicker-intensity: 0.005;
+}
+
+/* Phone-size typography */
+@media (max-width: 480px) {
+  :root {
+    --font-size-hero: 2rem;
+    --font-size-h1: 1.6rem;
+    --font-size-h2: 1.25rem;
+    --font-size-h3: 1.1rem;
+    --font-size-body: 0.9rem;
+    --font-size-code: 0.8rem;
+    --input-height: 2.75rem;
+  }
 }

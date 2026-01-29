@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { PresentationProps } from '../types/slides';
 import { useSlideNavigation } from '../hooks/useSlideNavigation';
+import { useTouchNavigation } from '../hooks/useTouchNavigation';
 import { Slide } from './Slide';
 import { TerminalInput } from './TerminalInput';
 import { SlideProgress } from './SlideProgress';
@@ -50,6 +51,8 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
     slides.length,
     initialSlide
   );
+
+  const { containerRef } = useTouchNavigation({ nextSlide, prevSlide });
 
   // Track current input text for interactive slides
   const [inputText, setInputText] = useState('');
@@ -177,7 +180,7 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
 
   return (
     <div className="presentation">
-      <div className="slide-container" key={activeSlide.id}>
+      <div className="slide-container" ref={containerRef} key={activeSlide.id}>
         <Slide
           isActive
           notes={activeSlide.notes}

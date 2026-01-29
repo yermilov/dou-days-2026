@@ -12,12 +12,17 @@ export function TerminalInput({
   const [value, setValue] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Auto-focus on mount
+  // Detect mobile touch device — skip auto-focus to prevent on-screen keyboard
+  const isMobileTouch =
+    typeof window !== 'undefined' &&
+    window.matchMedia('(max-width: 768px) and (pointer: coarse)').matches;
+
+  // Auto-focus on mount (skip on mobile to prevent keyboard opening)
   useEffect(() => {
-    if (inputRef.current && !disabled) {
+    if (inputRef.current && !disabled && !isMobileTouch) {
       inputRef.current.focus();
     }
-  }, [disabled]);
+  }, [disabled, isMobileTouch]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
@@ -48,8 +53,10 @@ export function TerminalInput({
     }
   };
 
-  // Re-focus input when clicking anywhere in the presentation
+  // Re-focus input when clicking anywhere in the presentation (skip on mobile)
   useEffect(() => {
+    if (isMobileTouch) return;
+
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
 
@@ -73,7 +80,7 @@ export function TerminalInput({
 
     document.addEventListener('click', handleClick);
     return () => document.removeEventListener('click', handleClick);
-  }, [disabled]);
+  }, [disabled, isMobileTouch]);
 
   return (
     <div className="terminal-input">
