@@ -82,18 +82,18 @@ export const BioSlide: SlideDefinition = {
         </h2>
 
         <div style={{ textAlign: 'left' }}>
-          <BioSection title="8+ років в греммерлі / суперхьюмані">
-            <BioItem level="high">0 -&gt; 1 проєкти</BioItem>
-            <BioItem level="high">в 2025 році - впровадження АІ-кодінг агентів в компанії</BioItem>
-            <BioItem level="medium">до цього: техлідив платформену організацію</BioItem>
-            <BioItem level="medium">до цього: техлідив розробку фічевих фреймворків</BioItem>
-            <BioItem level="medium">до цього: лідив продуктові фічі</BioItem>
-            <BioItem level="low">до цього: працював на бекенді</BioItem>
+          <BioSection title="8+ years at Grammarly / Superhuman">
+            <BioItem level="high">0 -&gt; 1 projects</BioItem>
+            <BioItem level="high">in 2025: rolling out AI coding agents across the company</BioItem>
+            <BioItem level="medium">before that: tech lead of platform organization</BioItem>
+            <BioItem level="medium">before that: tech lead of feature frameworks</BioItem>
+            <BioItem level="medium">before that: led product features</BioItem>
+            <BioItem level="low">before that: backend engineer</BioItem>
           </BioSection>
 
           <BioSection title="connect">
             <BioItem level="high">
-              пишу постійно в{' '}
+              posting regularly on{' '}
               <a
                 href="https://www.linkedin.com/in/yarik-yermilov/"
                 target="_blank"
