@@ -3,15 +3,15 @@ import agendaTeamImage from '/agenda-team.png?url';
 import agendaOrgImage from '/agenda-org.png?url';
 import { SlideDefinition } from '../types/slides';
 
-function AgendaImageSlide({
+function SectionTitleSlide({
   src,
   alt,
-  index,
+  part,
   desc,
 }: {
   src: string;
   alt: string;
-  index: number;
+  part: number;
   desc: string;
 }) {
   return (
@@ -24,13 +24,15 @@ function AgendaImageSlide({
         width: '100%',
       }}
     >
-      <h2 style={{ marginBottom: 0 }}>
-        <span className="text-dim">$</span> ./talk{' '}
-        <span className="text-orange">--help</span>
-        <span className="text-dim" style={{ fontSize: '1.5rem', marginLeft: '1.5rem' }}>
-          [{index}/3] {desc}
-        </span>
-      </h2>
+      <div style={{ lineHeight: 1.4, textAlign: 'center' }}>
+        <div style={{ fontSize: '2rem' }}>
+          <span className="text-dim">$</span>{' '}
+          <span style={{ color: 'var(--terminal-green)' }}>./session --part {part}</span>
+        </div>
+        <div style={{ fontSize: '1.5rem' }} className="text-muted">
+          {desc}
+        </div>
+      </div>
 
       <img
         src={src}
@@ -49,38 +51,38 @@ function AgendaImageSlide({
   );
 }
 
-export const AgendaSlides: SlideDefinition[] = [
-  {
-    id: 'agenda-engineer',
-    content: (
-      <AgendaImageSlide
-        src={agendaEngineerImage}
-        alt="AI-First Engineer"
-        index={1}
-        desc="individual mastery"
-      />
-    ),
-  },
-  {
-    id: 'agenda-team',
-    content: (
-      <AgendaImageSlide
-        src={agendaTeamImage}
-        alt="AI-First Team"
-        index={2}
-        desc="collective workflows"
-      />
-    ),
-  },
-  {
-    id: 'agenda-org',
-    content: (
-      <AgendaImageSlide
-        src={agendaOrgImage}
-        alt="AI-First Organization"
-        index={3}
-        desc="culture & process"
-      />
-    ),
-  },
-];
+export const EngineerSectionSlide: SlideDefinition = {
+  id: 'agenda-engineer',
+  content: (
+    <SectionTitleSlide
+      src={agendaEngineerImage}
+      alt="AI-First Engineer"
+      part={1}
+      desc="// ai-first engineer"
+    />
+  ),
+};
+
+export const TeamSectionSlide: SlideDefinition = {
+  id: 'agenda-team',
+  content: (
+    <SectionTitleSlide
+      src={agendaTeamImage}
+      alt="AI-First Team"
+      part={2}
+      desc="// ai-first team"
+    />
+  ),
+};
+
+export const OrgSectionSlide: SlideDefinition = {
+  id: 'agenda-org',
+  content: (
+    <SectionTitleSlide
+      src={agendaOrgImage}
+      alt="AI-First Organization"
+      part={3}
+      desc="// ai-first organization"
+    />
+  ),
+};
