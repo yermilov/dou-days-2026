@@ -26,21 +26,31 @@ bun run deploy   # Manual deploy to GitHub Pages
 
 ```
 src/
-├── App.tsx                    # Slide definitions
+├── App.tsx                    # Slide array — imports and orders all slides
 ├── main.tsx                   # React entry point
 ├── index.css                  # Global styles & font import
 ├── vite-env.d.ts              # Vite type declarations
 ├── types/
 │   └── slides.ts              # TypeScript interfaces
+├── slides/
+│   ├── index.ts               # Re-exports all slide components
+│   ├── TitleSlide.tsx         # Individual slide components (35 total)
+│   └── ...
+├── prompts/
+│   └── *.json                 # Structured data for animated/complex slides
 ├── hooks/
-│   └── useSlideNavigation.ts  # Navigation state & command parsing
+│   ├── useSlideNavigation.ts  # Navigation state & command parsing
+│   └── useTouchNavigation.ts  # Swipe gesture support
 ├── components/
-│   ├── Presentation.tsx       # Main container component
+│   ├── Presentation.tsx       # Main container — timer, tool activation, routing
 │   ├── Slide.tsx              # Fullscreen slide wrapper
 │   ├── TerminalInput.tsx      # Command input box
 │   ├── CodeBlock.tsx          # Syntax-highlighted code
 │   ├── SlideProgress.tsx      # Slide counter
-│   └── OnboardingTooltip.tsx  # Navigation help tooltip
+│   ├── OnboardingTooltip.tsx  # Navigation help tooltip
+│   ├── PointerTooltip.tsx     # Contextual pointer hints
+│   ├── SlideElements.tsx      # Reusable slide building blocks
+│   └── Timer.tsx              # Presentation timer component
 └── styles/
     ├── theme.css              # CSS design tokens
     └── terminal.css           # Component styles
@@ -48,26 +58,44 @@ src/
 
 ## Adding Slides
 
-Edit `src/App.tsx` and add to the `slides` array:
+Each slide lives in its own file under `src/slides/`. To add a new slide:
+
+1. Create `src/slides/MySlide.tsx`
+2. Export it from `src/slides/index.ts`
+3. Import and add to the `slides` array in `src/App.tsx`
+
+Slide definition shape:
 
 ```tsx
-const slides: SlideDefinition[] = [
-  {
-    id: 'unique-id',
-    content: (
-      <>
-        <h2>Slide Title</h2>
-        <p>Slide content here</p>
-        <ul>
-          <li>List items with terminal-style bullets</li>
-        </ul>
-      </>
-    ),
-    notes: 'Optional speaker notes',
-    background: '#custom-color', // Optional
-  },
-  // Add more slides...
-];
+// src/slides/MySlide.tsx
+export function MySlide() {
+  return (
+    <>
+      <h2>Slide Title</h2>
+      <p>Slide content here</p>
+      <ul>
+        <li>List items with terminal-style bullets</li>
+      </ul>
+    </>
+  );
+}
+
+// src/App.tsx — register it:
+{
+  id: 'unique-id',
+  content: <MySlide />,
+  notes: 'Optional speaker notes',
+}
+```
+
+For interactive slides (reveal stages, live input, tool activation), pass a render function instead of JSX:
+
+```tsx
+{
+  id: 'interactive-id',
+  content: ({ revealStage, inputText, activatedTools }) => <MySlide revealStage={revealStage} />,
+  maxRevealStages: 3,
+}
 ```
 
 ### Using Code Blocks
@@ -88,11 +116,32 @@ Images in `public/` must be imported with `?url` suffix for GitHub Pages compati
 ```tsx
 import myImage from '/my-image.png?url';
 
-// In slide content:
-<img src={myImage} alt="Description" />
+// In slide content (add loading="lazy" for non-first slides):
+<img src={myImage} alt="Description" loading="lazy" />
 ```
 
 **Important:** Do NOT use direct paths like `src="/image.png"` — they break on GitHub Pages due to the base URL (`/how-to-make-your-team-ai-first-en`).
+
+**Build-time compression:** `vite-plugin-imagemin` is configured in `vite.config.ts` and automatically compresses PNGs/JPEGs at build time (71–86% size reduction). No manual compression needed.
+
+### Animated Content — Use MP4, Not GIF
+
+Large GIFs dramatically inflate bundle size. Convert to MP4:
+
+```bash
+ffmpeg -i input.gif -vf "fps=15,scale=trunc(iw/2)*2:trunc(ih/2)*2" \
+  -c:v libx264 -pix_fmt yuv420p -crf 28 output.mp4
+```
+
+Use `<video>` instead of `<img>` for the result:
+
+```tsx
+import myVideo from '/my-video.mp4?url';
+
+<video autoPlay loop muted playsInline src={myVideo} />
+```
+
+GIF vs MP4: `petermobile.gif` was 5 MB → `petermobile.mp4` is 306 KB.
 
 ### Full-Screen Image Slides
 
@@ -117,6 +166,22 @@ The `.image-slide` class automatically:
 - Applies terminal-themed border and shadow
 - Uses `object-fit: contain` to preserve aspect ratio
 
+### Slide Height & Overflow
+
+The `.slide` container has `max-height: 100%; overflow: hidden` as a hard CSS guard. If content overflows the viewport and overlaps the input bar:
+
+- Reduce font sizes and margins first (prefer `1.3–1.5rem` for body text in dense slides)
+- Use `calc(var(--vh-full) - 220px)` (or similar offset) for image/media containers so they leave room for the timer and input bar
+- The standard image-slide pattern already handles this via `.image-slide` height constraint
+
+Example fix pattern for overflow:
+```css
+.my-slide-image {
+  max-height: calc(var(--vh-full) - 220px);
+  object-fit: contain;
+}
+```
+
 ### Slide Content Classes
 
 - `h1.hero` - Extra large hero heading
@@ -130,9 +195,14 @@ Type in the input box:
 - `next` or `n` → Next slide
 - `prev`, `back`, `p`, `b` → Previous slide
 - Number (e.g., `3`) → Go to slide 3
-- `first`, `start`, `home` → First slide
+- `first`, `home` → First slide (`start` activates the timer, not navigation)
 - `last`, `end` → Last slide
 - `reveal` or `r` → Reveal next content stage
+
+Timer commands:
+- `start` or `go` → Start timer
+- `pause` or `stop` → Pause timer
+- `reset` → Reset timer and clear IntroSlide tool selections
 
 Keyboard (when not typing):
 - Arrow keys, Space, PageDown/Up → Navigate
