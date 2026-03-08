@@ -25,7 +25,11 @@
       "Bash(ls:*)",
       "Skill(generate-image)",
       "Bash(bun:*)",
-      "Bash(cp:*)"
+      "Bash(cp:*)",
+      "Bash(wc:*)",
+      "Bash(/opt/homebrew/bin/ffmpeg:*)",
+      "Bash(git symbolic-ref:*)",
+      "WebFetch(domain:github.com)"
     ]
   }
 }

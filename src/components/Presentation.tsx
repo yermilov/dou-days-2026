@@ -26,8 +26,8 @@ const TOOL_KEYWORDS: Record<string, string[]> = {
 
 // Find which tool IDs match the input
 function getMatchingToolIds(input: string): string[] {
-  if (!input.trim()) return [];
   const normalizedInput = input.toLowerCase().trim();
+  if (normalizedInput.length < 3) return [];
   return Object.entries(TOOL_KEYWORDS)
     .filter(([, keywords]) =>
       keywords.some(kw => normalizedInput.includes(kw) || kw.includes(normalizedInput))
@@ -139,14 +139,16 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
     // Mark as interacted (hides tooltips)
     setSlideInteracted(true);
 
-    // Check for tool activation before other commands
-    const matchingTools = getMatchingToolIds(command);
-    if (matchingTools.length > 0) {
-      setActivatedTools(prev => {
-        const next = new Set(prev);
-        matchingTools.forEach(id => next.add(id));
-        return next;
-      });
+    // Only activate tools when on the IntroSlide
+    if (slides[currentSlide]?.id === 'intro') {
+      const matchingTools = getMatchingToolIds(command);
+      if (matchingTools.length > 0) {
+        setActivatedTools(prev => {
+          const next = new Set(prev);
+          matchingTools.forEach(id => next.add(id));
+          return next;
+        });
+      }
     }
 
     switch (trimmed) {
