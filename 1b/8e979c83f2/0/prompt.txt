@@ -1,0 +1,13 @@
+merge to main
+
+---
+
+and remove feature branch
+
+---
+
+are there any other dangling feature branches?
+
+---
+
+add to CLAUDE.md information about origin/entire/checkpoints/v1 which is based on https://entire.io/
