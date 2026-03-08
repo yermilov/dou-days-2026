@@ -32,6 +32,9 @@ lerna-debug.log*
 .env
 .env.local
 
+# Claude Code local settings
+.claude/settings.local.json
+
 # Generated images (keep directory, ignore contents except .gitkeep)
 src/assets/generated/*
 !src/assets/generated/.gitkeep
