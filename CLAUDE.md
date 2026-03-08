@@ -328,6 +328,25 @@ grep -n "artifactory\|private\|internal" bun.lock
 - Commit messages: `Add/Update/Fix/Remove [description]`
 - Include co-author footer for AI-assisted commits
 
+### Workflow
+
+Never commit directly to `main`. Always use a short-lived feature branch:
+
+```bash
+git checkout -b my-feature        # 1. Create feature branch
+# ... make changes ...
+git add <files>
+git commit -m "Add/Fix/Update X"  # 2. Commit
+git push -u origin my-feature     # 3. Push
+git checkout main
+git merge my-feature              # 4. Merge to main
+git push origin main              # 5. Push main
+git branch -d my-feature          # 6. Delete local branch
+git push origin --delete my-feature  # 7. Delete remote branch
+```
+
+Use the `/cicd:commit-and-push` skill to automate steps 1–3.
+
 ## Session Tracking (entire.io)
 
 This project uses [entire.io](https://entire.io/) for Claude Code session tracking. Session data is stored in a dedicated orphan branch:
