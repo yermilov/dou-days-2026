@@ -1,0 +1,3 @@
+wait, let's do the following:
+(1) reset on any slide should clear state
+(2) at least 3 characters should be used to match tool name
