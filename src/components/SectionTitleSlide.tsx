@@ -1,9 +1,4 @@
-import agendaEngineerImage from '/agenda-engineer.png?url';
-import agendaTeamImage from '/agenda-team.png?url';
-import agendaOrgImage from '/agenda-org.png?url';
-import { SlideDefinition } from '../types/slides';
-
-function SectionTitleSlide({
+export function SectionTitleSlide({
   src,
   alt,
   part,
@@ -50,39 +45,3 @@ function SectionTitleSlide({
     </div>
   );
 }
-
-export const EngineerSectionSlide: SlideDefinition = {
-  id: 'agenda-engineer',
-  content: (
-    <SectionTitleSlide
-      src={agendaEngineerImage}
-      alt="AI-First Engineer"
-      part={1}
-      desc="// ai-first engineer"
-    />
-  ),
-};
-
-export const TeamSectionSlide: SlideDefinition = {
-  id: 'agenda-team',
-  content: (
-    <SectionTitleSlide
-      src={agendaTeamImage}
-      alt="AI-First Team"
-      part={2}
-      desc="// ai-first team"
-    />
-  ),
-};
-
-export const OrgSectionSlide: SlideDefinition = {
-  id: 'agenda-org',
-  content: (
-    <SectionTitleSlide
-      src={agendaOrgImage}
-      alt="AI-First Organization"
-      part={3}
-      desc="// ai-first organization"
-    />
-  ),
-};
