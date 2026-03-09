@@ -1350,6 +1350,7 @@
 /* Left tooltip (above timer) */
 .pointer-tooltip--left {
   left: var(--space-xl);
+  bottom: calc(var(--input-height) + var(--space-xl) + var(--space-md) + 2.5rem);
 }
 
 /* Right tooltip (above progress bar) */

@@ -1,31 +1,6 @@
 import React from 'react';
 import { SlideDefinition } from '../types/slides';
-import { SlideItem, Emphasis } from '../components/SlideElements';
-
-// Section header with animation for this slide
-function AnimatedSectionHeader({
-  children,
-  color,
-  delay,
-}: {
-  children: string;
-  color: 'green' | 'purple' | 'blue';
-  delay: number;
-}) {
-  return (
-    <div
-      className={`section-header section-header--${color}`}
-      style={{
-        opacity: 0,
-        animation: 'slideItemFadeIn 0.35s ease-out forwards',
-        animationDelay: `${delay}s`,
-      }}
-    >
-      {'// '}
-      {children}
-    </div>
-  );
-}
+import { SlideItem } from '../components/SlideElements';
 
 // Quoted prompt text (orange with italic styling)
 function Prompt({ children }: { children: React.ReactNode }) {
@@ -60,20 +35,7 @@ export const SkillsAuthoringSlide: SlideDefinition = {
           margin: '0 auto',
         }}
       >
-        <AnimatedSectionHeader color="green" delay={0.03}>
-          when to do it
-        </AnimatedSectionHeader>
-
         <SlideItem delay={0.08}>
-          if you find yourself instructing Claude to do the same thing over and
-          over — teach it that <Emphasis color="green">skill</Emphasis>
-        </SlideItem>
-
-        <AnimatedSectionHeader color="purple" delay={0.14}>
-          how to do it
-        </AnimatedSectionHeader>
-
-        <SlideItem delay={0.20}>
           as always, start a fresh session, plan mode, and go:{' '}
           <Prompt>please read https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices and create a skill that will ...</Prompt>
         </SlideItem>
@@ -87,20 +49,11 @@ export const SkillsAuthoringSlide: SlideDefinition = {
         </SlideItem>
 
         <SlideItem delay={0.32}>
-          and then you can <Emphasis color="orange">after</Emphasis> some action
+          and then you can <strong>after</strong> some action
           write{' '}
           <Prompt>use skills-authorship skill to turn ... into skill</Prompt>{' '}
           or{' '}
           <Prompt>use skills-authorship skill to update ... skill to ...</Prompt>
-        </SlideItem>
-
-        <AnimatedSectionHeader color="blue" delay={0.38}>
-          examples
-        </AnimatedSectionHeader>
-
-        <SlideItem delay={0.44}>
-          log search, debugging issues, performance optimizations, image
-          generation, writing documentation, ...
         </SlideItem>
       </div>
     </>

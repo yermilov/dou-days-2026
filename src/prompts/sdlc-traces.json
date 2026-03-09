@@ -1,0 +1,7 @@
+{
+  "filename": "sdlc-traces.png",
+  "prompt": "Chalkboard-style diagram on a dark blackboard background. Hand-drawn chalk sketch illustration. There are 10 juncture circles scattered across the board in a roughly left-to-right progression but at varying heights — NOT on a straight line. Each circle is hand-drawn with a chalk label inside: IDEA, DESIGN, DEV ENV SETUP, LOCAL DEV, CODING, QA, CODE REVIEW, COMMIT, DEPLOY, MONITOR. The circles are placed at organic, irregular positions across the 16:9 frame — some higher, some lower, staggered, giving a constellation-like layout. From a starting point on the left, 6 different colored chalk traces (like paths) each wind through all 10 circles but with slightly different curves — some traces arc above a circle, some dip below, some cut across more directly, some loop around. Each trace is a unique wavy chalk line with arrowheads showing direction. At the start of each trace (left edge) there is a small hand-drawn stick figure or robot icon. Colors: one trace in orange, one in lime green, one in sky blue, one in white, one in yellow, one in cyan. The circles are white chalk outlines. The overall effect is like a spider's web of paths all connecting the same waypoints but taking different routes. Chalk texture on all lines and labels. No grid, no swim lanes, no boxes. Dark near-black chalkboard background.",
+  "ratio": "16:9",
+  "timestamp": "2026-03-09T19:45:57.558Z",
+  "model": "gemini-3-pro-image-preview"
+}

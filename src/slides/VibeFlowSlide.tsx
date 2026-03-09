@@ -32,7 +32,7 @@ export const VibeFlowSlide: SlideDefinition = {
           switch to <Code>plan mode</Code>
         </SlideItem>
 
-        <SlideItem delay={0.15}>describe the feature / bug, form the context</SlideItem>
+        <SlideItem delay={0.15}>describe the feature / bug, <span className="text-orange" style={{ textShadow: '0 0 8px rgba(240, 136, 62, 0.9), 0 0 20px rgba(240, 136, 62, 0.6), 0 0 40px rgba(240, 136, 62, 0.3)' }}>form the context</span></SlideItem>
 
         <SlideItem delay={0.2}>
           wait for the plan, review it, and iterate
