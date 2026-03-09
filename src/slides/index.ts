@@ -8,10 +8,7 @@ import { TeamSectionSlide } from './TeamSectionSlide';
 import { OrgSectionSlide } from './OrgSectionSlide';
 import { JuniorEngineerSlide } from './JuniorEngineerSlide';
 import { DisclaimerSlide } from './DisclaimerSlide';
-import { ContextSlide } from './ContextSlide';
-import { SystemPromptSlide } from './SystemPromptSlide';
 import { ClaudeMdSlide } from './ClaudeMdSlide';
-import { DialogueSlide } from './DialogueSlide';
 import { McpSlide } from './McpSlide';
 import { TheoryCompleteSlide } from './TheoryCompleteSlide';
 import { ResearchSlide } from './ResearchSlide';
@@ -30,4 +27,4 @@ import { AIFirstWorkflowSlide } from './AIFirstWorkflowSlide';
 import { AIFirstToolsSlide } from './AIFirstToolsSlide';
 import { FinalSlide } from './FinalSlide';
 
-export const slides = [TitleSlide, BioSlide, TimelineSlide, IntroSlide, ClaudeCodeSlide, EngineerSectionSlide, JuniorEngineerSlide, DisclaimerSlide, DialogueSlide, ContextSlide, SystemPromptSlide, McpSlide, ClaudeMdSlide, TheoryCompleteSlide, ResearchSlide, TechnicalSlide, LaunchSlide, TryItSlide, VibeFlowSlide, ContextToolsSlide, CodeSlopSlide, ImportantSlide, LifeAfterCommitSlide, SavingsSlide, SkillsAuthoringSlide, AIFirstRoleSlide, AIFirstWorkflowSlide, AIFirstToolsSlide, TeamSectionSlide, OrgSectionSlide, FinalSlide];
+export const slides = [TitleSlide, BioSlide, TimelineSlide, IntroSlide, ClaudeCodeSlide, EngineerSectionSlide, JuniorEngineerSlide, DisclaimerSlide, VibeFlowSlide, McpSlide, ClaudeMdSlide, TheoryCompleteSlide, ResearchSlide, TechnicalSlide, LaunchSlide, TryItSlide, ContextToolsSlide, CodeSlopSlide, ImportantSlide, LifeAfterCommitSlide, SavingsSlide, SkillsAuthoringSlide, AIFirstRoleSlide, AIFirstWorkflowSlide, AIFirstToolsSlide, TeamSectionSlide, OrgSectionSlide, FinalSlide];

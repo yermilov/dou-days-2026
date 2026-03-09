@@ -25,17 +25,17 @@ export const VibeFlowSlide: SlideDefinition = {
         }}
       >
         <SlideItem delay={0.05}>
-          <Command>/clear</Command> очищуємо сесію
+          <Command>/clear</Command> clear the session
         </SlideItem>
 
         <SlideItem delay={0.1}>
-          переходимо у <Code>plan mode</Code>
+          switch to <Code>plan mode</Code>
         </SlideItem>
 
-        <SlideItem delay={0.15}>описуємо фічу / багу, формуємо контекст</SlideItem>
+        <SlideItem delay={0.15}>describe the feature / bug, form the context</SlideItem>
 
         <SlideItem delay={0.2}>
-          чекаємо і чекаємо план, вичитуємо його і ітеруємося
+          wait for the plan, review it, and iterate
         </SlideItem>
 
         <SlideItem delay={0.25}>
@@ -51,7 +51,11 @@ export const VibeFlowSlide: SlideDefinition = {
         </SlideItem>
 
         <SlideItem delay={0.4}>
-          <Command>/review</Command> або <Command>take a look at the current pr - if you would have a chance to implement it from scratch what would you do differently? clean all ai artifacts, comments, code duplication, unoptimal structures, ...</Command>
+          <Command>/simplify</Command>
+        </SlideItem>
+
+        <SlideItem delay={0.45}>
+          <Command>/review</Command>
         </SlideItem>
       </div>
     </>
