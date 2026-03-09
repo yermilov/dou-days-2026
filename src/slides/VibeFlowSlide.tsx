@@ -1,5 +1,5 @@
 import { SlideDefinition } from '../types/slides';
-import { Code, SlideItem } from '../components/SlideElements';
+import { Code, Emphasis, SlideItem } from '../components/SlideElements';
 
 // Command styling (orange code)
 function Command({ children }: { children: string }) {
@@ -40,6 +40,11 @@ export const VibeFlowSlide: SlideDefinition = {
 
         <SlideItem delay={0.25}>
           <Code>Yes, and auto-accept edits</Code>
+        </SlideItem>
+
+        <SlideItem delay={0.28}>
+          if Claude Code asks you whether it can do something read-only and not very dangerous — always choose{' '}
+          <Emphasis>Yes, and don't ask me again</Emphasis>
         </SlideItem>
 
         <SlideItem delay={0.3}>

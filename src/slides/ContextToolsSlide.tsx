@@ -42,7 +42,7 @@ export const ContextToolsSlide: SlideDefinition = {
 
           <SlideItem delay={0.35}>
             find open-source projects that solve similar problems, ask Claude{' '}
-            <Quote>install gh cli and browse these repos for inspiration</Quote>
+            <Quote>browse these repos via gh cli for inspiration</Quote>
           </SlideItem>
 
           <SlideItem delay={0.45}>
@@ -54,16 +54,10 @@ export const ContextToolsSlide: SlideDefinition = {
             don't use MCPs — use CLIs or skills instead
           </SlideItem>
 
-          <div style={{ gridColumn: '1 / -1' }}>
-            <SlideItem delay={0.65}>
-              if Claude Code makes a mistake, tell it{' '}
-              <Quote>instead do X and remember this information in <Code>CLAUDE.md</Code></Quote>
-            </SlideItem>
-          </div>
         </div>
       </div>
     </div>
   ),
   notes:
-    'Context building tools — describe task in detail, use Deep Research, add articles/PDFs, browse open-source repos, add diagrams/screenshots, avoid MCPs use CLIs or skills, if Claude Code makes a mistake tell it to do X instead and remember in CLAUDE.md',
+    'Context building tools — describe task in detail, use Deep Research, add articles/PDFs, browse open-source repos, add diagrams/screenshots, avoid MCPs use CLIs or skills',
 };
