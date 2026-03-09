@@ -12,7 +12,8 @@ import { VibeFlowSlide } from './VibeFlowSlide';
 import { ContextToolsSlide } from './ContextToolsSlide';
 import { CodeSlopSlide } from './CodeSlopSlide';
 import { ImportantSlide } from './ImportantSlide';
+import { UltimateExampleSlide } from './UltimateExampleSlide';
 import { SkillsAuthoringSlide } from './SkillsAuthoringSlide';
 import { FinalSlide } from './FinalSlide';
 
-export const slides = [TitleSlide, BioSlide, TimelineSlide, IntroSlide, ClaudeCodeSlide, EngineerSectionSlide, JuniorEngineerSlide, DisclaimerSlide, VibeFlowSlide, ContextToolsSlide, CodeSlopSlide, ImportantSlide, TeamSectionSlide, SkillsAuthoringSlide, OrgSectionSlide, FinalSlide];
+export const slides = [TitleSlide, BioSlide, TimelineSlide, IntroSlide, ClaudeCodeSlide, EngineerSectionSlide, JuniorEngineerSlide, DisclaimerSlide, VibeFlowSlide, ContextToolsSlide, CodeSlopSlide, ImportantSlide, UltimateExampleSlide, TeamSectionSlide, SkillsAuthoringSlide, OrgSectionSlide, FinalSlide];
