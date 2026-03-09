@@ -29,14 +29,20 @@ export const FinalSlide: SlideDefinition = {
           }}
         >
           <SlideItem delay={0.05}>
-            не обмежуйте себе образом автокомпліта чи код генератора,
-            імпровізуйте, спілкуйтеся наче з{' '}
-            <Emphasis color="green">партнером в чаті</Emphasis>
+            treat Claude Code like a talented junior engineer on day one — invest in{' '}
+            <Emphasis color="green">context</Emphasis>, not just prompts
           </SlideItem>
 
           <SlideItem delay={0.10}>
-            зареєструйтеся в твіттері (хоч ілон маск і лох), слідкуйте за
-            важливими АІ-інженерами:{' '}
+            build a <Emphasis color="green">shared skills marketplace</Emphasis> — the first skill to create is one that teaches how to create skills
+          </SlideItem>
+
+          <SlideItem delay={0.15}>
+            don't mandate AI coding — raise <Emphasis color="green">delivery expectations</Emphasis> and let engineers find their path
+          </SlideItem>
+
+          <SlideItem delay={0.20}>
+            register on Twitter, follow important AI engineers:{' '}
             <SlideLink href="https://x.com/bcherny">@bcherny</SlideLink>,{' '}
             <SlideLink href="https://x.com/trq212">@trq212</SlideLink>,{' '}
             <SlideLink href="https://x.com/ClaudeCodeLog">@ClaudeCodeLog</SlideLink>,{' '}
@@ -44,23 +50,14 @@ export const FinalSlide: SlideDefinition = {
             <SlideLink href="https://x.com/steipete">@steipete</SlideLink>
           </SlideItem>
 
-          <SlideItem delay={0.15}>
-            лайкайте твіти про клод код щоб натренувати алгоритм, але фільтруйте
-            хайп і пустий трьоп
-          </SlideItem>
-
-          <SlideItem delay={0.20}>
-            пробуйте нові підходи, але адаптуйте їх до своїх потреб
-          </SlideItem>
-
           <SlideItem delay={0.25}>
-            використовуйте клод код щоб збільшити свій{' '}
-            <Emphasis color="green">throughput</Emphasis> а не{' '}
+            use Claude Code to increase your{' '}
+            <Emphasis color="green">throughput</Emphasis> not{' '}
             <Emphasis color="orange">latency</Emphasis>
           </SlideItem>
 
           <SlideItem delay={0.30}>
-            пишіть мені в лінкедіні{' '}
+            write to me on LinkedIn{' '}
             <span style={{ color: 'var(--terminal-blue)' }}>→</span>
           </SlideItem>
         </div>
@@ -87,5 +84,5 @@ export const FinalSlide: SlideDefinition = {
     </>
   ),
   notes:
-    'Final slide - closing thoughts: think beyond autocomplete, follow AI engineers on Twitter, filter hype, adapt approaches to your needs, focus on throughput not latency, connect on LinkedIn',
+    'Final slide - closing thoughts: invest in context not just prompts, build shared skills marketplace, raise delivery expectations, follow AI engineers on Twitter, focus on throughput not latency, connect on LinkedIn',
 };

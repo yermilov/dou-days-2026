@@ -25,6 +25,11 @@ import { SkillsActivatorSlide } from './SkillsActivatorSlide';
 import { AgentsSlide } from './AgentsSlide';
 import { AgentWorkflowSlide } from './AgentWorkflowSlide';
 import { AgentTracesSlide } from './AgentTracesSlide';
+import { IndustryPatternsSlide } from './IndustryPatternsSlide';
+import { OrgDecisionSlide } from './OrgDecisionSlide';
+import { HumanAiEngSlide } from './HumanAiEngSlide';
+import { AutonomousAiSlide } from './AutonomousAiSlide';
+import { ChallengeAssumptionsSlide } from './ChallengeAssumptionsSlide';
 import { FinalSlide } from './FinalSlide';
 
-export const slides = [TitleSlide, BioSlide, TimelineSlide, IntroSlide, ClaudeCodeSlide, EngineerSectionSlide, JuniorEngineerSlide, DisclaimerSlide, VibeFlowSlide, ContextToolsSlide, CodeSlopSlide, ImportantSlide, UltimateExampleSlide, TeamSectionSlide, WhatIsAiFirstTeamSlide, SdlcTracesSlide, PersonalAspirationSlide, BreakOutOfCodingSlide, SkillsAuthoringSlide, SkillFlywheelSlide, SkillMarketplaceSlide, MetaSkillsSlide, SkillsActivatorSlide, AgentsSlide, AgentWorkflowSlide, AgentTracesSlide, OrgSectionSlide, FinalSlide];
+export const slides = [TitleSlide, BioSlide, TimelineSlide, IntroSlide, ClaudeCodeSlide, EngineerSectionSlide, JuniorEngineerSlide, DisclaimerSlide, VibeFlowSlide, ContextToolsSlide, CodeSlopSlide, ImportantSlide, UltimateExampleSlide, TeamSectionSlide, WhatIsAiFirstTeamSlide, SdlcTracesSlide, PersonalAspirationSlide, BreakOutOfCodingSlide, SkillsAuthoringSlide, SkillFlywheelSlide, SkillMarketplaceSlide, MetaSkillsSlide, SkillsActivatorSlide, AgentsSlide, AgentWorkflowSlide, AgentTracesSlide, OrgSectionSlide, IndustryPatternsSlide, OrgDecisionSlide, HumanAiEngSlide, AutonomousAiSlide, ChallengeAssumptionsSlide, FinalSlide];
