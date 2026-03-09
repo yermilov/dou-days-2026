@@ -47,9 +47,6 @@ export const SkillFlywheelSlide: SlideDefinition = {
           migrations are super easy — if you've migrated from X to Y, just rewrite all corresponding skills
         </SlideItem>
 
-        <SlideItem delay={0.53}>
-          skills are reusable by autonomous or semi-autonomous agents you might build — issue triager, oncall bot, knowledge bot, code reviewer, etc.
-        </SlideItem>
       </div>
     </>
   ),
