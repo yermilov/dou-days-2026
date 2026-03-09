@@ -14,53 +14,49 @@ export const ImportantSlide: SlideDefinition = {
       />
 
       <div className="bg-image-slide__content">
-        <h2 style={{ marginBottom: '1.5rem' }}>
-          <span className="text-orange">ВАЖЛИВО!</span>
-        </h2>
-
         <SlideItem delay={0.05}>
-          якщо ви розумієтеся в якійсь темі, то клод майже напевне розбирається
-          в ній <Emphasis color="orange">гірше</Emphasis>
+          if you know a topic well, Claude almost certainly understands it{' '}
+          <Emphasis color="orange">worse</Emphasis> than you
         </SlideItem>
 
         <SlideItem delay={0.12}>
-          часто ви можете написати код{' '}
-          <Emphasis color="orange">НАБАГАТО</Emphasis> краще за нього
+          often you can write code{' '}
+          <Emphasis color="orange">MUCH</Emphasis> better than it
         </SlideItem>
 
         <SlideItem delay={0.19}>
-          нерідко також ви можете написати код ще і{' '}
-          <Emphasis color="orange">швидше</Emphasis> за нього
+          often you can also write code even{' '}
+          <Emphasis color="orange">faster</Emphasis> than it
         </SlideItem>
 
         <SlideItem delay={0.26}>
-          але його цінність у тому що ви можете дати йому задачу і{' '}
-          <Emphasis>переключитися на щось інше</Emphasis>
+          but its value is that you can give it a task and{' '}
+          <Emphasis>switch to something else</Emphasis>
         </SlideItem>
 
         <SlideItem delay={0.33}>
-          або запустити дві задачі в паралель двом клодам і переключитися на
-          щось інше
+          or run two tasks in parallel with two Claudes and switch to something
+          else
         </SlideItem>
 
         <SlideItem delay={0.40}>
-          або запустити чотири задачі і піти поїсти / поспати
+          or run four tasks and go eat / sleep
         </SlideItem>
 
         <SlideItem delay={0.47}>
-          в більшості випадків клод не підвищує якість чи швидкість вашої роботи
-          — він підвищує <Emphasis>об'єми</Emphasis> вашої роботи
+          in most cases Claude doesn't improve the quality or speed of your work
+          — it increases the <Emphasis>volume</Emphasis> of your work
         </SlideItem>
 
         <SlideItem delay={0.54}>
-          якщо ви запускаєте його працювати а самі просто дивитеся на термінал —
-          ви скоріше за все{' '}
-          <Emphasis color="orange">втрачаєте в продуктивності</Emphasis>
+          if you let it work while you just stare at the terminal —
+          you're most likely{' '}
+          <Emphasis color="orange">losing productivity</Emphasis>
         </SlideItem>
 
         <SlideItem delay={0.61}>
-          <Emphasis>єдиний важливий виняток</Emphasis> — технології в яких ви
-          нічого не розумієте, тут ви можете виграти від годин до тижнів
+          <Emphasis>the one important exception</Emphasis> — technologies you
+          know nothing about, here you can save hours to weeks
         </SlideItem>
       </div>
     </div>

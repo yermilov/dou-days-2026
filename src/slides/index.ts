@@ -15,4 +15,4 @@ import { ImportantSlide } from './ImportantSlide';
 import { SkillsAuthoringSlide } from './SkillsAuthoringSlide';
 import { FinalSlide } from './FinalSlide';
 
-export const slides = [TitleSlide, BioSlide, TimelineSlide, IntroSlide, ClaudeCodeSlide, EngineerSectionSlide, JuniorEngineerSlide, DisclaimerSlide, VibeFlowSlide, ContextToolsSlide, CodeSlopSlide, ImportantSlide, SkillsAuthoringSlide, TeamSectionSlide, OrgSectionSlide, FinalSlide];
+export const slides = [TitleSlide, BioSlide, TimelineSlide, IntroSlide, ClaudeCodeSlide, EngineerSectionSlide, JuniorEngineerSlide, DisclaimerSlide, VibeFlowSlide, ContextToolsSlide, CodeSlopSlide, ImportantSlide, TeamSectionSlide, SkillsAuthoringSlide, OrgSectionSlide, FinalSlide];

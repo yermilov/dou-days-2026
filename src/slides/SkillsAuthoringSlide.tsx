@@ -61,25 +61,25 @@ export const SkillsAuthoringSlide: SlideDefinition = {
         }}
       >
         <AnimatedSectionHeader color="green" delay={0.03}>
-          коли це робити
+          when to do it
         </AnimatedSectionHeader>
 
         <SlideItem delay={0.08}>
-          якщо ви бачите що інструктуєте клод робити одне і те саме раз за
-          разом — навчіть його цьому <Emphasis color="green">скілу</Emphasis>
+          if you find yourself instructing Claude to do the same thing over and
+          over — teach it that <Emphasis color="green">skill</Emphasis>
         </SlideItem>
 
         <AnimatedSectionHeader color="purple" delay={0.14}>
-          як це робити
+          how to do it
         </AnimatedSectionHeader>
 
         <SlideItem delay={0.20}>
-          як завжди, запускаємо пусту сессію, план мод, і погнали:{' '}
+          as always, start a fresh session, plan mode, and go:{' '}
           <Prompt>please read https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices and create a skill that will ...</Prompt>
         </SlideItem>
 
         <SlideItem delay={0.26}>
-          або так: один раз{' '}
+          or like this: once{' '}
           <Prompt>
             please read https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices and create a skill that will explain how to
             create a well crafted skill, name it skills-authorship
@@ -87,20 +87,20 @@ export const SkillsAuthoringSlide: SlideDefinition = {
         </SlideItem>
 
         <SlideItem delay={0.32}>
-          а далі ви можете <Emphasis color="orange">після</Emphasis> якоїсь дії
-          написати{' '}
+          and then you can <Emphasis color="orange">after</Emphasis> some action
+          write{' '}
           <Prompt>use skills-authorship skill to turn ... into skill</Prompt>{' '}
-          або{' '}
+          or{' '}
           <Prompt>use skills-authorship skill to update ... skill to ...</Prompt>
         </SlideItem>
 
         <AnimatedSectionHeader color="blue" delay={0.38}>
-          приклади
+          examples
         </AnimatedSectionHeader>
 
         <SlideItem delay={0.44}>
-          пошук в логах, дебагінг проблем, перформенс оптимізації, генерація
-          картинок, написання документації, ...
+          log search, debugging issues, performance optimizations, image
+          generation, writing documentation, ...
         </SlideItem>
       </div>
     </>

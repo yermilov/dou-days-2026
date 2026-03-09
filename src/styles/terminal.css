@@ -2087,7 +2087,7 @@
   position: relative;
   z-index: 1;
   max-width: 900px;
-  max-height: calc(var(--vh-full) - 220px);
+  max-height: calc(var(--vh-full) - 160px);
   overflow-y: auto;
   padding: var(--space-xl);
   background: rgba(10, 14, 20, 0.85);
