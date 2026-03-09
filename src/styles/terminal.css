@@ -1273,20 +1273,42 @@
 }
 
 /* === JUNIOR ENGINEER SLIDE === */
-/* Mental model slide with two-column layout */
+/* Mental model slide with three-column layout */
 
 .junior-engineer-slide {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  gap: var(--space-3xl);
+  gap: var(--space-2xl);
   width: 100%;
+  height: 100%;
   padding-bottom: var(--space-xl);
+}
+
+.junior-engineer-image-col {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+}
+
+.junior-engineer-image-label {
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--terminal-white);
+  text-align: center;
+  padding: 0.4rem 1.5rem;
+  border-bottom: 2px solid var(--terminal-orange);
 }
 
 .junior-engineer-content {
   flex: 1;
-  max-width: 700px;
+  max-width: 600px;
   text-align: left;
 }
 
@@ -1294,17 +1316,10 @@
   text-align: left;
 }
 
-.junior-engineer-image-wrapper {
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .junior-engineer-image {
-  max-width: 420px;
-  max-height: calc(var(--vh-full) - 320px);
-  object-fit: contain;
+  height: calc(var(--vh-full) - 220px);
+  width: 300px;
+  object-fit: cover;
   border-radius: var(--input-border-radius);
   border: 1px solid var(--terminal-border);
 }
@@ -1316,19 +1331,20 @@
     gap: var(--space-xl);
   }
 
-  .junior-engineer-content {
-    max-width: 100%;
+  .junior-engineer-image-col {
+    flex: none;
+    width: 100%;
   }
 
   .junior-engineer-image {
+    height: 200px;
     max-width: 100%;
-    max-height: 280px;
   }
 }
 
 @media (max-width: 640px) {
   .junior-engineer-image {
-    max-height: 200px;
+    height: 150px;
   }
 }
 

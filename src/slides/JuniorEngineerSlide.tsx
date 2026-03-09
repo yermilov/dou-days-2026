@@ -1,5 +1,6 @@
 import { SlideDefinition } from '../types/slides';
-import comparisonImage from '/junior-engineer-comparison.png?url';
+import slackImage from '/junior-engineer-slack.png?url';
+import terminalImage from '/junior-engineer-terminal.png?url';
 
 type Level = 'high' | 'medium' | 'low';
 
@@ -118,25 +119,21 @@ export const JuniorEngineerSlide: SlideDefinition = {
             transform: translateX(4px);
           }
         }
-        @keyframes imageFloat {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-8px); }
-        }
-        @keyframes glowBreath {
-          0%, 100% {
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
-                        0 0 0 1px var(--terminal-border);
-          }
-          50% {
-            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5),
-                        0 0 0 1px var(--terminal-orange-dim),
-                        0 0 40px rgba(240, 136, 62, 0.1);
-          }
-        }
       `}</style>
 
+      {/* Left: Slack image */}
+      <div className="junior-engineer-image-col">
+        <img
+          src={slackImage}
+          alt="Slack chat interface"
+          className="junior-engineer-image"
+          loading="lazy"
+        />
+        <div className="junior-engineer-image-label">Slack</div>
+      </div>
+
+      {/* Center: text */}
       <div className="junior-engineer-content">
-        {/* Command header */}
         <h2 style={{
           marginBottom: '1.5rem',
           textAlign: 'left',
@@ -148,45 +145,43 @@ export const JuniorEngineerSlide: SlideDefinition = {
           <span className="text-cyan">lawful-chaotic-engineer</span>
         </h2>
 
-        <ContentSection title="ключова метафора">
+        <ContentSection title="key metaphor">
           <ContentItem level="high">
-            Ставтеся до Claude Code як до <em className="text-emphasis text-emphasis--orange">дуже талановитого але хаотичного партнера</em>, а ви — їх ментор
+            treat Claude Code as a <em className="text-emphasis text-emphasis--orange">very talented junior engineer</em> hired in your team
           </ContentItem>
-        </ContentSection>
-
-        <ContentSection title="інтерфейс">
           <ContentItem level="high">
-            термінальний інтерфейс = ваш чат-застосунок
+            it is <em className="text-emphasis text-emphasis--orange">(always) their first day</em> and you are their mentor
           </ContentItem>
           <ContentItem level="medium">
-            ви можете давати їм завдання, але потрібно допомагати з <em className="text-emphasis text-emphasis--green">контекстом</em> та <em className="text-emphasis text-emphasis--green">не давати все поламати</em>
+            they have no industry experience
           </ContentItem>
         </ContentSection>
 
+        <ContentSection title="interface">
+          <ContentItem level="high">
+            terminal interface = your <em className="text-emphasis text-emphasis--green">chat application</em>
+          </ContentItem>
+          <ContentItem level="medium">
+            you can give them your tasks but need to help with <em className="text-emphasis text-emphasis--green">context</em> and <em className="text-emphasis text-emphasis--green">reviews</em>
+          </ContentItem>
+        </ContentSection>
+
+        <div className="key-insight">
+          what you would write to a human?
+          <KeyInsightArrow />
+          <span className="text-emphasis text-emphasis--orange">write it to Claude Code</span>
+        </div>
       </div>
 
-      {/* Image section */}
-      <div className="junior-engineer-image-wrapper">
+      {/* Right: Terminal image */}
+      <div className="junior-engineer-image-col">
         <img
-          src={comparisonImage}
-          alt="Чат інтерфейс з'єднується з терміналом — однакова взаємодія, різний інтерфейс"
+          src={terminalImage}
+          alt="Terminal Claude Code interface"
           className="junior-engineer-image"
-          style={{
-            maxWidth: '520px',
-            animation: 'imageFloat 6s ease-in-out infinite, glowBreath 4s ease-in-out infinite',
-          }}
           loading="lazy"
         />
-        <div style={{
-          marginTop: '1.25rem',
-          textAlign: 'center',
-          fontSize: 'var(--slide-text-normal)',
-          color: 'var(--terminal-white)',
-        }}>
-          Що б ви написали людині?
-          <KeyInsightArrow />
-          <span className="text-emphasis text-emphasis--orange">Пишіть Claude Code</span>
-        </div>
+        <div className="junior-engineer-image-label">Claude Code</div>
       </div>
     </div>
   ),

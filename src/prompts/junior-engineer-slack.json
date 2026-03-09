@@ -1,0 +1,7 @@
+{
+  "filename": "junior-engineer-slack.png",
+  "prompt": "Full-bleed Slack dark mode UI screenshot, no margins, no borders, content fills entire frame edge to edge. Shows a channel conversation: user message saying 'Hey, can you refactor the auth module to use JWT? Keep the existing tests passing.' Dark purple sidebar on left, message thread on right, dark background. No white space, no padding around the image.",
+  "ratio": "4:5",
+  "timestamp": "2026-03-09T16:42:08.051Z",
+  "model": "gemini-3-pro-image-preview"
+}

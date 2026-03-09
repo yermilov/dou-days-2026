@@ -1,0 +1,7 @@
+{
+  "filename": "junior-engineer-terminal.png",
+  "prompt": "Full-bleed terminal screenshot, no margins, no borders, content fills entire frame edge to edge. Dark terminal window showing Claude Code CLI session. Command prompt at top, green text showing: user prompt 'refactor the auth module to use JWT, keep existing tests passing', followed by Claude's response with numbered steps and file paths. Black background, green and white terminal text, fills entire image with no empty space.",
+  "ratio": "4:5",
+  "timestamp": "2026-03-09T16:42:28.301Z",
+  "model": "gemini-3-pro-image-preview"
+}
