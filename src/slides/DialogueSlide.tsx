@@ -1,50 +1,43 @@
 import { SlideDefinition } from '../types/slides';
 import { Quote, SlideItem } from '../components/SlideElements';
-import dialogueFlow from '/dialogue-flow.png?url';
-import dialogueMemory from '/dialogue-memory.png?url';
+import llmInfographic from '/llm-theory-infographic.png?url';
 
 export const DialogueSlide: SlideDefinition = {
   id: 'dialogue',
   content: (
-    <div className="mcp-slide">
+    <div className="bg-image-slide">
       <img
-        src={dialogueFlow}
-        alt="Step-by-step dialogue flow"
-        className="mcp-slide-image-left"
+        src={llmInfographic}
+        alt="How LLMs work: context + prompt → continuation"
+        className="bg-image-slide__background"
+        style={{ width: '55%', right: 'auto', objectPosition: 'center' }}
         loading="lazy"
       />
 
-      <div className="mcp-slide-content">
+      <div className="bg-image-slide__content" style={{ marginLeft: '40%' }}>
         <h2 style={{ marginBottom: '2rem' }}>
-          <span className="text-dim">$</span> діалог
+          <span className="text-dim">$</span> more practically — context engineering
         </h2>
 
         <SlideItem delay={0.05}>
-          використовуйте принцип <Quote>сім раз відмір - один раз відріж</Quote>
+          apply the principle <Quote>measure twice, cut once</Quote>
         </SlideItem>
 
         <SlideItem delay={0.1}>
-          за допомогою покрокового діалогу направляйте клод у правильний напрямок
+          use step-by-step dialogue to steer Claude in the right direction
         </SlideItem>
 
         <SlideItem delay={0.15}>
-          <Quote>а подумай про ...</Quote>, <Quote>почитай тут ...</Quote>,{' '}
-          <Quote>розглянь це ...</Quote>
+          <Quote>think about ...</Quote>, <Quote>read this ...</Quote>,{' '}
+          <Quote>consider that ...</Quote>
         </SlideItem>
 
         <SlideItem delay={0.2}>
-          для ллм-ок <Quote>найсвіжіші</Quote> <Quote>спогади</Quote>{' '}
-          <Quote>найякравіші</Quote> — сформуйте їй правильне світосприйняття і
-          тоді дайте задачу на вирішення останнім промптом
+          for LLMs, the <Quote>most recent</Quote> <Quote>memories</Quote> are{' '}
+          <Quote>the most vivid</Quote> — shape its worldview first, then give
+          the task as the final prompt
         </SlideItem>
       </div>
-
-      <img
-        src={dialogueMemory}
-        alt="LLM memory recency"
-        className="mcp-slide-image-right"
-        loading="lazy"
-      />
     </div>
   ),
   notes: 'Dialogue principles for working with LLMs - measure twice, cut once',

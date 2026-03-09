@@ -197,9 +197,9 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
         onStartPause={handleTimerStartPause}
         onReset={handleTimerReset}
       />
-      {/* Show context progress starting from context-principles slide */}
-      {currentSlide >= slides.findIndex(s => s.id === 'context-principles') && (
-        <SlideProgress current={currentSlide + 1} total={slides.length} slideId={activeSlide.id} />
+      {/* Show context progress once less than 50% of slides remain */}
+      {(currentSlide + 1) / slides.length > 0.5 && (
+        <SlideProgress current={currentSlide + 1} total={slides.length} />
       )}
       {currentSlide === 0 && !slideInteracted && <OnboardingTooltip />}
       {activeSlide.tooltip &&

@@ -47,7 +47,6 @@ export interface SlideProps {
 export interface SlideProgressProps {
   current: number;
   total: number;
-  slideId?: string;
 }
 
 export type NavigationCommand =

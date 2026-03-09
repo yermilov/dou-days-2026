@@ -81,20 +81,28 @@ export const DisclaimerSlide: SlideDefinition = {
         <div className="vs-badge">VS</div>
         <div className="vs-disclaimer-content">
           <DisclaimerItem level="high">
-            персонально для мене набагато краще заходить флоу у якому я працюю з{' '}
+            personally, I find the flow where I work with{' '}
             <em style={{ color: 'var(--terminal-orange)', fontStyle: 'normal', fontWeight: 600 }}>
-              Claude Code повністю в терміналі
-            </em>
+              Claude Code entirely in the terminal
+            </em>{' '}
+            much better for me
           </DisclaimerItem>
 
           <DisclaimerItem level="medium">
-            але можу використати IDE (найчастіше{' '}
-            <span style={{ color: 'var(--terminal-cyan)' }}>VS Code</span>) для точкових невеликих
-            змін які я хочу зробити вручну
+            but I can use an IDE (most often{' '}
+            <span style={{ color: 'var(--terminal-cyan)' }}>VS Code</span>) for small targeted
+            changes I want to make manually
+          </DisclaimerItem>
+
+          <DisclaimerItem level="medium">
+            terminal helps faster abandon the old mental model{' '}
+            <em style={{ color: 'var(--terminal-white-dim)', fontStyle: 'normal' }}>"I edit text"</em>
+            {' '}and adopt the new one{' '}
+            <em style={{ color: 'var(--terminal-green)', fontStyle: 'normal', fontWeight: 600 }}>"I give tasks to agent"</em>
           </DisclaimerItem>
 
           <DisclaimerItem level="low">
-            якщо ви не почуваєтеся впевнено в терміналі — використовуйте плагіни:{' '}
+            if you're not comfortable in the terminal — use the plugins:{' '}
             <a
               href="https://marketplace.visualstudio.com/items?itemName=anthropic.claude-code"
               target="_blank"
@@ -103,7 +111,7 @@ export const DisclaimerSlide: SlideDefinition = {
             >
               VS Code
             </a>
-            {' '}або{' '}
+            {' '}or{' '}
             <a
               href="https://plugins.jetbrains.com/plugin/27310-claude-code-beta-"
               target="_blank"

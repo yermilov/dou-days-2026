@@ -1,7 +1,0 @@
-{
-  "filename": "llm-theory-infographic-v7.png",
-  "prompt": "Detailed pencil-drawn diagram about how LLMs work. Dark background (#0a0e14). Ukrainian text. 16:9 widescreen.\n\nStyle: Hand-drawn pencil sketch on dark background. White/light gray pencil strokes. Detailed cross-hatching and shading. Think: detailed technical chalk/pencil illustration on blackboard. Rich in detail but hand-crafted feel. Mathematical formulas and symbols scattered in background.\n\nVERTICAL FLOW centered (do not add any title or header at top):\n\nTOP: Large thought cloud drawn in pencil style with many cute flying elephants inside (representing knowledge/tokens). The elephants are sketched in white pencil lines, various sizes, some with wings, some reading books. Text near cloud: 'безмежні знання про світ' in handwritten style.\n\nPencil-drawn arrow pointing DOWN\n\nMIDDLE: Hand-drawn rectangular box with orange (#f0883e) pencil border. Text inside: 'КОНТЕКСТ'. Some elephants passing through the filter.\n\nPencil arrow continuing DOWN with 'ПРОМПТ' label in green (#7ee787) handwritten style\n\nBOTTOM: Elephants emerging as output tokens, transforming into text blocks. Text: 'відповідь - наступні токени' in green handwritten style.\n\nKeep the pencil sketch aesthetic throughout - detailed line work, cross-hatching, hand-drawn feel. Rich in detail and charming. Only show the Ukrainian labels specified, nothing else.",
-  "ratio": "16:9",
-  "timestamp": "2026-01-06T17:51:41.427Z",
-  "model": "gemini-3-pro-image-preview"
-}
