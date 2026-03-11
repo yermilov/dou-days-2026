@@ -1,6 +1,7 @@
 import { DiagramCanvas, StageNode, HumanActor, FlowArrow } from '../components/diagram';
 import { SlideItem, Emphasis } from '../components/SlideElements';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
+import { EngineerAspireDiagram } from './PersonalAspirationSlide';
 
 const ORANGE = '#f0883e';
 const GREEN  = '#7ee787';
@@ -52,7 +53,7 @@ function TeamDiagram({ revealStage }: { revealStage: number }) {
   const showStructured = revealStage >= 3;
 
   return (
-    <DiagramCanvas viewBox="0 0 700 530">
+    <DiagramCanvas viewBox="0 0 700 580">
       <style>{CHAOS_STYLES}</style>
 
       {/* ── Chaos paths (stages 1–2, animated at stage 2) ── */}
@@ -75,7 +76,7 @@ function TeamDiagram({ revealStage }: { revealStage: number }) {
         </g>
         <g className={animateChaos ? 'chaos-d5' : ''}>
           <FlowArrow color={CYAN}   strokeWidth={3} glowId="glow-cyan"   markerId="arrow-cyan"
-            d="M 97 465 C 300 460, 200 300, 400 380 C 500 440, 600 500, 690 450" />
+            d="M 97 445 C 300 445, 200 290, 400 370 C 500 425, 600 480, 690 440" />
         </g>
       </g>
 
@@ -120,7 +121,7 @@ function TeamDiagram({ revealStage }: { revealStage: number }) {
 
         {/* Cyan: actor → IDEA → LOCAL DEV → QA */}
         <FlowArrow color={CYAN} strokeWidth={3} glowId="glow-cyan"
-          d="M 97 465 C 160 465, 200 420, 240 320" />
+          d="M 97 445 C 155 450, 200 415, 240 320" />
         <FlowArrow color={CYAN} strokeWidth={3} glowId="glow-cyan" markerId="arrow-cyan"
           d="M 240 320 C 280 360, 330 385, 385 385" />
         <FlowArrow color={CYAN} strokeWidth={3} glowId="glow-cyan" markerId="arrow-cyan"
@@ -139,7 +140,7 @@ function TeamDiagram({ revealStage }: { revealStage: number }) {
       <HumanActor x={65} y={155} size={62} color={GREEN}  />
       <HumanActor x={65} y={260} size={62} color={BLUE}   />
       <HumanActor x={65} y={365} size={62} color={YELLOW} />
-      <HumanActor x={65} y={465} size={62} color={CYAN}   />
+      <HumanActor x={65} y={445} size={62} color={CYAN}   />
     </DiagramCanvas>
   );
 }
@@ -158,7 +159,7 @@ export const WhatIsAiFirstTeamSlide: SlideDefinition = {
       </h2>
 
       {/* Two-column body */}
-      <div style={{ display: 'flex', flex: 1, gap: '2rem', alignItems: 'center', minHeight: 0 }}>
+      <div style={{ display: 'flex', flex: 1, gap: '2rem', alignItems: 'flex-start', minHeight: 0 }}>
 
         {/* Left: 40% — progressive text reveals */}
         <div style={{ flex: '0 0 40%', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
@@ -194,8 +195,13 @@ export const WhatIsAiFirstTeamSlide: SlideDefinition = {
         </div>
 
         {/* Right: 60% — evolving diagram */}
-        <div style={{ flex: 1, height: '100%' }}>
-          <TeamDiagram revealStage={revealStage} />
+        <div style={{ flex: 1, height: '100%', position: 'relative' }}>
+          <div style={{ opacity: revealStage < 3 ? 1 : 0, transition: 'opacity 0.7s ease', height: '100%' }}>
+            <TeamDiagram revealStage={revealStage} />
+          </div>
+          <div style={{ opacity: revealStage >= 3 ? 1 : 0, transition: 'opacity 0.7s ease', position: 'absolute', inset: 0 }}>
+            <EngineerAspireDiagram highlightedNode="" />
+          </div>
         </div>
       </div>
     </div>
