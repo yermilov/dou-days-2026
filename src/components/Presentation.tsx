@@ -199,7 +199,11 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
       />
       {/* Show context progress once less than 50% of slides remain */}
       {(currentSlide + 1) / slides.length > 0.5 && (
-        <SlideProgress current={currentSlide + 1} total={slides.length} />
+        <SlideProgress
+          current={currentSlide + 1}
+          total={slides.length}
+          isFirst={currentSlide === Math.floor(slides.length / 2)}
+        />
       )}
       {currentSlide === 0 && !slideInteracted && <OnboardingTooltip />}
       {activeSlide.tooltip &&

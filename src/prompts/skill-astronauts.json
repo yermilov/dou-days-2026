@@ -1,0 +1,7 @@
+{
+  "filename": "skill-astronauts.png",
+  "prompt": "Two astronauts in white space suits, FULL BODIES visible from helmet to boots, floating in zero gravity. Both have CLOSED DARK TINTED VISORS — no faces visible. Pure solid black background, no scenery. LEFT astronaut: positioned in the LEFT THIRD of the image, arms spread wide in a surprised shrug, open palms, speech bubble upper-left says 'wait, it\\'s all .md files?'. RIGHT astronaut: positioned in the RIGHT THIRD of the image, arms crossed confidently, speech bubble upper-right says 'always have been.' CENTER THIRD of image is EMPTY BLACK SPACE between them. Same semi-realistic illustration style with cartoon flair for both. All arms, hands, legs and feet FULLY VISIBLE with generous padding from image edges.",
+  "ratio": "16:9",
+  "timestamp": "2026-03-11T16:19:30.791Z",
+  "model": "gemini-3-pro-image-preview"
+}
