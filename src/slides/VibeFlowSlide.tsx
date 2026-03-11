@@ -56,11 +56,7 @@ export const VibeFlowSlide: SlideDefinition = {
         </SlideItem>
 
         <SlideItem delay={0.4}>
-          <Command>/simplify</Command>
-        </SlideItem>
-
-        <SlideItem delay={0.45}>
-          <Command>/review</Command>
+          <Command>/simplify</Command> or <Command>/review</Command>
         </SlideItem>
       </div>
     </>
