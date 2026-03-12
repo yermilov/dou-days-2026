@@ -23,6 +23,7 @@ import { SkillFlywheelSlide } from './SkillFlywheelSlide';
 import { SkillsInfrastructureSectionSlide } from './SkillsInfrastructureSectionSlide';
 import { SkillMarketplaceSlide } from './SkillMarketplaceSlide';
 import { MetaSkillsSlide } from './MetaSkillsSlide';
+import { AIInnovatorCurveSlide } from './AIInnovatorCurveSlide';
 import { SkillsActivatorSlide } from './SkillsActivatorSlide';
 import { AgentsSlide } from './AgentsSlide';
 import { AgentWorkflowSlide } from './AgentWorkflowSlide';
@@ -34,4 +35,4 @@ import { AutonomousAiSlide } from './AutonomousAiSlide';
 import { ChallengeAssumptionsSlide } from './ChallengeAssumptionsSlide';
 import { FinalSlide } from './FinalSlide';
 
-export const slides = [TitleSlide, BioSlide, TimelineSlide, IntroSlide, AgendaSlide, EngineerSectionSlide, VibeFlowSlide, ContextToolsSlide, CodeSlopSlide, DisclaimerSlide, JuniorEngineerSlide, ImportantSlide, UltimateExampleSlide, TeamSectionSlide, WhatIsAiFirstTeamSlide, PersonalAspirationSlide, BreakOutOfCodingSlide, WhatIsSkillSlide, SkillFlywheelSlide, SdlcTracesSlide, SkillsInfrastructureSectionSlide, SkillMarketplaceSlide, MetaSkillsSlide, SkillsActivatorSlide, AgentsSlide, AgentWorkflowSlide, AgentTracesSlide, OrgSectionSlide, IndustryPatternsSlide, OrgDecisionSlide, HumanAiEngSlide, AutonomousAiSlide, ChallengeAssumptionsSlide, ClaudeCodeSlide, FinalSlide];
+export const slides = [TitleSlide, BioSlide, TimelineSlide, IntroSlide, AgendaSlide, EngineerSectionSlide, VibeFlowSlide, ContextToolsSlide, CodeSlopSlide, DisclaimerSlide, JuniorEngineerSlide, ImportantSlide, UltimateExampleSlide, TeamSectionSlide, WhatIsAiFirstTeamSlide, PersonalAspirationSlide, BreakOutOfCodingSlide, WhatIsSkillSlide, SkillFlywheelSlide, SdlcTracesSlide, SkillsInfrastructureSectionSlide, SkillMarketplaceSlide, MetaSkillsSlide, AIInnovatorCurveSlide, SkillsActivatorSlide, AgentsSlide, AgentWorkflowSlide, AgentTracesSlide, OrgSectionSlide, IndustryPatternsSlide, OrgDecisionSlide, HumanAiEngSlide, AutonomousAiSlide, ChallengeAssumptionsSlide, ClaudeCodeSlide, FinalSlide];

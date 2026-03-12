@@ -2,6 +2,7 @@ import agendaEngineerImage from '/agenda-engineer.png?url';
 import agendaTeamImage from '/agenda-team.png?url';
 import agendaOrgImage from '/agenda-org.png?url';
 import skillsInfrastructureImage from '/skills-infrastructure.png?url';
+import aiInnovatorCurveImage from '/ai-innovator-curve-thumb.png?url';
 
 export interface SubsectionData {
   command: string;
@@ -25,6 +26,7 @@ export const SECTIONS: SectionData[] = [
   { part: 2, image: agendaTeamImage,     alt: 'AI-First Team',         desc: '// ai-first team',         slideId: 'agenda-team',
     subsections: [
       { command: 'skills --infrastructure', image: skillsInfrastructureImage, alt: 'Skills Infrastructure', desc: '// distribution & marketplace', slideId: 'skills-infrastructure-section' },
+      { command: 'ainnovator --curve', image: aiInnovatorCurveImage, alt: 'AI Innovator Curve', desc: '// rogers innovation adoption curve', slideId: 'ai-innovator-curve' },
     ],
   },
   { part: 3, image: agendaOrgImage,      alt: 'AI-First Organization', desc: '// ai-first organization', slideId: 'agenda-org' },
