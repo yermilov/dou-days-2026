@@ -35,7 +35,9 @@ export function useSlideNavigation(
   };
 
   const [currentSlide, setCurrentSlide] = useState(getInitialSlide);
-  const [revealStage, setRevealStage] = useState(0);
+  const [revealStage, setRevealStage] = useState(
+    () => slides[getInitialSlide()]?.initialRevealStage ?? 0
+  );
 
   // Refs to avoid stale closures in the keyboard listener
   const revealStageRef = useRef(0);
@@ -65,7 +67,7 @@ export function useSlideNavigation(
     (index: number) => {
       const clampedIndex = clampIndex(index);
       setCurrentSlide(clampedIndex);
-      setRevealStage(0);
+      setRevealStage(slides[clampedIndex]?.initialRevealStage ?? 0);
       updateHash(clampedIndex);
     },
     [clampIndex, updateHash]

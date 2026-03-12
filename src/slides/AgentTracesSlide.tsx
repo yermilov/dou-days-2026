@@ -1,46 +1,122 @@
-import { SlideDefinition } from '../types/slides';
+import { SlideDefinition, SlideContentProps } from '../types/slides';
 import { SlideItem, Emphasis } from '../components/SlideElements';
+import { CodeBlock } from '../components/CodeBlock';
+import vibesImage from '/vibes.png?url';
 
-export const AgentTracesSlide: SlideDefinition = {
-  id: 'agent-traces',
-  content: (
+const STYLES = `
+  #agent-traces-right .code-block {
+    margin: 0;
+  }
+  @keyframes revealPanel {
+    from { opacity: 0; transform: translateX(14px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  .code-reveal {
+    animation: revealPanel 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+`;
+
+const TRACER_CODE = `export function getSessionFilePath(
+  sessionId: string, workDir: string,
+): string {
+  const encodedPath = workDir.replace(/\\//g, "-");
+  return join(
+    homedir(), ".claude", "projects",
+    encodedPath, \`\${sessionId}.jsonl\`,
+  );
+}
+
+export async function uploadSession(
+  sessionId: string, workDir: string,
+) {
+  const filePath = getSessionFilePath(sessionId, workDir);
+  const formData = new FormData();
+  formData.append(
+    "file",
+    new Blob([await readFile(filePath)]),
+    \`\${sessionId}.jsonl\`,
+  );
+  await fetch(VIBES_API_URL, { method: "POST", body: formData });
+}`;
+
+function AgentTracesContent({ revealStage }: { revealStage: number }) {
+  return (
     <>
-      <h2 style={{ marginBottom: '2rem' }}>
+      <style>{STYLES}</style>
+
+      <h2 style={{ marginBottom: '1.2rem' }}>
         <span className="text-dim">$</span>{' '}
         <span className="text-green">agents</span>{' '}
         <span className="text-orange">--traces</span>
       </h2>
 
-      <div
-        style={{
-          textAlign: 'left',
-          maxWidth: '1000px',
-          width: '100%',
-          margin: '0 auto',
-        }}
-      >
-        <SlideItem delay={0.08}>
-          since agents work autonomously, you need an <Emphasis color="green">observability system</Emphasis> — you can't review every decision, but you must be able to audit them
-        </SlideItem>
+      <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
 
-        <SlideItem delay={0.16}>
-          build a thin wrapper around <Emphasis color="orange">S3</Emphasis> and have all agents upload their session log <code>.jsonl</code> files there after every run
-        </SlideItem>
+        {/* ── Left column: bullets ── */}
+        <div style={{ flex: '0 0 44%', display: 'flex', flexDirection: 'column', gap: '0.5rem', textAlign: 'left' }}>
+          {revealStage >= 1 && (
+            <SlideItem delay={0} reveal>
+              since agents work autonomously, you need an <Emphasis color="green">observability system</Emphasis> — you can't review every decision, but you must be able to audit them
+            </SlideItem>
+          )}
+          {revealStage >= 1 && (
+            <SlideItem delay={0.08} reveal>
+              build a thin wrapper around <Emphasis color="orange">S3</Emphasis> and have all agents upload their session log <code>.jsonl</code> files there after every run
+            </SlideItem>
+          )}
+          {revealStage >= 2 && (
+            <SlideItem delay={0} reveal>
+              create a <Emphasis color="green">skill</Emphasis> that downloads a sample of sessions, analyzes them, and suggests improvements to skills and agent instructions — agents improving agents
+            </SlideItem>
+          )}
+          {revealStage >= 3 && (
+            <SlideItem delay={0} reveal>
+              vibe-code a nice <Emphasis color="orange">UI</Emphasis> around it so humans can also upload their own sessions for knowledge sharing and debugging — shared context between human and machine runs
+            </SlideItem>
+          )}
+          {revealStage >= 3 && (
+            <SlideItem delay={0.08} reveal>
+              <a href="https://entire.io" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--terminal-green)', textDecoration: 'underline' }}>entire.io</a>{' '}
+              and the <code>share-session</code> Claude Code feature are the first steps in this direction
+            </SlideItem>
+          )}
+        </div>
 
-        <SlideItem delay={0.24}>
-          create a <Emphasis color="green">skill</Emphasis> that downloads a sample of sessions, analyzes them, and suggests improvements to skills and agent instructions — agents improving agents
-        </SlideItem>
+        {/* ── Right column: code / image panels ── */}
+        <div
+          id="agent-traces-right"
+          style={{
+            flex: 1,
+            '--font-size-code': '0.82rem',
+          } as React.CSSProperties}
+        >
+          {revealStage >= 1 && revealStage < 3 && (
+            <div key="code" className="code-reveal">
+              <CodeBlock language="typescript" filename="vibes.ts" code={TRACER_CODE} />
+            </div>
+          )}
+          {revealStage === 3 && (
+            <div key="image" className="code-reveal" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+              <img
+                src={vibesImage}
+                alt="Vibes session sharing UI"
+                loading="lazy"
+                style={{ maxWidth: '100%', maxHeight: 'calc(var(--vh-full) - 220px)', objectFit: 'contain', borderRadius: '8px' }}
+              />
+            </div>
+          )}
+        </div>
 
-        <SlideItem delay={0.32}>
-          vibe-code a nice <Emphasis color="orange">UI</Emphasis> around it so humans can also upload their own sessions for knowledge sharing and debugging — shared context between human and machine runs
-        </SlideItem>
-
-        <SlideItem delay={0.40}>
-          <Emphasis color="green">entire.io</Emphasis> and the <code>share-session</code> Claude Code feature are the first steps in this direction — but we still keep our home-grown solution as it is more feature-rich
-        </SlideItem>
       </div>
     </>
-  ),
+  );
+}
+
+export const AgentTracesSlide: SlideDefinition = {
+  id: 'agent-traces',
+  maxRevealStages: 3,
+  initialRevealStage: 1,
+  content: ({ revealStage }: SlideContentProps) => <AgentTracesContent revealStage={revealStage} />,
   notes:
     'Session traces are your audit log, your training data, and your improvement loop all in one. The UI makes it social — engineers start reading each other\'s sessions.',
 };

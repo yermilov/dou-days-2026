@@ -25,6 +25,7 @@ import { MetaSkillsSlide } from './MetaSkillsSlide';
 import { AIInnovatorCurveSlide } from './AIInnovatorCurveSlide';
 import { SkillsActivatorSlide } from './SkillsActivatorSlide';
 import { SkillsMetricsSlide } from './SkillsMetricsSlide';
+import { AgentsSectionSlide } from './AgentsSectionSlide';
 import { AgentsSlide } from './AgentsSlide';
 import { AgentWorkflowSlide } from './AgentWorkflowSlide';
 import { AgentTracesSlide } from './AgentTracesSlide';
@@ -35,4 +36,4 @@ import { AutonomousAiSlide } from './AutonomousAiSlide';
 import { ChallengeAssumptionsSlide } from './ChallengeAssumptionsSlide';
 import { FinalSlide } from './FinalSlide';
 
-export const slides = [TitleSlide, BioSlide, TimelineSlide, IntroSlide, AgendaSlide, EngineerSectionSlide, VibeFlowSlide, ContextToolsSlide, CodeSlopSlide, DisclaimerSlide, JuniorEngineerSlide, ImportantSlide, UltimateExampleSlide, TeamSectionSlide, WhatIsAiFirstTeamSlide, PersonalAspirationSlide, BreakOutOfCodingSlide, WhatIsSkillSlide, SkillFlywheelSlide, SkillsInfrastructureSectionSlide, SkillMarketplaceSlide, MetaSkillsSlide, AIInnovatorCurveSlide, SkillsActivatorSlide, SkillsMetricsSlide, AgentsSlide, AgentWorkflowSlide, AgentTracesSlide, OrgSectionSlide, IndustryPatternsSlide, OrgDecisionSlide, HumanAiEngSlide, AutonomousAiSlide, ChallengeAssumptionsSlide, ClaudeCodeSlide, FinalSlide];
+export const slides = [TitleSlide, BioSlide, TimelineSlide, IntroSlide, AgendaSlide, EngineerSectionSlide, VibeFlowSlide, ContextToolsSlide, CodeSlopSlide, DisclaimerSlide, JuniorEngineerSlide, ImportantSlide, UltimateExampleSlide, TeamSectionSlide, WhatIsAiFirstTeamSlide, PersonalAspirationSlide, BreakOutOfCodingSlide, WhatIsSkillSlide, SkillFlywheelSlide, SkillsInfrastructureSectionSlide, SkillMarketplaceSlide, MetaSkillsSlide, AIInnovatorCurveSlide, SkillsActivatorSlide, SkillsMetricsSlide, AgentsSectionSlide, AgentsSlide, AgentWorkflowSlide, AgentTracesSlide, OrgSectionSlide, IndustryPatternsSlide, OrgDecisionSlide, HumanAiEngSlide, AutonomousAiSlide, ChallengeAssumptionsSlide, ClaudeCodeSlide, FinalSlide];
