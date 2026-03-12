@@ -26,7 +26,7 @@ const HIGHLIGHT_BY_STAGE: Record<number, string> = {
   5: 'MONITOR',
 };
 
-const PULSE_STYLES = `
+export const PULSE_STYLES = `
   @keyframes node-pulse {
     0%   { transform: scale(1);   opacity: 0.75; }
     60%  { transform: scale(1.35); opacity: 0; }
@@ -47,7 +47,7 @@ const PULSE_STYLES = `
   }
 `;
 
-function PulseRing({ cx, cy, r }: { cx: number; cy: number; r: number }) {
+export function PulseRing({ cx, cy, r }: { cx: number; cy: number; r: number }) {
   return (
     <circle
       cx={cx}
@@ -63,7 +63,7 @@ function PulseRing({ cx, cy, r }: { cx: number; cy: number; r: number }) {
 }
 
 // Inline Claude/Anthropic logo as SVG path — no external asset needed
-function ClaudeIcon({ cx, cy, size = 16 }: { cx: number; cy: number; size?: number }) {
+export function ClaudeIcon({ cx, cy, size = 16 }: { cx: number; cy: number; size?: number }) {
   const s = size / 24;
   // Outer <g> handles positioning only (no CSS animation, so SVG transform is not overridden).
   // Inner <g> handles the pop animation with transform-box: fill-box so scale() works correctly.
@@ -96,7 +96,7 @@ export function EngineerAspireDiagram({
   //   1. ORANGE IDEA→CODING  midpoint (283, 164)
   //   2. BLUE   CODING→QA    midpoint (405, 234)
   //   3. CYAN   LDEV→MONITOR midpoint (517, 437)
-  const fast = (dur: number) => aiAccelerated ? dur / 4 : dur;
+  const fast = (dur: number) => aiAccelerated ? dur / 8 : dur;
 
   return (
     <DiagramCanvas viewBox="0 0 700 580">

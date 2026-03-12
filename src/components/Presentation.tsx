@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { PresentationProps } from '../types/slides';
 import { useSlideNavigation } from '../hooks/useSlideNavigation';
+import { NavigationContext } from '../context/NavigationContext';
 import { useTouchNavigation } from '../hooks/useTouchNavigation';
 import { Slide } from './Slide';
 import { TerminalInput } from './TerminalInput';
@@ -47,10 +48,15 @@ function getInitialTimerState(): { seconds: number; running: boolean } {
 }
 
 export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
-  const { currentSlide, handleCommand: handleNavCommand, revealStage, nextSlide, prevSlide, revealNext, revealPrev } = useSlideNavigation(
+  const { currentSlide, goToSlide, handleCommand: handleNavCommand, revealStage, nextSlide, prevSlide, revealNext, revealPrev } = useSlideNavigation(
     slides,
     initialSlide
   );
+
+  const goToSlideById = useCallback((id: string) => {
+    const index = slides.findIndex(s => s.id === id);
+    if (index !== -1) goToSlide(index);
+  }, [slides, goToSlide]);
 
   const { containerRef } = useTouchNavigation({ nextSlide, prevSlide });
 
@@ -181,6 +187,7 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
       : activeSlide.content;
 
   return (
+    <NavigationContext.Provider value={{ goToSlideById }}>
     <div className="presentation">
       <div className="slide-container" ref={containerRef} key={activeSlide.id}>
         <Slide
@@ -231,5 +238,6 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
         placeholder="type anything to continue, 'prev' to go back, or slide number..."
       />
     </div>
+    </NavigationContext.Provider>
   );
 }
