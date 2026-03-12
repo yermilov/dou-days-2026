@@ -1,4 +1,4 @@
-import { DiagramCanvas, StageNode, HumanActor, FlowArrow } from '../components/diagram';
+import { DiagramCanvas, StageNode, HumanActor, FlowArrow, SparkTrail } from '../components/diagram';
 import { SlideItem, Emphasis } from '../components/SlideElements';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
 import { EngineerAspireDiagram } from './PersonalAspirationSlide';
@@ -61,21 +61,31 @@ function TeamDiagram({ revealStage }: { revealStage: number }) {
         <g className={animateChaos ? 'chaos-d1' : ''}>
           <FlowArrow color={ORANGE} strokeWidth={3} glowId="glow-orange" markerId="arrow-orange"
             d="M 97 50 C 150 -20, 500 -30, 680 80" />
+          <SparkTrail color={ORANGE} dur={2.5} glowId="glow-orange"
+            d="M 97 50 C 150 -20, 500 -30, 680 80" />
         </g>
         <g className={animateChaos ? 'chaos-d2' : ''}>
           <FlowArrow color={GREEN}  strokeWidth={3} glowId="glow-green"  markerId="arrow-green"
+            d="M 97 155 C 200 350, 400 450, 690 380" />
+          <SparkTrail color={GREEN} dur={5.5} glowId="glow-green"
             d="M 97 155 C 200 350, 400 450, 690 380" />
         </g>
         <g className={animateChaos ? 'chaos-d3' : ''}>
           <FlowArrow color={BLUE}   strokeWidth={3} glowId="glow-blue"   markerId="arrow-blue"
             d="M 97 260 C 250 260, 300 100, 490 260 C 580 350, 640 200, 690 220" />
+          <SparkTrail color={BLUE} dur={4.0} glowId="glow-blue"
+            d="M 97 260 C 250 260, 300 100, 490 260 C 580 350, 640 200, 690 220" />
         </g>
         <g className={animateChaos ? 'chaos-d4' : ''}>
           <FlowArrow color={YELLOW} strokeWidth={3} glowId="glow-yellow" markerId="arrow-yellow"
             d="M 97 365 C 180 500, 350 520, 540 400 C 620 330, 650 120, 690 100" />
+          <SparkTrail color={YELLOW} dur={3.0} glowId="glow-yellow"
+            d="M 97 365 C 180 500, 350 520, 540 400 C 620 330, 650 120, 690 100" />
         </g>
         <g className={animateChaos ? 'chaos-d5' : ''}>
           <FlowArrow color={CYAN}   strokeWidth={3} glowId="glow-cyan"   markerId="arrow-cyan"
+            d="M 97 445 C 300 445, 200 290, 400 370 C 500 425, 600 480, 690 440" />
+          <SparkTrail color={CYAN} dur={7.0} glowId="glow-cyan"
             d="M 97 445 C 300 445, 200 290, 400 370 C 500 425, 600 480, 690 440" />
         </g>
       </g>
@@ -86,45 +96,79 @@ function TeamDiagram({ revealStage }: { revealStage: number }) {
         {/* Orange: actor → IDEA → CODING → QA → exit right */}
         <FlowArrow color={ORANGE} strokeWidth={3} glowId="glow-orange"
           d="M 97 50 C 160 80, 160 230, 185 265" />
+        <SparkTrail color={ORANGE} dur={2.5} glowId="glow-orange"
+          d="M 97 50 C 160 80, 160 230, 185 265" />
         <FlowArrow color={ORANGE} strokeWidth={3} glowId="glow-orange" markerId="arrow-orange"
+          d="M 295 265 C 340 265, 345 170, 370 145" />
+        <SparkTrail color={ORANGE} dur={2.5} glowId="glow-orange"
           d="M 295 265 C 340 265, 345 170, 370 145" />
         <FlowArrow color={ORANGE} strokeWidth={3} glowId="glow-orange" markerId="arrow-orange"
           d="M 470 145 C 510 145, 515 230, 530 265" />
+        <SparkTrail color={ORANGE} dur={2.5} glowId="glow-orange"
+          d="M 470 145 C 510 145, 515 230, 530 265" />
         <FlowArrow color={ORANGE} strokeWidth={3} glowId="glow-orange" markerId="arrow-orange"
+          d="M 630 265 L 695 265" />
+        <SparkTrail color={ORANGE} dur={2.5} glowId="glow-orange"
           d="M 630 265 L 695 265" />
 
         {/* Green: actor → IDEA → LOCAL DEV → QA → DEPLOY */}
         <FlowArrow color={GREEN} strokeWidth={3} glowId="glow-green"
           d="M 97 155 C 150 180, 160 250, 185 265" />
+        <SparkTrail color={GREEN} dur={5.5} glowId="glow-green"
+          d="M 97 155 C 150 180, 160 250, 185 265" />
         <FlowArrow color={GREEN} strokeWidth={3} glowId="glow-green" markerId="arrow-green"
+          d="M 240 320 C 240 360, 310 385, 385 385" />
+        <SparkTrail color={GREEN} dur={5.5} glowId="glow-green"
           d="M 240 320 C 240 360, 310 385, 385 385" />
         <FlowArrow color={GREEN} strokeWidth={3} glowId="glow-green" markerId="arrow-green"
           d="M 475 385 C 530 385, 550 360, 555 315" />
+        <SparkTrail color={GREEN} dur={5.5} glowId="glow-green"
+          d="M 475 385 C 530 385, 550 360, 555 315" />
         <FlowArrow color={GREEN} strokeWidth={3} glowId="glow-green" markerId="arrow-green"
+          d="M 630 265 C 648 280, 648 340, 618 400" />
+        <SparkTrail color={GREEN} dur={5.5} glowId="glow-green"
           d="M 630 265 C 648 280, 648 340, 618 400" />
 
         {/* Blue: actor → IDEA → CODING → QA → DEPLOY */}
         <FlowArrow color={BLUE} strokeWidth={3} glowId="glow-blue"
           d="M 97 260 C 140 262, 160 264, 185 265" />
+        <SparkTrail color={BLUE} dur={4.0} glowId="glow-blue"
+          d="M 97 260 C 140 262, 160 264, 185 265" />
         <FlowArrow color={BLUE} strokeWidth={3} glowId="glow-blue" markerId="arrow-blue"
+          d="M 240 210 C 290 150, 360 160, 420 195" />
+        <SparkTrail color={BLUE} dur={4.0} glowId="glow-blue"
           d="M 240 210 C 290 150, 360 160, 420 195" />
         <FlowArrow color={BLUE} strokeWidth={3} glowId="glow-blue" markerId="arrow-blue"
           d="M 470 145 C 510 145, 515 230, 530 265" />
+        <SparkTrail color={BLUE} dur={4.0} glowId="glow-blue"
+          d="M 470 145 C 510 145, 515 230, 530 265" />
         <FlowArrow color={BLUE} strokeWidth={3} glowId="glow-blue" markerId="arrow-blue"
+          d="M 630 265 C 648 280, 648 340, 618 400" />
+        <SparkTrail color={BLUE} dur={4.0} glowId="glow-blue"
           d="M 630 265 C 648 280, 648 340, 618 400" />
 
         {/* Yellow: actor → LOCAL DEV → DEPLOY (bypasses IDEA) */}
         <FlowArrow color={YELLOW} strokeWidth={3} glowId="glow-yellow"
           d="M 97 365 C 200 370, 300 380, 385 385" />
+        <SparkTrail color={YELLOW} dur={3.0} glowId="glow-yellow"
+          d="M 97 365 C 200 370, 300 380, 385 385" />
         <FlowArrow color={YELLOW} strokeWidth={3} glowId="glow-yellow" markerId="arrow-yellow"
+          d="M 475 385 C 560 388, 600 395, 618 400" />
+        <SparkTrail color={YELLOW} dur={3.0} glowId="glow-yellow"
           d="M 475 385 C 560 388, 600 395, 618 400" />
 
         {/* Cyan: actor → IDEA → LOCAL DEV → QA */}
         <FlowArrow color={CYAN} strokeWidth={3} glowId="glow-cyan"
           d="M 97 445 C 155 450, 200 415, 240 320" />
+        <SparkTrail color={CYAN} dur={7.0} glowId="glow-cyan"
+          d="M 97 445 C 155 450, 200 415, 240 320" />
         <FlowArrow color={CYAN} strokeWidth={3} glowId="glow-cyan" markerId="arrow-cyan"
           d="M 240 320 C 280 360, 330 385, 385 385" />
+        <SparkTrail color={CYAN} dur={7.0} glowId="glow-cyan"
+          d="M 240 320 C 280 360, 330 385, 385 385" />
         <FlowArrow color={CYAN} strokeWidth={3} glowId="glow-cyan" markerId="arrow-cyan"
+          d="M 475 385 C 530 385, 550 350, 580 315" />
+        <SparkTrail color={CYAN} dur={7.0} glowId="glow-cyan"
           d="M 475 385 C 530 385, 550 350, 580 315" />
 
         {/* SDLC nodes on top of paths */}

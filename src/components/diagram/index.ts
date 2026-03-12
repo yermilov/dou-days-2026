@@ -7,3 +7,4 @@ export { ProcessBox } from './ProcessBox';
 export { ConnectionLine } from './ConnectionLine';
 export { CycleArrow } from './CycleArrow';
 export { ContainerBox } from './ContainerBox';
+export { SparkTrail } from './SparkTrail';

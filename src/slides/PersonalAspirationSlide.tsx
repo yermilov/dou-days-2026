@@ -1,5 +1,5 @@
 import React from 'react';
-import { DiagramCanvas, StageNode, HumanActor, FlowArrow } from '../components/diagram';
+import { DiagramCanvas, StageNode, HumanActor, FlowArrow, SparkTrail } from '../components/diagram';
 import { SlideItem, Emphasis } from '../components/SlideElements';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
 
@@ -35,6 +35,16 @@ const PULSE_STYLES = `
   .node-pulse-ring {
     animation: node-pulse 1.6s ease-out infinite;
   }
+  @keyframes claude-icon-pop {
+    0%   { opacity: 0; transform: scale(0.4); }
+    60%  { opacity: 1; transform: scale(1.15); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  .claude-icon-appear {
+    animation: claude-icon-pop 0.4s ease-out forwards;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
 `;
 
 function PulseRing({ cx, cy, r }: { cx: number; cy: number; r: number }) {
@@ -52,53 +62,118 @@ function PulseRing({ cx, cy, r }: { cx: number; cy: number; r: number }) {
   );
 }
 
-export function EngineerAspireDiagram({ highlightedNode }: { highlightedNode: string }) {
+// Inline Claude/Anthropic logo as SVG path — no external asset needed
+function ClaudeIcon({ cx, cy, size = 16 }: { cx: number; cy: number; size?: number }) {
+  const s = size / 24;
+  // Outer <g> handles positioning only (no CSS animation, so SVG transform is not overridden).
+  // Inner <g> handles the pop animation with transform-box: fill-box so scale() works correctly.
+  return (
+    <g transform={`translate(${cx}, ${cy})`} style={{ filter: 'drop-shadow(0 0 4px #f0883e)' }}>
+      <g className="claude-icon-appear">
+        <g transform={`translate(${-size / 2}, ${-size / 2}) scale(${s})`}>
+          <circle cx={12} cy={12} r={13} fill="#1a1f26" stroke={ORANGE} strokeWidth={1.2} />
+          <path
+            d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"
+            fill={ORANGE}
+          />
+        </g>
+      </g>
+    </g>
+  );
+}
+
+export function EngineerAspireDiagram({
+  highlightedNode,
+  aiAccelerated = false,
+}: {
+  highlightedNode: string;
+  aiAccelerated?: boolean;
+}) {
   const nc = (name: string) => name === highlightedNode ? ORANGE : '#f0ece8';
   const isHighlighted = (name: string) => name === highlightedNode;
+
+  // ~33% of inter-circle arrows are AI-accelerated (3 out of 10):
+  //   1. ORANGE IDEA→CODING  midpoint (283, 164)
+  //   2. BLUE   CODING→QA    midpoint (405, 234)
+  //   3. CYAN   LDEV→MONITOR midpoint (517, 437)
+  const fast = (dur: number) => aiAccelerated ? dur / 4 : dur;
 
   return (
     <DiagramCanvas viewBox="0 0 700 580">
       <style>{PULSE_STYLES}</style>
 
-      {/* ── ORANGE: actor → IDEA → CODING → QA → COMMIT ── */}
+      {/* ── ORANGE: actor → IDEA (upper-left) → CODING (left) → QA (top, wide arc) → COMMIT ── */}
       <FlowArrow color={ORANGE} strokeWidth={3} glowId="glow-orange"
-        d="M 97 50 C 140 100, 150 230, 160 265" />
+        d="M 97 50 C 145 85, 162 180, 172 225" />
+      <SparkTrail color={ORANGE} dur={2.5} glowId="glow-orange"
+        d="M 97 50 C 145 85, 162 180, 172 225" />
+      {/* AI-ACCELERATED #1 */}
       <FlowArrow color={ORANGE} strokeWidth={3} glowId="glow-orange" markerId="arrow-orange"
-        d="M 270 265 C 295 250, 310 190, 325 130" />
+        d="M 230 213 C 270 175, 300 148, 325 130" />
+      <SparkTrail color={ORANGE} dur={fast(2.5)} glowId="glow-orange"
+        d="M 230 213 C 270 175, 300 148, 325 130" />
       <FlowArrow color={ORANGE} strokeWidth={3} glowId="glow-orange" markerId="arrow-orange"
-        d="M 425 130 C 445 130, 450 200, 460 255" />
+        d="M 425 130 C 478 105, 528 150, 510 207" />
+      <SparkTrail color={ORANGE} dur={2.5} glowId="glow-orange"
+        d="M 425 130 C 478 105, 528 150, 510 207" />
       <FlowArrow color={ORANGE} strokeWidth={3} glowId="glow-orange" markerId="arrow-orange"
         d="M 560 255 C 568 220, 570 180, 575 130" />
+      <SparkTrail color={ORANGE} dur={2.5} glowId="glow-orange"
+        d="M 560 255 C 568 220, 570 180, 575 130" />
 
-      {/* ── GREEN: actor → IDEA → LOCAL DEV → MONITOR ── */}
+      {/* ── GREEN: actor → IDEA (left-upper) → LOCAL DEV (top) → MONITOR (upper-left) ── */}
       <FlowArrow color={GREEN} strokeWidth={3} glowId="glow-green"
-        d="M 97 155 C 130 180, 150 245, 160 265" />
+        d="M 97 155 C 130 168, 148 232, 160 248" />
+      <SparkTrail color={GREEN} dur={5.5} glowId="glow-green"
+        d="M 97 155 C 130 168, 148 232, 160 248" />
       <FlowArrow color={GREEN} strokeWidth={3} glowId="glow-green" markerId="arrow-green"
-        d="M 215 320 C 220 350, 290 375, 335 395" />
+        d="M 215 320 C 228 358, 320 352, 365 352" />
+      <SparkTrail color={GREEN} dur={5.5} glowId="glow-green"
+        d="M 215 320 C 228 358, 320 352, 365 352" />
       <FlowArrow color={GREEN} strokeWidth={3} glowId="glow-green" markerId="arrow-green"
-        d="M 425 395 C 500 398, 555 400, 593 395" />
+        d="M 393 350 C 490 335, 555 348, 605 366" />
+      <SparkTrail color={GREEN} dur={5.5} glowId="glow-green"
+        d="M 393 350 C 490 335, 555 348, 605 366" />
 
-      {/* ── BLUE: actor → IDEA → CODING → QA ── */}
+      {/* ── BLUE: actor → IDEA (left-lower) → CODING (bottom) → QA (left, lower arc) ── */}
       <FlowArrow color={BLUE} strokeWidth={3} glowId="glow-blue"
-        d="M 97 260 C 130 262, 145 263, 160 265" />
+        d="M 97 260 C 128 262, 148 270, 160 275" />
+      <SparkTrail color={BLUE} dur={4.0} glowId="glow-blue"
+        d="M 97 260 C 128 262, 148 270, 160 275" />
       <FlowArrow color={BLUE} strokeWidth={3} glowId="glow-blue" markerId="arrow-blue"
-        d="M 215 210 C 235 170, 290 150, 325 130" />
+        d="M 270 265 C 312 255, 360 228, 375 182" />
+      <SparkTrail color={BLUE} dur={4.0} glowId="glow-blue"
+        d="M 270 265 C 312 255, 360 228, 375 182" />
+      {/* AI-ACCELERATED #2 */}
       <FlowArrow color={BLUE} strokeWidth={3} glowId="glow-blue" markerId="arrow-blue"
-        d="M 425 130 C 448 130, 452 200, 460 255" />
+        d="M 375 182 C 382 228, 420 250, 460 255" />
+      <SparkTrail color={BLUE} dur={fast(4.0)} glowId="glow-blue"
+        d="M 375 182 C 382 228, 420 250, 460 255" />
 
-      {/* ── YELLOW: actor → IDEA → LOCAL DEV → QA ── */}
+      {/* ── YELLOW: actor → IDEA (lower-left) → LOCAL DEV (left) → QA (bottom, upper-right exit) ── */}
       <FlowArrow color={YELLOW} strokeWidth={3} glowId="glow-yellow"
-        d="M 97 365 C 150 355, 180 340, 215 320" />
+        d="M 97 365 C 148 360, 178 340, 195 316" />
+      <SparkTrail color={YELLOW} dur={3.0} glowId="glow-yellow"
+        d="M 97 365 C 148 360, 178 340, 195 316" />
       <FlowArrow color={YELLOW} strokeWidth={3} glowId="glow-yellow" markerId="arrow-yellow"
-        d="M 215 320 C 240 360, 300 385, 335 395" />
+        d="M 250 310 C 268 360, 305 390, 335 395" />
+      <SparkTrail color={YELLOW} dur={3.0} glowId="glow-yellow"
+        d="M 250 310 C 268 360, 305 390, 335 395" />
       <FlowArrow color={YELLOW} strokeWidth={3} glowId="glow-yellow" markerId="arrow-yellow"
-        d="M 425 395 C 465 395, 475 340, 510 305" />
+        d="M 425 378 C 465 358, 498 322, 510 307" />
+      <SparkTrail color={YELLOW} dur={3.0} glowId="glow-yellow"
+        d="M 425 378 C 465 358, 498 322, 510 307" />
 
-      {/* ── CYAN: actor → LOCAL DEV → MONITOR ── */}
+      {/* ── CYAN: actor → LOCAL DEV (lower-left) → MONITOR (lower-left) ── */}
       <FlowArrow color={CYAN} strokeWidth={3} glowId="glow-cyan"
-        d="M 97 445 C 180 440, 260 425, 335 395" />
+        d="M 97 445 C 198 448, 288 442, 347 437" />
+      <SparkTrail color={CYAN} dur={7.0} glowId="glow-cyan"
+        d="M 97 445 C 198 448, 288 442, 347 437" />
+      {/* AI-ACCELERATED #3 */}
       <FlowArrow color={CYAN} strokeWidth={3} glowId="glow-cyan" markerId="arrow-cyan"
-        d="M 425 395 C 500 392, 555 390, 593 395" />
+        d="M 415 437 C 486 448, 556 432, 597 415" />
+      <SparkTrail color={CYAN} dur={fast(7.0)} glowId="glow-cyan"
+        d="M 415 437 C 486 448, 556 432, 597 415" />
 
       {/* ── SDLC nodes ── */}
       <StageNode cx={215} cy={265} r={55} label="IDEA"        color="#f0ece8"    strokeWidth={2.5} fontSize={13} />
@@ -114,6 +189,15 @@ export function EngineerAspireDiagram({ highlightedNode }: { highlightedNode: st
       {isHighlighted('QA')        && <PulseRing cx={510} cy={255} r={50} />}
       {isHighlighted('COMMIT')    && <PulseRing cx={620} cy={130} r={45} />}
       {isHighlighted('MONITOR')   && <PulseRing cx={635} cy={395} r={42} />}
+
+      {/* ── Claude icons on AI-accelerated arrows ── */}
+      {aiAccelerated && (
+        <>
+          <ClaudeIcon cx={283} cy={164} size={18} />
+          <ClaudeIcon cx={405} cy={234} size={18} />
+          <ClaudeIcon cx={517} cy={437} size={18} />
+        </>
+      )}
 
       {/* ── Actors ── */}
       <HumanActor x={65} y={50}  size={62} color={ORANGE} />
@@ -188,12 +272,12 @@ export const PersonalAspirationSlide: SlideDefinition = {
 
           {/* Right: 60% — diagram with highlighted node */}
           <div style={{ flex: 1, height: '100%' }}>
-            <EngineerAspireDiagram highlightedNode={highlightedNode} />
+            <EngineerAspireDiagram highlightedNode={highlightedNode} aiAccelerated={revealStage >= 1} />
           </div>
         </div>
       </div>
     );
   },
   notes:
-    'Stage 0: coding is just autocomplete, CODING node glows. Stage 1: goal is everything from Claude Code. Stages 2–5: each prompt reveals with matching node lighting up (COMMIT → LOCAL DEV → QA → MONITOR).',
+    'Stage 0: coding is just autocomplete, CODING node glows. Stage 1: goal is everything from Claude Code — 3 arrows go 2x faster with Claude icons. Stages 2–5: each prompt reveals with matching node lighting up (COMMIT → LOCAL DEV → QA → MONITOR).',
 };
