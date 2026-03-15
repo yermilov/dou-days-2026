@@ -35,6 +35,12 @@ export const HumanAiEngSlide: SlideDefinition = {
             a known pain point is that engineers don't have breathing room to go through the learning curve — consider <Emphasis color="orange">relaxing delivery expectations early</Emphasis> to give space to learn, then raise them higher than before
           </SlideItem>
         )}
+
+        {revealStage >= 3 && (
+          <SlideItem delay={0}>
+            humans always remain your <Emphasis color="orange">most important asset</Emphasis> — preserve empathy, be ethical, watch for burnouts, and have fair conversations
+          </SlideItem>
+        )}
       </div>
     </>
   ),

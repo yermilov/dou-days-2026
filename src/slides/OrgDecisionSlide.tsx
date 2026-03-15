@@ -3,7 +3,7 @@ import { SlideItem, Emphasis } from '../components/SlideElements';
 
 export const OrgDecisionSlide: SlideDefinition = {
   id: 'org-decision',
-  maxRevealStages: 5,
+  maxRevealStages: 4,
   content: ({ revealStage }: SlideContentProps) => (
     <>
       <h2 style={{ marginBottom: '2rem' }}>

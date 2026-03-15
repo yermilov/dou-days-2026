@@ -67,7 +67,7 @@ export const ChallengeAssumptionsSlide: SlideDefinition = {
       </div>
     </>
   ),
-  maxRevealStages: 8,
+  maxRevealStages: 7,
   notes:
     "These aren't rhetorical. Each question is a team conversation waiting to happen. Pick the two that would change the most for your org and start there.",
 };
