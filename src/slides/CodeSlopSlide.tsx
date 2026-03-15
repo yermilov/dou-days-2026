@@ -43,10 +43,18 @@ export const CodeSlopSlide: SlideDefinition = {
             <Quote>instead do X and remember this gotcha in CLAUDE.md</Quote>
           </SlideItem>
         )}
+
+        {revealStage >= 4 && (
+          <SlideItem delay={0}>
+            add{' '}
+            <Quote>ask questions first — never assume, use AskUserQuestion tool</Quote>{' '}
+            to your CLAUDE.md to stop Claude from guessing
+          </SlideItem>
+        )}
       </div>
     </>
   ),
-  maxRevealStages: 3,
+  maxRevealStages: 4,
   notes:
-    'Code slop prevention tips - use frontend-design skill, follow repo patterns, teach Claude gotchas, write tests with TDD, write stubs manually, use ultrathink (crossed out), document everything',
+    'Code slop prevention tips - use frontend-design skill, follow repo patterns, teach Claude gotchas, ask questions first instead of assuming, write tests with TDD, write stubs manually, use ultrathink (crossed out), document everything',
 };

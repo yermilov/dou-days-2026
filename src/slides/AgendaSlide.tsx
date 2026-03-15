@@ -149,7 +149,7 @@ function AgendaSlideContent() {
           <span className="text-dim">$</span>{' '}
           <span className="text-green">./session --agenda</span>
         </div>
-        <div className="agenda-subtitle text-muted">// what we're covering today</div>
+        <div className="agenda-subtitle text-muted">// claude code mostly</div>
       </div>
 
       {/* Row 1: main sections */}

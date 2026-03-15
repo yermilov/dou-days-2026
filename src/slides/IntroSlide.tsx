@@ -78,8 +78,8 @@ export const IntroSlide: SlideDefinition = {
   ),
   content: ({ activatedTools }: SlideContentProps) => (
     <>
-      <h2>let's get to know you</h2>
-      <h1 className="hero">tell us about your ai coding experience</h1>
+      <h1 className="hero">let's get to know you</h1>
+      <h2>(and my take on ai coding tools)</h2>
 
       <div className="tool-grid">
         {AI_TOOLS.map((tool, index) => (
