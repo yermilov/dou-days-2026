@@ -30,6 +30,7 @@ import { AgentsSectionSlide } from './AgentsSectionSlide';
 import { AgentsSlide } from './AgentsSlide';
 import { AgentWorkflowSlide } from './AgentWorkflowSlide';
 import { AgentTracesSlide } from './AgentTracesSlide';
+import { AgentExampleSlide } from './AgentExampleSlide';
 import { IndustryPatternsSlide } from './IndustryPatternsSlide';
 import { OrgDecisionSlide } from './OrgDecisionSlide';
 import { HumanAiEngSlide } from './HumanAiEngSlide';
@@ -37,4 +38,4 @@ import { AutonomousAiSlide } from './AutonomousAiSlide';
 import { ChallengeAssumptionsSlide } from './ChallengeAssumptionsSlide';
 import { FinalSlide } from './FinalSlide';
 
-export const slides = [TitleSlide, BioSlide, TimelineSlide, IntroSlide, AgendaSlide, EngineerSectionSlide, VibeFlowSlide, ContextToolsSlide, CodeSlopSlide, DisclaimerSlide, JuniorEngineerSlide, ImportantSlide, UltimateExampleSlide, TeamSectionSlide, WhatIsAiFirstTeamSlide, PersonalAspirationSlide, BreakOutOfCodingSlide, WhatIsSkillSlide, SkillsPyramidSlide, SkillFlywheelSlide, SkillsInfrastructureSectionSlide, SkillMarketplaceSlide, MetaSkillsSlide, AIInnovatorCurveSlide, SkillsActivatorSlide, SkillsMetricsSlide, AgentsSectionSlide, AgentsSlide, AgentWorkflowSlide, AgentTracesSlide, OrgSectionSlide, IndustryPatternsSlide, OrgDecisionSlide, AutonomousAiSlide, HumanAiEngSlide, ChallengeAssumptionsSlide, ClaudeCodeSlide, FinalSlide];
+export const slides = [TitleSlide, BioSlide, TimelineSlide, IntroSlide, AgendaSlide, EngineerSectionSlide, VibeFlowSlide, ContextToolsSlide, CodeSlopSlide, DisclaimerSlide, JuniorEngineerSlide, ImportantSlide, UltimateExampleSlide, TeamSectionSlide, WhatIsAiFirstTeamSlide, PersonalAspirationSlide, BreakOutOfCodingSlide, WhatIsSkillSlide, SkillsPyramidSlide, SkillFlywheelSlide, SkillsInfrastructureSectionSlide, SkillMarketplaceSlide, MetaSkillsSlide, AIInnovatorCurveSlide, SkillsActivatorSlide, SkillsMetricsSlide, AgentsSectionSlide, AgentsSlide, AgentWorkflowSlide, AgentTracesSlide, AgentExampleSlide, OrgSectionSlide, IndustryPatternsSlide, OrgDecisionSlide, AutonomousAiSlide, HumanAiEngSlide, ChallengeAssumptionsSlide, ClaudeCodeSlide, FinalSlide];
