@@ -243,6 +243,12 @@ export const PersonalAspirationSlide: SlideDefinition = {
               </SlideItem>
             )}
 
+            {revealStage >= 1 && (
+              <SlideItem delay={0}>
+                prioritize things that will create a feedback loop for Claude Code
+              </SlideItem>
+            )}
+
             {revealStage >= 2 && (
               <SlideItem delay={0}>
                 <Prompt>hey claude, please commit my changes</Prompt>

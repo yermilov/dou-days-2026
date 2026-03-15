@@ -3,7 +3,7 @@ import { SlideItem, Emphasis } from '../components/SlideElements';
 
 export const OrgDecisionSlide: SlideDefinition = {
   id: 'org-decision',
-  maxRevealStages: 4,
+  maxRevealStages: 5,
   content: ({ revealStage }: SlideContentProps) => (
     <>
       <h2 style={{ marginBottom: '2rem' }}>
@@ -39,6 +39,12 @@ export const OrgDecisionSlide: SlideDefinition = {
         {revealStage >= 3 && (
           <SlideItem delay={0}>
             good goal examples: <Emphasis color="green">time from idea to real user experiment is X</Emphasis> / X features released every week / X% time spent on KTLO
+          </SlideItem>
+        )}
+
+        {revealStage >= 4 && (
+          <SlideItem delay={0}>
+            your <Emphasis color="orange">"AI-enablement" team</Emphasis> should work on AI coding infrastructure, not AI coding itself
           </SlideItem>
         )}
       </div>
