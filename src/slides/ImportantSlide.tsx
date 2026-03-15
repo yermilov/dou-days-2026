@@ -1,66 +1,95 @@
 import { SlideDefinition } from '../types/slides';
 import { Emphasis, SlideItem } from '../components/SlideElements';
-import importantImage from '/important-slide.png?url';
+import { PacManCanvas } from '../components/pacman/PacManCanvas';
 
 export const ImportantSlide: SlideDefinition = {
   id: 'important',
-  content: (
-    <div className="bg-image-slide">
-      <img
-        src={importantImage}
-        alt="Important balance between human expertise and AI"
-        className="bg-image-slide__background"
-        loading="lazy"
-      />
-
-      <div className="bg-image-slide__content">
-        <SlideItem delay={0.05}>
-          if you know a topic well, Claude almost certainly understands it{' '}
+  content: ({ revealStage }) => (
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 'var(--space-xl)',
+        width: '100%',
+        height: '100%',
+      }}
+    >
+      {/* Left column - bullet points */}
+      <div
+        style={{
+          flex: '0 0 40%',
+          maxWidth: '550px',
+          textAlign: 'left',
+        }}
+      >
+        <SlideItem delay={0.05} size="compact">
+          Claude almost certainly understands your domain{' '}
           <Emphasis color="orange">worse</Emphasis> than you
         </SlideItem>
 
-        <SlideItem delay={0.12}>
+        <SlideItem delay={0.12} size="compact">
           often you can write code{' '}
           <Emphasis color="orange">MUCH</Emphasis> better than it
         </SlideItem>
 
-        <SlideItem delay={0.19}>
-          often you can also write code even{' '}
+        <SlideItem delay={0.19} size="compact">
+          often you can also write code{' '}
           <Emphasis color="orange">faster</Emphasis> than it
         </SlideItem>
 
-        <SlideItem delay={0.26}>
-          but its value is that you can give it a task and{' '}
-          <Emphasis>switch to something else</Emphasis>
+        <SlideItem delay={0.26} size="compact">
+          <Emphasis>exception</Emphasis> — unfamiliar tech saves hours to weeks
         </SlideItem>
 
-        <SlideItem delay={0.33}>
-          or run two tasks in parallel with two Claudes and switch to something
-          else
-        </SlideItem>
+        {revealStage >= 1 && (
+          <SlideItem delay={0} size="compact">
+            give it a task and{' '}
+            <Emphasis>switch to something else</Emphasis>
+          </SlideItem>
+        )}
 
-        <SlideItem delay={0.40}>
-          or run four tasks and go eat / sleep
-        </SlideItem>
+        {revealStage >= 1 && (
+          <SlideItem delay={0.1} size="compact">
+            staring at the terminal ={' '}
+            <Emphasis color="orange">losing productivity</Emphasis>
+          </SlideItem>
+        )}
 
-        <SlideItem delay={0.47}>
-          in most cases Claude doesn't improve the quality or speed of your work
-          — it increases the <Emphasis>volume</Emphasis> of your work
-        </SlideItem>
+        {revealStage >= 2 && (
+          <SlideItem delay={0} size="compact">
+            or run <Emphasis>two tasks</Emphasis> in parallel
+          </SlideItem>
+        )}
 
-        <SlideItem delay={0.54}>
-          if you let it work while you just stare at the terminal —
-          you're most likely{' '}
-          <Emphasis color="orange">losing productivity</Emphasis>
-        </SlideItem>
+        {revealStage >= 3 && (
+          <SlideItem delay={0} size="compact">
+            or run four tasks and go eat / sleep
+          </SlideItem>
+        )}
 
-        <SlideItem delay={0.61}>
-          <Emphasis>the one important exception</Emphasis> — technologies you
-          know nothing about, here you can save hours to weeks
-        </SlideItem>
+        {revealStage >= 4 && (
+          <SlideItem delay={0} size="compact">
+            Claude Code increases <Emphasis>throughput</Emphasis> of your work, not
+            your latency
+          </SlideItem>
+        )}
+
+      </div>
+
+      {/* Right column - Pac-Man animation */}
+      <div
+        style={{
+          flex: '0 0 55%',
+          maxHeight: 'calc(var(--vh-full) - 220px)',
+          aspectRatio: '320 / 240',
+        }}
+      >
+        <PacManCanvas revealStage={revealStage} />
       </div>
     </div>
   ),
+  maxRevealStages: 4,
   notes:
-    'Important reality check - Claude is not better than you in your domain, value is in parallelization and delegation, watching Claude work is often counterproductive, exception is unfamiliar technologies',
+    'Important reality check with 8-bit animation. First 3 points visible immediately, press r 6 times for the rest. Value is in parallelization and delegation, watching Claude work is counterproductive, exception is unfamiliar technologies.',
 };
