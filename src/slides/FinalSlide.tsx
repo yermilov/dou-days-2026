@@ -58,14 +58,21 @@ export const FinalSlide: SlideDefinition = {
 
           {revealStage >= 5 && (
             <SlideItem delay={0}>
-              write to me on LinkedIn{' '}
+              <Emphasis color="green">humans</Emphasis> are the most important part —
+              AI amplifies your team, it doesn't replace it
+            </SlideItem>
+          )}
+
+          {revealStage >= 6 && (
+            <SlideItem delay={0}>
+              let's connect on LinkedIn{' '}
               <span style={{ color: 'var(--terminal-blue)' }}>→</span>
             </SlideItem>
           )}
         </div>
 
         {/* Right column - QR code (revealed with last point) */}
-        {revealStage >= 5 && (
+        {revealStage >= 6 && (
           <img
             src={linkedinQr}
             alt="LinkedIn QR code - Yarik Yermilov"
@@ -87,7 +94,7 @@ export const FinalSlide: SlideDefinition = {
       </div>
     </>
   ),
-  maxRevealStages: 5,
+  maxRevealStages: 6,
   notes:
     'Final slide - 5 key takeaways: vibe flow foundation, use Claude beyond coding, skills marketplace, specific-task agents first, connect on LinkedIn. Press r 5 times to reveal all points + QR code.',
 };
