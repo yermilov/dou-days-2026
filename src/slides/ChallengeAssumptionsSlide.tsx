@@ -55,19 +55,13 @@ export const ChallengeAssumptionsSlide: SlideDefinition = {
 
         {revealStage >= 6 && (
           <SlideItem delay={0}>
-            what <Emphasis color="green">architectural paradigms</Emphasis> help agents avoid sloppy generated code?
-          </SlideItem>
-        )}
-
-        {revealStage >= 7 && (
-          <SlideItem delay={0}>
             what discussions are <Emphasis color="orange">no longer meaningful</Emphasis> when code generation is increasingly cheap — do we need architecture if code can be fully regenerated weekly?
           </SlideItem>
         )}
       </div>
     </>
   ),
-  maxRevealStages: 7,
+  maxRevealStages: 6,
   notes:
     "These aren't rhetorical. Each question is a team conversation waiting to happen. Pick the two that would change the most for your org and start there.",
 };

@@ -14,7 +14,6 @@ const NODE_BY_STAGE: Record<number, string> = {
   2: 'LOCAL DEV',
   3: 'QA',
   4: 'COMMIT',
-  5: 'MONITOR',
 };
 
 // Icons placed at top-inner area of each circle (cy - r + 14) to avoid overlapping node text
@@ -164,7 +163,7 @@ function SkillFlywheelDiagram({ revealStage }: { revealStage: number }) {
 
 export const SkillFlywheelSlide: SlideDefinition = {
   id: 'skill-flywheel',
-  maxRevealStages: 5,
+  maxRevealStages: 4,
   content: ({ revealStage }: SlideContentProps) => {
 
     return (
@@ -196,26 +195,19 @@ export const SkillFlywheelSlide: SlideDefinition = {
 
             {revealStage >= 2 && (
               <SlideItem delay={0}>
-                skill examples: <code>setup-dev-env</code>, <code>commit</code>, <code>create-pr</code>,{' '}
-                <code>launch-local-env</code>, <code>test-feature</code>, <code>fetch-logs</code>, ...
-              </SlideItem>
-            )}
-
-            {revealStage >= 3 && (
-              <SlideItem delay={0}>
                 humans don't like to read or write documentation — agents{' '}
                 <Emphasis color="green">love</Emphasis> to do both; convert all docs to skills
               </SlideItem>
             )}
 
-            {revealStage >= 4 && (
+            {revealStage >= 3 && (
               <SlideItem delay={0}>
                 every engineer using a skill contributes improvements — making everyone{' '}
                 <Emphasis color="orange">instantly more productive</Emphasis>
               </SlideItem>
             )}
 
-            {revealStage >= 5 && (
+            {revealStage >= 4 && (
               <SlideItem delay={0}>
                 migrations are easy — migrated X to Y? just rewrite all corresponding skills
               </SlideItem>

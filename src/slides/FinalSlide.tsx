@@ -30,29 +30,28 @@ export const FinalSlide: SlideDefinition = {
         >
           {revealStage >= 1 && (
             <SlideItem delay={0}>
-              the <Emphasis color="green">vibe flow</Emphasis> is your foundation —{' '}
-              /clear → plan → describe → iterate → commit
+              start with figuring out your personal <Emphasis color="green">vibe flow</Emphasis>
             </SlideItem>
           )}
 
           {revealStage >= 2 && (
             <SlideItem delay={0}>
               break out of just coding — use Claude for{' '}
-              <Emphasis color="orange">planning</Emphasis>, PRs, agents, and org decisions
+              <Emphasis color="orange">everything</Emphasis> you do, especially closing feedback loops
             </SlideItem>
           )}
 
           {revealStage >= 3 && (
             <SlideItem delay={0}>
-              skills are your team's multiplier — build a{' '}
-              <Emphasis color="green">marketplace</Emphasis>, start by teaching how to create skills
+              skills are your team's multiplier — build an{' '}
+              <Emphasis color="green">infrastructure</Emphasis> to make them sharable and reusable
             </SlideItem>
           )}
 
           {revealStage >= 4 && (
             <SlideItem delay={0}>
-              agents are the next frontier — start small with{' '}
-              <Emphasis color="orange">specific-task agents</Emphasis> before going full auto
+              semi-autonomous agents are the next frontier — start with{' '}
+              <Emphasis color="orange">specific-task agents</Emphasis>: issue triage, code review, migrations, ...
             </SlideItem>
           )}
 

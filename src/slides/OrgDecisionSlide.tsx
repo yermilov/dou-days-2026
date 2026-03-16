@@ -44,7 +44,7 @@ export const OrgDecisionSlide: SlideDefinition = {
 
         {revealStage >= 4 && (
           <SlideItem delay={0}>
-            your <Emphasis color="orange">"AI-enablement" team</Emphasis> should work on AI coding infrastructure, not AI coding itself
+            task <Emphasis color="orange">"AI-enablement" team</Emphasis> to work on AI coding infrastructure, not AI coding blueprints (individual teams/engineers knows better how to make their workflows AI-first)
           </SlideItem>
         )}
       </div>

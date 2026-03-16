@@ -3,13 +3,13 @@ import { SlideItem, Emphasis } from '../components/SlideElements';
 
 export const AutonomousAiSlide: SlideDefinition = {
   id: 'autonomous-ai',
-  maxRevealStages: 4,
+  maxRevealStages: 3,
   content: ({ revealStage }: SlideContentProps) => (
     <>
       <h2 style={{ marginBottom: '2rem' }}>
         <span className="text-dim">$</span>{' '}
         <span className="text-green">./org</span>{' '}
-        <span className="text-orange">--agent-native</span>
+        <span className="text-orange">--agent-first</span>
       </h2>
 
       <div
@@ -32,17 +32,11 @@ export const AutonomousAiSlide: SlideDefinition = {
 
         {revealStage >= 2 && (
           <SlideItem delay={0}>
-            investigate which <Emphasis color="green">infrastructure primitives</Emphasis> agents can navigate without human help — self-setup dev envs, ephemeral environments, test analysis with flakiness history
-          </SlideItem>
-        )}
-
-        {revealStage >= 3 && (
-          <SlideItem delay={0}>
             <Emphasis color="green">legacy codebases</Emphasis> are the biggest drag — it is often unrealistic to adapt massive legacy repositories to AI-first principles in a reasonable timeframe
           </SlideItem>
         )}
 
-        {revealStage >= 4 && (
+        {revealStage >= 3 && (
           <SlideItem delay={0}>
             greenfield projects should be <Emphasis color="orange">AI-first from day one</Emphasis> — they give the highest velocity returns and prove what is possible at scale
           </SlideItem>
