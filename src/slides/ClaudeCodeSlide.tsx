@@ -25,11 +25,11 @@ export const ClaudeCodeSlide: SlideDefinition = {
           <div className="reveal-repo">
             <span className="reveal-prompt">$</span>
             <a
-              href="https://github.com/yermilov/how-to-make-your-team-ai-first-en"
+              href="https://github.com/yermilov/ai-first-transformation-from-within-en"
               target="_blank"
               rel="noopener noreferrer"
             >
-              github.com/yermilov/how-to-make-your-team-ai-first-en
+              github.com/yermilov/ai-first-transformation-from-within-en
             </a>
           </div>
           <p className="reveal-intro">I open Claude Code and give it tasks</p>

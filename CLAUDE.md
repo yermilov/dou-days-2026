@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-A custom terminal-themed presentation site built with React and TypeScript. Features a Claude Code-inspired aesthetic with command-based navigation. Hosted on GitHub Pages at https://yermilov.github.io/how-to-make-your-team-ai-first-en
+A custom terminal-themed presentation site for the talk "AI-First Transformation From Within: Patterns and Anti-Patterns Learned by Superhuman Engineers". Built with React and TypeScript, featuring a Claude Code-inspired aesthetic with command-based navigation. Hosted on GitHub Pages at https://yermilov.github.io/ai-first-transformation-from-within-en
 
 ## Tech Stack
 
@@ -16,7 +16,7 @@ A custom terminal-themed presentation site built with React and TypeScript. Feat
 
 ```bash
 bun install      # Install dependencies (REQUIRED before first `bun run dev`)
-bun run dev      # Start dev server (http://localhost:5173/how-to-make-your-team-ai-first-en/)
+bun run dev      # Start dev server (http://localhost:5173/ai-first-transformation-from-within-en/)
 bun run build    # Build for production
 bun run preview  # Preview production build
 bun run deploy   # Manual deploy to GitHub Pages
@@ -120,7 +120,7 @@ import myImage from '/my-image.png?url';
 <img src={myImage} alt="Description" loading="lazy" />
 ```
 
-**Important:** Do NOT use direct paths like `src="/image.png"` — they break on GitHub Pages due to the base URL (`/how-to-make-your-team-ai-first-en`).
+**Important:** Do NOT use direct paths like `src="/image.png"` — they break on GitHub Pages due to the base URL (`/ai-first-transformation-from-within-en`).
 
 **Build-time compression:** `vite-plugin-imagemin` is configured in `vite.config.ts` and automatically compresses PNGs/JPEGs at build time (71–86% size reduction). No manual compression needed.
 
@@ -257,7 +257,7 @@ This ensures:
 Workflow:
 1. Make the change
 2. Confirm dev server is running (`bun run dev`)
-3. Use Chrome extension to navigate to `http://localhost:5173/how-to-make-your-team-ai-first-en/`
+3. Use Chrome extension to navigate to `http://localhost:5173/ai-first-transformation-from-within-en/`
 4. Take a screenshot and confirm the change looks correct before declaring done
 
 ### Code Style

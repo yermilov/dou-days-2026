@@ -1,9 +1,9 @@
 {
-  "name": "how-to-make-your-team-ai-first-en",
+  "name": "ai-first-transformation-from-within-en",
   "private": true,
   "version": "0.0.1",
   "type": "module",
-  "homepage": "https://yermilov.github.io/how-to-make-your-team-ai-first-en",
+  "homepage": "https://yermilov.github.io/ai-first-transformation-from-within-en",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

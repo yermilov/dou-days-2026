@@ -13,5 +13,5 @@ export default defineConfig({
       svgo: { plugins: [{ removeViewBox: false }] },
     }),
   ],
-  base: '/how-to-make-your-team-ai-first-en/',
+  base: '/ai-first-transformation-from-within-en/',
 })
