@@ -75,7 +75,8 @@ function BioSection({ title, children, titleSize }: { title: string; children: R
 
 export const BioSlide: SlideDefinition = {
   id: 'bio',
-  content: (
+  maxRevealStages: 6,
+  content: ({ revealStage }) => (
     <div className="bio-slide">
       <div className="bio-slide-content">
         <h2 style={{ marginBottom: '1.5rem', textAlign: 'left' }}>
@@ -83,13 +84,23 @@ export const BioSlide: SlideDefinition = {
         </h2>
 
         <div style={{ textAlign: 'left' }}>
-          <BioSection title="8+ years at Grammarly / Superhuman" titleSize="1.6rem">
+          <BioSection title="almost 9 years at Grammarly / Superhuman" titleSize="1.6rem">
             <BioItem level="high">0 -&gt; 1 projects</BioItem>
-            <BioItem level="high">in 2025: rolling out AI coding agents across the company</BioItem>
-            <BioItem level="medium">before that: tech lead of platform organization</BioItem>
-            <BioItem level="medium">before that: tech lead of feature frameworks</BioItem>
-            <BioItem level="medium">before that: led product features</BioItem>
-            <BioItem level="low">before that: backend engineer</BioItem>
+            {revealStage >= 1 && (
+              <BioItem level="high">in 2025: rolling out AI coding agents across the company</BioItem>
+            )}
+            {revealStage >= 2 && (
+              <BioItem level="medium">before that: tech lead of platform organization</BioItem>
+            )}
+            {revealStage >= 3 && (
+              <BioItem level="medium">before that: tech lead of feature frameworks</BioItem>
+            )}
+            {revealStage >= 4 && (
+              <BioItem level="medium">before that: led product features</BioItem>
+            )}
+            {revealStage >= 5 && (
+              <BioItem level="low">started as Java backend engineer</BioItem>
+            )}
           </BioSection>
         </div>
       </div>
