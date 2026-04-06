@@ -75,7 +75,7 @@ function BioSection({ title, children, titleSize }: { title: string; children: R
 
 export const BioSlide: SlideDefinition = {
   id: 'bio',
-  maxRevealStages: 6,
+  maxRevealStages: 5,
   content: ({ revealStage }) => (
     <div className="bio-slide">
       <div className="bio-slide-content">
