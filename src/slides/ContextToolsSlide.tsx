@@ -16,7 +16,8 @@ export const ContextToolsSlide: SlideDefinition = {
       <div className="bg-image-slide__content" style={{ maxWidth: '1100px' }}>
         <h2 style={{ marginBottom: '1.5rem' }}>
           <span className="text-dim">$</span>{' '}
-          <span className="text-orange">form the context</span>
+          <span className="text-green">personal-patterns</span>{' '}
+          <span className="text-orange">--rich-context</span>
         </h2>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 3rem' }}>

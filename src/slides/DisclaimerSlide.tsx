@@ -78,48 +78,23 @@ export const DisclaimerSlide: SlideDefinition = {
 
       {/* Center - VS + Disclaimer */}
       <div className="vs-center-content">
-        <div className="vs-badge">VS</div>
+        <h2 style={{ marginBottom: '1.5rem', textAlign: 'center', lineHeight: 1.4 }}>
+          <span className="text-dim">$</span>{' '}
+          <span className="text-green">personal-patterns</span>
+          <br />
+          <span className="text-orange">--terminal-vs-ide</span>
+        </h2>
         <div className="vs-disclaimer-content">
           <DisclaimerItem level="high">
-            personally, I find the flow where I work with{' '}
-            <em style={{ color: 'var(--terminal-orange)', fontStyle: 'normal', fontWeight: 600 }}>
-              Claude Code entirely in the terminal
-            </em>{' '}
-            much better for me
-          </DisclaimerItem>
-
-          <DisclaimerItem level="medium">
-            but I can use an IDE (most often{' '}
-            <span style={{ color: 'var(--terminal-cyan)' }}>VS Code</span>) for small targeted
-            changes I want to make manually
-          </DisclaimerItem>
-
-          <DisclaimerItem level="medium">
             terminal helps faster abandon the old mental model{' '}
             <em style={{ color: 'var(--terminal-white-dim)', fontStyle: 'normal' }}>"I edit text"</em>
             {' '}and adopt the new one{' '}
             <em style={{ color: 'var(--terminal-green)', fontStyle: 'normal', fontWeight: 600 }}>"I give tasks to agent"</em>
           </DisclaimerItem>
 
-          <DisclaimerItem level="low">
-            if you're not comfortable in the terminal — use the plugins:{' '}
-            <a
-              href="https://marketplace.visualstudio.com/items?itemName=anthropic.claude-code"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={linkStyle}
-            >
-              VS Code
-            </a>
-            {' '}or{' '}
-            <a
-              href="https://plugins.jetbrains.com/plugin/27310-claude-code-beta-"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={linkStyle}
-            >
-              JetBrains IDE
-            </a>
+          <DisclaimerItem level="medium">
+            IDE plugins can be helpful for a{' '}
+            <span style={{ color: 'var(--terminal-cyan)' }}>slower transition period</span>
           </DisclaimerItem>
         </div>
       </div>

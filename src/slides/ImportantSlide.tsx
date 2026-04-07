@@ -23,6 +23,13 @@ export const ImportantSlide: SlideDefinition = {
           textAlign: 'left',
         }}
       >
+        <h2 style={{ marginBottom: '1.2rem', lineHeight: 1.4 }}>
+          <span className="text-dim">$</span>{' '}
+          <span className="text-green">personal-patterns</span>
+          <br />
+          <span className="text-orange">--throughput-vs-latency</span>
+        </h2>
+
         <SlideItem delay={0.05} size="compact">
           Claude almost certainly understands your domain{' '}
           <Emphasis color="orange">worse</Emphasis> than you
