@@ -105,9 +105,9 @@ function EveryOrgContent({ revealStage }: { revealStage: number }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', gap: '0.8rem' }}>
       <h2 style={{ flexShrink: 0 }}>
-        <span className="text-dim">$</span>{' '}
-        <span className="text-green">org</span>{' '}
-        <span className="text-orange">--adoption-curve</span>
+        <span className="text-dim">//</span>{' '}
+        <span className="text-green">all organizations</span>{' '}
+        <span className="text-orange">start similar</span>
       </h2>
 
       <div style={{ display: 'flex', flex: 1, gap: '2rem', alignItems: 'flex-start', minHeight: 0 }}>

@@ -21,9 +21,9 @@ export const BreakOutOfCodingSlide: SlideDefinition = {
   content: ({ revealStage }) => (
     <>
       <h2 style={{ marginBottom: '2rem' }}>
-        <span className="text-dim">//</span>{' '}
-        <span className="text-green">personal pattern</span>{' '}
-        <span className="text-orange">"break out of coding"</span>
+        <span className="text-dim">$</span>{' '}
+        <span className="text-green">pattern</span>{' '}
+        <span className="text-orange">--break-out-of-coding</span>
       </h2>
 
       <div
