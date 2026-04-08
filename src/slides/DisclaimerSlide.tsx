@@ -54,13 +54,6 @@ function DisclaimerItem({ level, children }: { level: Level; children: React.Rea
   );
 }
 
-const linkStyle: React.CSSProperties = {
-  color: 'var(--terminal-cyan)',
-  textDecoration: 'none',
-  borderBottom: '1px dashed var(--terminal-cyan)',
-  transition: 'all 0.2s ease',
-};
-
 export const DisclaimerSlide: SlideDefinition = {
   id: 'disclaimer',
   content: (

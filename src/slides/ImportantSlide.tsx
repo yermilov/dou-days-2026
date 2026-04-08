@@ -5,32 +5,32 @@ import { PacManCanvas } from '../components/pacman/PacManCanvas';
 export const ImportantSlide: SlideDefinition = {
   id: 'important',
   content: ({ revealStage }) => (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: 'var(--space-xl)',
-        width: '100%',
-        height: '100%',
-      }}
-    >
-      {/* Left column - bullet points */}
+    <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%' }}>
+      <h2 style={{ marginBottom: '1rem', textAlign: 'left' }}>
+        <span className="text-dim">$</span>{' '}
+        <span className="text-green">personal-patterns</span>{' '}
+        <span className="text-orange">--throughput-vs-latency</span>
+      </h2>
+
       <div
         style={{
-          flex: '0 0 40%',
-          maxWidth: '550px',
-          textAlign: 'left',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 'var(--space-xl)',
+          flex: 1,
+          minHeight: 0,
         }}
       >
-        <h2 style={{ marginBottom: '1.2rem', lineHeight: 1.4 }}>
-          <span className="text-dim">$</span>{' '}
-          <span className="text-green">personal-patterns</span>
-          <br />
-          <span className="text-orange">--throughput-vs-latency</span>
-        </h2>
-
-        <SlideItem delay={0.05} size="compact">
+        {/* Left column - bullet points */}
+        <div
+          style={{
+            flex: '0 0 40%',
+            maxWidth: '550px',
+            textAlign: 'left',
+          }}
+        >
+          <SlideItem delay={0.05} size="compact">
           Claude almost certainly understands your domain{' '}
           <Emphasis color="orange">worse</Emphasis> than you
         </SlideItem>
@@ -93,6 +93,7 @@ export const ImportantSlide: SlideDefinition = {
         }}
       >
         <PacManCanvas revealStage={revealStage} />
+      </div>
       </div>
     </div>
   ),
