@@ -1,7 +1,7 @@
 import { DiagramCanvas, StageNode, HumanActor, FlowArrow, SparkTrail } from '../components/diagram';
 import { SlideItem, Emphasis } from '../components/SlideElements';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
-import { ClaudeIcon, PulseRing, PULSE_STYLES } from './PersonalAspirationSlide';
+import { ClaudeIcon, PulseRing, PULSE_STYLES } from '../components/diagram/ClaudeIcon';
 
 const ORANGE = '#f0883e';
 const GREEN  = '#7ee787';

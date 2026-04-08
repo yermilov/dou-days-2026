@@ -99,34 +99,34 @@ export const WhatIsSkillSlide: SlideDefinition = {
               border: '1px solid rgba(255,255,255,0.07)',
             }}
           >
-            <SlideItem size="normal" delay={0.05}>
+            <SlideItem delay={0.05}>
               skill is just an <Emphasis color="green">md file</Emphasis> with
               instructions how to do something
             </SlideItem>
 
             {revealStage >= 1 && (
-              <SlideItem size="normal" delay={0}>
+              <SlideItem delay={0}>
                 unlike <Emphasis color="orange">MCP server</Emphasis> — doesn't
                 waste context window, loads only on model's demand
               </SlideItem>
             )}
 
             {revealStage >= 2 && (
-              <SlideItem size="normal" delay={0}>
+              <SlideItem delay={0}>
                 unlike <Emphasis color="orange">slash command</Emphasis> — model
                 can invoke it when it needs it
               </SlideItem>
             )}
 
             {revealStage >= 3 && (
-              <SlideItem size="normal" delay={0}>
+              <SlideItem delay={0}>
                 can be a full <Emphasis color="green">library</Emphasis> of many
                 md files hyperlinked — model navigates and loads as needed
               </SlideItem>
             )}
 
             {revealStage >= 4 && (
-              <SlideItem size="normal" delay={0}>
+              <SlideItem delay={0}>
                 can package{' '}
                 <Emphasis color="green">TypeScript / Python / bash scripts</Emphasis>{' '}
                 for deterministic automation
@@ -134,7 +134,7 @@ export const WhatIsSkillSlide: SlideDefinition = {
             )}
 
             {revealStage >= 5 && (
-              <SlideItem size="normal" delay={0}>
+              <SlideItem delay={0}>
                 after success — switch to plan mode:{' '}
                 <span className="text-quote">
                   'please read{' '}
@@ -147,7 +147,7 @@ export const WhatIsSkillSlide: SlideDefinition = {
             )}
 
             {revealStage >= 6 && (
-              <SlideItem size="normal" delay={0}>
+              <SlideItem delay={0}>
                 every time something wasn't perfect — finish with:{' '}
                 <span className="text-quote">
                   'reflect on the session and update the skill files to avoid

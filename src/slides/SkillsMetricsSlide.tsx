@@ -73,7 +73,7 @@ function SkillsMetricsContent({ revealStage }: { revealStage: number }) {
             hook into session lifecycle — measure what your team <Emphasis color="orange">actually uses</Emphasis>, not what they say they use
           </SlideItem>
 
-          <SlideItem delay={0.18} size="compact">
+          <SlideItem delay={0.18}>
             async SessionStart hook scans recent jsonl logs, extracts Skill tool invocations, reports each usage event to a centralized server — zero overhead for the engineer
           </SlideItem>
         </div>

@@ -1,7 +1,0 @@
-{
-  "filename": "ai-first-workflow.png",
-  "prompt": "Messy whiteboard/drawingboard visualization on dark background (#0a0e14). Hand-drawn sketchy style showing workflow with Claude Code. Left side: GitHub issues icon with arrows flowing to Claude robot. Center: scattered tool icons (logs, metrics, figma, chatgpt, codex) connected to Claude. Right side: folder icons labeled 'skills', 'docs', 'CLAUDE.md'. Arrows showing data flow between elements. Whiteboard marker aesthetic, imperfect lines. Colors: orange (#f0883e), green (#7ee787), blue (#79c0ff) on dark background.",
-  "ratio": "1:1",
-  "timestamp": "2026-01-10T20:28:42.189Z",
-  "model": "gemini-3-pro-image-preview"
-}

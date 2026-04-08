@@ -55,7 +55,7 @@ function BioItem({ level, children }: { level: Level; children: React.ReactNode 
   );
 }
 
-function BioSection({ title, children, titleSize }: { title: string; children: React.ReactNode; titleSize?: string }) {
+function BioSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div style={{ marginBottom: '1.5rem' }}>
       <div
@@ -63,7 +63,6 @@ function BioSection({ title, children, titleSize }: { title: string; children: R
         style={{
           borderBottom: '1px solid var(--terminal-border)',
           paddingBottom: '0.2rem',
-          ...(titleSize ? { fontSize: titleSize } : {}),
         }}
       >
         {title}
@@ -84,7 +83,7 @@ export const BioSlide: SlideDefinition = {
         </h2>
 
         <div style={{ textAlign: 'left' }}>
-          <BioSection title="almost 9 years at Grammarly / Superhuman" titleSize="1.6rem">
+          <BioSection title="almost 9 years at Grammarly / Superhuman">
             <BioItem level="high">0 -&gt; 1 projects</BioItem>
             {revealStage >= 1 && (
               <BioItem level="high">in 2025: rolling out AI coding agents across the company</BioItem>

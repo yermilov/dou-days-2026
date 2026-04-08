@@ -19,8 +19,7 @@
   },
   "devDependencies": {
     "@google/genai": "^1.34.0",
-    "@types/minimatch": "^6.0.0",
-    "@types/react": "^18.3.12",
+"@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@types/react-syntax-highlighter": "^15.5.13",
     "@vitejs/plugin-react": "^4.3.3",

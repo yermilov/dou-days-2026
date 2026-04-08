@@ -1,7 +1,0 @@
-{
-  "filename": "mcp-context-pollution.png",
-  "prompt": "Chaotic messy drawingboard/whiteboard visualization on dark background (#0a0e14). Hand-drawn sketchy style showing 'Context Window Pollution' from MCP tools. A large sketchy container labeled 'CONTEXT WINDOW' with blue border. Inside, many overlapping tool definition blocks crammed together chaotically: GitHub octocat logo with JSON schema scribbles, Jira logo with messy JSON, Figma logo with parameters, Context7 text, and more generic blocks. Red warning signs, 'OVERFLOW\\!' scribbled in red, arrows pointing everywhere. JSON snippets like '{\"name\": \"tool\"...}' scattered and overlapping. Overwhelming cluttered feel like a messy whiteboard. Marker/chalk aesthetic, imperfect lines. Colors: orange (#f0883e), green (#7ee787), blue (#79c0ff), red warnings on dark background.",
-  "ratio": "1:1",
-  "timestamp": "2026-01-10T19:17:00.938Z",
-  "model": "gemini-3-pro-image-preview"
-}

@@ -1,7 +1,0 @@
-{
-  "filename": "skills-infrastructure.png",
-  "prompt": "A dark terminal-aesthetic illustration of a skills/plugin marketplace. Package cards arranged in a 3x3 grid on a deep black background (#0a0e14), each card showing a monospace label like @org/commit-skill, @org/deploy-skill, @org/review-skill with glowing green borders. Green phosphor glow effects. Bottom shows a terminal command: $ claude mcp add marketplace. Futuristic hacker aesthetic, no people, pure UI visualization.",
-  "ratio": "16:9",
-  "timestamp": "2026-03-12T12:02:13.035Z",
-  "model": "gemini-3-pro-image-preview"
-}

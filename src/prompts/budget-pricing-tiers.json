@@ -1,7 +1,0 @@
-{
-  "filename": "budget-pricing-tiers.png",
-  "prompt": "Messy whiteboard/drawingboard visualization on dark background (#0a0e14). Hand-drawn sketchy style showing pricing tiers for AI coding assistant. Three vertical bars like a gauge or meter: shortest bar labeled '$17' with '1-1.5h' scribbled beside it in orange, medium bar labeled '$100' with '3-4h' and a star/circle around it marked 'SWEET SPOT\\!' in green, tallest bar labeled '$200' with '5h FULL' in blue. Token coins or symbols flowing into a meter. Arrows pointing up showing more money = more time. Informal annotations like 'tokens per 5h window', hand-drawn brackets, underlines. Whiteboard marker aesthetic, imperfect lines, like someone explaining pricing on a blackboard. Colors: orange (#f0883e), green (#7ee787), blue (#79c0ff) on dark background.",
-  "ratio": "1:1",
-  "timestamp": "2026-01-10T20:17:53.971Z",
-  "model": "gemini-3-pro-image-preview"
-}

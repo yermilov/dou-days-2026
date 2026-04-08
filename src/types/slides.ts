@@ -49,8 +49,3 @@ export interface SlideProgressProps {
   current: number;
   total: number;
 }
-
-export type NavigationCommand =
-  | { type: 'next' }
-  | { type: 'prev' }
-  | { type: 'goto'; slideNumber: number };

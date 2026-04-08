@@ -71,7 +71,7 @@ function SkillsActivatorContent({ revealStage }: { revealStage: number }) {
             claude is still not very good at loading the <Emphasis color="orange">right skill</Emphasis>
           </SlideItem>
 
-          <SlideItem delay={0.18} size="compact">
+          <SlideItem delay={0.18}>
             invest your time to build a system that invokes the right skill when needed — use claude code hooks to intercept session events, analyze them (by keywords, pattern matching, or even llm analysis) and inject skill suggestions or even block execution without required skills loaded
           </SlideItem>
         </div>

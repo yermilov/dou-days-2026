@@ -1,7 +1,0 @@
-{
-  "filename": "budget-workflow-strategy.png",
-  "prompt": "Messy whiteboard/drawingboard visualization on dark background (#0a0e14). Hand-drawn sketchy style showing budget coding workflow strategy. Two main boxes connected by arrows: first box labeled 'CODEX CLI' with ChatGPT logo sketch and '$20/mo' in orange, arrow pointing right with 'one-shot stub' scribbled along it, second box labeled 'CLAUDE CODE' with sparkle effects in green. Below, smaller alternative boxes: 'Cursor' with trial badge, 'Ampcode' with FREE tag. Strategy flow arrows showing 'generate stub → refine in Claude'. Informal annotations like 'budget strategy\\!', checkmarks, question marks. Whiteboard marker aesthetic, imperfect lines, hand-drawn feel. Colors: orange (#f0883e), green (#7ee787), blue (#79c0ff), some red for warnings on dark background.",
-  "ratio": "1:1",
-  "timestamp": "2026-01-10T20:18:24.747Z",
-  "model": "gemini-3-pro-image-preview"
-}

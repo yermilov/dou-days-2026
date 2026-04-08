@@ -30,53 +30,53 @@ export const ImportantSlide: SlideDefinition = {
             textAlign: 'left',
           }}
         >
-          <SlideItem delay={0.05} size="compact">
+          <SlideItem delay={0.05}>
           Claude almost certainly understands your domain{' '}
           <Emphasis color="orange">worse</Emphasis> than you
         </SlideItem>
 
-        <SlideItem delay={0.12} size="compact">
+        <SlideItem delay={0.12}>
           often you can write code{' '}
           <Emphasis color="orange">MUCH</Emphasis> better than it
         </SlideItem>
 
-        <SlideItem delay={0.19} size="compact">
+        <SlideItem delay={0.19}>
           often you can also write code{' '}
           <Emphasis color="orange">faster</Emphasis> than it
         </SlideItem>
 
-        <SlideItem delay={0.26} size="compact">
+        <SlideItem delay={0.26}>
           <Emphasis>exception</Emphasis> — unfamiliar tech saves hours to weeks
         </SlideItem>
 
         {revealStage >= 1 && (
-          <SlideItem delay={0} size="compact">
+          <SlideItem delay={0}>
             give it a task and{' '}
             <Emphasis>switch to something else</Emphasis>
           </SlideItem>
         )}
 
         {revealStage >= 1 && (
-          <SlideItem delay={0.1} size="compact">
+          <SlideItem delay={0.1}>
             staring at the terminal ={' '}
             <Emphasis color="orange">losing productivity</Emphasis>
           </SlideItem>
         )}
 
         {revealStage >= 2 && (
-          <SlideItem delay={0} size="compact">
+          <SlideItem delay={0}>
             or run <Emphasis>two tasks</Emphasis> in parallel
           </SlideItem>
         )}
 
         {revealStage >= 3 && (
-          <SlideItem delay={0} size="compact">
+          <SlideItem delay={0}>
             or run four tasks and go eat / sleep
           </SlideItem>
         )}
 
         {revealStage >= 4 && (
-          <SlideItem delay={0} size="compact">
+          <SlideItem delay={0}>
             Claude Code increases <Emphasis>throughput</Emphasis> of your work, not
             your latency
           </SlideItem>

@@ -8,7 +8,6 @@ function Prompt({ children }: { children: ReactNode }) {
       style={{
         color: 'var(--terminal-orange)',
         fontStyle: 'italic',
-        fontSize: '0.85em',
       }}
     >
       '{children}'

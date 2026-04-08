@@ -122,7 +122,6 @@ function ComponentHistoryRow({ row }: { row: ComponentRow }) {
         marginBottom: '3px',
       }}>
         <span style={{
-          fontSize: '0.7rem',
           color: 'var(--terminal-white)',
           fontFamily: 'var(--font-mono)',
           overflow: 'hidden',
@@ -133,7 +132,6 @@ function ComponentHistoryRow({ row }: { row: ComponentRow }) {
           {row.name}
         </span>
         <span style={{
-          fontSize: '0.65rem',
           color: uptimeColor,
           fontFamily: 'var(--font-mono)',
           flexShrink: 0,
@@ -205,7 +203,6 @@ function StatusHistoryPanel({
       <div style={{
         background: 'rgba(240,136,62,0.12)',
         padding: '0.28rem 0.75rem',
-        fontSize: '0.7rem',
         color: 'var(--terminal-orange)',
         fontFamily: 'var(--font-mono)',
         borderBottom: '1px solid rgba(240,136,62,0.35)',
@@ -216,7 +213,7 @@ function StatusHistoryPanel({
         alignItems: 'center',
       }}>
         <span>{label}</span>
-        <span style={{ opacity: 0.55, fontSize: '0.62rem' }}>90d uptime</span>
+        <span style={{ opacity: 0.55 }}>90d uptime</span>
       </div>
 
       {/* Body */}
@@ -227,7 +224,7 @@ function StatusHistoryPanel({
         minHeight: 0,
       }}>
         {loading && (
-          <span style={{ fontSize: '0.72rem', color: 'var(--terminal-white)', opacity: 0.4, fontFamily: 'var(--font-mono)' }}>
+          <span style={{ color: 'var(--terminal-white)', opacity: 0.4, fontFamily: 'var(--font-mono)' }}>
             fetching...
           </span>
         )}
@@ -245,7 +242,7 @@ function StatusHistoryPanel({
         flexShrink: 0,
       }}>
         {(['operational', 'minor', 'major', 'critical'] as DayStatus[]).map(s => (
-          <span key={s} style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.58rem', color: '#666', fontFamily: 'var(--font-mono)' }}>
+          <span key={s} style={{ display: 'flex', alignItems: 'center', gap: '4px', color: 'var(--terminal-white-muted)', fontFamily: 'var(--font-mono)' }}>
             <span style={{ display: 'inline-block', width: '7px', height: '7px', borderRadius: '1px', background: BAR_COLOR[s] }} />
             {s}
           </span>
@@ -281,7 +278,6 @@ function IndustryPatternsContent({ revealStage }: SlideContentProps) {
           flex: showStatus ? '0 0 52%' : '1',
           maxWidth: showStatus ? '52%' : '1000px',
           margin: showStatus ? undefined : '0 auto',
-          fontSize: showStatus ? '0.85em' : undefined,
           textAlign: 'left',
           display: 'flex',
           flexDirection: 'column',

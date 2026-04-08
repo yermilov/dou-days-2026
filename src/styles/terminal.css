@@ -265,14 +265,6 @@
   51%, 100% { opacity: 0; }
 }
 
-.terminal-input-cursor {
-  width: 10px;
-  height: 1.2em;
-  background: var(--terminal-orange);
-  animation: cursor-blink 1s step-end infinite;
-  flex-shrink: 0;
-}
-
 /* === ONBOARDING TOOLTIP === */
 .onboarding-tooltip {
   position: fixed;
@@ -437,35 +429,6 @@
   transition: width var(--transition-normal);
 }
 
-.progress-text {
-  color: var(--terminal-white-muted);
-  font-size: var(--font-size-small);
-  font-family: var(--font-mono);
-}
-
-.progress-text--glow {
-  color: var(--terminal-green-bright);
-  font-weight: 600;
-  animation: progressGlow 1.5s ease-in-out infinite;
-}
-
-@keyframes progressGlow {
-  0%, 100% {
-    text-shadow:
-      0 0 5px var(--terminal-green),
-      0 0 15px var(--terminal-green-glow),
-      0 0 30px var(--terminal-green-glow),
-      0 0 45px var(--terminal-green-glow);
-  }
-  50% {
-    text-shadow:
-      0 0 10px var(--terminal-green),
-      0 0 25px var(--terminal-green-glow),
-      0 0 50px var(--terminal-green-glow),
-      0 0 75px var(--terminal-green-glow),
-      0 0 100px var(--terminal-green-glow);
-  }
-}
 
 /* === TIMER === */
 .timer {
@@ -542,38 +505,6 @@
   text-align: center;
 }
 
-/* Copy button */
-.code-block-copy {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  padding: 0;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  color: var(--terminal-white-muted);
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  flex-shrink: 0;
-}
-
-.code-block-copy:hover {
-  color: var(--terminal-white);
-  background: var(--terminal-bg-secondary);
-  border-color: var(--terminal-border);
-}
-
-.code-block-copy.copied {
-  color: var(--terminal-green);
-}
-
-.code-block-copy svg {
-  width: 16px;
-  height: 16px;
-}
-
 .code-block pre {
   margin: 0 !important;
   padding: var(--space-md) !important;
@@ -601,10 +532,6 @@
 .glow-orange { text-shadow: var(--glow-text-orange); }
 .glow-green { text-shadow: var(--glow-text-green); }
 
-.text-left { text-align: left; }
-.text-center { text-align: center; }
-.text-right { text-align: right; }
-
 /* === SLIDE TYPOGRAPHY UTILITIES === */
 
 /* Section Headers */
@@ -615,18 +542,6 @@
   letter-spacing: 0.15em;
   margin-top: 1rem;
   margin-bottom: 0.6rem;
-}
-
-.section-header--compact {
-  font-size: var(--slide-section-header-compact);
-  margin-top: 0.8rem;
-  margin-bottom: 0.5rem;
-}
-
-.section-header--dense {
-  font-size: var(--slide-section-header-dense);
-  margin-top: 0.7rem;
-  margin-bottom: 0.4rem;
 }
 
 .section-header--green {
@@ -680,21 +595,6 @@
   line-height: var(--slide-line-height-normal);
   margin-bottom: 1rem;
   color: var(--terminal-white);
-}
-
-.slide-item--compact {
-  font-size: var(--slide-text-compact);
-  line-height: var(--slide-line-height-compact);
-  margin-bottom: 0.9rem;
-  gap: 0.6rem;
-}
-
-.slide-item--dense {
-  font-size: var(--slide-text-dense);
-  line-height: var(--slide-line-height-dense);
-  margin-bottom: 0.7rem;
-  gap: 0.5rem;
-  grid-template-columns: 1.2rem 1fr;
 }
 
 .slide-item__prefix {
@@ -879,173 +779,6 @@
 .bio-slide-image:hover {
   transform: scale(1.02) rotate(1deg);
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
-}
-
-/* === AI TOOLS LOGO GRID === */
-.tool-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-xl);
-  margin-top: var(--space-2xl);
-  padding: 0 var(--space-lg);
-}
-
-.tool-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-sm);
-  opacity: 0;
-  animation: toolFadeIn 0.4s ease-out forwards;
-}
-
-@keyframes toolFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.tool-logo-wrapper {
-  position: relative;
-  width: 72px;
-  height: 72px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 16px;
-  background: var(--terminal-bg-secondary);
-  border: 1px solid var(--terminal-border);
-  padding: var(--space-md);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.tool-logo {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  /* Ghostly silhouette - dormant state */
-  filter: grayscale(100%) brightness(0.5) opacity(0.4);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Question mark SVG styling */
-.question-mark-icon {
-  color: var(--terminal-white-muted);
-  width: 100%;
-  height: 100%;
-}
-
-.tool-glow {
-  position: absolute;
-  inset: -4px;
-  border-radius: 20px;
-  opacity: 0;
-  transition: opacity 0.4s ease-out;
-  pointer-events: none;
-  background: radial-gradient(
-    ellipse at center,
-    var(--terminal-orange-glow) 0%,
-    transparent 70%
-  );
-  filter: blur(8px);
-}
-
-.tool-name {
-  font-size: var(--font-size-small);
-  color: var(--terminal-white-muted);
-  font-family: var(--font-mono);
-  text-transform: lowercase;
-  letter-spacing: 0.05em;
-  transition: all 0.3s ease-out;
-}
-
-/* Hover state - subtle warmth */
-.tool-item:hover .tool-logo-wrapper {
-  border-color: var(--terminal-border-bright);
-  background: var(--terminal-bg-elevated);
-}
-
-.tool-item:hover .tool-logo {
-  filter: grayscale(100%) brightness(0.7) opacity(0.6);
-}
-
-.tool-item:hover .tool-name {
-  color: var(--terminal-white-dim);
-}
-
-/* === ACTIVE STATE - TERMINAL BOOT SEQUENCE === */
-.tool-item.active .tool-logo-wrapper {
-  border-color: var(--terminal-orange);
-  background: var(--terminal-bg-elevated);
-  box-shadow:
-    0 0 0 1px var(--terminal-orange-dim),
-    0 4px 24px rgba(240, 136, 62, 0.15);
-}
-
-.tool-item.active .tool-logo {
-  /* Power on - full color with subtle boost */
-  filter: grayscale(0%) brightness(1.1) opacity(1);
-}
-
-.tool-item.active .question-mark-icon {
-  color: var(--terminal-orange);
-}
-
-.tool-item.active .tool-glow {
-  opacity: 1;
-  animation: glowPulse 2s ease-in-out infinite;
-}
-
-@keyframes glowPulse {
-  0%, 100% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-}
-
-.tool-item.active .tool-name {
-  color: var(--terminal-orange);
-  text-shadow: var(--glow-text-orange);
-}
-
-/* CRT flicker on activation */
-.tool-item.active .tool-logo-wrapper {
-  animation: crtFlicker 0.15s ease-out;
-}
-
-@keyframes crtFlicker {
-  0% { opacity: 0.8; }
-  25% { opacity: 1; }
-  50% { opacity: 0.9; }
-  75% { opacity: 1; }
-  100% { opacity: 1; }
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .tool-grid {
-    gap: var(--space-lg);
-  }
-
-  .tool-logo-wrapper {
-    width: 56px;
-    height: 56px;
-    padding: var(--space-sm);
-  }
-
-  .tool-name {
-    font-size: 0.75rem;
-  }
 }
 
 /* === TITLE SLIDE ANIMATIONS === */
@@ -1292,82 +1025,6 @@
 }
 
 
-/* === JUNIOR ENGINEER SLIDE === */
-/* Mental model slide with three-column layout */
-
-.junior-engineer-slide {
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  gap: var(--space-2xl);
-  width: 100%;
-  height: 100%;
-  padding-bottom: var(--space-xl);
-}
-
-.junior-engineer-image-col {
-  flex: 0 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  gap: var(--space-sm);
-}
-
-.junior-engineer-image-label {
-  font-family: var(--font-mono);
-  font-size: 1.4rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--terminal-white);
-  text-align: center;
-  padding: 0.4rem 1.5rem;
-  border-bottom: 2px solid var(--terminal-orange);
-}
-
-.junior-engineer-content {
-  flex: 1;
-  max-width: 600px;
-  text-align: left;
-}
-
-.junior-engineer-content h2 {
-  text-align: left;
-}
-
-.junior-engineer-image {
-  height: calc(var(--vh-full) - 220px);
-  width: 300px;
-  object-fit: cover;
-  border-radius: var(--input-border-radius);
-  border: 1px solid var(--terminal-border);
-}
-
-/* Responsive adjustments */
-@media (max-width: 1200px) {
-  .junior-engineer-slide {
-    flex-direction: column;
-    gap: var(--space-xl);
-  }
-
-  .junior-engineer-image-col {
-    flex: none;
-    width: 100%;
-  }
-
-  .junior-engineer-image {
-    height: 200px;
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 640px) {
-  .junior-engineer-image {
-    height: 150px;
-  }
-}
-
 /* === POINTER TOOLTIPS === */
 /* Small tooltips that point to specific UI elements (timer, progress bar) */
 
@@ -1476,278 +1133,6 @@
 @media (max-width: 640px) {
   .pointer-tooltip {
     display: none;
-  }
-}
-
-/* === VS BATTLE SLIDE === */
-/* Mortal Kombat style fighting game VS screen layout */
-
-.vs-battle-slide {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 0.5rem;
-  align-items: center;
-  justify-items: center;
-  width: 100%;
-  height: calc(var(--vh-full) - 220px);
-  padding: 1rem 1rem;
-  position: relative;
-  overflow: hidden;
-}
-
-
-/* Fighter containers */
-.vs-fighter {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  height: 100%;
-  max-height: calc(var(--vh-full) - 280px);
-}
-
-.vs-fighter--left {
-  justify-self: start;
-  animation: fighterEnterLeft 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-.vs-fighter--right {
-  justify-self: end;
-  animation: fighterEnterRight 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-  animation-delay: 0.15s;
-}
-
-@keyframes fighterEnterLeft {
-  0% {
-    transform: translateX(-100px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes fighterEnterRight {
-  0% {
-    transform: translateX(100px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-/* Fighter images */
-.vs-fighter-image {
-  max-width: 400px;
-  max-height: 500px;
-  object-fit: contain;
-  border-radius: 0.5rem;
-  position: relative;
-  z-index: 2;
-}
-
-/* Orange glow for Terminal fighter + mirror to face right */
-.vs-fighter--left .vs-fighter-image {
-  transform: scaleX(-1);
-  animation: terminalPulse 2.5s ease-in-out infinite;
-  border: 2px solid rgba(240, 136, 62, 0.5);
-}
-
-/* Blue glow for IDE fighter */
-.vs-fighter--right .vs-fighter-image {
-  animation: idePulse 2.5s ease-in-out infinite;
-  animation-delay: 0.3s;
-  border: 2px solid rgba(121, 192, 255, 0.5);
-}
-
-@keyframes terminalPulse {
-  0%, 100% {
-    filter: drop-shadow(0 0 20px rgba(240, 136, 62, 0.4))
-            drop-shadow(0 0 40px rgba(240, 136, 62, 0.2));
-  }
-  50% {
-    filter: drop-shadow(0 0 30px rgba(240, 136, 62, 0.7))
-            drop-shadow(0 0 60px rgba(240, 136, 62, 0.4))
-            drop-shadow(0 0 90px rgba(240, 136, 62, 0.2));
-  }
-}
-
-@keyframes idePulse {
-  0%, 100% {
-    filter: drop-shadow(0 0 20px rgba(121, 192, 255, 0.4))
-            drop-shadow(0 0 40px rgba(121, 192, 255, 0.2));
-  }
-  50% {
-    filter: drop-shadow(0 0 30px rgba(121, 192, 255, 0.7))
-            drop-shadow(0 0 60px rgba(121, 192, 255, 0.4))
-            drop-shadow(0 0 90px rgba(121, 192, 255, 0.2));
-  }
-}
-
-/* Fighter name plates */
-.vs-fighter-name {
-  font-family: var(--font-mono);
-  font-size: 1.75rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  margin-top: 1rem;
-  padding: 0.6rem 2rem;
-  background: linear-gradient(180deg, rgba(10, 14, 20, 0.9) 0%, rgba(10, 14, 20, 0.7) 100%);
-  border: 2px solid;
-  clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
-}
-
-.vs-fighter--left .vs-fighter-name {
-  color: var(--terminal-orange);
-  border-color: var(--terminal-orange);
-  text-shadow: 0 0 20px rgba(240, 136, 62, 0.8);
-}
-
-.vs-fighter--right .vs-fighter-name {
-  color: var(--terminal-blue);
-  border-color: var(--terminal-blue);
-  text-shadow: 0 0 20px rgba(121, 192, 255, 0.8);
-}
-
-/* Center content */
-.vs-center-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 3;
-  padding: 1rem;
-}
-
-/* VS Badge */
-.vs-badge {
-  font-family: var(--font-mono);
-  font-size: 3.5rem;
-  font-weight: 900;
-  color: var(--terminal-white);
-  text-shadow:
-    0 0 40px rgba(255, 255, 255, 0.9),
-    0 0 80px rgba(240, 136, 62, 0.6),
-    0 0 120px rgba(121, 192, 255, 0.4);
-  letter-spacing: 0.3em;
-  margin-bottom: 1.5rem;
-  position: relative;
-  animation: vsPulse 1.5s ease-in-out infinite;
-}
-
-.vs-badge::before,
-.vs-badge::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 50px;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, var(--terminal-white), transparent);
-}
-
-.vs-badge::before {
-  right: 100%;
-  margin-right: 0.75rem;
-}
-
-.vs-badge::after {
-  left: 100%;
-  margin-left: 0.75rem;
-}
-
-@keyframes vsPulse {
-  0%, 100% {
-    transform: scale(1);
-    text-shadow:
-      0 0 40px rgba(255, 255, 255, 0.9),
-      0 0 80px rgba(240, 136, 62, 0.6),
-      0 0 120px rgba(121, 192, 255, 0.4);
-  }
-  50% {
-    transform: scale(1.05);
-    text-shadow:
-      0 0 60px rgba(255, 255, 255, 1),
-      0 0 100px rgba(240, 136, 62, 0.8),
-      0 0 150px rgba(121, 192, 255, 0.6);
-  }
-}
-
-/* Disclaimer content (floating, no box) */
-.vs-disclaimer-content {
-  font-size: 1.25rem;
-  max-width: 100%;
-  text-align: left;
-  padding: 0.5rem;
-}
-
-
-/* Responsive adjustments for VS battle slide */
-@media (max-width: 1200px) {
-  .vs-battle-slide {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr auto;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-  }
-
-  .vs-fighter {
-    flex-direction: row;
-    gap: 1rem;
-    max-height: none;
-  }
-
-  .vs-fighter--left {
-    justify-self: center;
-    order: 1;
-  }
-
-  .vs-center-content {
-    order: 2;
-  }
-
-  .vs-fighter--right {
-    justify-self: center;
-    order: 3;
-  }
-
-  .vs-fighter-image {
-    max-width: 180px;
-    max-height: 220px;
-  }
-
-  .vs-fighter-name {
-    font-size: 1rem;
-  }
-
-  .vs-badge {
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
-  }
-
-  .vs-disclaimer-content {
-    font-size: 0.9rem;
-    padding: 1rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .vs-fighter-image {
-    max-width: 140px;
-    max-height: 170px;
-  }
-
-  .vs-badge {
-    font-size: 1.5rem;
-  }
-
-  .vs-disclaimer-content {
-    font-size: 0.85rem;
   }
 }
 
@@ -2113,50 +1498,6 @@
 }
 
 
-/* === SLIDE WITH BLURRED BACKGROUND === */
-.bg-image-slide {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100vw;
-  height: var(--vh-full);
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: var(--space-xl);
-  box-sizing: border-box;
-  z-index: 0;
-}
-
-.bg-image-slide__background {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  opacity: 0.7;
-  z-index: 0;
-  animation: fadeIn 0.6s ease-out forwards;
-}
-
-.bg-image-slide__content {
-  position: relative;
-  z-index: 1;
-  max-width: 900px;
-  max-height: calc(var(--vh-full) - 160px);
-  overflow-y: auto;
-  padding: var(--space-xl);
-  background: rgba(10, 14, 20, 0.85);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-radius: var(--input-border-radius);
-  border: 1px solid var(--terminal-border);
-  text-align: left;
-}
-
 /* === MOBILE: FIXED ELEMENT STACKING === */
 @media (max-width: 768px) and (pointer: coarse) {
   .timer {
@@ -2190,26 +1531,6 @@
 
   .terminal-input {
     padding: var(--space-xs) var(--space-sm);
-  }
-
-  /* VS battle slide */
-  .vs-fighter-image {
-    max-width: 100px;
-    max-height: 130px;
-  }
-
-  .vs-badge {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .vs-fighter-name {
-    font-size: 0.8rem;
-    padding: 0.3rem 1rem;
-  }
-
-  .vs-disclaimer-content {
-    font-size: 0.75rem;
   }
 
   /* Timeline slide */
@@ -2246,12 +1567,6 @@
     font-size: 0.9rem;
   }
 
-  /* Background image slide */
-  .bg-image-slide__content {
-    padding: var(--space-md);
-    margin: 0 var(--space-sm);
-  }
-
   /* Code blocks */
   .code-block pre {
     font-size: var(--font-size-code) !important;
@@ -2265,14 +1580,6 @@
     gap: 0.5rem;
   }
 
-  .slide-item--compact {
-    gap: 0.4rem;
-  }
-
-  .slide-item--dense {
-    grid-template-columns: 1rem 1fr;
-    gap: 0.35rem;
-  }
 }
 
 
@@ -2286,18 +1593,6 @@
   /* Disable noise texture */
   .presentation::after {
     display: none;
-  }
-
-  /* Disable fighter pulse animations */
-  .vs-fighter--left .vs-fighter-image,
-  .vs-fighter--right .vs-fighter-image {
-    animation: none;
-  }
-
-  /* Simplify glow effects */
-  .tool-item.active .tool-glow {
-    animation: none;
-    opacity: 0.5;
   }
 
   /* Disable title slide animated scan lines */

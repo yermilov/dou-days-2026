@@ -1,7 +1,0 @@
-{
-  "filename": "claude-md-vs-readme.png",
-  "prompt": "Messy whiteboard/drawingboard visualization on dark background (#0a0e14). Hand-drawn sketchy style showing CLAUDE.md vs README.md comparison. Two file icons side by side: left one labeled 'README.md' in blue with sketchy human stick figure below it and text 'for humans' scribbled underneath. Right one labeled 'CLAUDE.md' in orange with sketchy robot/AI icon below it and text 'for Claude' scribbled underneath. A big 'VS' in the middle. Arrows showing README goes to developers, CLAUDE.md goes to AI. Whiteboard marker aesthetic, imperfect lines. Colors: orange (#f0883e), green (#7ee787), blue (#79c0ff) on dark background.",
-  "ratio": "1:1",
-  "timestamp": "2026-01-10T19:36:21.520Z",
-  "model": "gemini-3-pro-image-preview"
-}

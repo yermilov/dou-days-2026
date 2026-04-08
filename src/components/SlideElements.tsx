@@ -13,39 +13,32 @@ export function Code({
   return <code className={className}>{children}</code>;
 }
 
-// Section header with color and size variants
+// Section header with color variants
 export function SectionHeader({
   children,
   color,
-  size = 'normal',
 }: {
   children: string;
   color: 'green' | 'purple' | 'blue';
-  size?: 'normal' | 'compact' | 'dense';
 }) {
-  const sizeClass = size === 'normal' ? '' : ` section-header--${size}`;
   return (
-    <div className={`section-header section-header--${color}${sizeClass}`}>
+    <div className={`section-header section-header--${color}`}>
       {'// '}
       {children}
     </div>
   );
 }
 
-// List item with size variants and animation
+// List item with animation
 export function SlideItem({
   children,
-  size = 'normal',
   delay,
   reveal = false,
 }: {
   children: React.ReactNode;
-  size?: 'normal' | 'compact' | 'dense';
   delay?: number;
   reveal?: boolean;
 }) {
-  const sizeClass =
-    size === 'normal' ? 'slide-item' : `slide-item slide-item--${size}`;
   const style: React.CSSProperties =
     delay !== undefined
       ? {
@@ -56,7 +49,7 @@ export function SlideItem({
       : {};
 
   return (
-    <div className={sizeClass} style={style}>
+    <div className="slide-item" style={style}>
       <span className="slide-item__prefix">&gt;</span>
       <span>{children}</span>
     </div>

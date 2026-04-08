@@ -1,7 +1,0 @@
-{
-  "filename": "junior-engineer-comparison.png",
-  "prompt": "Split-screen comparison illustration showing two equivalent ways to communicate with AI: Left side shows a Slack-like chat interface with message bubbles, human avatar icon, and a coding request message. Right side shows a dark terminal/CLI interface like Claude Code with command prompt '>' and code output. A double-headed arrow or visual connector in the middle emphasizes they are equivalent interactions. Minimalist tech aesthetic, dark background (#0a0e14), with orange (#f0883e) and green (#7ee787) accent colors. Clean, modern, professional.",
-  "ratio": "4:3",
-  "timestamp": "2026-01-06T14:39:16.085Z",
-  "model": "gemini-3-pro-image-preview"
-}

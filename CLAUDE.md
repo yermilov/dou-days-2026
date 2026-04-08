@@ -34,10 +34,8 @@ src/
 │   └── slides.ts              # TypeScript interfaces
 ├── slides/
 │   ├── index.ts               # Re-exports all slide components
-│   ├── TitleSlide.tsx         # Individual slide components (35 total)
+│   ├── TitleSlide.tsx         # Individual slide components (27 total)
 │   └── ...
-├── prompts/
-│   └── *.json                 # Structured data for animated/complex slides
 ├── hooks/
 │   ├── useSlideNavigation.ts  # Navigation state & command parsing
 │   └── useTouchNavigation.ts  # Swipe gesture support
@@ -49,8 +47,9 @@ src/
 │   ├── SlideProgress.tsx      # Slide counter
 │   ├── OnboardingTooltip.tsx  # Navigation help tooltip
 │   ├── PointerTooltip.tsx     # Contextual pointer hints
-│   ├── SlideElements.tsx      # Reusable slide building blocks
-│   └── Timer.tsx              # Presentation timer component
+│   ├── SlideElements.tsx      # Reusable slide building blocks (SlideItem, SectionHeader, Code, Emphasis, Quote, SlideLink)
+│   ├── Timer.tsx              # Presentation timer component
+│   └── diagram/              # SVG diagram components (DiagramCanvas, StageNode, FlowArrow, etc.)
 └── styles/
     ├── theme.css              # CSS design tokens
     └── terminal.css           # Component styles
@@ -141,8 +140,6 @@ import myVideo from '/my-video.mp4?url';
 <video autoPlay loop muted playsInline src={myVideo} />
 ```
 
-GIF vs MP4: `petermobile.gif` was 5 MB → `petermobile.mp4` is 306 KB.
-
 ### Full-Screen Image Slides
 
 For slides that display a single image filling the available space:
@@ -168,26 +165,33 @@ The `.image-slide` class automatically:
 
 ### Slide Height & Overflow
 
-The `.slide` container has `max-height: 100%; overflow: hidden` as a hard CSS guard. If content overflows the viewport and overlaps the input bar:
+The `.slide` container has `max-height: 100%; overflow: hidden` as a hard CSS guard. If content overflows the viewport:
 
-- Reduce font sizes and margins first (prefer `1.3–1.5rem` for body text in dense slides)
-- Use `calc(var(--vh-full) - 220px)` (or similar offset) for image/media containers so they leave room for the timer and input bar
-- The standard image-slide pattern already handles this via `.image-slide` height constraint
+- **Do NOT add custom font sizes** — reduce content or split into multiple slides instead
+- Use `calc(var(--vh-full) - 220px)` for image/media containers to leave room for timer and input bar
+- The `.image-slide` pattern already handles height constraints
 
-Example fix pattern for overflow:
-```css
-.my-slide-image {
-  max-height: calc(var(--vh-full) - 220px);
-  object-fit: contain;
-}
-```
+### Slide Layout Patterns (7 canonical types)
+
+When adding a slide, use one of these patterns:
+
+1. **Hero Title** (TitleSlide, FinalSlide) — centered `h1.hero`, tagline, subtitle
+2. **Header-Only** (SoftwareFactorySlide, AutoApproveHookSlide) — just `<h2>`, minimal/no body content
+3. **Bullet List + Reveals** (6 slides) — `<h2>` + `SlideItem` components with `revealStage >= N` guards
+4. **Two-Column: Text + Code** (3 slides) — flex layout, left `SlideItem`s, right `CodeBlock` with `.code-reveal`
+5. **Two-Column: Text + Visual** (5 slides) — flex layout, left text, right image/SVG/`DiagramCanvas`
+6. **Full Image** (5 slides) — `.image-slide` wrapper
+7. **Data Visualization** (3 slides) — custom SVG with computed/fetched data
+8. **Timeline** (1 slide) — git-log layout with reveal stages
 
 ### Slide Content Classes
 
-- `h1.hero` - Extra large hero heading
+- `h1.hero` - Extra large hero heading (title slide only)
 - `.text-orange`, `.text-green`, `.text-blue` - Accent colors
 - `.text-dim`, `.text-muted` - Dimmed text
 - `.glow-orange`, `.glow-green` - Text glow effects
+- `.image-slide` - Full-screen image wrapper
+- `.code-reveal` - Animated code panel entrance
 
 ## Navigation Commands
 
@@ -212,23 +216,41 @@ Keyboard (when not typing):
 
 ### Colors (CSS Custom Properties)
 
+All colors must use CSS variables in HTML/CSS. Exception: SVG `fill`/`stroke` attributes use JS constants (SVG doesn't support `var()`).
+
 ```css
---terminal-bg: #0a0e14          /* Deep black background */
---terminal-white: #e2e8f0       /* Primary text */
---terminal-orange: #f0883e      /* Headings, accents (h1) */
---terminal-green: #7ee787       /* Subheadings (h2), success */
---terminal-blue: #79c0ff        /* Links, tertiary headings */
---terminal-purple: #d2a8ff      /* Functions in code */
+/* Backgrounds */
+--terminal-bg: #0a0e14          /* Deep black */
+--terminal-bg-secondary: #0d1219
+--terminal-bg-elevated: #141b24
+
+/* Text */
+--terminal-white: #e2e8f0       /* Primary */
+--terminal-white-dim: #c8d1dc   /* Secondary */
+--terminal-white-muted: #8b99a8 /* Tertiary */
+
+/* Accents */
+--terminal-orange: #f0883e      /* h1, primary accent */
+--terminal-green: #7ee787       /* h2, success */
+--terminal-blue: #79c0ff        /* h3, links */
+--terminal-purple: #d2a8ff      /* Code functions */
 --terminal-cyan: #76e4f7        /* Inline code */
+--terminal-yellow: #ffd166      /* Warnings */
+--terminal-red: #ff7b72         /* Errors */
 ```
 
-### Typography
+**Utility classes**: `.text-orange`, `.text-green`, `.text-blue`, `.text-dim`, `.text-muted`, `.glow-orange`, `.glow-green`
 
-- **Font**: JetBrains Mono (monospace)
-- **h1**: 4rem (5rem for `.hero`)
-- **h2**: 3rem
-- **h3**: 2.25rem
-- **Body**: 1.5rem
+### Typography (strict 2-size rule)
+
+- **Font**: JetBrains Mono (monospace) — single font family, no exceptions
+- **Title slide only**: hero (`--font-size-hero`: 6rem), tagline, subtitle — 3 sizes allowed
+- **All other slides**: exactly 2 sizes
+  - **Heading**: `--font-size-h2` (3.5rem) — the slide's `<h2>`
+  - **Text**: `--slide-text-normal` (1.35rem) — everything else (bullets, labels, section headers)
+- **CodeBlock component**: uses `--font-size-code` (1.25rem)
+- **UI chrome** (timer, input, progress): `--font-size-input` / `--font-size-small`
+- **No inline `fontSize` allowed** in slide components (exception: SVG `<text>` elements and diagram component props)
 
 ### Visual Effects
 
@@ -259,6 +281,14 @@ Workflow:
 2. Confirm dev server is running (`bun run dev`)
 3. Use Chrome extension to navigate to `http://localhost:5173/ai-first-transformation-from-within-en/`
 4. Take a screenshot and confirm the change looks correct before declaring done
+
+### Design System Rules
+
+- **2 font sizes per slide** (except title): heading (`--font-size-h2`) and text (`--slide-text-normal`). No inline `fontSize`.
+- **All colors via CSS variables** — never hardcode hex values in JSX `style={}`. Exception: SVG attributes use JS constants.
+- **Use `SlideElements.tsx` components** — `SlideItem`, `SectionHeader`, `Code`, `Emphasis`, `Quote`, `SlideLink` — instead of raw HTML.
+- **No new CSS classes** without checking `terminal.css` for existing ones first.
+- **If content doesn't fit**, reduce content or split slides — do NOT introduce new font sizes.
 
 ### Code Style
 

@@ -1,7 +1,0 @@
-{
-  "filename": "skill-distribution-diagram.png",
-  "prompt": "Messy whiteboard/drawingboard visualization on dark background (#0a0e14). Hand-drawn sketchy marker style showing skill distribution architecture. GitHub repository box at top center labeled 'skills repo' with a simple hand-drawn GitHub octocat logo, drawn in green (#7ee787) with rough imperfect border. A thick orange (#f0883e) arrow points downward labeled 'git clone' in hand-drawn text. Arrow leads to a hand-drawn box labeled '.claude/plugins/' in blue (#79c0ff) with sketchy border. From the plugins box, 3 dashed white lines fan outward to the left pointing to simple hand-drawn laptop/computer sketches (like someone scribbled them quickly on a whiteboard), labeled 'user 1', 'user 2', 'user 3'. The dashed lines are labeled 'symlinks' in small handwritten text. A curved dashed arrow goes back upward from the plugins box to the GitHub box, labeled 'git fetch (periodic)' in blue-green. Whiteboard marker aesthetic with imperfect lines, like someone explaining architecture on a blackboard. Dark background #0a0e14.",
-  "ratio": "16:9",
-  "timestamp": "2026-03-12T12:34:42.522Z",
-  "model": "gemini-3-pro-image-preview"
-}

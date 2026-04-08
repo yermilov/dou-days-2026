@@ -65,20 +65,12 @@
   --letter-spacing-normal: 0;
   --letter-spacing-wide: 0.05em;
 
-  /* Slide text size variants */
+  /* Slide text — single size for all non-heading content */
   --slide-text-normal: 1.35rem;
-  --slide-text-compact: 1.15rem;
-  --slide-text-dense: 1.05rem;
-
-  /* Line heights per variant */
   --slide-line-height-normal: 1.55;
-  --slide-line-height-compact: 1.5;
-  --slide-line-height-dense: 1.45;
 
-  /* Section headers */
-  --slide-section-header: 1.1rem;
-  --slide-section-header-compact: 0.9rem;
-  --slide-section-header-dense: 0.85rem;
+  /* Section headers use same text size */
+  --slide-section-header: var(--slide-text-normal);
 
   /* Inline code */
   --slide-code-relative: 0.95em;

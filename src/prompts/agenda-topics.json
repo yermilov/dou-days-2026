@@ -1,7 +1,0 @@
-{
-  "filename": "agenda-topics.png",
-  "prompt": "Terminal-themed concentric circles diagram showing three nested levels of AI adoption. Innermost circle: a lone software engineer at a glowing terminal workstation with green phosphor text. Middle ring: a small team of 3-4 developers collaborating around shared screens with connecting lines. Outer ring: an organization/building silhouette with network nodes and data streams connecting outward. Dark background (#0a0e14 deep black), phosphor-green (#7ee787) and orange (#f0883e) glow lines and accents, monospace labels at each ring level, sci-fi technical aesthetic. Clean vector-style illustration, no photorealism. Top label: 'AI-First Engineer', middle label: 'AI-First Team', outer label: 'AI-First Organization'. Professional technical diagram style.",
-  "ratio": "16:9",
-  "timestamp": "2026-03-08T19:38:31.544Z",
-  "model": "gemini-3-pro-image-preview"
-}

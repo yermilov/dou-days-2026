@@ -101,12 +101,12 @@ function AIInnovatorCurveContent() {
       <style>{CURVE_STYLES}</style>
 
       <div style={{ lineHeight: 1.4, textAlign: 'center' }}>
-        <div style={{ fontSize: '2rem' }}>
+        <h2 style={{ marginBottom: 0 }}>
           <span className="text-dim">$</span>{' '}
           <span className="text-green">ainnovator</span>{' '}
           <span className="text-orange">--curve</span>
-        </div>
-        <div style={{ fontSize: '1.5rem' }} className="text-muted">
+        </h2>
+        <div className="text-muted">
           // rogers innovation adoption curve
         </div>
       </div>
