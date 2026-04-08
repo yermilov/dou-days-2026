@@ -3,7 +3,7 @@ import { SlideItem, Emphasis } from '../components/SlideElements';
 
 export const InceptionPatternsSlide: SlideDefinition = {
   id: 'inception-patterns',
-  maxRevealStages: 7,
+  maxRevealStages: 5,
   content: ({ revealStage }: SlideContentProps) => (
     <>
       <h2 style={{ marginBottom: '2rem' }}>
@@ -26,7 +26,7 @@ export const InceptionPatternsSlide: SlideDefinition = {
 
         {revealStage >= 1 && (
           <SlideItem delay={0}>
-            anti-pattern <Emphasis color="orange">"ai from above"</Emphasis> — mandating ai coding from leadership won't work
+            anti-pattern <Emphasis color="orange">"ai from above"</Emphasis> — mandating ai coding from leadership won't work (good goal examples: <Emphasis color="green">time from idea to real user experiment is X</Emphasis> / X features released every week / X% time spent on KTLO)
           </SlideItem>
         )}
 
@@ -50,19 +50,7 @@ export const InceptionPatternsSlide: SlideDefinition = {
 
         {revealStage >= 5 && (
           <SlideItem delay={0}>
-            you need a <Emphasis color="orange">clear organizational goal</Emphasis> — not "everyone should use Claude Code" (test: replace the tool name with a non-AI tool — "everyone should use VSCode" sounds meaningless)
-          </SlideItem>
-        )}
-
-        {revealStage >= 6 && (
-          <SlideItem delay={0}>
-            good goal examples: <Emphasis color="green">time from idea to real user experiment is X</Emphasis> / X features released every week / X% time spent on KTLO
-          </SlideItem>
-        )}
-
-        {revealStage >= 7 && (
-          <SlideItem delay={0}>
-            task <Emphasis color="orange">"AI-enablement" team</Emphasis> to work on AI coding infrastructure, not AI coding blueprints (individual teams/engineers knows better how to make their workflows AI-first)
+            anti-pattern <Emphasis color="orange">"AI-enablement team"</Emphasis> working on AI coding blueprints
           </SlideItem>
         )}
       </div>
