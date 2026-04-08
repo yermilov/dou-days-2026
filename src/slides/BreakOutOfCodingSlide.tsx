@@ -21,9 +21,9 @@ export const BreakOutOfCodingSlide: SlideDefinition = {
   content: ({ revealStage }) => (
     <>
       <h2 style={{ marginBottom: '2rem' }}>
-        <span className="text-dim">$</span>{' '}
-        <span className="text-green">tips</span>{' '}
-        <span className="text-orange">--break-out</span>
+        <span className="text-dim">//</span>{' '}
+        <span className="text-green">personal pattern</span>{' '}
+        <span className="text-orange">"break out of coding"</span>
       </h2>
 
       <div
@@ -35,11 +35,29 @@ export const BreakOutOfCodingSlide: SlideDefinition = {
         }}
       >
         <SlideItem delay={0.05}>
-          install <Emphasis color="green">CLIs</Emphasis> (not MCPs!) for all
-          dev tools you use
+          coding is the obvious starting point — but that's just very smart, costly{' '}
+          <Emphasis color="orange">autocomplete</Emphasis>
+        </SlideItem>
+
+        <SlideItem delay={0.15}>
+          set yourself a goal: do{' '}
+          <Emphasis color="green">everything</Emphasis> from inside Claude Code
         </SlideItem>
 
         {revealStage >= 1 && (
+          <SlideItem delay={0}>
+            prioritize things that will create a feedback loop for Claude Code
+          </SlideItem>
+        )}
+
+        {revealStage >= 1 && (
+          <SlideItem delay={0.1}>
+            install <Emphasis color="green">CLIs</Emphasis> (not MCPs!) for all
+            dev tools you use
+          </SlideItem>
+        )}
+
+        {revealStage >= 2 && (
           <SlideItem delay={0}>
             use the <Emphasis color="green">Claude Chrome extension</Emphasis> for
             cases when CLI can't do something —{' '}
@@ -49,23 +67,28 @@ export const BreakOutOfCodingSlide: SlideDefinition = {
           </SlideItem>
         )}
 
-        {revealStage >= 2 && (
-          <SlideItem delay={0}>
-            claude won't do everything perfectly the first time — invest your time
-            in <Emphasis color="orange">handholding</Emphasis>
-          </SlideItem>
-        )}
-
         {revealStage >= 3 && (
-          <SlideItem delay={0}>
-            after you've achieved your result successfully — convert your session
-            into a <Emphasis color="green">skill</Emphasis>
-          </SlideItem>
+          <>
+            <SlideItem delay={0}>
+              <Prompt>hey claude, please commit my changes</Prompt>
+            </SlideItem>
+            <SlideItem delay={0.08}>
+              <Prompt>hey claude, configure dev environment for me</Prompt>
+            </SlideItem>
+            <SlideItem delay={0.16}>
+              <Prompt>hey claude, here is a bug report I've received: ...</Prompt>
+            </SlideItem>
+            <SlideItem delay={0.24}>
+              <Prompt>
+                hey claude, take a look at the logs / metrics / AB test results / perf report: ...
+              </Prompt>
+            </SlideItem>
+          </>
         )}
       </div>
     </>
   ),
   maxRevealStages: 3,
   notes:
-    "CLIs first because they're scriptable, composable, and Claude already knows them. Chrome extension is the escape hatch for anything GUI-locked. And skills are how you lock in the gains.",
+    'Stage 0: coding is just autocomplete, goal is everything from Claude Code. Stage 1: feedback loops + install CLIs. Stage 2: Chrome extension escape hatch. Stage 3: concrete prompt examples across SDLC stages.',
 };

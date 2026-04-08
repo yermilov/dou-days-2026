@@ -17,9 +17,9 @@ export const WhatIsSkillSlide: SlideDefinition = {
 
       {/* Title — on the terminal dark background, always readable */}
       <h2 style={{ textAlign: 'center', marginBottom: '0.5rem' }}>
-        <span className="text-dim">$</span>{' '}
-        <span className="text-green">skill</span>{' '}
-        <span className="text-orange">--what-is</span>
+        <span className="text-dim">//</span>{' '}
+        <span className="text-green">pattern:</span>{' '}
+        <span className="text-orange">"skills"</span>
       </h2>
 
       {/* Space background area — fills all remaining height */}
