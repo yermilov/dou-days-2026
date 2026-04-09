@@ -74,7 +74,7 @@ function AIInnovatorCurveContent() {
     },
     {
       section: 2,
-      items: ['plugins marketplace', 'meta skills'],
+      items: ['plugins marketplace', 'meta skills', 'auto-approve'],
     },
     {
       section: 3,
@@ -106,9 +106,6 @@ function AIInnovatorCurveContent() {
           <span className="text-green">pattern</span>{' '}
           <span className="text-orange">--ainnovator-curve</span>
         </h2>
-        <div className="text-muted">
-          // rogers innovation adoption curve
-        </div>
       </div>
 
       <svg
