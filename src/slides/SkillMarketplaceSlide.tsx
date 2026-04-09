@@ -22,21 +22,25 @@ export const SkillMarketplaceSlide: SlideDefinition = {
           {revealStage === 0 ? (
             <>
               <SlideItem delay={0.05}>
-                first thing you would need to make it work is a way to distribute a skill
+                skills are small yet powerful <Emphasis color="green">building blocks</Emphasis> — share them across your team, build unique workflows on top
               </SlideItem>
 
               <SlideItem delay={0.15}>
-                if you have exactly ONE repository you may commit skills there, but even for monorepo organizations this is rarely the case
+                agents love documentation — convert all docs to skills; they <Emphasis color="green">self-improve</Emphasis> through usage
               </SlideItem>
 
               <SlideItem delay={0.25}>
-                at Superhuman, we have built a system that clones a github repo with the skills, symlinks it to user <code>.claude</code> directory and periodically fetches updates from remote
+                every engineer using a skill contributes improvements — making everyone <Emphasis color="orange">instantly more productive</Emphasis>
+              </SlideItem>
+
+              <SlideItem delay={0.35}>
+                at Superhuman, we needed a way to distribute — we built a system that clones a GitHub repo with skills and symlinks to <code>.claude</code> directory
               </SlideItem>
             </>
           ) : (
             <>
               <SlideItem delay={0} reveal>
-                later Anthropic introduced <Emphasis color="green">marketplaces</Emphasis> which basically works exactly like that but natively
+                Anthropic introduced <Emphasis color="green">marketplaces</Emphasis> — works exactly like that but natively
               </SlideItem>
 
               <SlideItem delay={0.12} reveal>
