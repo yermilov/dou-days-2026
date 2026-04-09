@@ -1,5 +1,5 @@
-import { Entity, GameState, Lane, LANE_Y, DOT_SPACING, DOT_START_X, DOT_END_X } from './types';
-import { scenarios } from './scenarios';
+import { Entity, GameState, StageEvent, Lane, LANE_Y, DOT_SPACING, DOT_START_X, DOT_END_X } from './types';
+import { initialScenario, stageEvents } from './scenarios';
 
 function createDots() {
   const dots: Lane['dots'] = [];
@@ -17,6 +17,32 @@ function createLanes(): Lane[] {
   }));
 }
 
+const TILE = 16;
+
+// Check if a tile is walkable
+function tileWalkable(maze: number[][], col: number, row: number): boolean {
+  if (row < 0 || row >= maze.length || col < 0 || col >= maze[0].length) return false;
+  return maze[row][col] === 0;
+}
+
+// Directions: right, down, left, up
+const DIRS: [number, number][] = [[1, 0], [0, 1], [-1, 0], [0, -1]];
+
+// Get walkable neighbor tile directions from a tile position
+function getWalkableDirs(maze: number[][], col: number, row: number): [number, number][] {
+  return DIRS.filter(([dc, dr]) => tileWalkable(maze, col + dc, row + dr));
+}
+
+// Convert pixel position to tile col/row
+function pixToTile(px: number): number {
+  return Math.round(px / TILE);
+}
+
+// Convert tile col/row to pixel position (top-left of tile)
+function tileToPixel(t: number): number {
+  return t * TILE;
+}
+
 export function createInitialState(): GameState {
   return {
     entities: [],
@@ -27,23 +53,22 @@ export function createInitialState(): GameState {
     transitioning: false,
     transitionProgress: 0,
     labyrinth: false,
+    autoSpawn: false,
     lastSpawnTick: 0,
     maze: [],
     eatenDots: new Set(),
   };
 }
 
-export function applyScenario(state: GameState, stage: number): GameState {
-  const config = scenarios[stage];
-  if (!config) return state;
+// Full reset — used for stage 0 (initial load)
+function applyInitialScenario(): GameState {
+  const config = initialScenario;
 
-  // Reset lanes with fresh dots
   const lanes = createLanes();
   config.lanes.forEach((cfg: { active: boolean; dotsVisible: boolean }, i: number) => {
     lanes[i].active = cfg.active;
   });
 
-  // Create entities from config
   const entities: Entity[] = config.entities.map((e) => ({
     ...e,
     animFrame: 0,
@@ -60,10 +85,69 @@ export function applyScenario(state: GameState, stage: number): GameState {
     transitioning: true,
     transitionProgress: 0,
     labyrinth: config.labyrinth ?? false,
+    autoSpawn: config.autoSpawn ?? false,
     lastSpawnTick: 0,
     maze: config.maze ?? [],
     eatenDots: new Set(),
   };
+}
+
+// Spawn a clawd at a position in the maze
+function spawnClawdAt(state: GameState, col: number, row: number, speed: number) {
+  const maze = state.maze;
+  const dirs = getWalkableDirs(maze, col, row);
+  const [dc, dr] = dirs.length > 0 ? dirs[Math.floor(Math.random() * dirs.length)] : [1, 0];
+  state.entities.push({
+    x: col * TILE,
+    y: row * TILE,
+    targetX: (col + dc) * TILE,
+    targetY: (row + dr) * TILE,
+    speed,
+    sprite: 'clawd',
+    animFrame: 0,
+    direction: dc >= 0 ? 1 : -1,
+    state: 'spawning',
+    opacity: 0,
+    stuckTimer: 0,
+    lane: 0,
+  });
+}
+
+// Incremental event — mutates live state, preserves positions & eaten dots
+function applyStageEvent(state: GameState, event: StageEvent): GameState {
+  const person = state.entities.find((e) => e.sprite === 'person');
+
+  if (event.spawnClawds) {
+    for (const spawn of event.spawnClawds) {
+      // col/row -1 means "spawn at person's current position"
+      const col = spawn.col === -1 && person ? pixToTile(person.x) : spawn.col;
+      const row = spawn.row === -1 && person ? pixToTile(person.y) : spawn.row;
+      spawnClawdAt(state, col, row, spawn.speed);
+    }
+  }
+
+  if (event.enableAutoSpawn) {
+    state.autoSpawn = true;
+  }
+
+  if (event.personState && person) {
+    person.state = event.personState;
+    if (event.personState === 'sleeping') {
+      person.speed = 0;
+    }
+  }
+
+  return state;
+}
+
+// Public API: apply stage transition
+export function applyScenario(state: GameState, stage: number): GameState {
+  if (stage === 0) {
+    return applyInitialScenario();
+  }
+  const event = stageEvents[stage - 1];
+  if (!event) return state;
+  return applyStageEvent(state, event);
 }
 
 function eatDots(entity: Entity, lane: Lane) {
@@ -171,32 +255,6 @@ function updateEntity(entity: Entity, state: GameState, _stageIdx: number) {
   }
 }
 
-const TILE = 16;
-
-// Check if a tile is walkable
-function tileWalkable(maze: number[][], col: number, row: number): boolean {
-  if (row < 0 || row >= maze.length || col < 0 || col >= maze[0].length) return false;
-  return maze[row][col] === 0;
-}
-
-// Directions: right, down, left, up
-const DIRS: [number, number][] = [[1, 0], [0, 1], [-1, 0], [0, -1]];
-
-// Get walkable neighbor tile directions from a tile position
-function getWalkableDirs(maze: number[][], col: number, row: number): [number, number][] {
-  return DIRS.filter(([dc, dr]) => tileWalkable(maze, col + dc, row + dr));
-}
-
-// Convert pixel position to tile col/row
-function pixToTile(px: number): number {
-  return Math.round(px / TILE);
-}
-
-// Convert tile col/row to pixel position (top-left of tile)
-function tileToPixel(t: number): number {
-  return t * TILE;
-}
-
 function eatMazeDot(state: GameState, col: number, row: number) {
   state.eatenDots.add(`${col},${row}`);
 }
@@ -268,7 +326,7 @@ function updateLabyrinth(state: GameState) {
   }
 
   // Person spawns clawds periodically (every ~3 seconds)
-  if (state.tick - state.lastSpawnTick > 180 && state.entities.length < 12) {
+  if (state.autoSpawn && state.tick - state.lastSpawnTick > 180 && state.entities.length < 12) {
     const personEntity = state.entities.find((e) => e.sprite === 'person');
     if (personEntity) {
       // Spawn at person's current tile, target a valid neighbor

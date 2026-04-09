@@ -6,7 +6,7 @@ export const ImportantSlide: SlideDefinition = {
   id: 'important',
   content: ({ revealStage }) => (
     <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%' }}>
-      <h2 style={{ marginBottom: '1rem', textAlign: 'left' }}>
+      <h2 style={{ marginBottom: '1rem' }}>
         <span className="text-dim">$</span>{' '}
         <span className="text-green">pattern</span>{' '}
         <span className="text-orange">--throughput-vs-latency</span>
@@ -31,19 +31,9 @@ export const ImportantSlide: SlideDefinition = {
           }}
         >
           <SlideItem delay={0.05}>
-          Claude almost certainly understands your domain{' '}
-          <Emphasis color="orange">worse</Emphasis> than you
-        </SlideItem>
-
-        <SlideItem delay={0.12}>
-          often you can write{' '}
-          <Emphasis color="orange">MUCH</Emphasis> better code, and sometimes even{' '}
-          <Emphasis color="orange">faster</Emphasis> than it
-        </SlideItem>
-
-        <SlideItem delay={0.19}>
-          <Emphasis>exception</Emphasis> — unfamiliar tech saves hours to weeks
-        </SlideItem>
+            Claude Code increases <Emphasis>throughput</Emphasis> of your work, not
+            your latency
+          </SlideItem>
 
         {revealStage >= 1 && (
           <SlideItem delay={0}>
@@ -52,29 +42,44 @@ export const ImportantSlide: SlideDefinition = {
           </SlideItem>
         )}
 
-        {revealStage >= 1 && (
-          <SlideItem delay={0.1}>
-            staring at the terminal ={' '}
-            <Emphasis color="orange">losing productivity</Emphasis>
+        {revealStage >= 2 && (
+          <SlideItem delay={0}>
+            Claude almost certainly understands your domain{' '}
+            <Emphasis color="orange">worse</Emphasis> than you
           </SlideItem>
         )}
 
         {revealStage >= 2 && (
-          <SlideItem delay={0}>
-            or run <Emphasis>two tasks</Emphasis> in parallel
+          <SlideItem delay={0.07}>
+            often you can write{' '}
+            <Emphasis color="orange">MUCH</Emphasis> better code, and sometimes even{' '}
+            <Emphasis color="orange">faster</Emphasis> than it
+          </SlideItem>
+        )}
+
+        {revealStage >= 2 && (
+          <SlideItem delay={0.14}>
+            <Emphasis>exception</Emphasis> — unfamiliar tech saves hours to weeks
           </SlideItem>
         )}
 
         {revealStage >= 3 && (
           <SlideItem delay={0}>
-            or run four tasks and go eat / sleep
+            staring at the terminal ={' '}
+            <Emphasis color="orange">losing productivity</Emphasis>
+          </SlideItem>
+        )}
+
+        {revealStage >= 3 && (
+          <SlideItem delay={0.1}>
+            instead — launch clawd to do something and{' '}
+            <Emphasis>switch</Emphasis>
           </SlideItem>
         )}
 
         {revealStage >= 4 && (
           <SlideItem delay={0}>
-            Claude Code increases <Emphasis>throughput</Emphasis> of your work, not
-            your latency
+            or launch clawds and go eat / rest
           </SlideItem>
         )}
 

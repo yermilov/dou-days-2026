@@ -55,6 +55,14 @@ export interface ScenarioConfig {
   description: string;
   labyrinth?: boolean;
   maze?: number[][]; // 0=path, 1=wall - tile grid for 2D maze
+  autoSpawn?: boolean; // whether person auto-spawns clawds in labyrinth mode
+}
+
+// Incremental event applied on top of live state (no reset)
+export interface StageEvent {
+  spawnClawds?: { col: number; row: number; speed: number }[];
+  enableAutoSpawn?: boolean;
+  personState?: 'moving' | 'sleeping';
 }
 
 export interface GameState {
@@ -66,6 +74,7 @@ export interface GameState {
   transitioning: boolean;
   transitionProgress: number;
   labyrinth: boolean;
+  autoSpawn: boolean;
   lastSpawnTick: number;
   maze: number[][];
   eatenDots: Set<string>; // "col,row" keys
