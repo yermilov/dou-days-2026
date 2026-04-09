@@ -24,4 +24,4 @@ import { AutonomousAiSlide } from './AutonomousAiSlide';
 import { ChallengeAssumptionsSlide } from './ChallengeAssumptionsSlide';
 import { FinalSlide } from './FinalSlide';
 
-export const slides = [TitleSlide, BioSlide, TimelineSlide, EveryOrgRightNowSlide, InceptionPatternsSlide, BreakOutOfCodingSlide, ImportantSlide, SoftwareFactorySlide, AIInnovatorCurveSlide, WhatIsSkillSlide, SkillMarketplaceSlide, MetaSkillsSlide, AutoApproveHookSlide, SkillsActivatorSlide, SkillsMetricsSlide, AgentWorkflowSlide, AgentTracesSlide, AgentExampleSlide, IndustryPatternsSlide, AutonomousAiSlide, HumanAiEngSlide, ChallengeAssumptionsSlide, ClaudeCodeSlide, FinalSlide];
+export const slides = [TitleSlide, BioSlide, TimelineSlide, EveryOrgRightNowSlide, InceptionPatternsSlide, BreakOutOfCodingSlide, ClaudeCodeSlide, ImportantSlide, SoftwareFactorySlide, AIInnovatorCurveSlide, WhatIsSkillSlide, SkillMarketplaceSlide, MetaSkillsSlide, AutoApproveHookSlide, SkillsActivatorSlide, SkillsMetricsSlide, AgentWorkflowSlide, AgentTracesSlide, AgentExampleSlide, IndustryPatternsSlide, AutonomousAiSlide, HumanAiEngSlide, ChallengeAssumptionsSlide, FinalSlide];
