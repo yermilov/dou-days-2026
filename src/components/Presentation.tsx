@@ -8,7 +8,6 @@ import { TerminalInput } from './TerminalInput';
 import { SlideProgress } from './SlideProgress';
 import { Timer } from './Timer';
 import { OnboardingTooltip, ContextTooltip } from './OnboardingTooltip';
-import { PointerTooltip } from './PointerTooltip';
 
 const TIMER_STARTED_AT_KEY = 'timerStartedAt';
 const TIMER_ACCUMULATED_KEY = 'timerAccumulated';
@@ -97,51 +96,20 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
     });
   }, []);
 
-  const handleTimerPause = useCallback(() => {
-    setTimerRunning(false);
-    setTimerSeconds((currentSeconds) => {
+  // Auto-start timer when leaving slide 1; reset when returning to slide 1
+  useEffect(() => {
+    if (currentSlide === 0) {
+      setTimerRunning(false);
+      setTimerSeconds(0);
       localStorage.removeItem(TIMER_STARTED_AT_KEY);
-      localStorage.setItem(TIMER_ACCUMULATED_KEY, currentSeconds.toString());
-      return currentSeconds;
-    });
-  }, []);
+      localStorage.removeItem(TIMER_ACCUMULATED_KEY);
+    } else if (!timerRunning) {
+      handleTimerStart();
+    }
+  }, [currentSlide]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const handleTimerStartPause = useCallback(() => {
-    setTimerRunning((running) => {
-      if (running) {
-        // Pausing
-        setTimerSeconds((currentSeconds) => {
-          localStorage.removeItem(TIMER_STARTED_AT_KEY);
-          localStorage.setItem(TIMER_ACCUMULATED_KEY, currentSeconds.toString());
-          return currentSeconds;
-        });
-      } else {
-        // Starting
-        setTimerSeconds((currentSeconds) => {
-          localStorage.setItem(TIMER_STARTED_AT_KEY, Date.now().toString());
-          localStorage.setItem(TIMER_ACCUMULATED_KEY, currentSeconds.toString());
-          return currentSeconds;
-        });
-      }
-      return !running;
-    });
-  }, []);
-
-  const handleTimerReset = useCallback(() => {
-    setTimerRunning(false);
-    setTimerSeconds(0);
-    localStorage.removeItem(TIMER_STARTED_AT_KEY);
-    localStorage.removeItem(TIMER_ACCUMULATED_KEY);
-  }, []);
-
-  const handleToolsReset = useCallback(() => {
-    setActivatedTools(new Set());
-  }, []);
-
-  // Command handler that intercepts timer commands and activates tools
+  // Command handler that activates tools and delegates navigation
   const handleCommand = useCallback((command: string) => {
-    const trimmed = command.trim().toLowerCase();
-
     // Mark as interacted (hides tooltips)
     setSlideInteracted(true);
 
@@ -157,23 +125,8 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
       }
     }
 
-    switch (trimmed) {
-      case 'start':
-      case 'go':
-        handleTimerStart();
-        return;
-      case 'pause':
-      case 'stop':
-        handleTimerPause();
-        return;
-      case 'reset':
-        handleTimerReset();
-        handleToolsReset();
-        return;
-      default:
-        handleNavCommand(command);
-    }
-  }, [handleNavCommand, handleTimerStart, handleTimerPause, handleTimerReset, handleToolsReset]);
+    handleNavCommand(command);
+  }, [handleNavCommand]);
 
   const activeSlide = slides[currentSlide];
 
@@ -198,12 +151,6 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
           {slideContent}
         </Slide>
       </div>
-      <Timer
-        seconds={timerSeconds}
-        isRunning={timerRunning}
-        onStartPause={handleTimerStartPause}
-        onReset={handleTimerReset}
-      />
       {/* Show context progress once less than 50% of slides remain */}
       {(currentSlide + 1) / slides.length > 0.5 && (
         <SlideProgress
@@ -219,24 +166,20 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
           : !slideInteracted) && (
         <ContextTooltip>{activeSlide.tooltip}</ContextTooltip>
       )}
-      {currentSlide === 0 && !slideInteracted && (
-        <PointerTooltip position="left">
-          <div className="pointer-tooltip-header">
-            <span className="onboarding-tooltip-icon">?</span>
-            <span className="pointer-tooltip-title">Timer</span>
-          </div>
-          <p className="pointer-tooltip-text">
-            helps track presentation duration. press <code>[start]</code> or type <code>start</code> to begin
-          </p>
-        </PointerTooltip>
-      )}
-      <TerminalInput
-        onCommand={handleCommand}
-        onInputChange={setInputText}
-        onArrowLeft={revealPrev}
-        onArrowRight={revealNext}
-        placeholder="type anything to continue, 'prev' to go back, or slide number..."
-      />
+      <div className="input-bar">
+        <Timer
+          elapsedSeconds={timerSeconds}
+          currentSlide={currentSlide}
+          totalSlides={slides.length}
+        />
+        <TerminalInput
+          onCommand={handleCommand}
+          onInputChange={setInputText}
+          onArrowLeft={revealPrev}
+          onArrowRight={revealNext}
+          placeholder="type anything to continue, 'prev' to go back, or slide number..."
+        />
+      </div>
     </div>
     </NavigationContext.Provider>
   );

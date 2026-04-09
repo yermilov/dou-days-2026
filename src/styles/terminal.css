@@ -198,7 +198,10 @@
 }
 
 /* === TERMINAL INPUT === */
-.terminal-input {
+.input-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
   padding: var(--space-md) var(--space-xl);
   background: linear-gradient(
     180deg,
@@ -208,6 +211,11 @@
   border-top: 1px solid var(--terminal-border);
   position: relative;
   z-index: 1001;
+}
+
+.terminal-input {
+  flex: 1;
+  min-width: 0;
 }
 
 .terminal-input-wrapper {
@@ -431,34 +439,12 @@
 
 
 /* === TIMER === */
-.timer {
-  position: fixed;
-  bottom: calc(var(--input-height) + var(--space-xl) + var(--space-md));
-  left: var(--space-xl);
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  z-index: 100;
-}
-
-.timer-display {
-  color: var(--terminal-white-muted);
-  font-size: var(--font-size-small);
+.timer-countdown {
   font-family: var(--font-mono);
-}
-
-.timer-btn {
-  background: none;
-  border: none;
-  color: var(--terminal-white-muted);
   font-size: var(--font-size-small);
-  font-family: var(--font-mono);
-  cursor: pointer;
-  padding: 0;
-}
-
-.timer-btn:hover {
-  color: var(--terminal-orange);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 /* === CODE BLOCK === */
@@ -696,7 +682,7 @@
     padding: var(--space-lg) var(--space-md);
   }
 
-  .terminal-input {
+  .input-bar {
     padding: var(--space-sm) var(--space-md);
   }
 
@@ -1500,11 +1486,8 @@
 
 /* === MOBILE: FIXED ELEMENT STACKING === */
 @media (max-width: 768px) and (pointer: coarse) {
-  .timer {
-    transform: scale(0.85);
-    transform-origin: bottom left;
-    left: var(--space-md);
-    bottom: calc(var(--input-height) + var(--space-lg) + var(--space-sm));
+  .input-bar {
+    padding: var(--space-xs) var(--space-sm);
   }
 
   .slide-progress {
@@ -1527,10 +1510,6 @@
 @media (max-width: 480px) {
   .slide-container {
     padding: var(--space-md) var(--space-sm);
-  }
-
-  .terminal-input {
-    padding: var(--space-xs) var(--space-sm);
   }
 
   /* Timeline slide */
