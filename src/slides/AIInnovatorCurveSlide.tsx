@@ -74,11 +74,7 @@ function AIInnovatorCurveContent() {
     },
     {
       section: 2,
-      items: ['plugins marketplace', 'meta skills', 'auto-approve'],
-    },
-    {
-      section: 3,
-      items: ['generate code'],
+      items: ['plugins marketplace', 'meta skills', 'auto-approve', 'ai code review'],
     },
   ];
 
@@ -119,9 +115,6 @@ function AIInnovatorCurveContent() {
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          <filter id="blur-text" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="4" />
-          </filter>
           {sections.map((s, i) => (
             <clipPath key={i} id={`clip-s${i}`}>
               <rect x={s.x1} y={0} width={s.x2 - s.x1} height={H + 200} />
@@ -228,9 +221,8 @@ function AIInnovatorCurveContent() {
         {bullets.map(({ section, items }) => {
           const s = sections[section];
           const cx = parseFloat(sectionCx(s));
-          const isBlurred = section === 1; // green section — disclosed later
           return (
-            <g key={section} filter={isBlurred ? 'url(#blur-text)' : undefined}>
+            <g key={section}>
               {items.map((item, j) => (
                 <text
                   key={j}

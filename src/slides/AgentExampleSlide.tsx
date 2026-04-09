@@ -19,8 +19,8 @@ function AgentExampleContent({ revealStage }: { revealStage: number }) {
 
       <h2 style={{ marginBottom: '1.2rem' }}>
         <span className="text-dim">$</span>{' '}
-        <span className="text-green">agents</span>{' '}
-        <span className="text-orange">--example</span>
+        <span className="text-green">pattern</span>{' '}
+        <span className="text-orange">--ai-code-review</span>
       </h2>
 
       <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
