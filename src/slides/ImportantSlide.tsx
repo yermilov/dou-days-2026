@@ -36,16 +36,12 @@ export const ImportantSlide: SlideDefinition = {
         </SlideItem>
 
         <SlideItem delay={0.12}>
-          often you can write code{' '}
-          <Emphasis color="orange">MUCH</Emphasis> better than it
-        </SlideItem>
-
-        <SlideItem delay={0.19}>
-          often you can also write code{' '}
+          often you can write{' '}
+          <Emphasis color="orange">MUCH</Emphasis> better code, and sometimes even{' '}
           <Emphasis color="orange">faster</Emphasis> than it
         </SlideItem>
 
-        <SlideItem delay={0.26}>
+        <SlideItem delay={0.19}>
           <Emphasis>exception</Emphasis> — unfamiliar tech saves hours to weeks
         </SlideItem>
 

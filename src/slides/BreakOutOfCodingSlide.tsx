@@ -38,25 +38,27 @@ export const BreakOutOfCodingSlide: SlideDefinition = {
           <Emphasis color="orange">autocomplete</Emphasis>
         </SlideItem>
 
-        <SlideItem delay={0.15}>
-          set yourself a goal: do{' '}
-          <Emphasis color="green">everything</Emphasis> from inside Claude Code
-        </SlideItem>
-
         {revealStage >= 1 && (
+          <SlideItem delay={0}>
+            set yourself a goal: do{' '}
+            <Emphasis color="green">everything</Emphasis> from inside Claude Code
+          </SlideItem>
+        )}
+
+        {revealStage >= 2 && (
           <SlideItem delay={0}>
             prioritize things that will create a feedback loop for Claude Code
           </SlideItem>
         )}
 
-        {revealStage >= 1 && (
-          <SlideItem delay={0.1}>
+        {revealStage >= 3 && (
+          <SlideItem delay={0}>
             install <Emphasis color="green">CLIs</Emphasis> (not MCPs!) for all
             dev tools you use
           </SlideItem>
         )}
 
-        {revealStage >= 2 && (
+        {revealStage >= 4 && (
           <SlideItem delay={0}>
             use the <Emphasis color="green">Claude Chrome extension</Emphasis> for
             cases when CLI can't do something —{' '}
@@ -66,28 +68,35 @@ export const BreakOutOfCodingSlide: SlideDefinition = {
           </SlideItem>
         )}
 
-        {revealStage >= 3 && (
-          <>
-            <SlideItem delay={0}>
-              <Prompt>hey claude, please commit my changes</Prompt>
-            </SlideItem>
-            <SlideItem delay={0.08}>
-              <Prompt>hey claude, configure dev environment for me</Prompt>
-            </SlideItem>
-            <SlideItem delay={0.16}>
-              <Prompt>hey claude, here is a bug report I've received: ...</Prompt>
-            </SlideItem>
-            <SlideItem delay={0.24}>
-              <Prompt>
-                hey claude, take a look at the logs / metrics / AB test results / perf report: ...
-              </Prompt>
-            </SlideItem>
-          </>
+        {revealStage >= 5 && (
+          <SlideItem delay={0}>
+            <Prompt>hey claude, please commit my changes</Prompt>
+          </SlideItem>
+        )}
+
+        {revealStage >= 6 && (
+          <SlideItem delay={0}>
+            <Prompt>hey claude, configure dev environment for me</Prompt>
+          </SlideItem>
+        )}
+
+        {revealStage >= 7 && (
+          <SlideItem delay={0}>
+            <Prompt>hey claude, here is a bug report I've received: ...</Prompt>
+          </SlideItem>
+        )}
+
+        {revealStage >= 8 && (
+          <SlideItem delay={0}>
+            <Prompt>
+              hey claude, take a look at the logs / metrics / AB test results / perf report: ...
+            </Prompt>
+          </SlideItem>
         )}
       </div>
     </>
   ),
-  maxRevealStages: 3,
+  maxRevealStages: 8,
   notes:
-    'Stage 0: coding is just autocomplete, goal is everything from Claude Code. Stage 1: feedback loops + install CLIs. Stage 2: Chrome extension escape hatch. Stage 3: concrete prompt examples across SDLC stages.',
+    'One bullet per reveal. Stage 0: coding is just autocomplete. Stage 1: goal is everything from Claude Code. Stage 2-3: feedback loops + install CLIs. Stage 4: Chrome extension escape hatch. Stages 5-8: concrete prompt examples across SDLC stages.',
 };
