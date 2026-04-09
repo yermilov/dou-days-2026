@@ -7,8 +7,8 @@ export const ChallengeAssumptionsSlide: SlideDefinition = {
     <>
       <h2 style={{ marginBottom: '1.2rem' }}>
         <span className="text-dim">$</span>{' '}
-        <span className="text-green">org</span>{' '}
-        <span className="text-orange">--rethink</span>
+        <span className="text-green">pattern</span>{' '}
+        <span className="text-orange">--challenge-assumptions</span>
       </h2>
 
       <div

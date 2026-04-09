@@ -78,19 +78,6 @@ export const TimelineSlide: SlideDefinition = {
                 );
               })}
             </div>
-
-            {/* Hint - styled like tooltip */}
-            <div className="timeline-hint-box">
-              <div className="timeline-hint-box__header">
-                <span className="timeline-hint-box__icon">{'>'}</span>
-                <span className="timeline-hint-box__title">Timeline</span>
-              </div>
-              <ul className="timeline-hint-box__list">
-                <li>
-                  <code>move</code> or <code>m</code> — Next item
-                </li>
-              </ul>
-            </div>
           </div>
 
           {/* RIGHT: Content panel - text + image */}

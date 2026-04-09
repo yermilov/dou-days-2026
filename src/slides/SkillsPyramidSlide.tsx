@@ -7,8 +7,8 @@ export const SkillsPyramidSlide: SlideDefinition = {
     <>
       <h2 style={{ marginBottom: '2rem' }}>
         <span className="text-dim">$</span>{' '}
-        <span className="text-green">skills</span>{' '}
-        <span className="text-orange">--pyramid</span>
+        <span className="text-green">pattern</span>{' '}
+        <span className="text-orange">--skills-pyramid</span>
       </h2>
 
       <div

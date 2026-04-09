@@ -8,8 +8,8 @@ export const AutonomousAiSlide: SlideDefinition = {
     <>
       <h2 style={{ marginBottom: '2rem' }}>
         <span className="text-dim">$</span>{' '}
-        <span className="text-green">./org</span>{' '}
-        <span className="text-orange">--agent-first</span>
+        <span className="text-green">pattern</span>{' '}
+        <span className="text-orange">--agent-experience</span>
       </h2>
 
       <div

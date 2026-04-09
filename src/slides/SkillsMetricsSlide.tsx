@@ -61,8 +61,8 @@ function SkillsMetricsContent({ revealStage }: { revealStage: number }) {
 
       <h2 style={{ marginBottom: '1.2rem' }}>
         <span className="text-dim">$</span>{' '}
-        <span className="text-green">skills</span>{' '}
-        <span className="text-orange">--metrics</span>
+        <span className="text-green">pattern</span>{' '}
+        <span className="text-orange">--skills-metrics</span>
       </h2>
 
       <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>

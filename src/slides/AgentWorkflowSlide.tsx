@@ -67,8 +67,8 @@ function AgentWorkflowContent({ revealStage }: { revealStage: number }) {
 
       <h2 style={{ marginBottom: '1.2rem' }}>
         <span className="text-dim">$</span>{' '}
-        <span className="text-green">agents</span>{' '}
-        <span className="text-orange">--workflow</span>
+        <span className="text-green">pattern</span>{' '}
+        <span className="text-orange">--agent-workflow</span>
       </h2>
 
       <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>

@@ -51,8 +51,8 @@ function MetaSkillsContent({ revealStage }: { revealStage: number }) {
 
       <h2 style={{ marginBottom: '1.4rem' }}>
         <span className="text-dim">$</span>{' '}
-        <span className="text-green">skills</span>{' '}
-        <span className="text-orange">--meta</span>
+        <span className="text-green">pattern</span>{' '}
+        <span className="text-orange">--meta-skills</span>
       </h2>
 
       <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>

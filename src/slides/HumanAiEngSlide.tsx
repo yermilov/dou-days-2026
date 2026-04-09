@@ -8,8 +8,8 @@ export const HumanAiEngSlide: SlideDefinition = {
     <>
       <h2 style={{ marginBottom: '2rem' }}>
         <span className="text-dim">$</span>{' '}
-        <span className="text-green">org</span>{' '}
-        <span className="text-orange">--human-ai</span>
+        <span className="text-green">pattern</span>{' '}
+        <span className="text-orange">--human-centered</span>
       </h2>
 
       <div

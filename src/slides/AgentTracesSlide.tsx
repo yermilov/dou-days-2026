@@ -46,8 +46,8 @@ function AgentTracesContent({ revealStage }: { revealStage: number }) {
 
       <h2 style={{ marginBottom: '1.2rem' }}>
         <span className="text-dim">$</span>{' '}
-        <span className="text-green">agents</span>{' '}
-        <span className="text-orange">--traces</span>
+        <span className="text-green">pattern</span>{' '}
+        <span className="text-orange">--agent-traces</span>
       </h2>
 
       <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>

@@ -262,8 +262,8 @@ function IndustryPatternsContent({ revealStage }: SlideContentProps) {
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%' }}>
       <h2 style={{ marginBottom: '1rem', flexShrink: 0 }}>
         <span className="text-dim">$</span>{' '}
-        <span className="text-green">org</span>{' '}
-        <span className="text-orange">--industry</span>
+        <span className="text-green">pattern</span>{' '}
+        <span className="text-orange">--ai-first-org</span>
       </h2>
 
       <div style={{
