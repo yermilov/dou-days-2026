@@ -58,7 +58,7 @@ function ClaudeCodeContent({ revealStage }: { revealStage: number }) {
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--space-lg)' }}>
           <QRCodeSVG
             value={REPO_URL}
-            size={280}
+            size={380}
             bgColor="#141b24"
             fgColor="#7ee787"
             level="M"

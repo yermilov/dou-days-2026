@@ -9,6 +9,7 @@ import { ImportantSlide } from './ImportantSlide';
 import { SkillMarketplaceSlide } from './SkillMarketplaceSlide';
 import { MetaSkillsSlide } from './MetaSkillsSlide';
 import { AutoApproveHookSlide } from './AutoApproveHookSlide';
+import { WarcraftFunSlide } from './WarcraftFunSlide';
 import { EveryOrgRightNowSlide } from './EveryOrgRightNowSlide';
 import { AIInnovatorCurveSlide } from './AIInnovatorCurveSlide';
 import { InceptionPatternsSlide } from './InceptionPatternsSlide';
@@ -24,4 +25,4 @@ import { AutonomousAiSlide } from './AutonomousAiSlide';
 import { ChallengeAssumptionsSlide } from './ChallengeAssumptionsSlide';
 import { FinalSlide } from './FinalSlide';
 
-export const slides = [TitleSlide, BioSlide, TimelineSlide, EveryOrgRightNowSlide, InceptionPatternsSlide, BreakOutOfCodingSlide, ClaudeCodeSlide, ImportantSlide, SoftwareFactorySlide, AIInnovatorCurveSlide, WhatIsSkillSlide, SkillMarketplaceSlide, MetaSkillsSlide, AutoApproveHookSlide, SkillsActivatorSlide, SkillsMetricsSlide, AgentWorkflowSlide, AgentTracesSlide, AgentExampleSlide, IndustryPatternsSlide, AutonomousAiSlide, HumanAiEngSlide, ChallengeAssumptionsSlide, FinalSlide];
+export const slides = [TitleSlide, BioSlide, TimelineSlide, EveryOrgRightNowSlide, InceptionPatternsSlide, BreakOutOfCodingSlide, ClaudeCodeSlide, ImportantSlide, SoftwareFactorySlide, WhatIsSkillSlide, SkillMarketplaceSlide, MetaSkillsSlide, AutoApproveHookSlide, WarcraftFunSlide, SkillsActivatorSlide, SkillsMetricsSlide, AgentWorkflowSlide, AgentTracesSlide, AgentExampleSlide, AIInnovatorCurveSlide, IndustryPatternsSlide, AutonomousAiSlide, HumanAiEngSlide, ChallengeAssumptionsSlide, FinalSlide];
