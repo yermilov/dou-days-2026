@@ -1,14 +1,24 @@
 import { useState, useEffect } from 'react';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
 import { SlideItem, Emphasis } from '../components/SlideElements';
+import releaseCalendar from '/anthropic-release-calendar.jpg?url';
+
+const STYLES = `
+  @keyframes revealPanel {
+    from { opacity: 0; transform: translateX(14px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  .code-reveal {
+    animation: revealPanel 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+`;
 
 const bullets = [
-  <>recent progress from the companies behind AI coding agents tools shows a clear leap forward in software engineering processes</>,
+  <>recent progress from Anthropic shows a clear leap forward in software engineering processes</>,
   <>Anthropic releases Claude Code <Emphasis color="orange">15–20 internal releases per day</Emphasis>, including major new features every couple of days</>,
-  <>OpenAI claimed to build and ship <Emphasis color="green">Agent Builder in 6 weeks</Emphasis>; Anysphere continues to trailblaze agentic IDEs with Cursor</>,
-  <>these companies <Emphasis color="orange">build the tools they use</Emphasis> — synergy between engineering culture and tooling; tight feedback loops between tool developers and tool users</>,
-  <>they ship <Emphasis color="green">a lot of features, fast</Emphasis> — features are unpolished but receive immediate user feedback; "vibes" and direct feedback replace A/B tests and lengthy UX studies; features that don't resonate are removed without mercy</>,
-  <>they tolerate frequent outages and performance degradations — and it <Emphasis color="green">doesn't hurt</Emphasis> company perception from users</>,
+  <>Anthropic <Emphasis color="orange">builds the tools they use</Emphasis> — synergy between engineering culture and tooling; tight feedback loops between tool developers and tool users</>,
+  <>Anthropic ships <Emphasis color="green">a lot of features, fast</Emphasis> — features are unpolished but receive immediate user feedback; "vibes" and direct feedback replace A/B tests and lengthy UX studies; features that don't resonate are removed without mercy</>,
+  <>Anthropic tolerates frequent outages and performance degradations — and it <Emphasis color="green">doesn't hurt</Emphasis> company perception from users</>,
 ];
 
 // --- types ---
@@ -256,10 +266,12 @@ function StatusHistoryPanel({
 
 function IndustryPatternsContent({ revealStage }: SlideContentProps) {
   const visibleCount = Math.min(revealStage + 1, bullets.length);
-  const showStatus = revealStage >= 5;
+  const showStatus = revealStage >= 4;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%' }}>
+      <style>{STYLES}</style>
+
       <h2 style={{ marginBottom: '1rem', flexShrink: 0 }}>
         <span className="text-dim">$</span>{' '}
         <span className="text-green">pattern</span>{' '}
@@ -268,16 +280,14 @@ function IndustryPatternsContent({ revealStage }: SlideContentProps) {
 
       <div style={{
         display: 'flex',
-        gap: '2rem',
+        gap: '1.5rem',
         flex: 1,
         minHeight: 0,
-        alignItems: 'stretch',
+        alignItems: 'flex-start',
       }}>
         {/* Left: bullets */}
         <div style={{
-          flex: showStatus ? '0 0 52%' : '1',
-          maxWidth: showStatus ? '52%' : '1000px',
-          margin: showStatus ? undefined : '0 auto',
+          flex: '0 0 52%',
           textAlign: 'left',
           display: 'flex',
           flexDirection: 'column',
@@ -288,29 +298,41 @@ function IndustryPatternsContent({ revealStage }: SlideContentProps) {
           ))}
         </div>
 
-        {/* Right: uptime history panels */}
-        {showStatus && (
-          <div style={{
-            flex: 1,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '0.75rem',
-            minWidth: 0,
-            minHeight: 0,
-            maxHeight: 'calc(var(--vh-full) - 310px)',
-          }}>
-            <StatusHistoryPanel
-              label="status.claude.com"
-              componentsUrl="https://status.claude.com/api/v2/components.json"
-              incidentsUrl="https://status.claude.com/api/v2/incidents.json?page_size=100"
-            />
-            <StatusHistoryPanel
-              label="status.openai.com"
-              componentsUrl="https://status.openai.com/api/v2/components.json"
-              incidentsUrl="https://status.openai.com/api/v2/incidents.json?page_size=100"
-            />
-          </div>
-        )}
+        {/* Right: image or status panel */}
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minWidth: 0,
+          minHeight: 0,
+        }}>
+          {revealStage >= 1 && !showStatus && (
+            <div key="image" className="code-reveal" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+              <img
+                src={releaseCalendar}
+                alt="Anthropic release calendar — everything Claude Team shipped in 52 days"
+                loading="lazy"
+                style={{ maxWidth: '100%', maxHeight: 'calc(var(--vh-full) - 220px)', objectFit: 'contain', borderRadius: '8px' }}
+              />
+            </div>
+          )}
+          {showStatus && (
+            <div key="status" className="code-reveal" style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.75rem',
+              minWidth: 0,
+              minHeight: 0,
+              maxHeight: 'calc(var(--vh-full) - 310px)',
+            }}>
+              <StatusHistoryPanel
+                label="status.claude.com"
+                componentsUrl="https://status.claude.com/api/v2/components.json"
+                incidentsUrl="https://status.claude.com/api/v2/incidents.json?page_size=100"
+              />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -319,7 +341,7 @@ function IndustryPatternsContent({ revealStage }: SlideContentProps) {
 export const IndustryPatternsSlide: SlideDefinition = {
   id: 'industry-patterns',
   content: (props: SlideContentProps) => <IndustryPatternsContent {...props} />,
-  maxRevealStages: 5,
+  maxRevealStages: 4,
   notes:
-    'The meta-lesson: these companies eat their own dog food. That creates a feedback loop no external user study can replicate.',
+    'The meta-lesson: Anthropic eats their own dog food. That creates a feedback loop no external user study can replicate.',
 };
