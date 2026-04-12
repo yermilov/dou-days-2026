@@ -274,7 +274,9 @@ function InceptionPatternsContent({ revealStage = 0 }: SlideContentProps) {
 
   return (
     <>
-      <style>{FRACTAL_STYLES}</style>
+      <style>{FRACTAL_STYLES}{`
+        .ip-bullets .slide-item { margin-bottom: 0; }
+      `}</style>
       <div style={{ display: 'flex', flexDirection: 'column', height: '100%', gap: '0.8rem' }}>
         <h2 style={{ marginBottom: '0.5rem' }}>
           <span className="text-dim">$</span>{' '}
@@ -284,7 +286,7 @@ function InceptionPatternsContent({ revealStage = 0 }: SlideContentProps) {
 
         <div style={{ display: 'flex', flex: 1, gap: '2rem', alignItems: 'flex-start', minHeight: 0 }}>
           {/* left column: bullets */}
-          <div style={{ flex: '0 0 45%', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+          <div className="ip-bullets" style={{ flex: '0 0 45%', display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
             <SlideItem delay={0.06}>
               you need at least 1-2 <Emphasis color="orange">ai multipliers</Emphasis> in your org
               and at least 1-2 <Emphasis color="green">ai-first engineers</Emphasis> in every team
@@ -294,9 +296,7 @@ function InceptionPatternsContent({ revealStage = 0 }: SlideContentProps) {
             {revealStage >= 1 && (
               <SlideItem delay={0}>
                 anti-pattern <Emphasis color="orange">"ai from above"</Emphasis> — mandating ai coding
-                from leadership won't work (good goal examples:{' '}
-                <Emphasis color="green">time from idea to real user experiment is X</Emphasis> / X features
-                released every week / X% time spent on KTLO)
+                from leadership won't work
               </SlideItem>
             )}
 
@@ -324,7 +324,7 @@ function InceptionPatternsContent({ revealStage = 0 }: SlideContentProps) {
             {revealStage >= 5 && (
               <SlideItem delay={0}>
                 anti-pattern <Emphasis color="orange">"AI-enablement team"</Emphasis> working on AI coding
-                blueprints
+                blueprints - better to work on <Emphasis color="green">AI infrastructure</Emphasis> or <Emphasis color="green">infrastructure for AI</Emphasis>
               </SlideItem>
             )}
           </div>

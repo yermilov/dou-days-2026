@@ -28,19 +28,26 @@ const TASKS: ReactNode[] = [
   <Prompt>hey claude, generate images using Nano Banana Pro</Prompt>,
 ];
 
+const SCOPED_STYLES = `
+  .cc-bullets .slide-item { margin-bottom: 0; }
+`;
+
 function ClaudeCodeContent({ revealStage }: { revealStage: number }) {
   return (
     <>
-      <h2 style={{ marginBottom: '1.2rem' }}>
-        <span className="text-dim">$</span>{' '}
-        <span className="text-green">pattern</span>{' '}
-        <span className="text-orange">--explore-and-have-fun</span>
-      </h2>
+      <style>{SCOPED_STYLES}</style>
 
-      <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+        <h2 style={{ marginBottom: '0.8rem' }}>
+          <span className="text-dim">$</span>{' '}
+          <span className="text-green">pattern</span>{' '}
+          <span className="text-orange">--explore-and-have-fun</span>
+        </h2>
+
+        <div style={{ flex: 1, display: 'flex', gap: '2.5rem', alignItems: 'center', minHeight: 0 }}>
 
         {/* ── Left column: bullets ── */}
-        <div style={{ flex: '0 0 50%', display: 'flex', flexDirection: 'column', gap: '0.5rem', textAlign: 'left' }}>
+        <div className="cc-bullets" style={{ flex: '0 0 48%', display: 'flex', flexDirection: 'column', gap: '1rem', textAlign: 'left' }}>
           <SlideItem delay={0.05}>
             this presentation built entirely in the Claude Code
           </SlideItem>
@@ -91,6 +98,7 @@ function ClaudeCodeContent({ revealStage }: { revealStage: number }) {
           </a>
         </div>
 
+        </div>
       </div>
     </>
   );

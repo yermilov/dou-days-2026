@@ -1,5 +1,5 @@
 import { SlideDefinition, SlideContentProps } from '../types/slides';
-import { SlideItem, Emphasis } from '../components/SlideElements';
+import { SlideItem, Emphasis, SlideLink } from '../components/SlideElements';
 import aiCodeReviewImage from '/ai-code-review.png?url';
 
 const STYLES = `
@@ -26,35 +26,40 @@ function AgentExampleContent({ revealStage }: { revealStage: number }) {
       <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
 
         {/* ── Left column: bullets ── */}
-        <div style={{ flex: '0 0 44%', display: 'flex', flexDirection: 'column', gap: '0.5rem', textAlign: 'left' }}>
+        <div style={{ flex: '0 0 48%', display: 'flex', flexDirection: 'column', gap: '0.45rem', textAlign: 'left' }}>
           {revealStage >= 1 && (
             <SlideItem delay={0} reveal>
-              built an <Emphasis color="green">in-house code review agent</Emphasis> based on Claude Code (+ Codex) instead of generic boxed solutions
+              volume of <Emphasis color="orange">AI-generated changes</Emphasis> increased dramatically
             </SlideItem>
           )}
           {revealStage >= 2 && (
             <SlideItem delay={0} reveal>
-              why: tight integration with <Emphasis color="orange">internal knowledge</Emphasis>, full customization, and model control
+              engineers more confident contributing to <Emphasis color="green">unfamiliar codebases</Emphasis>
             </SlideItem>
           )}
           {revealStage >= 3 && (
             <SlideItem delay={0} reveal>
-              uses the same <Emphasis color="green">skills</Emphasis> as engineers — Sourcegraph, design system, project guidelines
+              human reviews becoming <Emphasis color="orange">rubber stamps</Emphasis> — can't sustain rigor at this volume
             </SlideItem>
           )}
           {revealStage >= 4 && (
             <SlideItem delay={0} reveal>
-              executed in <Emphasis color="orange">CI jobs</Emphasis> — runs on every merge request automatically
+              AI review often <Emphasis color="green">higher quality</Emphasis>; easy to enforce a consistent quality bar
             </SlideItem>
           )}
           {revealStage >= 5 && (
             <SlideItem delay={0} reveal>
-              mixed <Emphasis color="green">deterministic</Emphasis> (TypeScript) and <Emphasis color="orange">non-deterministic</Emphasis> (Claude Code SDK) execution
+              built an <Emphasis color="green">in-house agent</Emphasis> on Claude Code (+Codex) — uses same skills as engineers
             </SlideItem>
           )}
           {revealStage >= 6 && (
             <SlideItem delay={0} reveal>
-              launches a <Emphasis color="green">swarm of agents</Emphasis> for multi-dimensional review — can invoke Codex for a second opinion
+              mixed <Emphasis color="green">deterministic</Emphasis> + <Emphasis color="orange">non-deterministic</Emphasis> execution; launches <Emphasis color="green">agent swarm</Emphasis> for multi-dimensional review
+            </SlideItem>
+          )}
+          {revealStage >= 7 && (
+            <SlideItem delay={0} reveal>
+              Anthropic launched their own solution: <SlideLink href="https://code.claude.com/docs/en/code-review">code.claude.com</SlideLink>
             </SlideItem>
           )}
         </div>
@@ -78,9 +83,9 @@ function AgentExampleContent({ revealStage }: { revealStage: number }) {
 
 export const AgentExampleSlide: SlideDefinition = {
   id: 'agent-example',
-  maxRevealStages: 6,
+  maxRevealStages: 7,
   initialRevealStage: 1,
   content: ({ revealStage }: SlideContentProps) => <AgentExampleContent revealStage={revealStage} />,
   notes:
-    'Real example: our in-house code review agent. Not a SaaS product — built on Claude Code SDK with full control over skills, models, and review dimensions.',
+    'AI code review: volume up, human reviews degrading, AI often better quality. Our in-house agent built on Claude Code SDK. Anthropic now has their own solution.',
 };

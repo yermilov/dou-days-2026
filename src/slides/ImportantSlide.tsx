@@ -72,14 +72,14 @@ export const ImportantSlide: SlideDefinition = {
 
         {revealStage >= 3 && (
           <SlideItem delay={0.1}>
-            instead — launch clawd to do something and{' '}
+            instead — launch claude to do something and{' '}
             <Emphasis>switch</Emphasis>
           </SlideItem>
         )}
 
         {revealStage >= 4 && (
           <SlideItem delay={0}>
-            or launch clawds and go eat / rest
+            or launch claude and go eat / rest
           </SlideItem>
         )}
 

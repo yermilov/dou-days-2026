@@ -151,14 +151,6 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
           {slideContent}
         </Slide>
       </div>
-      {/* Show context progress once less than 50% of slides remain */}
-      {(currentSlide + 1) / slides.length > 0.5 && (
-        <SlideProgress
-          current={currentSlide + 1}
-          total={slides.length}
-          isFirst={currentSlide === Math.floor(slides.length / 2)}
-        />
-      )}
       {currentSlide === 0 && !slideInteracted && <OnboardingTooltip />}
       {activeSlide.tooltip &&
         (activeSlide.maxRevealStages
@@ -179,6 +171,14 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
           onArrowRight={revealNext}
           placeholder="type anything to continue, 'prev' to go back, or slide number..."
         />
+        {/* Show context progress once less than 50% of slides remain */}
+        {(currentSlide + 1) / slides.length > 0.5 && (
+          <SlideProgress
+            current={currentSlide + 1}
+            total={slides.length}
+            isFirst={currentSlide === Math.floor(slides.length / 2)}
+          />
+        )}
       </div>
     </div>
     </NavigationContext.Provider>

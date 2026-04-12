@@ -42,18 +42,21 @@ export async function uploadSession(
 function AgentTracesContent({ revealStage }: { revealStage: number }) {
   return (
     <>
-      <style>{STYLES}</style>
+      <style>{STYLES}{`
+        .at-bullets .slide-item { margin-bottom: 0; }
+      `}</style>
 
-      <h2 style={{ marginBottom: '1.2rem' }}>
-        <span className="text-dim">$</span>{' '}
-        <span className="text-green">pattern</span>{' '}
-        <span className="text-orange">--agent-traces</span>
-      </h2>
+      <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+        <h2 style={{ marginBottom: '0.8rem' }}>
+          <span className="text-dim">$</span>{' '}
+          <span className="text-green">pattern</span>{' '}
+          <span className="text-orange">--agent-traces</span>
+        </h2>
 
-      <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
+        <div style={{ flex: 1, display: 'flex', gap: '2rem', alignItems: 'center', minHeight: 0 }}>
 
         {/* ── Left column: bullets ── */}
-        <div style={{ flex: '0 0 44%', display: 'flex', flexDirection: 'column', gap: '0.5rem', textAlign: 'left' }}>
+        <div className="at-bullets" style={{ flex: '0 0 44%', display: 'flex', flexDirection: 'column', gap: '1.2rem', textAlign: 'left' }}>
           {revealStage >= 1 && (
             <SlideItem delay={0} reveal>
               since agents work autonomously, you need an <Emphasis color="green">observability system</Emphasis> — you can't review every decision, but you must be able to audit them
@@ -107,6 +110,7 @@ function AgentTracesContent({ revealStage }: { revealStage: number }) {
           )}
         </div>
 
+        </div>
       </div>
     </>
   );

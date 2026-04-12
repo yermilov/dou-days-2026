@@ -47,18 +47,21 @@ function MetaSkillsContent({ revealStage }: { revealStage: number }) {
 
   return (
     <>
-      <style>{STYLES}</style>
+      <style>{STYLES}{`
+        .ms-bullets .slide-item { margin-bottom: 0; }
+      `}</style>
 
-      <h2 style={{ marginBottom: '1.4rem' }}>
-        <span className="text-dim">$</span>{' '}
-        <span className="text-green">pattern</span>{' '}
-        <span className="text-orange">--meta-skills</span>
-      </h2>
+      <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+        <h2 style={{ marginBottom: '0.8rem' }}>
+          <span className="text-dim">$</span>{' '}
+          <span className="text-green">pattern</span>{' '}
+          <span className="text-orange">--meta-skills</span>
+        </h2>
 
-      <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
+        <div style={{ flex: 1, display: 'flex', gap: '2rem', alignItems: 'center', minHeight: 0 }}>
 
-        {/* ── Left column: bullets ── */}
-        <div style={{ flex: '0 0 44%', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          {/* ── Left column: bullets ── */}
+          <div className="ms-bullets" style={{ flex: '0 0 44%', display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
           <SlideItem delay={0.08}>
             first most important skill in your marketplace to create is a skill to{' '}
             <Emphasis color="green">create skills</Emphasis>
@@ -78,10 +81,18 @@ function MetaSkillsContent({ revealStage }: { revealStage: number }) {
 
           {revealStage >= 1 && (
             <SlideItem delay={0} reveal>
-              or just switch to the off-the-shelf skills-creator skill from Anthropic:{' '}
+              or just switch to the <Emphasis color="green">off-the-shelf</Emphasis> skills-creator skill from Anthropic:{' '}
               <SlideLink href="https://github.com/anthropics/claude-plugins-official/tree/main/plugins/skill-creator">
                 github.com/anthropics/claude-plugins-official/tree/main/plugins/skill-creator
               </SlideLink>
+            </SlideItem>
+          )}
+
+          {revealStage >= 2 && (
+            <SlideItem delay={0} reveal>
+              you would need to figure out balance between{' '}
+              <Emphasis color="green">off-the-shelf</Emphasis> skills and more{' '}
+              <Emphasis color="orange">tailored and polished</Emphasis> ones created in-house
             </SlideItem>
           )}
         </div>
@@ -199,6 +210,7 @@ function MetaSkillsContent({ revealStage }: { revealStage: number }) {
           </div>
         )}
 
+        </div>
       </div>
     </>
   );
@@ -206,7 +218,7 @@ function MetaSkillsContent({ revealStage }: { revealStage: number }) {
 
 export const MetaSkillsSlide: SlideDefinition = {
   id: 'meta-skills',
-  maxRevealStages: 1,
+  maxRevealStages: 2,
   content: ({ revealStage }: SlideContentProps) => <MetaSkillsContent revealStage={revealStage} />,
   notes: 'Meta-skills are the highest leverage investment. One good skill-creation skill multiplies the quality of everything else. Stage 1: reveal 4th bullet + scrolling SKILL.md panel.',
 };
