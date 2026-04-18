@@ -2,7 +2,9 @@
 
 ## Project Overview
 
-A custom terminal-themed presentation site for the Ukrainian-language talk "Невигадані історії AI-first трансформації в інженерних командах (про які неможливо мовчати)". Built with React and TypeScript, featuring a Claude Code-inspired aesthetic with command-based navigation. Hosted on GitHub Pages at https://yermilov.github.io/dou-days-2026
+A DOU Days 2026-themed presentation site for the Ukrainian-language talk "Невигадані історії AI-first трансформації в інженерних командах (про які неможливо мовчати)". Built with React and TypeScript and visually mirrors the official DOU Days 2026 dark speaker template, with command-based navigation preserved from the original terminal aesthetic. Hosted on GitHub Pages at https://yermilov.github.io/dou-days-2026
+
+See [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md) for the full design spec (canvas, tokens, primitives, layouts).
 
 ## Tech Stack
 
@@ -212,53 +214,20 @@ Keyboard (when not typing):
 - Arrow keys, Space, PageDown/Up → Navigate
 - Home/End → First/last slide
 
-## Terminal Theme Principles
+## DOU Design System
 
-### Colors (CSS Custom Properties)
+Full spec: **[docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md)** — read this before touching UI.
 
-All colors must use CSS variables in HTML/CSS. Exception: SVG `fill`/`stroke` attributes use JS constants (SVG doesn't support `var()`).
-
-```css
-/* Backgrounds */
---terminal-bg: #0a0e14          /* Deep black */
---terminal-bg-secondary: #0d1219
---terminal-bg-elevated: #141b24
-
-/* Text */
---terminal-white: #e2e8f0       /* Primary */
---terminal-white-dim: #c8d1dc   /* Secondary */
---terminal-white-muted: #8b99a8 /* Tertiary */
-
-/* Accents */
---terminal-orange: #f0883e      /* h1, primary accent */
---terminal-green: #7ee787       /* h2, success */
---terminal-blue: #79c0ff        /* h3, links */
---terminal-purple: #d2a8ff      /* Code functions */
---terminal-cyan: #76e4f7        /* Inline code */
---terminal-yellow: #ffd166      /* Warnings */
---terminal-red: #ff7b72         /* Errors */
-```
-
-**Utility classes**: `.text-orange`, `.text-green`, `.text-blue`, `.text-dim`, `.text-muted`, `.glow-orange`, `.glow-green`
-
-### Typography (strict 2-size rule)
-
-- **Font**: JetBrains Mono (monospace) — single font family, no exceptions
-- **Title slide only**: hero (`--font-size-hero`: 6rem), tagline, subtitle — 3 sizes allowed
-- **All other slides**: exactly 2 sizes
-  - **Heading**: `--font-size-h2` (3.5rem) — the slide's `<h2>`
-  - **Text**: `--slide-text-normal` (1.35rem) — everything else (bullets, labels, section headers)
-- **CodeBlock component**: uses `--font-size-code` (1.25rem)
-- **UI chrome** (timer, input, progress): `--font-size-input` / `--font-size-small`
-- **No inline `fontSize` allowed** in slide components (exception: SVG `<text>` elements and diagram component props)
-
-### Visual Effects
-
-- CRT scan lines overlay
-- Subtle noise texture
-- Phosphor text glow on headings
-- Orange focus glow on input
-- Fade-in slide transitions
+Quick rules:
+- **Canvas**: fixed 1920×1080 logical stage, uniformly scaled + letterboxed (`Slide.tsx`).
+- **Font**: IBM Plex Sans (self-hosted, weights 400/600/700, latin + cyrillic). JetBrains Mono stays only inside `CodeBlock` / inline `<code>`.
+- **Palette**: use `--dou-*` tokens (`--dou-magenta`, `--dou-mint`, `--dou-violet`, `--dou-deep-purple`, …). Legacy `--terminal-*` tokens still exist but alias DOU values — don't introduce new rules that use them.
+- **Chrome**: `SlideChrome` mounts "Київ, 2026" + DOU logo on every slide. Opt out via `hideChrome: true` on the `SlideDefinition`.
+- **Background**: `SonarPattern` always rendered. Title / section / final slides set `hero: true` for the full-bleed multi-color variant.
+- **Primitives** (see §6 of design doc): `SlideChrome`, `SonarPattern`, `SectionNumber`, `NumberBadge`, `FlowPill`.
+- **2-sizes-per-slide rule** still applies: `--font-size-h2` heading + `--slide-text-normal` body. Hero slides may add `--font-size-hero`.
+- **No glow, scanline, phosphor, or flicker.** The legacy variables exist but resolve to `none` / `transparent`.
+- **No hardcoded hex in slide JSX `style={}`.** Exception: SVG `fill` / `stroke` JS constants.
 
 ## Development Guidelines
 
