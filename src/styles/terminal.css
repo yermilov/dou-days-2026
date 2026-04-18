@@ -41,15 +41,39 @@
 /* === SLIDE CONTAINER === */
 .slide-container {
   flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-lg) var(--space-xl);
+  display: block;
+  padding: 0;
   position: relative;
   overflow: hidden;
 }
 
+/* === FIXED CANVAS STAGE (1920x1080 logical, uniform scale, letterboxed) === */
+.stage-viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--terminal-bg);
+}
+
+.stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center center;
+  /* width/height/transform set inline via Slide.tsx */
+}
+
 /* === SLIDE === */
+.stage > .slide {
+  position: absolute;
+  inset: 0;
+  padding: 80px 80px 40px 80px; /* top / sides / bottom safe-area */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .slide {
   width: 100%;
   max-width: 1600px;

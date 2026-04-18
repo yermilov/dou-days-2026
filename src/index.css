@@ -1,6 +1,14 @@
 /* === FONT IMPORTS === */
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
+/* IBM Plex Sans — self-hosted (DOU template typeface) */
+@import '@fontsource/ibm-plex-sans/cyrillic-400.css';
+@import '@fontsource/ibm-plex-sans/cyrillic-600.css';
+@import '@fontsource/ibm-plex-sans/cyrillic-700.css';
+@import '@fontsource/ibm-plex-sans/latin-400.css';
+@import '@fontsource/ibm-plex-sans/latin-600.css';
+@import '@fontsource/ibm-plex-sans/latin-700.css';
+
 /* === GLOBAL RESET === */
 *,
 *::before,
@@ -28,7 +36,7 @@ body,
 body {
   background: var(--terminal-bg);
   color: var(--terminal-white);
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   line-height: 1.6;
 }
 
