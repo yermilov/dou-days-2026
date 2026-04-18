@@ -1,0 +1,25 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "056af06964ab",
+  "strategy": "manual-commit",
+  "branch": "dou-rebrand",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "bun.lock"
+  ],
+  "sessions": [
+    {
+      "metadata": "/05/6af06964ab/0/metadata.json",
+      "transcript": "/05/6af06964ab/0/full.jsonl",
+      "content_hash": "/05/6af06964ab/0/content_hash.txt",
+      "prompt": "/05/6af06964ab/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 948,
+    "cache_creation_tokens": 376515,
+    "cache_read_tokens": 31027894,
+    "output_tokens": 98416,
+    "api_call_count": 193
+  }
+}

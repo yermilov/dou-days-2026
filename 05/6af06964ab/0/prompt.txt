@@ -1,0 +1,22 @@
+I need to change design system and style for this presentation to follow design system of the conference I'm going to participate:
+
+Надсилаю також шаблони презентації:
+Темна версія: https://docs.google.com/presentation/d/REDACTED/edit?usp=sharing
+Світла версія: https://docs.google.com/presentation/d/REDACTED/edit?usp=sharing
+
+
+can you please use chrome extension to DEEPLY explore every aspect of the template design system and mimic it 100% into the style of this presentation
+so I don't need to convert it to powerpoint
+
+---
+
+(1) document full design system in the repo so I can reuse any variants in the slides modifications in the future
+(2) do you need any help exploring slides that I need to do manually? (for example, check fond names, download files) - do not hesitate to ask
+
+---
+
+/codexcli:codex-plan-review
+
+---
+
+continue implementing ~/.claude/plans/i-need-to-change-ethereal-taco.md
