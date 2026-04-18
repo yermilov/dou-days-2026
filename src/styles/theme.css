@@ -106,6 +106,39 @@
   --scanline-opacity: 0.03;
   --noise-opacity: 0.015;
   --flicker-intensity: 0.005;
+
+  /* === DOU DAYS 2026 DESIGN TOKENS === */
+
+  /* Neutral / structure */
+  --dou-white: #ffffff;
+  --dou-deep-purple: #270950;
+  --dou-near-black: #0d021b;
+  --dou-navy: #002a42;
+
+  /* Brand accents */
+  --dou-magenta: #ff16b1;
+  --dou-magenta-bright: #ff4ec3;
+  --dou-mint: #02feb9;
+  --dou-mint-dim: #6edab0;
+  --dou-violet: #7626ff;
+  --dou-violet-light: #8d88fa;
+  --dou-teal: #0097a7;
+  --dou-cyan: #02d6fe;
+
+  /* Tonal utility (dim white for secondary body text on dark bg) */
+  --dou-white-dim: rgba(255, 255, 255, 0.78);
+  --dou-white-muted: rgba(255, 255, 255, 0.56);
+
+  /* Backgrounds */
+  --dou-bg-solid: #0f0820;
+  --dou-bg-gradient: linear-gradient(135deg, #270950 0%, #0d021b 100%);
+
+  /* Number-badge gradient (agenda pill) */
+  --dou-gradient-badge: linear-gradient(180deg, #e252b8 0%, #b05cd1 100%);
+
+  /* Radii */
+  --dou-radius-pill: 9999px;
+  --dou-radius-card: 4px;
 }
 
 /* Phone-size typography */

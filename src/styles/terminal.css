@@ -1488,3 +1488,110 @@
     animation: none;
   }
 }
+
+/* === DOU PRIMITIVES ================================================ */
+
+/* --- SlideChrome: Київ,2026 tag top-left + DOU logo top-right ------- */
+.slide-chrome {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.slide-chrome__tag {
+  position: absolute;
+  top: 48px;
+  left: 58px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--dou-white);
+  letter-spacing: 0;
+}
+
+.slide-chrome__logo {
+  position: absolute;
+  top: 8px;
+  right: 58px;
+  width: 440px;
+  height: auto;
+  display: block;
+}
+
+/* --- SonarPattern: template background rings ----------------------- */
+.sonar-pattern {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.sonar-pattern--hero {
+  top: -240px;
+  left: -80px;
+  width: 2100px;
+  height: 2100px;
+  opacity: 1;
+}
+
+.sonar-pattern--subtle {
+  top: -480px;
+  right: -420px;
+  width: 1900px;
+  height: 1814px;
+  opacity: 0.35;
+}
+
+/* --- NumberBadge: agenda digit in pink→violet gradient ------------- */
+.number-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 113px;
+  height: 83px;
+  background: var(--dou-gradient-badge);
+  color: var(--dou-white);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 52px;
+  line-height: 1;
+  border-radius: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- FlowPill: rounded pill used in flow-diagram slides ------------ */
+.flow-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  border-radius: var(--dou-radius-pill);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.1;
+  color: var(--dou-white);
+  letter-spacing: 0;
+}
+
+.flow-pill--mint {
+  background: var(--dou-mint);
+  color: var(--dou-deep-purple);
+}
+
+.flow-pill--violet {
+  background: var(--dou-violet);
+  color: var(--dou-white);
+}
+
+.flow-pill--magenta {
+  background: var(--dou-magenta);
+  color: var(--dou-white);
+}
+
+/* --- SectionNumber -------------------------------------------------- */
+.section-number {
+  display: block;
+}
