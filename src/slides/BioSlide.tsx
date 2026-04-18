@@ -79,7 +79,7 @@ export const BioSlide: SlideDefinition = {
     <div className="bio-slide">
       <div className="bio-slide-content">
         <h2 style={{ marginBottom: '1.5rem', textAlign: 'left' }}>
-          <span className="text-dim">$</span> whoami
+          Hello!
         </h2>
 
         <div style={{ textAlign: 'left' }}>

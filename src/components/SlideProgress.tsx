@@ -2,7 +2,6 @@ import { SlideProgressProps } from '../types/slides';
 
 export function SlideProgress({ current, total, isFirst }: SlideProgressProps & { isFirst?: boolean }) {
   const percentage = Math.round((current / total) * 100);
-  const remaining = 100 - percentage;
 
   return (
     <div className="slide-progress">
@@ -10,7 +9,7 @@ export function SlideProgress({ current, total, isFirst }: SlideProgressProps & 
         <div className="progress-fill" style={{ width: `${percentage}%` }} />
       </div>
       <span className={isFirst ? 'progress-text--glow' : 'progress-text'}>
-        context left until auto-compact {remaining}%
+        {current} / {total}
       </span>
     </div>
   );

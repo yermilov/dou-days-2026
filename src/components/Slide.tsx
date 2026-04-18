@@ -1,10 +1,16 @@
 import { ReactNode, useEffect, useState } from 'react';
+import { SlideChrome } from './SlideChrome';
+import { SonarPattern } from './SonarPattern';
 
 interface SlideProps {
   children: ReactNode;
   isActive?: boolean;
   notes?: string;
   background?: string;
+  /** Use the full-bleed hero sonar pattern (title / section / thank-you slides). */
+  hero?: boolean;
+  /** Hide the Київ,2026 + DOU logo chrome (e.g. final slide takeover). */
+  hideChrome?: boolean;
 }
 
 const STAGE_WIDTH = 1920;
@@ -21,6 +27,8 @@ export function Slide({
   children,
   isActive = true,
   background,
+  hero = false,
+  hideChrome = false,
 }: SlideProps) {
   const [scale, setScale] = useState(computeScale);
 
@@ -47,12 +55,14 @@ export function Slide({
           transform: `translate(-50%, -50%) scale(${scale})`,
         }}
       >
+        <SonarPattern variant={hero ? 'hero' : 'subtle'} />
         <div
           className="slide"
           style={background ? { background } : undefined}
         >
           {children}
         </div>
+        {!hideChrome && <SlideChrome />}
       </div>
     </div>
   );

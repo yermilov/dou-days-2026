@@ -147,6 +147,8 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
           isActive
           notes={activeSlide.notes}
           background={activeSlide.background}
+          hero={activeSlide.hero}
+          hideChrome={activeSlide.hideChrome}
         >
           {slideContent}
         </Slide>
