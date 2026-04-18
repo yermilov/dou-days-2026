@@ -1,0 +1,42 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "33b70774a182",
+  "session_id": "fb44fe23-fe3a-4e54-9079-01fa05295fc3",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-18T17:23:48.501805Z",
+  "branch": "dou-rebrand",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "src/components/TerminalInput.tsx",
+    "src/components/Slide.tsx",
+    "src/types/slides.ts",
+    "src/components/Presentation.tsx",
+    "src/components/SlideElements.tsx",
+    "src/slides/BioSlide.tsx",
+    "src/slides/TimelineSlide.tsx",
+    "src/components/SlideProgress.tsx",
+    "src/slides/TitleSlide.tsx",
+    "src/slides/FinalSlide.tsx"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-opus-4-7[1m]",
+  "turn_id": "fda3cbc6e7e4",
+  "checkpoint_transcript_start": 1349,
+  "transcript_lines_at_start": 1349,
+  "token_usage": {
+    "input_tokens": 35,
+    "cache_creation_tokens": 22006,
+    "cache_read_tokens": 4125900,
+    "output_tokens": 8848,
+    "api_call_count": 30
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-04-18T17:23:47.901792Z",
+    "agent_lines": 29,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 29,
+    "agent_percentage": 100
+  }
+}

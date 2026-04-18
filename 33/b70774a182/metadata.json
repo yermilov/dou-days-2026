@@ -1,0 +1,34 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "33b70774a182",
+  "strategy": "manual-commit",
+  "branch": "dou-rebrand",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "src/components/Presentation.tsx",
+    "src/components/Slide.tsx",
+    "src/components/SlideElements.tsx",
+    "src/components/SlideProgress.tsx",
+    "src/components/TerminalInput.tsx",
+    "src/slides/BioSlide.tsx",
+    "src/slides/FinalSlide.tsx",
+    "src/slides/TimelineSlide.tsx",
+    "src/slides/TitleSlide.tsx",
+    "src/types/slides.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/33/b70774a182/0/metadata.json",
+      "transcript": "/33/b70774a182/0/full.jsonl",
+      "content_hash": "/33/b70774a182/0/content_hash.txt",
+      "prompt": ""
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 35,
+    "cache_creation_tokens": 22006,
+    "cache_read_tokens": 4125900,
+    "output_tokens": 8848,
+    "api_call_count": 30
+  }
+}
