@@ -1,0 +1,33 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "4c7c51b2cb2b",
+  "session_id": "fb44fe23-fe3a-4e54-9079-01fa05295fc3",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-18T17:28:30.188671Z",
+  "branch": "dou-rebrand",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "src/styles/slides.css"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-opus-4-7[1m]",
+  "turn_id": "fda3cbc6e7e4",
+  "checkpoint_transcript_start": 1584,
+  "transcript_lines_at_start": 1584,
+  "token_usage": {
+    "input_tokens": 10,
+    "cache_creation_tokens": 6929,
+    "cache_read_tokens": 1645323,
+    "output_tokens": 4167,
+    "api_call_count": 10
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-04-18T17:28:29.568602Z",
+    "agent_lines": 6,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 6,
+    "agent_percentage": 100
+  }
+}
