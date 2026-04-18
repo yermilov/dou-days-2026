@@ -778,112 +778,28 @@
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
 }
 
-/* === TITLE SLIDE ANIMATIONS === */
-/* CRT-style animations for the waiting/intro screen */
+/* === TITLE SLIDE === */
 
 .title-slide {
   position: relative;
   z-index: 1;
 }
 
-/* Animated scan lines that drift down (title slide only) */
-.title-slide::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.08) 2px,
-    rgba(0, 0, 0, 0.08) 4px
-  );
-  pointer-events: none;
-  z-index: 1000;
-  animation: scanlineDrift 8s linear infinite;
-}
-
-@keyframes scanlineDrift {
-  0% { background-position: 0 0; }
-  100% { background-position: 0 100dvh; }
-}
-
-/* Pulsing vignette overlay for CRT edge effect */
-.title-slide::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(
-    ellipse at center,
-    transparent 40%,
-    rgba(0, 0, 0, 0.4) 100%
-  );
-  pointer-events: none;
-  z-index: 999;
-  animation: vignettePulse 5s ease-in-out infinite;
-}
-
-@keyframes vignettePulse {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 0.8; }
-}
-
-/* Phosphor breathing glow on hero title */
 .title-glow {
-  animation:
-    phosphorBreath 4s ease-in-out infinite,
-    subtleFlicker 6s step-end infinite;
-  will-change: text-shadow, filter, opacity;
-}
-
-@keyframes phosphorBreath {
-  0%, 100% {
-    text-shadow:
-      0 0 10px var(--terminal-orange-glow),
-      0 0 20px var(--terminal-orange-glow);
-    filter: brightness(1);
-  }
-  50% {
-    text-shadow:
-      0 0 20px var(--terminal-orange-glow),
-      0 0 40px var(--terminal-orange-glow),
-      0 0 60px var(--terminal-orange-glow);
-    filter: brightness(1.08);
-  }
-}
-
-@keyframes subtleFlicker {
-  0%, 89%, 91%, 93%, 95%, 100% { opacity: 1; }
-  90% { opacity: 0.85; }
-  92% { opacity: 0.9; }
-  94% { opacity: 0.88; }
+  /* Formerly a phosphor-breathing CRT effect; DOU aesthetic has no glow. */
 }
 
 /* Tagline — between title and author */
 .title-slide .title-tagline {
   font-size: 2rem;
-  color: var(--terminal-green);
-  text-shadow: var(--glow-text-green);
+  color: var(--dou-mint);
   margin: 0.5rem 0 1.5rem;
-  animation: subtitlePulse 4s ease-in-out infinite;
-  will-change: opacity, text-shadow;
+  font-weight: 600;
 }
 
-/* Subtitle soft pulse */
 .title-subtitle {
-  animation: subtitlePulse 4s ease-in-out infinite;
-  will-change: opacity, text-shadow;
-}
-
-@keyframes subtitlePulse {
-  0%, 100% {
-    opacity: 0.7;
-    text-shadow: none;
-  }
-  50% {
-    opacity: 0.9;
-    text-shadow: 0 0 8px rgba(226, 232, 240, 0.3);
-  }
+  color: var(--dou-white-dim);
+  font-weight: 400;
 }
 
 /* === IMAGE SLIDE === */
