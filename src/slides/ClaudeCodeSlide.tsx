@@ -39,7 +39,7 @@ function ClaudeCodeContent({ revealStage }: { revealStage: number }) {
 
       <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
         <h2 style={{ marginBottom: '0.8rem' }}>
-          <span className="text-dim">$</span>{' '}
+          
           <span className="text-green">pattern</span>{' '}
           <span className="text-orange">--explore-and-have-fun</span>
         </h2>

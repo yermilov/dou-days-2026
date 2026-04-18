@@ -58,7 +58,7 @@ function SkillsActivatorContent({ revealStage }: { revealStage: number }) {
       <style>{STYLES}</style>
 
       <h2 style={{ marginBottom: '1.2rem' }}>
-        <span className="text-dim">$</span>{' '}
+        
         <span className="text-green">pattern</span>{' '}
         <span className="text-orange">--skills-activator</span>
       </h2>
