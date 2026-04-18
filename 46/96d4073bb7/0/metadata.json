@@ -1,0 +1,54 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "4696d4073bb7",
+  "session_id": "fb44fe23-fe3a-4e54-9079-01fa05295fc3",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-18T17:53:18.379986Z",
+  "branch": "hybrid-revert",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "CLAUDE.md",
+    "docs/DESIGN_SYSTEM.md",
+    "public/ASSET_PROVENANCE.md",
+    "src/components/FlowPill.tsx",
+    "src/components/NumberBadge.tsx",
+    "src/components/Presentation.tsx",
+    "src/components/SectionNumber.tsx",
+    "src/components/Slide.tsx",
+    "src/components/SlideChrome.tsx",
+    "src/components/SlideElements.tsx",
+    "src/components/SlideProgress.tsx",
+    "src/components/SonarPattern.tsx",
+    "src/components/TerminalInput.tsx",
+    "src/slides/BioSlide.tsx",
+    "src/slides/FinalSlide.tsx",
+    "src/slides/TimelineSlide.tsx",
+    "src/slides/TitleSlide.tsx",
+    "src/styles/slides.css",
+    "src/types/slides.ts"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-opus-4-7[1m]",
+  "turn_id": "172caa09f2aa",
+  "checkpoint_transcript_start": 1843,
+  "transcript_lines_at_start": 1843,
+  "token_usage": {
+    "input_tokens": 126,
+    "cache_creation_tokens": 254987,
+    "cache_read_tokens": 17038108,
+    "output_tokens": 35886,
+    "api_call_count": 72
+  },
+  "session_metrics": {
+    "turn_count": 5
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-04-18T17:53:17.61254Z",
+    "agent_lines": 0,
+    "human_added": 0,
+    "human_modified": 165,
+    "human_removed": 456,
+    "total_committed": 0,
+    "agent_percentage": 0
+  }
+}

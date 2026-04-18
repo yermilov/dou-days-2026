@@ -1,0 +1,21 @@
+launch local server
+
+---
+
+commit and push everything to main
+
+---
+
+try again
+
+---
+
+[Image #1] new layout looks horrible [Image #2]
+
+---
+
+use my original layouts but keep visual style
+
+---
+
+use my original layouts but keep visual style (font, colors, etc) from the dou
