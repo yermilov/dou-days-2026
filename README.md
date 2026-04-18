@@ -1,3 +1,3 @@
-# AI-First Transformation From Within
+# Невигадані історії AI-first трансформації в інженерних командах
 
-[View Presentation](https://yermilov.github.io/ai-first-transformation-from-within-en/)
+[View Presentation](https://yermilov.github.io/dou-days-2026/)

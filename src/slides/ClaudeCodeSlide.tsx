@@ -3,7 +3,7 @@ import { QRCodeSVG } from 'qrcode.react';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
 import { SlideItem } from '../components/SlideElements';
 
-const REPO_URL = 'https://github.com/yermilov/ai-first-transformation-from-within-en';
+const REPO_URL = 'https://github.com/yermilov/dou-days-2026';
 
 function Prompt({ children }: { children: ReactNode }) {
   return (
@@ -94,7 +94,7 @@ function ClaudeCodeContent({ revealStage }: { revealStage: number }) {
             }}
           >
             <span style={{ color: 'var(--terminal-green)', fontWeight: 'bold', textShadow: 'var(--glow-text-green)' }}>$</span>
-            github.com/yermilov/ai-first-transformation-from-within-en
+            github.com/yermilov/dou-days-2026
           </a>
         </div>
 

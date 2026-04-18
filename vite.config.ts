@@ -13,5 +13,5 @@ export default defineConfig({
       svgo: { plugins: [{ removeViewBox: false }] },
     }),
   ],
-  base: '/ai-first-transformation-from-within-en/',
+  base: '/dou-days-2026/',
 })

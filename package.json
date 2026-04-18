@@ -1,9 +1,9 @@
 {
-  "name": "ai-first-transformation-from-within-en",
+  "name": "dou-days-2026",
   "private": true,
   "version": "0.0.1",
   "type": "module",
-  "homepage": "https://yermilov.github.io/ai-first-transformation-from-within-en",
+  "homepage": "https://yermilov.github.io/dou-days-2026",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
