@@ -4,7 +4,7 @@
 .presentation {
   width: 100vw;
   height: var(--vh-full);
-  background: #000;
+  background: var(--dou-bg-gradient);
   color: var(--dou-white);
   font-family: var(--font-sans);
   display: flex;
@@ -16,39 +16,15 @@
 /* === SLIDE CONTAINER === */
 .slide-container {
   flex: 1;
-  display: block;
-  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg) var(--space-xl);
   position: relative;
   overflow: hidden;
 }
 
-/* === FIXED CANVAS STAGE (1920x1080 logical, uniform scale, letterboxed) === */
-.stage-viewport {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  background: var(--dou-bg-gradient);
-}
-
-.stage {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform-origin: center center;
-  /* width/height/transform set inline via Slide.tsx */
-}
-
 /* === SLIDE === */
-.stage > .slide {
-  position: absolute;
-  inset: 0;
-  padding: 80px 80px 40px 80px; /* top / sides / bottom safe-area */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 .slide {
   width: 100%;
   max-width: 1600px;
@@ -57,51 +33,45 @@
   color: var(--dou-white);
   font-family: var(--font-sans);
   text-align: center;
-  animation: slideIn var(--transition-normal) ease-out;
+  animation: slideIn var(--transition-normal) cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(20px);
+    filter: blur(4px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0);
   }
 }
 
 /* Headings */
 .slide h1 {
   font-size: var(--font-size-h1);
-  font-weight: 700;
-  color: var(--dou-white);
+  font-weight: 600;
+  color: var(--dou-magenta);
   margin-bottom: var(--space-lg);
-  letter-spacing: 0;
+  letter-spacing: var(--letter-spacing-tight);
   line-height: var(--line-height-tight);
   font-family: var(--font-sans);
 }
 
 .slide h1.hero {
   font-size: var(--font-size-hero);
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
 }
 
 .slide h2 {
   font-size: var(--font-size-h2);
-  font-weight: 700;
+  font-weight: 600;
   color: var(--dou-mint);
   margin-bottom: var(--space-lg);
-  letter-spacing: 0;
+  letter-spacing: var(--letter-spacing-tight);
   line-height: var(--line-height-tight);
   font-family: var(--font-sans);
-}
-
-.slide h2.h2--magenta {
-  color: var(--dou-magenta);
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
 }
 
 .slide h3 {
@@ -250,7 +220,11 @@
 }
 
 .terminal-input-prompt {
-  display: none; /* no $ prompt in DOU aesthetic */
+  color: var(--dou-magenta);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-input);
+  font-weight: 700;
+  flex-shrink: 0;
 }
 
 .terminal-input-field {
@@ -1394,109 +1368,3 @@
   }
 }
 
-/* === DOU PRIMITIVES ================================================ */
-
-/* --- SlideChrome: Київ,2026 tag top-left + DOU logo top-right ------- */
-.slide-chrome {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 50;
-}
-
-.slide-chrome__tag {
-  position: absolute;
-  top: 48px;
-  left: 58px;
-  font-family: var(--font-sans);
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 1;
-  color: var(--dou-white);
-  letter-spacing: 0;
-}
-
-.slide-chrome__logo {
-  position: absolute;
-  top: 8px;
-  right: 58px;
-  width: 440px;
-  height: auto;
-  display: block;
-}
-
-/* --- SonarPattern: template background rings ----------------------- */
-.sonar-pattern {
-  position: absolute;
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
-}
-
-.sonar-pattern--hero {
-  top: -240px;
-  left: -80px;
-  width: 2100px;
-  height: 2100px;
-  opacity: 1;
-}
-
-.sonar-pattern--subtle {
-  top: -480px;
-  right: -420px;
-  width: 1900px;
-  height: 1814px;
-  opacity: 0.35;
-}
-
-/* --- NumberBadge: agenda digit in pink→violet gradient ------------- */
-.number-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 113px;
-  height: 83px;
-  background: var(--dou-gradient-badge);
-  color: var(--dou-white);
-  font-family: var(--font-sans);
-  font-weight: 600;
-  font-size: 52px;
-  line-height: 1;
-  border-radius: 0;
-  font-variant-numeric: tabular-nums;
-}
-
-/* --- FlowPill: rounded pill used in flow-diagram slides ------------ */
-.flow-pill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px 32px;
-  border-radius: var(--dou-radius-pill);
-  font-family: var(--font-sans);
-  font-weight: 700;
-  font-size: 28px;
-  line-height: 1.1;
-  color: var(--dou-white);
-  letter-spacing: 0;
-}
-
-.flow-pill--mint {
-  background: var(--dou-mint);
-  color: var(--dou-deep-purple);
-}
-
-.flow-pill--violet {
-  background: var(--dou-violet);
-  color: var(--dou-white);
-}
-
-.flow-pill--magenta {
-  background: var(--dou-magenta);
-  color: var(--dou-white);
-}
-
-/* --- SectionNumber -------------------------------------------------- */
-.section-number {
-  display: block;
-}

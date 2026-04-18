@@ -2,7 +2,6 @@ import { SlideDefinition } from '../types/slides';
 
 export const TitleSlide: SlideDefinition = {
   id: 'title',
-  hero: true,
   content: (
     <div className="title-slide">
       <h1 className="hero title-glow">Невигадані історії AI-first трансформації в інженерних командах</h1>

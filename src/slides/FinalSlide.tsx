@@ -4,14 +4,10 @@ import linkedinQr from '/linkedin-qr.jpeg?url';
 
 export const FinalSlide: SlideDefinition = {
   id: 'final',
-  hero: true,
   content: ({ revealStage }) => (
     <>
-      <h2
-        className="h2--magenta"
-        style={{ marginBottom: '2rem', textAlign: 'center' }}
-      >
-        THANK YOU
+      <h2 style={{ marginBottom: '2rem', textAlign: 'center', color: 'var(--terminal-blue)' }}>
+        compacting the conversation...
       </h2>
 
       <div

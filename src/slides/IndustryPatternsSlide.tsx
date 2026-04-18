@@ -273,7 +273,7 @@ function IndustryPatternsContent({ revealStage }: SlideContentProps) {
       <style>{STYLES}</style>
 
       <h2 style={{ marginBottom: '1rem', flexShrink: 0 }}>
-        
+        <span className="text-dim">$</span>{' '}
         <span className="text-green">pattern</span>{' '}
         <span className="text-orange">--ai-first-org</span>
       </h2>

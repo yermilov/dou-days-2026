@@ -54,7 +54,7 @@ export const TimelineSlide: SlideDefinition = {
     return (
       <div className="timeline-slide-v2">
         <h2 className="timeline-title-v2">
-          My AI coding timeline
+          <span className="text-dim">$</span> my ai coding timeline
         </h2>
 
         <div className="timeline-layout">

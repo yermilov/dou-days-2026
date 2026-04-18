@@ -279,7 +279,7 @@ function InceptionPatternsContent({ revealStage = 0 }: SlideContentProps) {
       `}</style>
       <div style={{ display: 'flex', flexDirection: 'column', height: '100%', gap: '0.8rem' }}>
         <h2 style={{ marginBottom: '0.5rem' }}>
-          
+          <span className="text-dim">$</span>{' '}
           <span className="text-green">pattern</span>{' '}
           <span className="text-orange">--inception</span>
         </h2>

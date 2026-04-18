@@ -7,7 +7,7 @@ export const HumanAiEngSlide: SlideDefinition = {
   content: ({ revealStage }: SlideContentProps) => (
     <>
       <h2 style={{ marginBottom: '2rem' }}>
-        
+        <span className="text-dim">$</span>{' '}
         <span className="text-green">pattern</span>{' '}
         <span className="text-orange">--human-centered</span>
       </h2>
