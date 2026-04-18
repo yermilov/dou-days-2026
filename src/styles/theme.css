@@ -3,45 +3,46 @@
   --vh-full: 100vh;
   --vh-full: 100dvh; /* cascade override for supporting browsers */
 
-  /* === CRT TERMINAL COLOR PALETTE === */
+  /* === LEGACY TERMINAL TOKEN ALIASES ===
+     Class and variable names from the original terminal theme are preserved
+     and remapped to DOU palette values so existing slide CSS keeps working
+     without a 1500-line rewrite. When authoring new CSS, prefer --dou-*. */
 
-  /* Deep blacks with subtle blue undertone */
-  --terminal-bg: #0a0e14;
-  --terminal-bg-secondary: #0d1219;
-  --terminal-bg-input: #0f151c;
-  --terminal-bg-elevated: #141b24;
+  /* Backgrounds — all collapsed to the DOU dark surfaces */
+  --terminal-bg: #0d021b;
+  --terminal-bg-secondary: #0f0820;
+  --terminal-bg-input: #0f0820;
+  --terminal-bg-elevated: rgba(255, 255, 255, 0.04);
 
-  /* Phosphor text colors with glow potential */
-  --terminal-white: #e2e8f0;
-  --terminal-white-dim: #c8d1dc;
-  --terminal-white-muted: #8b99a8;
+  /* Foreground text — DOU whites */
+  --terminal-white: #ffffff;
+  --terminal-white-dim: rgba(255, 255, 255, 0.78);
+  --terminal-white-muted: rgba(255, 255, 255, 0.56);
 
-  /* Claude Code signature orange - warm CRT amber */
-  --terminal-orange: #f0883e;
-  --terminal-orange-dim: #c96f2e;
-  --terminal-orange-glow: rgba(240, 136, 62, 0.4);
-  --terminal-orange-bright: #ffa657;
+  /* Accent roles — remapped: orange→magenta, green→mint, blue→violet */
+  --terminal-orange: #ff16b1;
+  --terminal-orange-dim: #c11288;
+  --terminal-orange-glow: transparent;
+  --terminal-orange-bright: #ff4ec3;
 
-  /* Terminal green - phosphor P1 inspired */
-  --terminal-green: #7ee787;
-  --terminal-green-dim: #56d364;
-  --terminal-green-glow: rgba(126, 231, 135, 0.35);
-  --terminal-green-bright: #a5f3b4;
+  --terminal-green: #02feb9;
+  --terminal-green-dim: #6edab0;
+  --terminal-green-glow: transparent;
+  --terminal-green-bright: #02feb9;
 
-  /* Accent colors for syntax highlighting */
-  --terminal-blue: #79c0ff;
-  --terminal-blue-glow: rgba(121, 192, 255, 0.3);
-  --terminal-purple: #d2a8ff;
-  --terminal-purple-glow: rgba(210, 168, 255, 0.3);
-  --terminal-red: #ff7b72;
-  --terminal-red-glow: rgba(255, 123, 114, 0.3);
-  --terminal-cyan: #76e4f7;
-  --terminal-cyan-glow: rgba(118, 228, 247, 0.3);
+  --terminal-blue: #7626ff;
+  --terminal-blue-glow: transparent;
+  --terminal-purple: #8d88fa;
+  --terminal-purple-glow: transparent;
+  --terminal-red: #ff6bd0;
+  --terminal-red-glow: transparent;
+  --terminal-cyan: #02d6fe;
+  --terminal-cyan-glow: transparent;
   --terminal-yellow: #ffd166;
 
-  /* Border colors */
-  --terminal-border: #1e293b;
-  --terminal-border-bright: #334155;
+  /* Borders */
+  --terminal-border: rgba(255, 255, 255, 0.12);
+  --terminal-border-bright: rgba(255, 255, 255, 0.24);
   --terminal-border-focus: var(--terminal-orange);
 
   /* === TYPOGRAPHY === */
@@ -96,16 +97,16 @@
   --transition-normal: 300ms ease-out;
   --transition-slow: 500ms ease-out;
 
-  /* Glow effects */
-  --glow-orange: 0 0 20px var(--terminal-orange-glow), 0 0 40px var(--terminal-orange-glow);
-  --glow-green: 0 0 20px var(--terminal-green-glow), 0 0 40px var(--terminal-green-glow);
-  --glow-text-orange: 0 0 10px var(--terminal-orange-glow);
-  --glow-text-green: 0 0 10px var(--terminal-green-glow);
+  /* Glow effects — zeroed for DOU (no phosphor text-shadow) */
+  --glow-orange: none;
+  --glow-green: none;
+  --glow-text-orange: none;
+  --glow-text-green: none;
 
-  /* CRT effects */
-  --scanline-opacity: 0.03;
-  --noise-opacity: 0.015;
-  --flicker-intensity: 0.005;
+  /* CRT effects — zeroed */
+  --scanline-opacity: 0;
+  --noise-opacity: 0;
+  --flicker-intensity: 0;
 
   /* === DOU DAYS 2026 DESIGN TOKENS === */
 
