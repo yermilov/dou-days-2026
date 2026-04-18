@@ -1,0 +1,27 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "9dc191af8048",
+  "strategy": "manual-commit",
+  "branch": "dou-rebrand",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "src/App.tsx",
+    "src/styles/slides.css",
+    "src/styles/theme.css"
+  ],
+  "sessions": [
+    {
+      "metadata": "/9d/c191af8048/0/metadata.json",
+      "transcript": "/9d/c191af8048/0/full.jsonl",
+      "content_hash": "/9d/c191af8048/0/content_hash.txt",
+      "prompt": ""
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 35,
+    "cache_creation_tokens": 29027,
+    "cache_read_tokens": 2813613,
+    "output_tokens": 15084,
+    "api_call_count": 25
+  }
+}
