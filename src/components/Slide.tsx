@@ -49,6 +49,7 @@ export function Slide({
   if (hero) {
     return (
       <div className="stage-viewport" ref={setViewportEl}>
+        <SonarPattern />
         <div
           className="stage"
           style={{
@@ -57,7 +58,6 @@ export function Slide({
             transform: `translate(-50%, -50%) scale(${scale})`,
           }}
         >
-          <SonarPattern />
           <SlideChrome />
           <div className="slide slide--hero" style={background ? { background } : undefined}>
             {children}
