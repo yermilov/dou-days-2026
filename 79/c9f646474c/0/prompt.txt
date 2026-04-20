@@ -1,0 +1,21 @@
+[Image #16] - take a look at title slide - how radiator cicles are rendered?
+
+---
+
+can we make image fit width instead fit height?[Image #17]
+
+---
+
+can you now embrace your /frontend-design:frontend-design and make [Image #18] title font a bit larger and subtitle a bit smaller to fit each other nicely
+
+---
+
+let's make title a bit larger, a tagline a bit smaller
+
+---
+
+let's make title a bit larger
+
+---
+
+[Image #19] we probably need pink area a bit smaller

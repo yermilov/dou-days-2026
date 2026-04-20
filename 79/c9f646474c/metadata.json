@@ -1,0 +1,26 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "79c9f646474c",
+  "strategy": "manual-commit",
+  "branch": "refine-title-slide-typography",
+  "checkpoints_count": 5,
+  "files_touched": [
+    "src/components/Slide.tsx",
+    "src/styles/slides.css"
+  ],
+  "sessions": [
+    {
+      "metadata": "/79/c9f646474c/0/metadata.json",
+      "transcript": "/79/c9f646474c/0/full.jsonl",
+      "content_hash": "/79/c9f646474c/0/content_hash.txt",
+      "prompt": "/79/c9f646474c/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 111,
+    "cache_creation_tokens": 224332,
+    "cache_read_tokens": 4596580,
+    "output_tokens": 29187,
+    "api_call_count": 47
+  }
+}
