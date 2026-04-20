@@ -807,26 +807,29 @@
 /*
  * Source PNG is 1774×1774 (square). We replicate the DOU template's exact
  * transform: srcRect crop `l=3.508% r=5.126% t=22.464% b=26.143%` keeps
- * the middle-ish 1621×911 slice (≈16:9), then stretches it to fill the
- * 1920×1080 shape. Scale factors (horizontal 1.184, vertical 1.186) are
- * nearly equal, so rings stay visually circular. We implement the crop by
- * displaying the FULL image scaled to 2101×2104 and offsetting by the
- * negated crop origin (-73, -473). See `docs/TITLE_SLIDE_CALIBRATION.md`.
+ * the middle-ish 1621×911 slice (≈16:9), then stretches it to fill a 16:9
+ * box. Scale factors (horizontal 1.184, vertical 1.186) are nearly equal,
+ * so rings stay visually circular. We implement the crop by displaying the
+ * FULL image scaled to ~109.43% × 194.81% of the container and offsetting
+ * by the negated crop origin (−3.80% / −43.80%). Using percentages lets the
+ * wrapper fluidly fill the viewport width independent of the scaled stage.
+ * See `docs/TITLE_SLIDE_CALIBRATION.md`.
  */
 .sonar-pattern--hero {
-  top: 0;
+  top: 50%;
   left: 0;
-  width: 1920px;
-  height: 1080px;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  transform: translateY(-50%);
   overflow: hidden;
 }
 
 .sonar-pattern__image {
   position: absolute;
-  top: -473px;
-  left: -73px;
-  width: 2101px;
-  height: 2104px;
+  top: -43.796%;
+  left: -3.802%;
+  width: 109.427%;
+  height: 194.815%;
   display: block;
 }
 
@@ -913,37 +916,37 @@
   position: absolute;
   top: 458px;
   left: 370px;
-  width: 1180px;
+  width: 1340px;
   margin: 0;
   padding: 36px 48px;
   background: var(--dou-near-black);
   color: var(--dou-white);
   font-family: var(--font-sans);
   font-weight: 700;
-  font-size: 78px;
-  line-height: 1.08;
-  letter-spacing: 0;
+  font-size: 94px;
+  line-height: 1.04;
+  letter-spacing: -0.015em;
   text-transform: uppercase;
   z-index: 1;
 }
 
 .title-hero__description {
   position: absolute;
-  top: 775px;
-  left: 947px;
-  width: 860px;
-  padding: 36px 48px;
+  top: 795px;
+  left: 1027px;
+  width: 780px;
+  padding: 26px 38px;
   background: var(--dou-magenta);
   color: var(--dou-white);
   z-index: 3;
 }
 
 .slide--hero p.title-hero__tagline {
-  margin: 0 0 16px;
+  margin: 0 0 12px;
   font-family: var(--font-sans);
   font-weight: 600;
-  font-size: 56px;
-  line-height: 1.15;
+  font-size: 34px;
+  line-height: 1.18;
   color: var(--dou-white);
 }
 
@@ -951,7 +954,7 @@
   margin: 0;
   font-family: var(--font-sans);
   font-weight: 400;
-  font-size: 38px;
+  font-size: 32px;
   line-height: 1.3;
   color: var(--dou-white);
 }
