@@ -1,0 +1,35 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "8730bae46a7a",
+  "strategy": "manual-commit",
+  "branch": "title-slide-dou-template",
+  "checkpoints_count": 11,
+  "files_touched": [
+    "docs/DESIGN_SYSTEM.md",
+    "docs/TITLE_SLIDE_CALIBRATION.md",
+    "public/ASSET_PROVENANCE.md",
+    "public/dou-sonar-hero.png",
+    "src/components/Presentation.tsx",
+    "src/components/Slide.tsx",
+    "src/components/SlideChrome.tsx",
+    "src/components/SonarPattern.tsx",
+    "src/slides/TitleSlide.tsx",
+    "src/styles/slides.css",
+    "src/types/slides.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/87/30bae46a7a/0/metadata.json",
+      "transcript": "/87/30bae46a7a/0/full.jsonl",
+      "content_hash": "/87/30bae46a7a/0/content_hash.txt",
+      "prompt": "/87/30bae46a7a/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 284,
+    "cache_creation_tokens": 831964,
+    "cache_read_tokens": 14726681,
+    "output_tokens": 122334,
+    "api_call_count": 117
+  }
+}

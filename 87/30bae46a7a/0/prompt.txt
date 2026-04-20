@@ -1,0 +1,74 @@
+/aidev:learn-code rebrand slide decck to dou template style
+
+---
+
+do you happen to have link on dou template?
+
+---
+
+please look through previous session logs to find it
+
+---
+
+please add them to the docs/DESIGN_SYSTEM.md
+
+---
+
+[Image #2] [Image #3] now I want my title slide to look exacly like the one on the template except for bottom panel with timer and inbox
+
+---
+
+[Image #4] [Image #5]
+
+I have two critiques:
+
+(1) I won't agree that match is pixel-perfect honestly
+
+(2) please use larger fonts so text is very well visible from far behind the presenting hall
+
+---
+
+[Image #6] [Image #7] pardon, but I don't think this is pixel perfect
+
+---
+
+[Image #6] [Image #7] pardon, but I don't think this is pixel perfect:
+(1) circle pattern on backfground is wrong
+(2) DOY DAY text is stretched
+(3) day background logo is barely visible
+
+---
+
+yay! I would only ask for two things:
+(1) [Image #8] don't crop circular pattern so it takes the whole space
+(2) make font of [Image #9] subtytle event larger
+
+---
+
+yay! I would only ask for two things:
+(1) [Image #10] don't stop circular pattern so it continues through the whole space
+(2) [Image #12] subtitle font should be slighly smaller than title font
+
+---
+
+[Image #13] are you sure?
+
+---
+
+[Image #14] what about sonar not using whole space?
+
+---
+
+[Image #15] still not enough
+
+---
+
+no, revert latest change back
+
+---
+
+let's document the process of pixel-perfect adjustment and stop for now
+
+---
+
+commit and push everything to main
