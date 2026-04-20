@@ -14,6 +14,7 @@ export interface SlideDefinition {
   tooltip?: ReactNode;
   maxRevealStages?: number;
   initialRevealStage?: number;
+  hero?: boolean;
 }
 
 export interface CodeBlockProps {
@@ -43,6 +44,7 @@ export interface SlideProps {
   isActive: boolean;
   notes?: string;
   background?: string;
+  hero?: boolean;
 }
 
 export interface SlideProgressProps {

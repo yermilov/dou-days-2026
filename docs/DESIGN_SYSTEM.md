@@ -6,9 +6,30 @@ prompts, `$ pattern --foo` headings, `> ` bullets, `> ` input prompt,
 visual style** — IBM Plex Sans font and the DOU magenta / mint / violet
 colour palette.
 
-There is **no chrome overlay** (`Київ, 2026` / DOU logo) and **no sonar
-background** on slides — those were reverted. The DOU logo appears only
-as the browser tab favicon.
+Content slides (2–27) have **no chrome overlay** and **no sonar background** —
+they keep the terminal layout (`$ pattern --foo` heading, `> ` bullets) rendered
+in DOU colours.
+
+The **title slide is a pixel-perfect reproduction of the DOU template title**
+— full-bleed sonar rings, `DOU|))` logo top-right, `Київ, 2026` badge, dark
+title rectangle with uppercase white text, and a magenta description block.
+It opts into this layout by setting `hero: true` on its `SlideDefinition`,
+which makes `Slide.tsx` wrap the content in a fixed 1920×1080 stage scaled
+uniformly via `transform: scale()` so absolute pixel positions stay
+identical at any window size. The bottom timer + terminal input bar remain
+unchanged, since they render outside the slide stage.
+
+See [TITLE_SLIDE_CALIBRATION.md](./TITLE_SLIDE_CALIBRATION.md) for the
+methodology used to extract exact coordinates from the template PPTX and
+replicate them in CSS (including srcRect+stretch image transforms).
+
+## Source templates
+
+The DOU palette, typography, and visual language in this doc are derived from
+the official DOU Days 2026 Google Slides templates provided by the conference:
+
+- Dark version (used here): <https://docs.google.com/presentation/d/1--lbLSvxQ-V4aFgJfHkOyrzO_QbAF6Sp4RtoGwGZQhY/edit?usp=sharing>
+- Light version: <https://docs.google.com/presentation/d/1-5sSbA1JK841DAiB3v_lRriknEIYz3gvc3GKIcTDptY/edit?usp=sharing>
 
 ---
 
@@ -123,8 +144,11 @@ magenta `--explore-and-have-fun` in IBM Plex Sans.
   progress-bar fill.
 - **Timer**: IBM Plex Sans tabular-nums, dim-white text.
 
-No persistent overlay (Київ,2026 / DOU logo) on slides. The DOU logo is
-used only as the browser favicon (`index.html`).
+No persistent overlay on content slides. On the **title slide only**, the
+`SlideChrome` component renders the `DOU|))` logo top-right, and the
+`SonarPattern` component renders the full-bleed sonar rings
+(`public/dou-sonar-hero.png`). The `Київ, 2026` badge lives inside the
+title block (`.title-hero__tag`) rather than as free-floating chrome.
 
 ---
 
@@ -135,8 +159,8 @@ used only as the browser favicon (`index.html`).
 - ✅ Keep the `$ pattern --foo` h2 idiom on content slides.
 - ✅ Keep the `> ` bullet / input prompt / section-header `// ` prefix.
 - ❌ No text-shadow / glow / phosphor / scanline effects.
-- ❌ No persistent chrome (Київ,2026 + DOU logo) on slide body.
-- ❌ No hero sonar background on title slides.
+- ❌ No persistent chrome on content slide body (title slide is the only exception).
+- ❌ No hero sonar background on content slides (title slide is the only exception).
 - ❌ No hardcoded hex in slide JSX `style={}`. Exception: SVG attributes.
 - ❌ Don't exceed the 2-sizes-per-slide rule. Reduce content or split slides
   if they overflow.
@@ -147,6 +171,9 @@ used only as the browser favicon (`index.html`).
 
 | File | Role |
 | --- | --- |
-| `public/dou-logo.png` | Browser tab favicon (see `public/ASSET_PROVENANCE.md`) |
+| `public/dou-logo.png` | Browser tab favicon + title-slide top-right logo |
+| `public/dou-sonar-hero.png` | Title-slide full-bleed sonar background (extracted from the dark template) |
 | `public/favicon.png` | (unused; may be removed) |
 | `public/*.png|jpg|jpeg|mp4|wav` | Per-slide media |
+
+See `public/ASSET_PROVENANCE.md` for extraction details.

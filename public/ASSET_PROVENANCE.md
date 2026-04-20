@@ -4,14 +4,15 @@
 
 | File | Source | Role |
 | --- | --- | --- |
-| `dou-logo.png` | DOU Days 2026 dark speaker template — slide 1, top-right embedded image | Browser tab favicon |
+| `dou-logo.png` | DOU Days 2026 dark speaker template — slide 1, top-right embedded image | Browser tab favicon + title-slide top-right logo |
+| `dou-sonar-hero.png` | DOU Days 2026 dark speaker template — full-bleed title-slide background | Title-slide sonar background |
 
 ### Source
 
 - Template: **DOU Days 2026 — Dark speaker template** (Google Slides)
 - URL: https://docs.google.com/presentation/d/1--lbLSvxQ-V4aFgJfHkOyrzO_QbAF6Sp4RtoGwGZQhY
 - Extracted: 2026-04-18
-- Dimensions at capture: 226×63 px
+- Dimensions at capture: `dou-logo.png` 226×63 px (source file 2048×571); `dou-sonar-hero.png` 1080×1080 px
 
 ### Extraction method
 
