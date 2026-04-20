@@ -14,10 +14,7 @@ export interface SlideDefinition {
   tooltip?: ReactNode;
   maxRevealStages?: number;
   initialRevealStage?: number;
-  /** Use the full-bleed hero sonar background (title / section / final slides). */
   hero?: boolean;
-  /** Hide the persistent "Київ, 2026" + DOU logo chrome on this slide. */
-  hideChrome?: boolean;
 }
 
 export interface CodeBlockProps {
@@ -47,6 +44,7 @@ export interface SlideProps {
   isActive: boolean;
   notes?: string;
   background?: string;
+  hero?: boolean;
 }
 
 export interface SlideProgressProps {

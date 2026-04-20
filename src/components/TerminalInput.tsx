@@ -85,6 +85,7 @@ export function TerminalInput({
   return (
     <div className="terminal-input">
       <div className="terminal-input-wrapper">
+        <span className="terminal-input-prompt">&gt;</span>
         <input
           ref={inputRef}
           type="text"

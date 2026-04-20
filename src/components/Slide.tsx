@@ -1,25 +1,22 @@
 import { ReactNode, useEffect, useState } from 'react';
-import { SlideChrome } from './SlideChrome';
 import { SonarPattern } from './SonarPattern';
+import { SlideChrome } from './SlideChrome';
 
 interface SlideProps {
   children: ReactNode;
   isActive?: boolean;
   notes?: string;
   background?: string;
-  /** Use the full-bleed hero sonar pattern (title / section / thank-you slides). */
   hero?: boolean;
-  /** Hide the Київ,2026 + DOU logo chrome (e.g. final slide takeover). */
-  hideChrome?: boolean;
 }
 
 const STAGE_WIDTH = 1920;
 const STAGE_HEIGHT = 1080;
 
-function computeScale(): number {
-  if (typeof window === 'undefined') return 1;
-  const sx = window.innerWidth / STAGE_WIDTH;
-  const sy = window.innerHeight / STAGE_HEIGHT;
+function computeScale(container: HTMLElement | null): number {
+  if (!container) return 1;
+  const sx = container.clientWidth / STAGE_WIDTH;
+  const sy = container.clientHeight / STAGE_HEIGHT;
   return Math.min(sx, sy);
 }
 
@@ -28,42 +25,54 @@ export function Slide({
   isActive = true,
   background,
   hero = false,
-  hideChrome = false,
 }: SlideProps) {
-  const [scale, setScale] = useState(computeScale);
+  const [viewportEl, setViewportEl] = useState<HTMLDivElement | null>(null);
+  const [scale, setScale] = useState(1);
 
   useEffect(() => {
-    const onResize = () => setScale(computeScale());
-    onResize();
-    window.addEventListener('resize', onResize);
-    window.addEventListener('orientationchange', onResize);
+    if (!hero || !viewportEl) return;
+    const update = () => setScale(computeScale(viewportEl));
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(viewportEl);
+    window.addEventListener('resize', update);
+    window.addEventListener('orientationchange', update);
     return () => {
-      window.removeEventListener('resize', onResize);
-      window.removeEventListener('orientationchange', onResize);
+      ro.disconnect();
+      window.removeEventListener('resize', update);
+      window.removeEventListener('orientationchange', update);
     };
-  }, []);
+  }, [hero, viewportEl]);
 
   if (!isActive) return null;
 
-  return (
-    <div className="stage-viewport">
-      <div
-        className="stage"
-        style={{
-          width: `${STAGE_WIDTH}px`,
-          height: `${STAGE_HEIGHT}px`,
-          transform: `translate(-50%, -50%) scale(${scale})`,
-        }}
-      >
-        <SonarPattern variant={hero ? 'hero' : 'subtle'} />
+  if (hero) {
+    return (
+      <div className="stage-viewport" ref={setViewportEl}>
         <div
-          className="slide"
-          style={background ? { background } : undefined}
+          className="stage"
+          style={{
+            width: `${STAGE_WIDTH}px`,
+            height: `${STAGE_HEIGHT}px`,
+            transform: `translate(-50%, -50%) scale(${scale})`,
+          }}
         >
-          {children}
+          <SonarPattern />
+          <SlideChrome />
+          <div className="slide slide--hero" style={background ? { background } : undefined}>
+            {children}
+          </div>
         </div>
-        {!hideChrome && <SlideChrome />}
       </div>
+    );
+  }
+
+  return (
+    <div
+      className="slide"
+      style={background ? { background } : undefined}
+    >
+      {children}
     </div>
   );
 }

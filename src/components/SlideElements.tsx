@@ -13,7 +13,7 @@ export function Code({
   return <code className={className}>{children}</code>;
 }
 
-// Section header with color variants (DOU: no // prefix)
+// Section header with color variants
 export function SectionHeader({
   children,
   color,
@@ -23,6 +23,7 @@ export function SectionHeader({
 }) {
   return (
     <div className={`section-header section-header--${color}`}>
+      {'// '}
       {children}
     </div>
   );
@@ -49,7 +50,7 @@ export function SlideItem({
 
   return (
     <div className="slide-item" style={style}>
-      <span className="slide-item__prefix">•</span>
+      <span className="slide-item__prefix">&gt;</span>
       <span>{children}</span>
     </div>
   );

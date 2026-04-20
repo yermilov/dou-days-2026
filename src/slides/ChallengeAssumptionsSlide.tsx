@@ -6,7 +6,7 @@ export const ChallengeAssumptionsSlide: SlideDefinition = {
   content: ({ revealStage }) => (
     <>
       <h2 style={{ marginBottom: '1.2rem' }}>
-        
+        <span className="text-dim">$</span>{' '}
         <span className="text-green">pattern</span>{' '}
         <span className="text-orange">--challenge-assumptions</span>
       </h2>

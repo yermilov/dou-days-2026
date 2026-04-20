@@ -1,24 +1,21 @@
 import douLogo from '/dou-logo.png?url';
 
 /**
- * Persistent chrome layer rendered once per slide inside the 1920x1080 stage:
- * - "Київ, 2026" tag top-left
- * - DOU logo top-right
+ * Chrome layer rendered inside the 1920×1080 stage on hero slides.
+ * Currently only the `DOU|))` logo in the top-right.
  *
- * Matches the exact positions measured on the DOU Days 2026 dark template
- * (see docs/DESIGN_SYSTEM.md — Chrome section).
+ * The source logo PNG is 2048×571; the template crops it via
+ * `<a:srcRect l=10.42% r=6.751% t=15.672% b=15.679%/>` and stretches the
+ * crop to 364×84. We replicate that with an inner <img> sized to the scaled
+ * source and positioned by the crop origin so the logo renders at its
+ * intended proportions.
  */
 export function SlideChrome() {
   return (
     <div className="slide-chrome" aria-hidden="true">
-      <span className="slide-chrome__tag">Київ, 2026</span>
-      <img
-        className="slide-chrome__logo"
-        src={douLogo}
-        alt=""
-        width={226}
-        height={63}
-      />
+      <div className="slide-chrome__logo">
+        <img className="slide-chrome__logo-image" src={douLogo} alt="" />
+      </div>
     </div>
   );
 }

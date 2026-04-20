@@ -142,18 +142,21 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
   return (
     <NavigationContext.Provider value={{ goToSlideById }}>
     <div className="presentation">
-      <div className="slide-container" ref={containerRef} key={activeSlide.id}>
+      <div
+        className={`slide-container${activeSlide.hero ? ' slide-container--hero' : ''}`}
+        ref={containerRef}
+        key={activeSlide.id}
+      >
         <Slide
           isActive
           notes={activeSlide.notes}
           background={activeSlide.background}
           hero={activeSlide.hero}
-          hideChrome={activeSlide.hideChrome}
         >
           {slideContent}
         </Slide>
       </div>
-      {currentSlide === 0 && !slideInteracted && <OnboardingTooltip />}
+      {currentSlide === 0 && !slideInteracted && !activeSlide.hero && <OnboardingTooltip />}
       {activeSlide.tooltip &&
         (activeSlide.maxRevealStages
           ? revealStage < activeSlide.maxRevealStages

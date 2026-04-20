@@ -4,7 +4,7 @@
 .presentation {
   width: 100vw;
   height: var(--vh-full);
-  background: #000;
+  background: var(--dou-bg-gradient);
   color: var(--dou-white);
   font-family: var(--font-sans);
   display: flex;
@@ -16,39 +16,15 @@
 /* === SLIDE CONTAINER === */
 .slide-container {
   flex: 1;
-  display: block;
-  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg) var(--space-xl);
   position: relative;
   overflow: hidden;
 }
 
-/* === FIXED CANVAS STAGE (1920x1080 logical, uniform scale, letterboxed) === */
-.stage-viewport {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  background: var(--dou-bg-gradient);
-}
-
-.stage {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform-origin: center center;
-  /* width/height/transform set inline via Slide.tsx */
-}
-
 /* === SLIDE === */
-.stage > .slide {
-  position: absolute;
-  inset: 0;
-  padding: 80px 80px 40px 80px; /* top / sides / bottom safe-area */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 .slide {
   width: 100%;
   max-width: 1600px;
@@ -57,51 +33,45 @@
   color: var(--dou-white);
   font-family: var(--font-sans);
   text-align: center;
-  animation: slideIn var(--transition-normal) ease-out;
+  animation: slideIn var(--transition-normal) cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(20px);
+    filter: blur(4px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0);
   }
 }
 
 /* Headings */
 .slide h1 {
   font-size: var(--font-size-h1);
-  font-weight: 700;
-  color: var(--dou-white);
+  font-weight: 600;
+  color: var(--dou-magenta);
   margin-bottom: var(--space-lg);
-  letter-spacing: 0;
+  letter-spacing: var(--letter-spacing-tight);
   line-height: var(--line-height-tight);
   font-family: var(--font-sans);
 }
 
 .slide h1.hero {
   font-size: var(--font-size-hero);
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
 }
 
 .slide h2 {
   font-size: var(--font-size-h2);
-  font-weight: 700;
+  font-weight: 600;
   color: var(--dou-mint);
   margin-bottom: var(--space-lg);
-  letter-spacing: 0;
+  letter-spacing: var(--letter-spacing-tight);
   line-height: var(--line-height-tight);
   font-family: var(--font-sans);
-}
-
-.slide h2.h2--magenta {
-  color: var(--dou-magenta);
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
 }
 
 .slide h3 {
@@ -250,7 +220,11 @@
 }
 
 .terminal-input-prompt {
-  display: none; /* no $ prompt in DOU aesthetic */
+  color: var(--dou-magenta);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-input);
+  font-weight: 700;
+  flex-shrink: 0;
 }
 
 .terminal-input-field {
@@ -778,28 +752,208 @@
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
 }
 
-/* === TITLE SLIDE === */
+/* === HERO STAGE (title slide) === */
+/*
+ * Hero slides render inside a fixed 1920x1080 stage that is uniformly
+ * scaled by transform: scale(...) to fit the available viewport. This lets
+ * us position template elements at exact template pixel coordinates and
+ * still match the design on any window size.
+ */
 
-.title-slide {
+.slide-container--hero {
+  padding: 0;
+}
+
+.stage-viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--dou-bg-gradient);
+}
+
+.stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center center;
+  /* width / height / transform set inline from Slide.tsx */
+}
+
+.slide--hero {
+  position: absolute;
+  inset: 0;
+  max-width: none;
+  max-height: none;
+  width: 1920px;
+  height: 1080px;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  animation: none;
+  text-align: left;
+  z-index: 2;
+  background: transparent;
+}
+
+/* --- Sonar background (concentric rings PNG from template) --- */
+
+.sonar-pattern {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+/*
+ * Source PNG is 1774×1774 (square). We replicate the DOU template's exact
+ * transform: srcRect crop `l=3.508% r=5.126% t=22.464% b=26.143%` keeps
+ * the middle-ish 1621×911 slice (≈16:9), then stretches it to fill the
+ * 1920×1080 shape. Scale factors (horizontal 1.184, vertical 1.186) are
+ * nearly equal, so rings stay visually circular. We implement the crop by
+ * displaying the FULL image scaled to 2101×2104 and offsetting by the
+ * negated crop origin (-73, -473). See `docs/TITLE_SLIDE_CALIBRATION.md`.
+ */
+.sonar-pattern--hero {
+  top: 0;
+  left: 0;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+}
+
+.sonar-pattern__image {
+  position: absolute;
+  top: -473px;
+  left: -73px;
+  width: 2101px;
+  height: 2104px;
+  display: block;
+}
+
+/* --- Chrome (DOU logo top-right) --- */
+
+.slide-chrome {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.slide-chrome__tag {
+  display: none; /* Tag moved into the title block on hero slide */
+}
+
+/*
+ * Source logo is 2048×571. Template crops via
+ * srcRect l=10.42% r=6.751% t=15.672% b=15.679% (trims letter whitespace),
+ * then stretches the ~1696×392 crop to 364×84. We reproduce the crop via
+ * an inner <img> sized to the scaled source (440×122) and offset by the
+ * scaled crop origin (−46, −19), so no aspect distortion.
+ */
+.slide-chrome__logo {
+  position: absolute;
+  top: 27px;
+  left: 1501px;
+  right: auto;
+  width: 364px;
+  height: 84px;
+  overflow: hidden;
+}
+
+.slide-chrome__logo-image {
+  position: absolute;
+  top: -19px;
+  left: -46px;
+  width: 440px;
+  height: 122px;
+  display: block;
+}
+
+/* --- Title hero composition --- */
+
+/*
+ * Title hero composition.
+ *
+ * Positions (x / y / width) are extracted from the DOU Days 2026 dark
+ * template `.pptx`: each shape's exact origin + size on the 1920×1080
+ * stage. Font sizes are pumped up (~40%) relative to the template to
+ * improve back-of-hall readability during the conference talk.
+ */
+.title-hero {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.title-hero__block {
   position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.title-hero__tag {
+  position: absolute;
+  top: 390px;
+  left: 368px;
+  height: 84px;
+  display: inline-flex;
+  align-items: center;
+  background: var(--dou-near-black);
+  color: var(--dou-white);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: 0;
+  padding: 0 28px;
+  z-index: 2;
+}
+
+.slide--hero h1.title-hero__title {
+  position: absolute;
+  top: 458px;
+  left: 370px;
+  width: 1180px;
+  margin: 0;
+  padding: 36px 48px;
+  background: var(--dou-near-black);
+  color: var(--dou-white);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 78px;
+  line-height: 1.08;
+  letter-spacing: 0;
+  text-transform: uppercase;
   z-index: 1;
 }
 
-.title-glow {
-  /* Formerly a phosphor-breathing CRT effect; DOU aesthetic has no glow. */
+.title-hero__description {
+  position: absolute;
+  top: 775px;
+  left: 947px;
+  width: 860px;
+  padding: 36px 48px;
+  background: var(--dou-magenta);
+  color: var(--dou-white);
+  z-index: 3;
 }
 
-/* Tagline — between title and author */
-.title-slide .title-tagline {
-  font-size: 2rem;
-  color: var(--dou-mint);
-  margin: 0.5rem 0 1.5rem;
+.slide--hero p.title-hero__tagline {
+  margin: 0 0 16px;
+  font-family: var(--font-sans);
   font-weight: 600;
+  font-size: 56px;
+  line-height: 1.15;
+  color: var(--dou-white);
 }
 
-.title-subtitle {
-  color: var(--dou-white-dim);
+.slide--hero p.title-hero__speaker {
+  margin: 0;
+  font-family: var(--font-sans);
   font-weight: 400;
+  font-size: 38px;
+  line-height: 1.3;
+  color: var(--dou-white);
 }
 
 /* === IMAGE SLIDE === */
@@ -1388,115 +1542,5 @@
     display: none;
   }
 
-  /* Disable title slide animated scan lines */
-  .title-slide::before {
-    animation: none;
-  }
 }
 
-/* === DOU PRIMITIVES ================================================ */
-
-/* --- SlideChrome: Київ,2026 tag top-left + DOU logo top-right ------- */
-.slide-chrome {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 50;
-}
-
-.slide-chrome__tag {
-  position: absolute;
-  top: 48px;
-  left: 58px;
-  font-family: var(--font-sans);
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 1;
-  color: var(--dou-white);
-  letter-spacing: 0;
-}
-
-.slide-chrome__logo {
-  position: absolute;
-  top: 8px;
-  right: 58px;
-  width: 440px;
-  height: auto;
-  display: block;
-}
-
-/* --- SonarPattern: template background rings ----------------------- */
-.sonar-pattern {
-  position: absolute;
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
-}
-
-.sonar-pattern--hero {
-  top: -240px;
-  left: -80px;
-  width: 2100px;
-  height: 2100px;
-  opacity: 1;
-}
-
-.sonar-pattern--subtle {
-  top: -480px;
-  right: -420px;
-  width: 1900px;
-  height: 1814px;
-  opacity: 0.35;
-}
-
-/* --- NumberBadge: agenda digit in pink→violet gradient ------------- */
-.number-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 113px;
-  height: 83px;
-  background: var(--dou-gradient-badge);
-  color: var(--dou-white);
-  font-family: var(--font-sans);
-  font-weight: 600;
-  font-size: 52px;
-  line-height: 1;
-  border-radius: 0;
-  font-variant-numeric: tabular-nums;
-}
-
-/* --- FlowPill: rounded pill used in flow-diagram slides ------------ */
-.flow-pill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px 32px;
-  border-radius: var(--dou-radius-pill);
-  font-family: var(--font-sans);
-  font-weight: 700;
-  font-size: 28px;
-  line-height: 1.1;
-  color: var(--dou-white);
-  letter-spacing: 0;
-}
-
-.flow-pill--mint {
-  background: var(--dou-mint);
-  color: var(--dou-deep-purple);
-}
-
-.flow-pill--violet {
-  background: var(--dou-violet);
-  color: var(--dou-white);
-}
-
-.flow-pill--magenta {
-  background: var(--dou-magenta);
-  color: var(--dou-white);
-}
-
-/* --- SectionNumber -------------------------------------------------- */
-.section-number {
-  display: block;
-}

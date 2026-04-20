@@ -2,9 +2,9 @@
 
 ## Project Overview
 
-A DOU Days 2026-themed presentation site for the Ukrainian-language talk "Невигадані історії AI-first трансформації в інженерних командах (про які неможливо мовчати)". Built with React and TypeScript and visually mirrors the official DOU Days 2026 dark speaker template, with command-based navigation preserved from the original terminal aesthetic. Hosted on GitHub Pages at https://yermilov.github.io/dou-days-2026
+A custom presentation site for the Ukrainian-language talk "Невигадані історії AI-first трансформації в інженерних командах (про які неможливо мовчати)". Built with React and TypeScript, it uses the original Claude-Code-inspired terminal layouts (`$ pattern --foo` headings, `> ` bullets, command-based navigation) skinned in the DOU Days 2026 visual style — IBM Plex Sans font and the DOU magenta / mint / violet palette. Hosted on GitHub Pages at https://yermilov.github.io/dou-days-2026
 
-See [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md) for the full design spec (canvas, tokens, primitives, layouts).
+See [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md) for the design spec (colours, typography, layout patterns).
 
 ## Tech Stack
 
@@ -214,18 +214,16 @@ Keyboard (when not typing):
 - Arrow keys, Space, PageDown/Up → Navigate
 - Home/End → First/last slide
 
-## DOU Design System
+## Design System
 
 Full spec: **[docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md)** — read this before touching UI.
 
 Quick rules:
-- **Canvas**: fixed 1920×1080 logical stage, uniformly scaled + letterboxed (`Slide.tsx`).
+- **Layout**: original Claude-Code-inspired terminal layouts. H2s follow the `$ pattern --foo` idiom; bullets use `> ` prefix; `TerminalInput` shows a `>` prompt; `SlideProgress` shows "context left until auto-compact N%".
 - **Font**: IBM Plex Sans (self-hosted, weights 400/600/700, latin + cyrillic). JetBrains Mono stays only inside `CodeBlock` / inline `<code>`.
 - **Palette**: use `--dou-*` tokens (`--dou-magenta`, `--dou-mint`, `--dou-violet`, `--dou-deep-purple`, …). Legacy `--terminal-*` tokens still exist but alias DOU values — don't introduce new rules that use them.
-- **Chrome**: `SlideChrome` mounts "Київ, 2026" + DOU logo on every slide. Opt out via `hideChrome: true` on the `SlideDefinition`.
-- **Background**: `SonarPattern` always rendered. Title / section / final slides set `hero: true` for the full-bleed multi-color variant.
-- **Primitives** (see §6 of design doc): `SlideChrome`, `SonarPattern`, `SectionNumber`, `NumberBadge`, `FlowPill`.
-- **2-sizes-per-slide rule** still applies: `--font-size-h2` heading + `--slide-text-normal` body. Hero slides may add `--font-size-hero`.
+- **Background**: `--dou-bg-gradient` on the presentation container. No sonar pattern, no persistent chrome overlay.
+- **2-sizes-per-slide rule** still applies: `--font-size-h2` heading + `--slide-text-normal` body. Title slide may add `--font-size-hero`.
 - **No glow, scanline, phosphor, or flicker.** The legacy variables exist but resolve to `none` / `transparent`.
 - **No hardcoded hex in slide JSX `style={}`.** Exception: SVG `fill` / `stroke` JS constants.
 
