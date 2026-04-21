@@ -1,0 +1,33 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "2266180ed748",
+  "strategy": "manual-commit",
+  "branch": "randomize-sonar-backdrop",
+  "checkpoints_count": 3,
+  "files_touched": [
+    ".claude/skills/design-system/SKILL.md",
+    ".claude/skills/design-system/references/cohesive-chrome.md",
+    ".claude/skills/design-system/references/full-spec.md",
+    "CLAUDE.md",
+    "src/components/Presentation.tsx",
+    "src/components/Slide.tsx",
+    "src/components/SonarPattern.tsx",
+    "src/styles/slides.css",
+    "src/styles/theme.css"
+  ],
+  "sessions": [
+    {
+      "metadata": "/22/66180ed748/0/metadata.json",
+      "transcript": "/22/66180ed748/0/full.jsonl",
+      "content_hash": "/22/66180ed748/0/content_hash.txt",
+      "prompt": "/22/66180ed748/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 263,
+    "cache_creation_tokens": 769562,
+    "cache_read_tokens": 26397608,
+    "output_tokens": 67914,
+    "api_call_count": 161
+  }
+}

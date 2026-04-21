@@ -1,0 +1,41 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "2266180ed748",
+  "session_id": "4167eb1f-0a9e-42ec-914a-1c8ddbf59b55",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-21T13:13:31.084609Z",
+  "branch": "randomize-sonar-backdrop",
+  "checkpoints_count": 3,
+  "files_touched": [
+    ".claude/skills/design-system/SKILL.md",
+    ".claude/skills/design-system/references/cohesive-chrome.md",
+    ".claude/skills/design-system/references/full-spec.md",
+    "CLAUDE.md",
+    "src/components/Presentation.tsx",
+    "src/components/Slide.tsx",
+    "src/components/SonarPattern.tsx",
+    "src/styles/slides.css",
+    "src/styles/theme.css"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "d5b86f227641",
+  "token_usage": {
+    "input_tokens": 263,
+    "cache_creation_tokens": 769562,
+    "cache_read_tokens": 26397608,
+    "output_tokens": 67914,
+    "api_call_count": 161
+  },
+  "session_metrics": {
+    "turn_count": 4
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-04-21T13:13:30.551329Z",
+    "agent_lines": 27,
+    "human_added": 0,
+    "human_modified": 21,
+    "human_removed": 27,
+    "total_committed": 48,
+    "agent_percentage": 56.25
+  }
+}

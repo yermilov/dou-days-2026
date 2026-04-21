@@ -1,0 +1,26 @@
+why every slide uses the same sonar background? I though we will put different random ones? /design-system
+
+---
+
+why every slide uses the same sonar background? I though we will put different random ones? /design-system
+
+---
+
+why every slide uses the same sonar background? I though we will put different random ones? /design-system
+
+---
+
+can we just use random one every time? for fun
+
+---
+
+/codexcli:codex-plan-review
+
+---
+
+I see that sonar almost always is centered near the real center. can you explore the template visually to see that it puts sonar center anywhere on the slide, including even borders?
+
+---
+
+I have also noticed that template uses gradient background: it is dark on the top and magenda on the bottom
+can you dig deep into that and adopt?
