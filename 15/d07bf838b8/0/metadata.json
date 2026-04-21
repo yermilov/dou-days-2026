@@ -1,0 +1,35 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "15d07bf838b8",
+  "session_id": "6d16b9dc-b883-4cf6-a55e-6c0484aa28e2",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-21T10:25:11.571673Z",
+  "branch": "converge-design-system",
+  "checkpoints_count": 1,
+  "files_touched": [
+    ".claude/skills/design-system/references/cohesive-chrome.md"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "f4579291996f",
+  "checkpoint_transcript_start": 1107,
+  "transcript_lines_at_start": 1107,
+  "token_usage": {
+    "input_tokens": 22,
+    "cache_creation_tokens": 453023,
+    "cache_read_tokens": 4778584,
+    "output_tokens": 8018,
+    "api_call_count": 12
+  },
+  "session_metrics": {
+    "turn_count": 2
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-04-21T10:25:10.822519Z",
+    "agent_lines": 114,
+    "human_added": 36,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 150,
+    "agent_percentage": 76
+  }
+}
