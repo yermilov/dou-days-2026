@@ -54,8 +54,8 @@
      These are *the* knobs for making text bigger/smaller from a single
      place. Values are sized aggressively for back-row readability in a
      400+ seat hall. */
-  --slide-text-h2: 4.5rem;       /* headings (was 3.5rem before convergence) */
-  --slide-text-body: 2rem;       /* body text (was 1.35rem before) */
+  --slide-text-h2: 7.5rem;       /* headings (120px — bio-slide sizing adopted deck-wide) */
+  --slide-text-body: 2.375rem;   /* body text (38px — bio-slide sizing adopted deck-wide) */
   --slide-text-code: 1.25rem;    /* code blocks */
 
   /* Backwards-compat aliases so older references keep working. Once every

@@ -75,11 +75,11 @@
 
 .slide h2 {
   font-size: var(--font-size-h2);
-  font-weight: 600;
+  font-weight: 700;
   color: var(--dou-mint);
   margin-bottom: var(--space-lg);
   letter-spacing: var(--letter-spacing-tight);
-  line-height: var(--line-height-tight);
+  line-height: 1;
   font-family: var(--font-sans);
 }
 
@@ -862,7 +862,7 @@
   display: inline-flex;
   align-items: center;
   padding: 0 28px;
-  background: var(--dou-near-black);
+  background: transparent;
   color: var(--dou-white);
   font-family: var(--font-sans);
   font-weight: 600;
@@ -1016,14 +1016,7 @@
 .slide--body h2.bio-body__title {
   margin: 0;
   padding: 0;
-  color: var(--dou-mint);
-  font-family: var(--font-sans);
-  font-size: 120px;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.02em;
   text-align: left;
-  text-transform: none;
 }
 
 .bio-body__title .text-dim {
@@ -1034,7 +1027,6 @@
   margin: 0;
   color: var(--dou-magenta);
   font-family: var(--font-sans);
-  font-size: 40px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -1045,7 +1037,7 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
-  font-size: 38px;
+  font-size: var(--slide-text-body);
   color: var(--dou-white);
 }
 
@@ -1059,7 +1051,6 @@
 
 .bio-body__item-prefix {
   font-weight: 700;
-  font-size: 38px;
   letter-spacing: -0.02em;
 }
 
@@ -1304,7 +1295,7 @@
 
 .timeline-log__time {
   font-family: var(--font-mono);
-  font-size: 1.1rem;
+  font-size: var(--slide-text-body);
   font-weight: 700;
   color: var(--terminal-orange);
   transition: all 0.3s ease;
@@ -1426,7 +1417,7 @@
 
 .timeline-panel__text {
   font-family: var(--font-mono);
-  font-size: 1.75rem;
+  font-size: var(--slide-text-body);
   color: var(--terminal-white);
   line-height: 1.4;
   text-align: center;
@@ -1434,8 +1425,8 @@
 }
 
 .timeline-panel__text--emphasis {
-  font-size: 2.25rem;
-  font-weight: 600;
+  font-size: var(--slide-text-body);
+  font-weight: 700;
   color: var(--terminal-green);
   text-shadow: var(--glow-text-green);
 }
