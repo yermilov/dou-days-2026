@@ -671,86 +671,9 @@
     padding: var(--space-sm) var(--space-md);
   }
 
-  .bio-slide {
-    flex-direction: column;
-    gap: var(--space-lg);
-  }
-
-  .bio-slide-image {
-    max-width: 280px;
-  }
 }
 
-/* === BIO SLIDE LAYOUT === */
-.bio-slide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-3xl);
-  text-align: left;
-  width: 100%;
-  padding-bottom: var(--space-xl); /* Clear timer/progress bar */
-}
-
-.bio-slide-content {
-  flex: 1;
-  max-width: 600px;
-}
-
-.bio-slide-content h1 {
-  text-align: left;
-  margin-bottom: var(--space-xl);
-}
-
-.bio-slide-content h3 {
-  text-align: left;
-  color: var(--terminal-white-dim);
-  font-weight: 400;
-  margin-bottom: var(--space-lg);
-}
-
-.bio-slide-content ul {
-  margin: 0 0 var(--space-lg) 0;
-}
-
-.bio-slide-content li {
-  font-size: 1.25rem;
-  margin-bottom: var(--space-sm);
-  padding-left: var(--space-lg);
-}
-
-.bio-slide-content p {
-  font-size: 1.25rem;
-}
-
-.bio-slide-content a {
-  color: var(--terminal-blue);
-  text-decoration: none;
-  border-bottom: 1px dashed var(--terminal-blue);
-  transition: all var(--transition-fast);
-}
-
-.bio-slide-content a:hover {
-  color: var(--terminal-cyan);
-  border-color: var(--terminal-cyan);
-  text-shadow: 0 0 8px var(--terminal-cyan-glow);
-}
-
-.bio-slide-image {
-  flex-shrink: 0;
-  max-width: 380px;
-  max-height: calc(var(--vh-full) - 280px);
-  object-fit: contain;
-  border-radius: var(--input-border-radius);
-  border: 2px solid var(--terminal-border);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
-}
-
-.bio-slide-image:hover {
-  transform: scale(1.02) rotate(1deg);
-  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
-}
+/* Bio slide is now a hero slide; see `.bio-hero` below. */
 
 /* === HERO STAGE (title slide) === */
 /*
@@ -830,6 +753,31 @@
   left: -3.802%;
   width: 109.427%;
   height: 194.815%;
+  display: block;
+}
+
+/*
+ * Speaker-slide rings (template slide 6). The source `dou-rings-speaker.png`
+ * is a 1263×694 landscape slice already pre-rotated 90° CCW and cropped from
+ * `image19.png` per the template's `rot=5400000` + srcRect (see preprocessing
+ * note in `public/ASSET_PROVENANCE.md`). We stretch it edge-to-edge over the
+ * 1920×1080 stage and apply the template's 50% alpha (`alphaModFix amt=50000`).
+ */
+.sonar-pattern--speaker {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  opacity: 0.5;
+}
+
+.sonar-pattern--speaker .sonar-pattern__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: block;
 }
 
@@ -957,6 +905,128 @@
   font-size: 32px;
   line-height: 1.3;
   color: var(--dou-white);
+}
+
+/* --- Bio hero composition (speaker slide, template slide 6) --- */
+
+/*
+ * Positions extracted from the DOU Days 2026 dark template `.pptx`
+ * slide 6 (speaker slide) — each shape's origin + size on the 1920×1080
+ * stage, divided by 4762.5 EMU/px:
+ *
+ *   tag          off(173775, 126625)  ext(1855200, 400200)   → (36, 27, 390, 84)
+ *   "Hello!"     off(543075, 1628088) ext(2147400, 572700)   → (114, 342, 451, 120)
+ *   "I'm ..."    off(543075, 2200788) ext(4233000, 572700)   → (114, 462, 889, 120)
+ *   description  off(543075, 2863113) ext(4108200, 738900)   → (114, 601, 863, 155)
+ *   photo        off(5547975, 588925) ext(3596052, 4126600)  → (1165, 124, 755, 866)
+ *
+ * The template stacks "Hello!" and "I'm Andriy Topolya" as two text boxes.
+ * For our whoami slide we keep a single-line heading ($ whoami) and below
+ * it a subtitle + reveal bullets — layout from the current slide, colors
+ * from the template palette (mint / magenta / white).
+ *
+ * See `docs/TITLE_SLIDE_CALIBRATION.md` for the extraction methodology.
+ */
+.bio-hero {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.bio-hero__tag {
+  position: absolute;
+  top: 27px;
+  left: 36px;
+  color: var(--dou-white);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.bio-hero__block {
+  position: absolute;
+  top: 200px;
+  left: 114px;
+  width: 1050px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.slide--hero h2.bio-hero__title {
+  margin: 0;
+  padding: 0;
+  color: var(--dou-mint);
+  font-family: var(--font-sans);
+  font-size: 120px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-align: left;
+  text-transform: none;
+}
+
+.bio-hero__title .text-dim {
+  color: var(--dou-white-muted);
+}
+
+.slide--hero p.bio-hero__subtitle {
+  margin: 0;
+  color: var(--dou-magenta);
+  font-family: var(--font-sans);
+  font-size: 40px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+}
+
+.bio-hero__items {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-size: 38px;
+  color: var(--dou-white);
+}
+
+.bio-hero__item {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  align-items: baseline;
+  gap: 10px;
+  line-height: 1.25;
+}
+
+.bio-hero__item-prefix {
+  font-weight: 700;
+  font-size: 38px;
+  letter-spacing: -0.02em;
+}
+
+.bio-hero__item-label {
+  color: var(--dou-white);
+  font-weight: 400;
+}
+
+.bio-hero__image {
+  position: absolute;
+  top: 124px;
+  left: 1165px;
+  width: 755px;
+  height: 866px;
+  border-radius: var(--input-border-radius);
+  border: 2px solid var(--terminal-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.bio-hero__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 /* === IMAGE SLIDE === */

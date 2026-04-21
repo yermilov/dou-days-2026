@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { SonarPattern } from './SonarPattern';
 import { SlideChrome } from './SlideChrome';
+import type { HeroVariant } from '../types/slides';
 
 interface SlideProps {
   children: ReactNode;
@@ -8,6 +9,7 @@ interface SlideProps {
   notes?: string;
   background?: string;
   hero?: boolean;
+  heroVariant?: HeroVariant;
 }
 
 const STAGE_WIDTH = 1920;
@@ -25,6 +27,7 @@ export function Slide({
   isActive = true,
   background,
   hero = false,
+  heroVariant = 'title',
 }: SlideProps) {
   const [viewportEl, setViewportEl] = useState<HTMLDivElement | null>(null);
   const [scale, setScale] = useState(1);
@@ -49,7 +52,7 @@ export function Slide({
   if (hero) {
     return (
       <div className="stage-viewport" ref={setViewportEl}>
-        <SonarPattern />
+        <SonarPattern variant={heroVariant} />
         <div
           className="stage"
           style={{
