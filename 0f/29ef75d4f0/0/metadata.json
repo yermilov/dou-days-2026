@@ -1,0 +1,39 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "0f29ef75d4f0",
+  "session_id": "6d16b9dc-b883-4cf6-a55e-6c0484aa28e2",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-21T10:00:47.056654Z",
+  "branch": "converge-design-system",
+  "checkpoints_count": 0,
+  "files_touched": [
+    ".claude/skills/design-system/SKILL.md",
+    ".claude/skills/design-system/references/full-spec.md",
+    ".claude/skills/design-system/references/blurred-background-pattern.md",
+    ".claude/skills/design-system/references/side-images-pattern.md",
+    ".claude/skills/pixel-perfect-translation/SKILL.md",
+    "src/styles/slides.css",
+    "CLAUDE.md"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "3c775916d3e2",
+  "token_usage": {
+    "input_tokens": 3485,
+    "cache_creation_tokens": 320209,
+    "cache_read_tokens": 17716003,
+    "output_tokens": 84245,
+    "api_call_count": 104
+  },
+  "session_metrics": {
+    "turn_count": 1
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-04-21T10:00:46.569452Z",
+    "agent_lines": 653,
+    "human_added": 318,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 971,
+    "agent_percentage": 67.25025746652935
+  }
+}
