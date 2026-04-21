@@ -152,6 +152,7 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
           notes={activeSlide.notes}
           background={activeSlide.background}
           hero={activeSlide.hero}
+          heroVariant={activeSlide.heroVariant}
         >
           {slideContent}
         </Slide>

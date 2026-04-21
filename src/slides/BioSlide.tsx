@@ -3,26 +3,20 @@ import yarikBadges from '/yarik-badges.jpg?url';
 
 type Level = 'high' | 'medium' | 'low';
 
-const levelStyles = {
+const levelStyles: Record<Level, { prefix: string; prefixColor: string; opacity: number }> = {
   high: {
     prefix: '>>',
-    prefixColor: 'var(--terminal-orange)',
-    labelColor: 'var(--terminal-white)',
-    labelGlow: '0 0 20px rgba(240, 136, 62, 0.3)',
+    prefixColor: 'var(--dou-magenta)',
     opacity: 1,
   },
   medium: {
     prefix: '> ',
-    prefixColor: 'var(--terminal-blue)',
-    labelColor: 'var(--terminal-white)',
-    labelGlow: 'none',
+    prefixColor: 'var(--dou-violet-light)',
     opacity: 1,
   },
   low: {
     prefix: '--',
-    prefixColor: 'var(--terminal-white-dim)',
-    labelColor: 'var(--terminal-white)',
-    labelGlow: 'none',
+    prefixColor: 'var(--dou-white-muted)',
     opacity: 0.85,
   },
 };
@@ -31,85 +25,52 @@ function BioItem({ level, children }: { level: Level; children: React.ReactNode 
   const s = levelStyles[level];
 
   return (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: '2.5rem 1fr',
-        alignItems: 'center',
-        gap: '0.5rem',
-        fontSize: 'var(--slide-text-normal)',
-        opacity: s.opacity,
-        marginBottom: '0.35rem',
-      }}
-    >
-      <span style={{ color: s.prefixColor, fontWeight: 'bold' }}>{s.prefix}</span>
-      <span
-        style={{
-          color: s.labelColor,
-          textShadow: s.labelGlow,
-        }}
-      >
-        {children}
+    <div className="bio-hero__item" style={{ opacity: s.opacity }}>
+      <span className="bio-hero__item-prefix" style={{ color: s.prefixColor }}>
+        {s.prefix}
       </span>
-    </div>
-  );
-}
-
-function BioSection({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <div style={{ marginBottom: '1.5rem' }}>
-      <div
-        className="section-header section-header--blue"
-        style={{
-          borderBottom: '1px solid var(--terminal-border)',
-          paddingBottom: '0.2rem',
-        }}
-      >
-        {title}
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>{children}</div>
+      <span className="bio-hero__item-label">{children}</span>
     </div>
   );
 }
 
 export const BioSlide: SlideDefinition = {
   id: 'bio',
+  hero: true,
+  heroVariant: 'speaker',
   maxRevealStages: 5,
   content: ({ revealStage }) => (
-    <div className="bio-slide">
-      <div className="bio-slide-content">
-        <h2 style={{ marginBottom: '1.5rem', textAlign: 'left' }}>
+    <div className="bio-hero">
+      <span className="bio-hero__tag">Київ, 2026</span>
+
+      <div className="bio-hero__block">
+        <h2 className="bio-hero__title">
           <span className="text-dim">$</span> whoami
         </h2>
 
-        <div style={{ textAlign: 'left' }}>
-          <BioSection title="almost 9 years at Grammarly / Superhuman">
-            <BioItem level="high">0 -&gt; 1 projects</BioItem>
-            {revealStage >= 1 && (
-              <BioItem level="high">in 2025: rolling out AI coding agents across the company</BioItem>
-            )}
-            {revealStage >= 2 && (
-              <BioItem level="medium">before that: tech lead of platform organization</BioItem>
-            )}
-            {revealStage >= 3 && (
-              <BioItem level="medium">before that: tech lead of feature frameworks</BioItem>
-            )}
-            {revealStage >= 4 && (
-              <BioItem level="medium">before that: led product features</BioItem>
-            )}
-            {revealStage >= 5 && (
-              <BioItem level="low">started as Java backend engineer</BioItem>
-            )}
-          </BioSection>
+        <p className="bio-hero__subtitle">майже 9 років у Grammarly / Superhuman</p>
+
+        <div className="bio-hero__items">
+          <BioItem level="high">0 -&gt; 1 проєкти</BioItem>
+          {revealStage >= 1 && (
+            <BioItem level="high">у 2025: розгортаю AI-агентів для кодування у компанії</BioItem>
+          )}
+          {revealStage >= 2 && (
+            <BioItem level="medium">до того: техлід платформної організації</BioItem>
+          )}
+          {revealStage >= 3 && (
+            <BioItem level="medium">до того: техлід feature-фреймворків</BioItem>
+          )}
+          {revealStage >= 4 && (
+            <BioItem level="medium">до того: розробляв продуктові фічі</BioItem>
+          )}
+          {revealStage >= 5 && <BioItem level="low">починав як Java backend-інженер</BioItem>}
         </div>
       </div>
-      <img
-        src={yarikBadges}
-        alt="Grammarly badges"
-        className="bio-slide-image"
-        style={{ maxWidth: '480px' }}
-        loading="lazy"
-      />
+
+      <div className="bio-hero__image">
+        <img src={yarikBadges} alt="Grammarly badges" loading="lazy" />
+      </div>
     </div>
   ),
 };

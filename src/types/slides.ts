@@ -6,6 +6,8 @@ export interface SlideContentProps {
   activatedTools: Set<string>;
 }
 
+export type HeroVariant = 'title' | 'speaker';
+
 export interface SlideDefinition {
   id: string;
   content: ReactNode | ((props: SlideContentProps) => ReactNode);
@@ -15,6 +17,7 @@ export interface SlideDefinition {
   maxRevealStages?: number;
   initialRevealStage?: number;
   hero?: boolean;
+  heroVariant?: HeroVariant;
 }
 
 export interface CodeBlockProps {
@@ -45,6 +48,7 @@ export interface SlideProps {
   notes?: string;
   background?: string;
   hero?: boolean;
+  heroVariant?: HeroVariant;
 }
 
 export interface SlideProgressProps {
