@@ -25,32 +25,35 @@ function BioItem({ level, children }: { level: Level; children: React.ReactNode 
   const s = levelStyles[level];
 
   return (
-    <div className="bio-hero__item" style={{ opacity: s.opacity }}>
-      <span className="bio-hero__item-prefix" style={{ color: s.prefixColor }}>
+    <div className="bio-body__item" style={{ opacity: s.opacity }}>
+      <span className="bio-body__item-prefix" style={{ color: s.prefixColor }}>
         {s.prefix}
       </span>
-      <span className="bio-hero__item-label">{children}</span>
+      <span className="bio-body__item-label">{children}</span>
     </div>
   );
 }
 
+// Reveal-stage map preserved verbatim from the prior hero version:
+//   stage 0: "0 -> 1 проєкти" (high)
+//   stage 1: + AI-агентів line (high)
+//   stage 2: + техлід платформної організації (medium)
+//   stage 3: + техлід feature-фреймворків (medium)
+//   stage 4: + розробляв продуктові фічі (medium)
+//   stage 5: + Java backend-інженер (low)
 export const BioSlide: SlideDefinition = {
   id: 'bio',
-  hero: true,
-  heroVariant: 'speaker',
   maxRevealStages: 5,
   content: ({ revealStage }) => (
-    <div className="bio-hero">
-      <span className="bio-hero__tag">Київ, 2026</span>
-
-      <div className="bio-hero__block">
-        <h2 className="bio-hero__title">
+    <div className="bio-body">
+      <div className="bio-body__text">
+        <h2 className="bio-body__title">
           <span className="text-dim">$</span> whoami
         </h2>
 
-        <p className="bio-hero__subtitle">майже 9 років у Grammarly / Superhuman</p>
+        <p className="bio-body__subtitle">майже 9 років у Grammarly / Superhuman</p>
 
-        <div className="bio-hero__items">
+        <div className="bio-body__items">
           <BioItem level="high">0 -&gt; 1 проєкти</BioItem>
           {revealStage >= 1 && (
             <BioItem level="high">у 2025: розгортаю AI-агентів для кодування у компанії</BioItem>
@@ -68,7 +71,7 @@ export const BioSlide: SlideDefinition = {
         </div>
       </div>
 
-      <div className="bio-hero__image">
+      <div className="bio-body__image">
         <img src={yarikBadges} alt="Grammarly badges" loading="lazy" />
       </div>
     </div>

@@ -792,31 +792,6 @@
 }
 
 /*
- * Speaker-slide rings (template slide 6). The source `dou-rings-speaker.png`
- * is a 1263×694 landscape slice already pre-rotated 90° CCW and cropped from
- * `image19.png` per the template's `rot=5400000` + srcRect (see preprocessing
- * note in `public/ASSET_PROVENANCE.md`). We stretch it edge-to-edge over the
- * 1920×1080 stage and apply the template's 50% alpha (`alphaModFix amt=50000`).
- */
-.sonar-pattern--speaker {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  opacity: 0.5;
-}
-
-.sonar-pattern--speaker .sonar-pattern__image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-/*
  * Body-slide sonar: one of three full-bleed patterns extracted from the DOU
  * template content slides. The image picker (bodySonarFor) in
  * src/components/SonarPattern.tsx chooses deterministically per slide.
@@ -1013,35 +988,32 @@
  *
  * See `.claude/skills/pixel-perfect-translation/references/calibration-methodology.md` for the extraction methodology.
  */
-.bio-hero {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
+/*
+ * Bio slide — two-column body layout inside the 1920×1080 stage:
+ * left column is the "$ whoami" header + subtitle + bullet reveals,
+ * right column is the speaker badges photo. Uses body-slide chrome
+ * (randomised sonar + Kyiv badge + logo) from SlideChrome/SonarPattern.
+ */
+.bio-body {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  gap: 80px;
+  text-align: left;
 }
 
-.bio-hero__tag {
-  position: absolute;
-  top: 27px;
-  left: 36px;
-  color: var(--dou-white);
-  font-family: var(--font-sans);
-  font-weight: 600;
-  font-size: 34px;
-  line-height: 1;
-  letter-spacing: 0;
-}
-
-.bio-hero__block {
-  position: absolute;
-  top: 200px;
-  left: 114px;
-  width: 1050px;
+.bio-body__text {
+  flex: 1 1 auto;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 40px;
 }
 
-.slide--hero h2.bio-hero__title {
+.slide--body h2.bio-body__title {
   margin: 0;
   padding: 0;
   color: var(--dou-mint);
@@ -1054,11 +1026,11 @@
   text-transform: none;
 }
 
-.bio-hero__title .text-dim {
+.bio-body__title .text-dim {
   color: var(--dou-white-muted);
 }
 
-.slide--hero p.bio-hero__subtitle {
+.slide--body p.bio-body__subtitle {
   margin: 0;
   color: var(--dou-magenta);
   font-family: var(--font-sans);
@@ -1069,7 +1041,7 @@
   line-height: 1.15;
 }
 
-.bio-hero__items {
+.bio-body__items {
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -1077,7 +1049,7 @@
   color: var(--dou-white);
 }
 
-.bio-hero__item {
+.bio-body__item {
   display: grid;
   grid-template-columns: 48px 1fr;
   align-items: baseline;
@@ -1085,30 +1057,27 @@
   line-height: 1.25;
 }
 
-.bio-hero__item-prefix {
+.bio-body__item-prefix {
   font-weight: 700;
   font-size: 38px;
   letter-spacing: -0.02em;
 }
 
-.bio-hero__item-label {
+.bio-body__item-label {
   color: var(--dou-white);
   font-weight: 400;
 }
 
-.bio-hero__image {
-  position: absolute;
-  top: 124px;
-  left: 1165px;
-  width: 755px;
-  height: 866px;
+.bio-body__image {
+  flex: 0 0 560px;
+  height: 760px;
   border-radius: var(--input-border-radius);
   border: 2px solid var(--terminal-border);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   overflow: hidden;
 }
 
-.bio-hero__image img {
+.bio-body__image img {
   width: 100%;
   height: 100%;
   object-fit: cover;

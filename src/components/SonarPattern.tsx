@@ -1,10 +1,9 @@
 import sonarHero from '/dou-sonar-hero.png?url';
-import ringsSpeaker from '/dou-rings-speaker.png?url';
 import sonarBody01 from '/sonar/dou-sonar-01.png?url';
 import sonarBody02 from '/sonar/dou-sonar-02.png?url';
 import sonarBody03 from '/sonar/dou-sonar-03.png?url';
 
-export type SonarVariant = 'title' | 'speaker' | 'body';
+export type SonarVariant = 'title' | 'body';
 
 /**
  * Body-slide sonar pool — 3 distinct full-bleed backgrounds extracted from
@@ -41,21 +40,11 @@ interface SonarPatternProps {
  *
  * - `title` (default): title slide — `dou-sonar-hero.png` (1774×1774),
  *   cropped+stretched per `<a:srcRect l=3.508% r=5.126% t=22.464% b=26.143%/>`.
- * - `speaker`: bio slide — pre-rotated/cropped speaker rings. Retired in the
- *   design-system convergence (BioSlide becomes a body slide); kept here
- *   until BioSlide rewrite ships.
  * - `body`: content slides — picks from a 3-image template pool deterministically
  *   via `bodySonarFor(slideIndex, slideId)`. Rendered full-bleed at reduced
  *   opacity so slide text stays legible.
  */
 export function SonarPattern({ variant = 'title', slideIndex = 0, slideId = '' }: SonarPatternProps) {
-  if (variant === 'speaker') {
-    return (
-      <div className="sonar-pattern sonar-pattern--speaker" aria-hidden="true">
-        <img className="sonar-pattern__image" src={ringsSpeaker} alt="" />
-      </div>
-    );
-  }
   if (variant === 'body') {
     const src = bodySonarFor(slideIndex, slideId);
     return (
