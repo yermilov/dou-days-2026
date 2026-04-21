@@ -1243,8 +1243,8 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: calc(var(--vh-full) - 360px);
-  max-height: calc(var(--vh-full) - 360px);
+  flex: 1 1 auto;
+  min-height: 0;
   padding: 0 var(--space-lg);
   overflow: hidden;
 }
@@ -1447,7 +1447,7 @@
 
 .timeline-panel__image {
   max-width: 100%;
-  max-height: calc(100% - 100px);
+  max-height: calc(100% - 160px);
   object-fit: contain;
   border-radius: var(--input-border-radius);
   border: 2px solid var(--terminal-border);
