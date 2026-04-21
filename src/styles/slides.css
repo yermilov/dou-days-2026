@@ -24,6 +24,15 @@
   overflow: hidden;
 }
 
+/*
+ * Staged slide container: removes padding so the scaled 1920×1080 stage can
+ * fill the full height between the header (none) and the bottom input bar.
+ * Applied to any slide with `chrome: 'hero'` or `chrome: 'global'`.
+ */
+.slide-container--staged {
+  padding: 0;
+}
+
 /* === SLIDE === */
 .slide {
   width: 100%;
@@ -718,6 +727,32 @@
   background: transparent;
 }
 
+/*
+ * Body slide inside the 1920×1080 stage. Content gets padded away from the
+ * chrome band at the top (logo + Kyiv badge zone, ~140px) and from stage
+ * edges horizontally. The slide still uses the existing `.slide` flex
+ * layout for vertical centering of its content.
+ */
+.slide--body {
+  position: absolute;
+  inset: 0;
+  max-width: none;
+  max-height: none;
+  width: 1920px;
+  height: 1080px;
+  padding: 140px 120px 60px;
+  margin: 0;
+  overflow: hidden;
+  animation: none;
+  text-align: center;
+  z-index: 2;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}
+
 /* --- Sonar background (concentric rings PNG from template) --- */
 
 .sonar-pattern {
@@ -781,6 +816,32 @@
   display: block;
 }
 
+/*
+ * Body-slide sonar: one of three full-bleed patterns extracted from the DOU
+ * template content slides. The image picker (bodySonarFor) in
+ * src/components/SonarPattern.tsx chooses deterministically per slide.
+ * Opacity is dropped so slide text stays legible; object-fit cover handles
+ * the different source aspect ratios (2048×1955, 2048×1152, 2014×2048).
+ */
+.sonar-pattern--body {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  opacity: var(--sonar-body-opacity, 0.35);
+}
+
+.sonar-pattern--body .sonar-pattern__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 /* --- Chrome (DOU logo top-right) --- */
 
 .slide-chrome {
@@ -809,6 +870,31 @@
   width: 364px;
   height: 84px;
   overflow: hidden;
+}
+
+/*
+ * Kyiv badge: top-left counterpart to the logo. Stage-relative px so the
+ * badge scales uniformly with `transform: scale()` from Slide.tsx. Matches
+ * the visual weight of the DOU logo block to the right (84px tall band).
+ * The title slide suppresses this via `showCityBadge={false}` and renders
+ * its own calibrated `.title-hero__tag` inside the title block instead.
+ */
+.slide-chrome__city-badge {
+  position: absolute;
+  top: 27px;
+  left: 55px;
+  height: 84px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 28px;
+  background: var(--dou-near-black);
+  color: var(--dou-white);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: nowrap;
 }
 
 .slide-chrome__logo-image {

@@ -8,6 +8,14 @@ export interface SlideContentProps {
 
 export type HeroVariant = 'title' | 'speaker';
 
+/**
+ * Which chrome a slide renders:
+ * - 'hero': calibrated 1920×1080 stage with pixel-perfect title-slide sonar + logo + Kyiv badge (TitleSlide)
+ * - 'global' (default): 1920×1080 stage with randomised body-slide sonar + logo + Kyiv badge
+ * - 'none': plain flow slide, no chrome (escape hatch, unused today)
+ */
+export type SlideChromeMode = 'hero' | 'global' | 'none';
+
 export interface SlideDefinition {
   id: string;
   content: ReactNode | ((props: SlideContentProps) => ReactNode);
@@ -16,7 +24,10 @@ export interface SlideDefinition {
   tooltip?: ReactNode;
   maxRevealStages?: number;
   initialRevealStage?: number;
+  chrome?: SlideChromeMode;
+  /** @deprecated use `chrome: 'hero'` — retained for in-flight migration. */
   hero?: boolean;
+  /** @deprecated — only `'title'` remains in use; BioSlide (speaker) is reworked into a body slide. */
   heroVariant?: HeroVariant;
 }
 
@@ -47,7 +58,12 @@ export interface SlideProps {
   isActive: boolean;
   notes?: string;
   background?: string;
+  chrome?: SlideChromeMode;
+  slideIndex?: number;
+  slideId?: string;
+  /** @deprecated use `chrome`. */
   hero?: boolean;
+  /** @deprecated */
   heroVariant?: HeroVariant;
 }
 

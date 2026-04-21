@@ -1,15 +1,16 @@
 import { ReactNode, useEffect, useState } from 'react';
-import { SonarPattern } from './SonarPattern';
+import { SonarPattern, type SonarVariant } from './SonarPattern';
 import { SlideChrome } from './SlideChrome';
-import type { HeroVariant } from '../types/slides';
+import type { SlideChromeMode } from '../types/slides';
 
 interface SlideProps {
   children: ReactNode;
   isActive?: boolean;
   notes?: string;
   background?: string;
-  hero?: boolean;
-  heroVariant?: HeroVariant;
+  chrome?: SlideChromeMode;
+  slideIndex?: number;
+  slideId?: string;
 }
 
 const STAGE_WIDTH = 1920;
@@ -26,14 +27,16 @@ export function Slide({
   children,
   isActive = true,
   background,
-  hero = false,
-  heroVariant = 'title',
+  chrome = 'global',
+  slideIndex = 0,
+  slideId = '',
 }: SlideProps) {
   const [viewportEl, setViewportEl] = useState<HTMLDivElement | null>(null);
   const [scale, setScale] = useState(1);
+  const isStaged = chrome !== 'none';
 
   useEffect(() => {
-    if (!hero || !viewportEl) return;
+    if (!isStaged || !viewportEl) return;
     const update = () => setScale(computeScale(viewportEl));
     update();
     const ro = new ResizeObserver(update);
@@ -45,37 +48,37 @@ export function Slide({
       window.removeEventListener('resize', update);
       window.removeEventListener('orientationchange', update);
     };
-  }, [hero, viewportEl]);
+  }, [isStaged, viewportEl]);
 
   if (!isActive) return null;
 
-  if (hero) {
+  if (!isStaged) {
     return (
-      <div className="stage-viewport" ref={setViewportEl}>
-        <SonarPattern variant={heroVariant} />
-        <div
-          className="stage"
-          style={{
-            width: `${STAGE_WIDTH}px`,
-            height: `${STAGE_HEIGHT}px`,
-            transform: `translate(-50%, -50%) scale(${scale})`,
-          }}
-        >
-          <SlideChrome />
-          <div className="slide slide--hero" style={background ? { background } : undefined}>
-            {children}
-          </div>
-        </div>
+      <div className="slide" style={background ? { background } : undefined}>
+        {children}
       </div>
     );
   }
 
+  const sonarVariant: SonarVariant = chrome === 'hero' ? 'title' : 'body';
+  const slideClass = chrome === 'hero' ? 'slide slide--hero' : 'slide slide--body';
+
   return (
-    <div
-      className="slide"
-      style={background ? { background } : undefined}
-    >
-      {children}
+    <div className="stage-viewport" ref={setViewportEl}>
+      <SonarPattern variant={sonarVariant} slideIndex={slideIndex} slideId={slideId} />
+      <div
+        className="stage"
+        style={{
+          width: `${STAGE_WIDTH}px`,
+          height: `${STAGE_HEIGHT}px`,
+          transform: `translate(-50%, -50%) scale(${scale})`,
+        }}
+      >
+        <SlideChrome showCityBadge={chrome !== 'hero'} />
+        <div className={slideClass} style={background ? { background } : undefined}>
+          {children}
+        </div>
+      </div>
     </div>
   );
 }
