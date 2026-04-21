@@ -1,0 +1,31 @@
+/aidev:learn-code @docs/TITLE_SLIDE_CALIBRATION.md
+
+---
+
+[Image #20] now I want this slide [Image #21] to be more consistent with template slide - as much as possible, except for (a) bottom panel (b) bullet point reveal
+
+---
+
+[Image #22] [Image #23] wait they use absolutely different backgrounds
+
+---
+
+[Image #24] now please make all fonts larger so they take as much space as possible
+use /frontend-design:frontend-design
+
+---
+
+sorry resume
+
+---
+
+cool, let's also translate slide to ukrainian
+and document its layout translation process
+
+---
+
+[Image #25] let's maybe make a title a bit smaller but main text a bit larger /frontend-design:frontend-design
+
+---
+
+let's maybe make a title a bit smaller but main text a bit larger, once more
