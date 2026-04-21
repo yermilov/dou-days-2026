@@ -1,0 +1,30 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "559d5245235b",
+  "strategy": "manual-commit",
+  "branch": "converge-design-system",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "src/slides/AgentTracesSlide.tsx",
+    "src/slides/AgentWorkflowSlide.tsx",
+    "src/slides/AutoApproveHookSlide.tsx",
+    "src/slides/SkillsActivatorSlide.tsx",
+    "src/slides/WarcraftFunSlide.tsx",
+    "src/styles/theme.css"
+  ],
+  "sessions": [
+    {
+      "metadata": "/55/9d5245235b/0/metadata.json",
+      "transcript": "/55/9d5245235b/0/full.jsonl",
+      "content_hash": "/55/9d5245235b/0/content_hash.txt",
+      "prompt": ""
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 20,
+    "cache_creation_tokens": 14575,
+    "cache_read_tokens": 8101108,
+    "output_tokens": 7817,
+    "api_call_count": 20
+  }
+}
