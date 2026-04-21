@@ -16,7 +16,7 @@ export const WhatIsSkillSlide: SlideDefinition = {
       `}</style>
 
       {/* Title — on the terminal dark background, always readable */}
-      <h2 style={{ textAlign: 'center', marginBottom: '0.5rem' }}>
+      <h2>
         <span className="text-dim">$</span>{' '}
         <span className="text-green">pattern</span>{' '}
         <span className="text-orange">--skills</span>
@@ -26,7 +26,7 @@ export const WhatIsSkillSlide: SlideDefinition = {
       <div
         style={{
           position: 'relative',
-          height: 'calc(var(--vh-full) - 195px)',
+          height: 'calc(var(--vh-full) - 335px)',
           overflow: 'hidden',
           borderRadius: '6px',
         }}

@@ -6,7 +6,7 @@ export const AutonomousAiSlide: SlideDefinition = {
   maxRevealStages: 3,
   content: ({ revealStage }: SlideContentProps) => (
     <>
-      <h2 style={{ marginBottom: '2rem' }}>
+      <h2>
         <span className="text-dim">$</span>{' '}
         <span className="text-green">pattern</span>{' '}
         <span className="text-orange">--agent-experience</span>

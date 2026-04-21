@@ -69,7 +69,7 @@ function AutoApproveContent({ revealStage }: { revealStage: number }) {
     <>
       <style>{STYLES}</style>
 
-      <h2 style={{ marginBottom: '1.2rem' }}>
+      <h2>
         <span className="text-dim">$</span>{' '}
         <span className="text-green">pattern</span>{' '}
         <span className="text-orange">--auto-approve-permissions</span>

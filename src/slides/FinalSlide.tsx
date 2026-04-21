@@ -6,7 +6,7 @@ export const FinalSlide: SlideDefinition = {
   id: 'final',
   content: ({ revealStage }) => (
     <>
-      <h2 style={{ marginBottom: '2rem', textAlign: 'center', color: 'var(--terminal-blue)' }}>
+      <h2 style={{ color: 'var(--terminal-blue)' }}>
         compacting the conversation...
       </h2>
 

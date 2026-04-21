@@ -6,7 +6,7 @@ export const ImportantSlide: SlideDefinition = {
   id: 'important',
   content: ({ revealStage }) => (
     <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%' }}>
-      <h2 style={{ marginBottom: '1rem' }}>
+      <h2>
         <span className="text-dim">$</span>{' '}
         <span className="text-green">pattern</span>{' '}
         <span className="text-orange">--throughput-vs-latency</span>

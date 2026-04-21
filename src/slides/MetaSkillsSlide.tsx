@@ -43,7 +43,7 @@ function MetaSkillsContent({ revealStage }: { revealStage: number }) {
       .catch(() => setError(true));
   }, []);
 
-  const colHeight = 'calc(var(--vh-full) - 260px)';
+  const colHeight = 'calc(var(--vh-full) - 400px)';
 
   return (
     <>
@@ -52,7 +52,7 @@ function MetaSkillsContent({ revealStage }: { revealStage: number }) {
       `}</style>
 
       <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-        <h2 style={{ marginBottom: '0.8rem' }}>
+        <h2>
           <span className="text-dim">$</span>{' '}
           <span className="text-green">pattern</span>{' '}
           <span className="text-orange">--meta-skills</span>

@@ -97,7 +97,7 @@ function AIInnovatorCurveContent() {
       <style>{CURVE_STYLES}</style>
 
       <div style={{ lineHeight: 1.4, textAlign: 'center' }}>
-        <h2 style={{ marginBottom: 0 }}>
+        <h2>
           <span className="text-dim">$</span>{' '}
           <span className="text-green">pattern</span>{' '}
           <span className="text-orange">--ainnovator-curve</span>
@@ -108,7 +108,7 @@ function AIInnovatorCurveContent() {
         viewBox={`0 0 ${W} ${H + 140}`}
         style={{
           width: '100%',
-          height: 'calc(var(--vh-full) - 240px)',
+          height: 'calc(var(--vh-full) - 380px)',
           display: 'block',
           overflow: 'visible',
         }}

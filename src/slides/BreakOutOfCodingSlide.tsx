@@ -19,7 +19,7 @@ export const BreakOutOfCodingSlide: SlideDefinition = {
   id: 'break-out-of-coding',
   content: ({ revealStage }) => (
     <>
-      <h2 style={{ marginBottom: '2rem' }}>
+      <h2>
         <span className="text-dim">$</span>{' '}
         <span className="text-green">pattern</span>{' '}
         <span className="text-orange">--break-out-of-coding</span>
