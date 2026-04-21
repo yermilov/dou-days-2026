@@ -1,0 +1,33 @@
+[Image #1] Kyiv label should have transparent background
+
+---
+
+[Image #2] cool! is this slide use the same fonts as bio slide? [Image #3] sizes look verydifferent
+
+---
+
+I though we use one design system for all slides? /design-system
+
+---
+
+I want all slides to adopt sizes from bio slide and drop override
+
+---
+
+adopt all bio overrides as standard fro the design system
+
+---
+
+[Image #4] after your changes main textr size looks weird
+
+---
+
+[Image #5] ok but font sizes on the next slide still look different to me
+
+---
+
+ok find all overrides on all slides and fix them
+
+---
+
+commit everything and push to main

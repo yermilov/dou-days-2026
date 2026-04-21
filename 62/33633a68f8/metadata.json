@@ -1,0 +1,26 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "6233633a68f8",
+  "strategy": "manual-commit",
+  "branch": "unify-typography-on-bio-sizing",
+  "checkpoints_count": 9,
+  "files_touched": [
+    "src/styles/slides.css",
+    "src/styles/theme.css"
+  ],
+  "sessions": [
+    {
+      "metadata": "/62/33633a68f8/0/metadata.json",
+      "transcript": "/62/33633a68f8/0/full.jsonl",
+      "content_hash": "/62/33633a68f8/0/content_hash.txt",
+      "prompt": "/62/33633a68f8/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 170,
+    "cache_creation_tokens": 247880,
+    "cache_read_tokens": 9968266,
+    "output_tokens": 42673,
+    "api_call_count": 82
+  }
+}
