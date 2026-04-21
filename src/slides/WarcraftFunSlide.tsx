@@ -133,7 +133,6 @@ function WarcraftFunContent({ revealStage }: { revealStage: number }) {
           id="warcraft-right"
           style={{
             flex: 1,
-            '--font-size-code': '0.82rem',
           } as React.CSSProperties}
         >
           {revealStage === 0 && (

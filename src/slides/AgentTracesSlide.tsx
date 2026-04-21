@@ -90,7 +90,6 @@ function AgentTracesContent({ revealStage }: { revealStage: number }) {
           id="agent-traces-right"
           style={{
             flex: 1,
-            '--font-size-code': '0.82rem',
           } as React.CSSProperties}
         >
           {revealStage >= 1 && revealStage < 3 && (

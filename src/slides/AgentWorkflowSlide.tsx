@@ -106,7 +106,6 @@ function AgentWorkflowContent({ revealStage }: { revealStage: number }) {
           id="agent-workflow-right"
           style={{
             flex: 1,
-            '--font-size-code': '0.82rem',
           } as React.CSSProperties}
         >
           {revealStage === 1 && (

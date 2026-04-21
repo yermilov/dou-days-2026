@@ -49,13 +49,26 @@
   --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Cascadia Code', monospace;
   --font-sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
-  /* Slide typography - large and impactful */
+  /* === CANONICAL SLIDE TYPOGRAPHY ===
+     Edit the three values below to retune every body slide in the deck.
+     These are *the* knobs for making text bigger/smaller from a single
+     place. Values are sized aggressively for back-row readability in a
+     400+ seat hall. */
+  --slide-text-h2: 4.5rem;       /* headings (was 3.5rem before convergence) */
+  --slide-text-body: 2rem;       /* body text (was 1.35rem before) */
+  --slide-text-code: 1.25rem;    /* code blocks */
+
+  /* Backwards-compat aliases so older references keep working. Once every
+     call site reads --slide-text-* directly, these can be removed. */
+  --font-size-h2: var(--slide-text-h2);
+  --slide-text-normal: var(--slide-text-body);
+  --font-size-code: var(--slide-text-code);
+
+  /* Secondary sizes — rarely on the tuning hot path */
   --font-size-hero: 6rem;
   --font-size-h1: 5rem;
-  --font-size-h2: 3.5rem;
   --font-size-h3: 2.5rem;
   --font-size-body: 1.75rem;
-  --font-size-code: 1.25rem;
   --font-size-input: 1.125rem;
   --font-size-small: 0.875rem;
 
@@ -67,12 +80,10 @@
   --letter-spacing-normal: 0;
   --letter-spacing-wide: 0.05em;
 
-  /* Slide text — single size for all non-heading content */
-  --slide-text-normal: 1.35rem;
   --slide-line-height-normal: 1.55;
 
-  /* Section headers use same text size */
-  --slide-section-header: var(--slide-text-normal);
+  /* Section headers use same text size as body */
+  --slide-section-header: var(--slide-text-body);
 
   /* Inline code */
   --slide-code-relative: 0.95em;

@@ -84,7 +84,6 @@ function SkillsActivatorContent({ revealStage }: { revealStage: number }) {
             display: 'flex',
             flexDirection: 'column',
             gap: '0.5rem',
-            '--font-size-code': '0.85rem',
           } as React.CSSProperties}
         >
           {!showExamples ? (

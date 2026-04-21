@@ -113,7 +113,6 @@ function AutoApproveContent({ revealStage }: { revealStage: number }) {
           id="auto-approve-right"
           style={{
             flex: 1,
-            '--font-size-code': '0.82rem',
           } as React.CSSProperties}
         >
           {revealStage === 1 && (
