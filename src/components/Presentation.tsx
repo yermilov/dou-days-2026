@@ -142,6 +142,9 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
   return (
     <NavigationContext.Provider value={{ goToSlideById }}>
     <div className="presentation">
+      {/* key={activeSlide.id} is load-bearing: it remounts the whole slide
+          tree on navigation so SonarPattern re-rolls its random image +
+          framing per visit. See .claude/skills/design-system/references/cohesive-chrome.md */}
       <div
         className={`slide-container${activeSlide.chrome && activeSlide.chrome !== 'none' ? ' slide-container--staged' : ''}${activeSlide.chrome === 'hero' || activeSlide.hero ? ' slide-container--hero' : ''}`}
         ref={containerRef}
@@ -152,8 +155,6 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
           notes={activeSlide.notes}
           background={activeSlide.background}
           chrome={activeSlide.chrome ?? (activeSlide.hero ? 'hero' : 'global')}
-          slideIndex={currentSlide}
-          slideId={activeSlide.id}
         >
           {slideContent}
         </Slide>

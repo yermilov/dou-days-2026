@@ -225,7 +225,7 @@ Quick rules:
 - **Palette**: use `--dou-*` tokens (`--dou-magenta`, `--dou-mint`, `--dou-violet`, `--dou-deep-purple`, …). Legacy `--terminal-*` tokens still exist but alias DOU values — don't introduce new rules that use them.
 - **Typography lives in one place**: `src/styles/theme.css` defines three canonical tokens — `--slide-text-h2`, `--slide-text-body`, `--slide-text-code`. Every body slide reads through these (directly or via the aliased `--font-size-h2` / `--slide-text-normal` / `--font-size-code`). Editing those three values retunes the whole deck.
 - **2–3 sizes per slide rule** still applies: one heading + one body + optionally one code size. The title slide uses its own `--hero-*` pixel calibration tokens; don't edit those during a typography retune.
-- **Sonar picker**: `bodySonarFor(slideIndex, slideId)` in `SonarPattern.tsx` hashes slideId so reordering slides only changes the moved slide's sonar, not every slide after it.
+- **Sonar backdrop**: `SonarPattern` picks one of three body sonars at random on mount and applies a random translate + scale (safety-bounded) so the rings land off-centre like on the DOU template. `Presentation.tsx` keys the slide container by `activeSlide.id`, so navigation remounts it and reshuffles; reveal stages and keystrokes keep the current pick stable. The `key` is load-bearing — don't remove it.
 - **No glow, scanline, phosphor, or flicker.** The legacy variables exist but resolve to `none` / `transparent`.
 - **No hardcoded hex in slide JSX `style={}`.** Exception: SVG `fill` / `stroke` JS constants.
 - **Slide registration** lives in `src/slides/index.ts` (the `slides` array), not `src/App.tsx`. App.tsx just renders `<Presentation slides={slides} />`.

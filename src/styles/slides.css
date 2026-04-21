@@ -793,8 +793,7 @@
 
 /*
  * Body-slide sonar: one of three full-bleed patterns extracted from the DOU
- * template content slides. The image picker (bodySonarFor) in
- * src/components/SonarPattern.tsx chooses deterministically per slide.
+ * template content slides. SonarPattern picks one at random per slide mount.
  * Opacity is dropped so slide text stays legible; object-fit cover handles
  * the different source aspect ratios (2048×1955, 2048×1152, 2014×2048).
  */
@@ -807,6 +806,14 @@
   opacity: var(--sonar-body-opacity, 0.35);
 }
 
+/*
+ * Order matters: translate outer, scale inner, with transform-origin: center.
+ * SonarPattern.tsx picks dx/dy freely across [-60%, 60%] so the ring center
+ * lands anywhere on or past the viewport (mirroring template slides 9, 11, 12
+ * where the rings are corner arcs with off-canvas centers). Uncovered regions
+ * reveal the stage-viewport's --dou-bg-gradient underneath — same dark purple
+ * the template uses, so there's nothing to hide.
+ */
 .sonar-pattern--body .sonar-pattern__image {
   position: absolute;
   top: 0;
@@ -815,6 +822,9 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  transform: translate(var(--sonar-dx, 0%), var(--sonar-dy, 0%))
+             scale(var(--sonar-scale, 1));
+  transform-origin: center;
 }
 
 /* --- Chrome (DOU logo top-right) --- */

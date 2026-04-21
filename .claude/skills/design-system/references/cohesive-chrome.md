@@ -52,25 +52,43 @@ stage and unchanged. Slides never overlap the bottom bar.
 
 ## Sonar pool picker
 
-`src/components/SonarPattern.tsx` exports `bodySonarFor(slideIndex, slideId)`:
+`src/components/SonarPattern.tsx` picks one of three backgrounds **and**
+a random translate + scale when the `body` variant mounts, so the
+concentric rings land off-centre the way they do on the DOU template:
 
 ```ts
-const mix = slideIndex + hashSlideId(slideId);
-return BODY_SONAR_POOL[mix % BODY_SONAR_POOL.length];
+const [body] = useState(pickBodyComposition);
+// body = { src, dx, dy, scale }
 ```
 
 The pool is the three backgrounds under `public/sonar/` (extracted from
-the DOU template — see `public/ASSET_PROVENANCE.md`).
+the DOU template — see `public/ASSET_PROVENANCE.md`). The composition
+object flows out as three inline CSS custom properties on the wrapper:
+`--sonar-dx`, `--sonar-dy`, `--sonar-scale`. `src/styles/slides.css`
+applies them as `transform: translate(var(--sonar-dx), var(--sonar-dy))
+scale(var(--sonar-scale))`.
 
-**Why not just `slideIndex % pool.length`?** Because slides get reordered
-occasionally (the `slides` array in `src/slides/index.ts`) and a pure
-modulo would reshuffle every slide's sonar whenever anything moved. The
-hashed-id version is stable: reordering only changes the moved slide's
-sonar, not every slide after it.
+**Range.** `scale ∈ [1.0, 1.55]` and `dx, dy ∈ [-60%, 60%]` of viewport
+width/height. That lets the ring center land anywhere in roughly
+`[-10%, 110%]` of each axis — mid-frame, at an edge, or fully off-canvas
+— so the pattern can recreate every template composition, from the
+edge-to-edge fill on template slide 7 to the bottom-left corner arcs
+on slides 9, 11, 12 whose ring centers sit past the slide boundary.
 
-Adding a new slide shifts sonars for slides at and after the insertion
-point. Removing a slide shifts the same way. That's acceptable — sonar
-choice is decorative, not semantic.
+Blank regions where the scaled sonar image doesn't reach are **intentional**.
+`.stage-viewport` paints `var(--dou-bg-gradient)` underneath (slides.css),
+which is the same dark purple the DOU template uses as its base. So
+uncovered areas read as deliberate negative space, not a broken layer.
+
+`Presentation.tsx` keys the slide container by `activeSlide.id`, so every
+navigation remounts the slide tree and reshuffles both the image and the
+composition. **That `key` is load-bearing — don't remove it or the
+sonar will freeze on whatever it first picked.** Re-renders within the
+same slide (reveal stages, keystrokes in the terminal input) reuse the
+stored pick, so the background doesn't flicker while you type.
+
+Sonar composition is decorative, not semantic — revisiting a slide will
+show a different image and a different framing, and that's intentional.
 
 ## Chrome tokens
 

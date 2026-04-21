@@ -44,4 +44,4 @@ The design language for this deck: DOU magenta/mint/violet palette, IBM Plex San
 - [references/full-spec.md](references/full-spec.md) — complete palette, typography, layout patterns, chrome rules, do/don'ts
 - [references/blurred-background-pattern.md](references/blurred-background-pattern.md) — full-screen image + blurred content box pattern
 - [references/side-images-pattern.md](references/side-images-pattern.md) — full-height side-image layout pattern
-- [references/cohesive-chrome.md](references/cohesive-chrome.md) — body-slide chrome composition, sonar pool picker (`bodySonarFor`), badge placement tokens
+- [references/cohesive-chrome.md](references/cohesive-chrome.md) — body-slide chrome composition, random sonar pool + framing, badge placement tokens

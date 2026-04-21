@@ -9,8 +9,6 @@ interface SlideProps {
   notes?: string;
   background?: string;
   chrome?: SlideChromeMode;
-  slideIndex?: number;
-  slideId?: string;
 }
 
 const STAGE_WIDTH = 1920;
@@ -28,8 +26,6 @@ export function Slide({
   isActive = true,
   background,
   chrome = 'global',
-  slideIndex = 0,
-  slideId = '',
 }: SlideProps) {
   const [viewportEl, setViewportEl] = useState<HTMLDivElement | null>(null);
   const [scale, setScale] = useState(1);
@@ -65,7 +61,7 @@ export function Slide({
 
   return (
     <div className="stage-viewport" ref={setViewportEl}>
-      <SonarPattern variant={sonarVariant} slideIndex={slideIndex} slideId={slideId} />
+      <SonarPattern variant={sonarVariant} />
       <div
         className="stage"
         style={{

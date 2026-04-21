@@ -143,7 +143,10 @@
 
   /* Backgrounds */
   --dou-bg-solid: #0f0820;
-  --dou-bg-gradient: linear-gradient(135deg, #270950 0%, #0d021b 100%);
+  /* Template gradient — vertical, near-black top → deep-purple bottom.
+     Extracted from the DOU Days 2026 dark speaker template SVG
+     (x1=x2≈0, y1=0, y2=453; stops 0D021B @ 0% → 270950 @ 100%). */
+  --dou-bg-gradient: linear-gradient(180deg, var(--dou-near-black) 0%, var(--dou-deep-purple) 100%);
 
   /* Number-badge gradient (agenda pill) */
   --dou-gradient-badge: linear-gradient(180deg, #e252b8 0%, #b05cd1 100%);

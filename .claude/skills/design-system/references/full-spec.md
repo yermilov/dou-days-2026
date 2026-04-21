@@ -153,8 +153,9 @@ top-left, and `SonarPattern` renders a full-bleed backdrop. The title
 slide uses the calibrated `public/dou-sonar-hero.png` sonar and has its
 own `Київ, 2026` tag inside the title block, so its chrome-level badge is
 suppressed via `showCityBadge={false}` to avoid duplication. Body slides
-pick one of three backgrounds from `public/sonar/` deterministically via
-`bodySonarFor(slideIndex, slideId)` and show the chrome-level badge.
+pick one of three backgrounds from `public/sonar/` at random on mount,
+apply a random translate + scale (safety-bounded) so the rings land
+off-centre like on the DOU template, and show the chrome-level badge.
 
 See [cohesive-chrome.md](cohesive-chrome.md) for picker stability,
 placement tokens, and how to add a new slide.
