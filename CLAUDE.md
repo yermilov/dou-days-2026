@@ -4,7 +4,7 @@
 
 A custom presentation site for the Ukrainian-language talk "Невигадані історії AI-first трансформації в інженерних командах (про які неможливо мовчати)". Built with React and TypeScript, it uses the original Claude-Code-inspired terminal layouts (`$ pattern --foo` headings, `> ` bullets, command-based navigation) skinned in the DOU Days 2026 visual style — IBM Plex Sans font and the DOU magenta / mint / violet palette. Hosted on GitHub Pages at https://yermilov.github.io/dou-days-2026
 
-See [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md) for the design spec (colours, typography, layout patterns).
+The design system lives in the `design-system` skill at [.claude/skills/design-system/](.claude/skills/design-system/) — SKILL.md covers the invariants, and `references/full-spec.md` has the full palette/typography/layout spec. The pixel-perfect title slide calibration lives in [.claude/skills/pixel-perfect-translation/](.claude/skills/pixel-perfect-translation/).
 
 ## Tech Stack
 
@@ -216,7 +216,7 @@ Keyboard (when not typing):
 
 ## Design System
 
-Full spec: **[docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md)** — read this before touching UI.
+Full spec: **[.claude/skills/design-system/references/full-spec.md](.claude/skills/design-system/references/full-spec.md)** — read before touching UI. The `design-system` skill auto-activates when editing slides or styles.
 
 Quick rules:
 - **Layout**: original Claude-Code-inspired terminal layouts. H2s follow the `$ pattern --foo` idiom; bullets use `> ` prefix; `TerminalInput` shows a `>` prompt; `SlideProgress` shows "context left until auto-compact N%".

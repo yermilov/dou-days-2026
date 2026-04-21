@@ -19,7 +19,7 @@ uniformly via `transform: scale()` so absolute pixel positions stay
 identical at any window size. The bottom timer + terminal input bar remain
 unchanged, since they render outside the slide stage.
 
-See [TITLE_SLIDE_CALIBRATION.md](./TITLE_SLIDE_CALIBRATION.md) for the
+See [../../pixel-perfect-translation/references/calibration-methodology.md](../../pixel-perfect-translation/references/calibration-methodology.md) for the
 methodology used to extract exact coordinates from the template PPTX and
 replicate them in CSS (including srcRect+stretch image transforms).
 
