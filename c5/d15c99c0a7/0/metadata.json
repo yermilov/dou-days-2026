@@ -1,0 +1,22 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "c5d15c99c0a7",
+  "session_id": "6d16b9dc-b883-4cf6-a55e-6c0484aa28e2",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-21T10:04:06.964047Z",
+  "branch": "converge-design-system",
+  "checkpoints_count": 1,
+  "files_touched": [],
+  "agent": "Claude Code",
+  "turn_id": "3c775916d3e2",
+  "token_usage": {
+    "input_tokens": 3505,
+    "cache_creation_tokens": 335169,
+    "cache_read_tokens": 22453197,
+    "output_tokens": 94004,
+    "api_call_count": 119
+  },
+  "session_metrics": {
+    "turn_count": 1
+  }
+}

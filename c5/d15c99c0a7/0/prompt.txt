@@ -1,0 +1,19 @@
+/aidev:learn-code design system and pixel perfect translation from tempplate deck
+
+---
+
+I want to converge design system into together:
+(1) translate design system into project-level skill
+(2) translate pixel perfect translation process into project-level skill
+(3) title slide is the custom one
+(4) all other slides should have cohesive design system:
+(a) always use random sonar backgrounds from template
+(b) always add Kyiv and DOuDays badge at the top
+(c) always keep bottom panel from existing presentation
+(d) preserve original layouts and transitions, but try to adjust them to similar template layouts when possible
+(e) use color pallete from the template, use fonts from the template
+(f) converge into small number of font sizes (2-3), maximize their size for better visibility in large halls from behind rows
+
+---
+
+/codexcli:codex-plan-review
