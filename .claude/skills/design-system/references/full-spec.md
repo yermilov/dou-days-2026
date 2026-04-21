@@ -6,18 +6,21 @@ prompts, `$ pattern --foo` headings, `> ` bullets, `> ` input prompt,
 visual style** — IBM Plex Sans font and the DOU magenta / mint / violet
 colour palette.
 
-Content slides (2–27) have **no chrome overlay** and **no sonar background** —
-they keep the terminal layout (`$ pattern --foo` heading, `> ` bullets) rendered
-in DOU colours.
+**Every slide** sits on a fixed 1920×1080 stage scaled uniformly via
+`transform: scale(min(w/1920, h/1080))` (handled by `src/components/Slide.tsx`).
+All slides render the same cohesive chrome: DOU logo top-right + "Київ, 2026"
+badge top-left (from `SlideChrome`) + a sonar backdrop (from `SonarPattern`).
+The bottom timer + terminal input bar render *outside* the stage and are
+unchanged by this scaling.
 
 The **title slide is a pixel-perfect reproduction of the DOU template title**
-— full-bleed sonar rings, `DOU|))` logo top-right, `Київ, 2026` badge, dark
-title rectangle with uppercase white text, and a magenta description block.
-It opts into this layout by setting `hero: true` on its `SlideDefinition`,
-which makes `Slide.tsx` wrap the content in a fixed 1920×1080 stage scaled
-uniformly via `transform: scale()` so absolute pixel positions stay
-identical at any window size. The bottom timer + terminal input bar remain
-unchanged, since they render outside the slide stage.
+— it uses the calibrated `dou-sonar-hero.png` background, renders its own
+`Київ, 2026` tag inside the title block (suppressing the chrome badge via
+`showCityBadge={false}` to avoid duplication), and positions every element
+with absolute stage-px coordinates. Body slides share the same stage and
+chrome but use a flex-centred `.slide--body` wrapper and a randomised sonar
+picked from the 3-image pool in `public/sonar/`. The picker is deterministic
+and stable under slide reordering — see the cohesive-chrome reference doc.
 
 See [../../pixel-perfect-translation/references/calibration-methodology.md](../../pixel-perfect-translation/references/calibration-methodology.md) for the
 methodology used to extract exact coordinates from the template PPTX and
@@ -144,11 +147,17 @@ magenta `--explore-and-have-fun` in IBM Plex Sans.
   progress-bar fill.
 - **Timer**: IBM Plex Sans tabular-nums, dim-white text.
 
-No persistent overlay on content slides. On the **title slide only**, the
-`SlideChrome` component renders the `DOU|))` logo top-right, and the
-`SonarPattern` component renders the full-bleed sonar rings
-(`public/dou-sonar-hero.png`). The `Київ, 2026` badge lives inside the
-title block (`.title-hero__tag`) rather than as free-floating chrome.
+**Every staged slide** carries the same chrome overlay:
+`SlideChrome` renders the `DOU|))` logo top-right + "Київ, 2026" badge
+top-left, and `SonarPattern` renders a full-bleed backdrop. The title
+slide uses the calibrated `public/dou-sonar-hero.png` sonar and has its
+own `Київ, 2026` tag inside the title block, so its chrome-level badge is
+suppressed via `showCityBadge={false}` to avoid duplication. Body slides
+pick one of three backgrounds from `public/sonar/` deterministically via
+`bodySonarFor(slideIndex, slideId)` and show the chrome-level badge.
+
+See [cohesive-chrome.md](cohesive-chrome.md) for picker stability,
+placement tokens, and how to add a new slide.
 
 ---
 
@@ -158,12 +167,14 @@ title block (`.title-hero__tag`) rather than as free-floating chrome.
 - ✅ Use `--dou-*` tokens in new CSS. SVG may use hex constants in JS.
 - ✅ Keep the `$ pattern --foo` h2 idiom on content slides.
 - ✅ Keep the `> ` bullet / input prompt / section-header `// ` prefix.
+- ✅ All body slides get cohesive chrome (logo + Kyiv badge + sonar backdrop) for free via `chrome: 'global'` (the default).
+- ✅ Edit font sizes from one place: `--slide-text-h2`, `--slide-text-body`, `--slide-text-code` in `src/styles/theme.css`.
 - ❌ No text-shadow / glow / phosphor / scanline effects.
-- ❌ No persistent chrome on content slide body (title slide is the only exception).
-- ❌ No hero sonar background on content slides (title slide is the only exception).
 - ❌ No hardcoded hex in slide JSX `style={}`. Exception: SVG attributes.
-- ❌ Don't exceed the 2-sizes-per-slide rule. Reduce content or split slides
-  if they overflow.
+- ❌ Don't exceed the 2–3 sizes-per-slide rule. Reduce content or split
+  slides if they overflow. Never introduce a new font size to fix one slide.
+- ❌ Don't edit `--hero-*` tokens while retuning body typography — the title
+  slide's pixel-perfect calibration depends on them staying fixed.
 
 ---
 

@@ -219,13 +219,16 @@ Keyboard (when not typing):
 Full spec: **[.claude/skills/design-system/references/full-spec.md](.claude/skills/design-system/references/full-spec.md)** — read before touching UI. The `design-system` skill auto-activates when editing slides or styles.
 
 Quick rules:
-- **Layout**: original Claude-Code-inspired terminal layouts. H2s follow the `$ pattern --foo` idiom; bullets use `> ` prefix; `TerminalInput` shows a `>` prompt; `SlideProgress` shows "context left until auto-compact N%".
+- **Staged layout**: every slide except `chrome: 'none'` sits on a fixed 1920×1080 stage scaled uniformly via `transform: scale(...)` in `src/components/Slide.tsx`. Body slides use flex centering inside the stage; the title slide uses absolute stage-px positioning for its calibrated hero block.
+- **Cohesive chrome**: every staged slide renders DOU logo top-right + "Київ, 2026" badge top-left (from `SlideChrome`) + a randomised sonar backdrop (from `SonarPattern variant="body"`). The title slide opts out of the chrome badge via `showCityBadge={false}` because it has its own calibrated tag inside the hero block.
 - **Font**: IBM Plex Sans (self-hosted, weights 400/600/700, latin + cyrillic). JetBrains Mono stays only inside `CodeBlock` / inline `<code>`.
 - **Palette**: use `--dou-*` tokens (`--dou-magenta`, `--dou-mint`, `--dou-violet`, `--dou-deep-purple`, …). Legacy `--terminal-*` tokens still exist but alias DOU values — don't introduce new rules that use them.
-- **Background**: `--dou-bg-gradient` on the presentation container. No sonar pattern, no persistent chrome overlay.
-- **2-sizes-per-slide rule** still applies: `--font-size-h2` heading + `--slide-text-normal` body. Title slide may add `--font-size-hero`.
+- **Typography lives in one place**: `src/styles/theme.css` defines three canonical tokens — `--slide-text-h2`, `--slide-text-body`, `--slide-text-code`. Every body slide reads through these (directly or via the aliased `--font-size-h2` / `--slide-text-normal` / `--font-size-code`). Editing those three values retunes the whole deck.
+- **2–3 sizes per slide rule** still applies: one heading + one body + optionally one code size. The title slide uses its own `--hero-*` pixel calibration tokens; don't edit those during a typography retune.
+- **Sonar picker**: `bodySonarFor(slideIndex, slideId)` in `SonarPattern.tsx` hashes slideId so reordering slides only changes the moved slide's sonar, not every slide after it.
 - **No glow, scanline, phosphor, or flicker.** The legacy variables exist but resolve to `none` / `transparent`.
 - **No hardcoded hex in slide JSX `style={}`.** Exception: SVG `fill` / `stroke` JS constants.
+- **Slide registration** lives in `src/slides/index.ts` (the `slides` array), not `src/App.tsx`. App.tsx just renders `<Presentation slides={slides} />`.
 
 ## Development Guidelines
 
