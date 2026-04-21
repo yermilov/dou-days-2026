@@ -1,0 +1,31 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "e7316e2c6fc1",
+  "strategy": "manual-commit",
+  "branch": "converge-design-system",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "src/components/Presentation.tsx",
+    "src/components/Slide.tsx",
+    "src/components/SlideChrome.tsx",
+    "src/components/SonarPattern.tsx",
+    "src/slides/TitleSlide.tsx",
+    "src/styles/slides.css",
+    "src/types/slides.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/e7/316e2c6fc1/0/metadata.json",
+      "transcript": "/e7/316e2c6fc1/0/full.jsonl",
+      "content_hash": "/e7/316e2c6fc1/0/content_hash.txt",
+      "prompt": ""
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 44,
+    "cache_creation_tokens": 43968,
+    "cache_read_tokens": 9941207,
+    "output_tokens": 22433,
+    "api_call_count": 29
+  }
+}
