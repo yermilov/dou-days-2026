@@ -1,0 +1,39 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "723741c8a570",
+  "session_id": "6d16b9dc-b883-4cf6-a55e-6c0484aa28e2",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-21T10:15:09.41614Z",
+  "branch": "converge-design-system",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "src/slides/BioSlide.tsx",
+    "src/styles/slides.css",
+    "src/components/SonarPattern.tsx",
+    "public/ASSET_PROVENANCE.md",
+    ".claude/skills/pixel-perfect-translation/references/translation-constraints.md"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "3c775916d3e2",
+  "checkpoint_transcript_start": 869,
+  "transcript_lines_at_start": 869,
+  "token_usage": {
+    "input_tokens": 32,
+    "cache_creation_tokens": 373364,
+    "cache_read_tokens": 7822783,
+    "output_tokens": 12402,
+    "api_call_count": 22
+  },
+  "session_metrics": {
+    "turn_count": 1
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-04-21T10:15:08.833443Z",
+    "agent_lines": 78,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 78,
+    "agent_percentage": 100
+  }
+}
