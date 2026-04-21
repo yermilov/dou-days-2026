@@ -15,29 +15,37 @@ interface TimelineItem {
   emphasis?: boolean;
 }
 
+function monthsUk(n: number): string {
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (mod10 === 1 && mod100 !== 11) return 'місяць';
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return 'місяці';
+  return 'місяців';
+}
+
 function timeLabel(anchorDate: Date | null): string {
-  if (!anchorDate) return 'since then';
+  if (!anchorDate) return 'відтоді';
   const now = new Date();
   const months =
     (now.getFullYear() - anchorDate.getFullYear()) * 12 +
     (now.getMonth() - anchorDate.getMonth());
-  return `${months} month${months === 1 ? '' : 's'} ago`;
+  return `${months} ${monthsUk(months)} тому`;
 }
 
 const timelineItems: TimelineItem[] = [
-  { anchorDate: new Date(2024, 9),  text: 'copilot? cool autocomplete', image: null },
-  { anchorDate: new Date(2024, 10), text: "I can't do frontend, cursor help me", image: cursorFrontend },
-  { anchorDate: new Date(2025, 2),  text: 'what if this is not just about code generation but pair programming?', image: mentoringLlm },
-  { anchorDate: new Date(2025, 3),  text: "but it's still a toy technology, right?", image: aiTechDebt, imageClassName: 'timeline-panel__image--zoom-anim' },
-  { anchorDate: new Date(2025, 4),  text: "claude code? let's try it", image: claudeCodeEmail },
+  { anchorDate: new Date(2024, 9),  text: 'copilot? крутий автокомпліт', image: null },
+  { anchorDate: new Date(2024, 10), text: 'я не вмію у фронтенд, cursor, допоможи', image: cursorFrontend },
+  { anchorDate: new Date(2025, 2),  text: 'а що як це не просто кодогенерація, а pair programming?', image: mentoringLlm },
+  { anchorDate: new Date(2025, 3),  text: 'але ж це все ще іграшкова технологія, так?', image: aiTechDebt, imageClassName: 'timeline-panel__image--zoom-anim' },
+  { anchorDate: new Date(2025, 4),  text: 'claude code? спробуймо', image: claudeCodeEmail },
   {
     anchorDate: null,
-    text: "haven't written a single line of code by hand since",
+    text: 'відтоді не написав жодного рядка коду вручну',
     bullets: [
-      "haven't written a single line of code by hand since",
-      "spent 2025 figuring out personal effective AI agentic coding workflow",
-      "evangelising Claude Code among Superhuman: workshops, tutorials, 1-1s",
-      "building internal tools: plugin system, skills, autonomous agents",
+      'відтоді не написав жодного рядка коду вручну',
+      'провів 2025-й, вибудовуючи свій ефективний ai agentic coding workflow',
+      'євангелізую Claude Code у Superhuman: воркшопи, туторіали, 1-1',
+      'будую внутрішні інструменти: плагіни, скіли, автономні агенти',
     ],
     image: null,
     emphasis: true,
@@ -54,7 +62,7 @@ export const TimelineSlide: SlideDefinition = {
     return (
       <div className="timeline-slide-v2">
         <h2 className="timeline-title-v2">
-          <span className="text-dim">$</span> my ai coding timeline
+          <span className="text-dim">$</span> моя ai coding timeline
         </h2>
 
         <div className="timeline-layout">
