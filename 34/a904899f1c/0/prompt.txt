@@ -1,0 +1,11 @@
+[Image #2]
+
+I see that this slide doesn't use free space effectively - especially large empty margin between title and content
+I suspect all slides might have similar problem
+please use /frontend-design:frontend-design to fix
+
+---
+
+[Image #3] now there is a lot of free space below
+text is cropped
+images are small
