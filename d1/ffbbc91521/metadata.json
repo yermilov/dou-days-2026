@@ -1,0 +1,46 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "d1ffbbc91521",
+  "strategy": "manual-commit",
+  "branch": "fixate-body-titles",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "src/slides/AIInnovatorCurveSlide.tsx",
+    "src/slides/AgentExampleSlide.tsx",
+    "src/slides/AgentTracesSlide.tsx",
+    "src/slides/AgentWorkflowSlide.tsx",
+    "src/slides/AutoApproveHookSlide.tsx",
+    "src/slides/AutonomousAiSlide.tsx",
+    "src/slides/BreakOutOfCodingSlide.tsx",
+    "src/slides/ChallengeAssumptionsSlide.tsx",
+    "src/slides/ClaudeCodeSlide.tsx",
+    "src/slides/EveryOrgRightNowSlide.tsx",
+    "src/slides/FinalSlide.tsx",
+    "src/slides/HumanAiEngSlide.tsx",
+    "src/slides/ImportantSlide.tsx",
+    "src/slides/InceptionPatternsSlide.tsx",
+    "src/slides/IndustryPatternsSlide.tsx",
+    "src/slides/MetaSkillsSlide.tsx",
+    "src/slides/SkillsActivatorSlide.tsx",
+    "src/slides/SoftwareFactorySlide.tsx",
+    "src/slides/StickerFunSlide.tsx",
+    "src/slides/WarcraftFunSlide.tsx",
+    "src/slides/WhatIsSkillSlide.tsx",
+    "src/styles/slides.css"
+  ],
+  "sessions": [
+    {
+      "metadata": "/d1/ffbbc91521/0/metadata.json",
+      "transcript": "/d1/ffbbc91521/0/full.jsonl",
+      "content_hash": "/d1/ffbbc91521/0/content_hash.txt",
+      "prompt": "/d1/ffbbc91521/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 142,
+    "cache_creation_tokens": 581442,
+    "cache_read_tokens": 14294788,
+    "output_tokens": 72856,
+    "api_call_count": 89
+  }
+}

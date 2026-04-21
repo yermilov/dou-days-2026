@@ -1,0 +1,8 @@
+[Image #1]
+I want you to do something with title on ALL slides
+fixate it right below Kyiv (a little bit higher and to the left compared to where it is now)
+/frontend-design:frontend-design
+
+---
+
+/codexcli:codex-plan-review

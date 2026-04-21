@@ -1,0 +1,54 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "d1ffbbc91521",
+  "session_id": "ed75ef07-00be-4def-a97d-34ad891b1f5a",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-21T13:56:09.202395Z",
+  "branch": "fixate-body-titles",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "src/slides/AIInnovatorCurveSlide.tsx",
+    "src/slides/AgentExampleSlide.tsx",
+    "src/slides/AgentTracesSlide.tsx",
+    "src/slides/AgentWorkflowSlide.tsx",
+    "src/slides/AutoApproveHookSlide.tsx",
+    "src/slides/AutonomousAiSlide.tsx",
+    "src/slides/BreakOutOfCodingSlide.tsx",
+    "src/slides/ChallengeAssumptionsSlide.tsx",
+    "src/slides/ClaudeCodeSlide.tsx",
+    "src/slides/EveryOrgRightNowSlide.tsx",
+    "src/slides/FinalSlide.tsx",
+    "src/slides/HumanAiEngSlide.tsx",
+    "src/slides/ImportantSlide.tsx",
+    "src/slides/InceptionPatternsSlide.tsx",
+    "src/slides/IndustryPatternsSlide.tsx",
+    "src/slides/MetaSkillsSlide.tsx",
+    "src/slides/SkillsActivatorSlide.tsx",
+    "src/slides/SoftwareFactorySlide.tsx",
+    "src/slides/StickerFunSlide.tsx",
+    "src/slides/WarcraftFunSlide.tsx",
+    "src/slides/WhatIsSkillSlide.tsx",
+    "src/styles/slides.css"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "a75322fffa8e",
+  "token_usage": {
+    "input_tokens": 142,
+    "cache_creation_tokens": 581442,
+    "cache_read_tokens": 14294788,
+    "output_tokens": 72856,
+    "api_call_count": 89
+  },
+  "session_metrics": {
+    "turn_count": 1
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-04-21T13:56:08.950292Z",
+    "agent_lines": 55,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 55,
+    "agent_percentage": 100
+  }
+}
