@@ -1,0 +1,10 @@
+[Image #4] translate this slide to Ukrainian
+
+---
+
+[Image #5]
+how to make sure this transition always stops to fit text nicely irregardless of the screen layout / size?
+
+---
+
+[Image #6] nothing changed - I was talking about linkeding screenshot zoom in

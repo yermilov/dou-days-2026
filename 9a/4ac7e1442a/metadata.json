@@ -1,0 +1,26 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "9a4ac7e1442a",
+  "strategy": "manual-commit",
+  "branch": "translate-timeline-uk",
+  "checkpoints_count": 3,
+  "files_touched": [
+    "src/slides/TimelineSlide.tsx",
+    "src/styles/slides.css"
+  ],
+  "sessions": [
+    {
+      "metadata": "/9a/4ac7e1442a/0/metadata.json",
+      "transcript": "/9a/4ac7e1442a/0/full.jsonl",
+      "content_hash": "/9a/4ac7e1442a/0/content_hash.txt",
+      "prompt": "/9a/4ac7e1442a/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 74,
+    "cache_creation_tokens": 205104,
+    "cache_read_tokens": 2931513,
+    "output_tokens": 31787,
+    "api_call_count": 35
+  }
+}
