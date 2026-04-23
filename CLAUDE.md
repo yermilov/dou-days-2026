@@ -216,7 +216,9 @@ Keyboard (when not typing):
 
 ## Design System
 
-Full spec: **[.claude/skills/design-system/references/full-spec.md](.claude/skills/design-system/references/full-spec.md)** — read before touching UI. The `design-system` skill auto-activates when editing slides or styles.
+> **CRITICAL — BLOCKING requirement**: Before ANY edit to `src/slides/`, `src/components/`, `src/styles/`, or anything that affects rendered pixels, invoke the `/design-system` skill and run its checklist. No exceptions — "small" changes count. Every UI edit must pass the skill's checklist before you report it as done. If a change violates an invariant, stop and surface the conflict before proceeding.
+
+Full spec: **[.claude/skills/design-system/references/full-spec.md](.claude/skills/design-system/references/full-spec.md)**. The `design-system` skill auto-activates when editing slides or styles.
 
 Quick rules:
 - **Staged layout**: every slide except `chrome: 'none'` sits on a fixed 1920×1080 stage scaled uniformly via `transform: scale(...)` in `src/components/Slide.tsx`. Body slides use flex centering inside the stage; the title slide uses absolute stage-px positioning for its calibrated hero block.
@@ -232,15 +234,9 @@ Quick rules:
 
 ## Development Guidelines
 
-### IMPORTANT: Use Frontend Design Skill
+### IMPORTANT: Use `/design-system` skill for every UI change
 
-**For ANY UI edits to this project, always use the `frontend-design` skill.**
-
-This ensures:
-- Consistent terminal aesthetic
-- High-quality, production-grade code
-- Proper use of design tokens
-- Distinctive, non-generic styling
+**For ANY UI edit in this repo, invoke `/design-system` first and run its checklist before finishing.** This is the project-specific skill encoding DOU deck invariants (palette, typography, chrome, rail/node conventions, sonar backdrop). The generic `frontend-design` skill is for creative direction on new components outside this deck — do not use it instead of `/design-system` for DOU slide edits.
 
 ### IMPORTANT: Verify Changes in Browser
 

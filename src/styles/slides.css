@@ -1250,6 +1250,8 @@
 }
 
 .timeline-layout {
+  --row-h: 72px;
+  --row-gap: 18px;
   display: grid;
   grid-template-columns: auto 1fr;
   gap: var(--space-2xl);
@@ -1261,7 +1263,6 @@
 .timeline-log {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   min-width: 200px;
 }
 
@@ -1280,52 +1281,81 @@
 }
 
 .timeline-log__list {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--row-gap);
+}
+
+/* Vertical rail running through all six node centers */
+.timeline-log__list::before {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: calc(var(--row-h) / 2);
+  bottom: calc(var(--row-h) / 2);
+  width: 2px;
+  background: color-mix(in srgb, var(--dou-magenta) 22%, transparent);
 }
 
 .timeline-log__item {
-  padding: var(--space-sm) var(--space-md);
-  border-left: 3px solid var(--terminal-border);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  opacity: 0.5;
+  position: relative;
+  height: var(--row-h);
+  padding-left: 40px;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0.55;
+}
+
+/* Node marker on the rail */
+.timeline-log__item::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--dou-magenta);
+  opacity: 0.55;
+  transition: box-shadow 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
 }
 
 .timeline-log__item--past {
   opacity: 0.35;
 }
 
-.timeline-log__item--active {
-  opacity: 1;
-  border-left-color: var(--terminal-orange);
-  background: linear-gradient(90deg, rgba(240, 136, 62, 0.12) 0%, transparent 100%);
+.timeline-log__item--past::before {
+  opacity: 0.28;
 }
 
-.timeline-log__item--emphasis.timeline-log__item--active {
-  border-left-color: var(--terminal-green);
-  background: linear-gradient(90deg, rgba(126, 231, 135, 0.12) 0%, transparent 100%);
+.timeline-log__item--active {
+  opacity: 1;
+}
+
+.timeline-log__item--active::before {
+  opacity: 1;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--dou-magenta) 25%, transparent);
+}
+
+.timeline-log__item--emphasis.timeline-log__item--active::before {
+  background: var(--dou-mint);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--dou-mint) 22%, transparent);
 }
 
 .timeline-log__time {
   font-family: var(--font-mono);
   font-size: var(--slide-text-body);
   font-weight: 700;
-  color: var(--terminal-orange);
-  transition: all 0.3s ease;
+  color: var(--dou-magenta);
+  transition: color 0.3s ease;
   white-space: nowrap;
 }
 
-.timeline-log__item--active .timeline-log__time {
-  text-shadow: var(--glow-text-orange);
-}
-
 .timeline-log__time--emphasis {
-  color: var(--terminal-green);
-}
-
-.timeline-log__item--active .timeline-log__time--emphasis {
-  text-shadow: var(--glow-text-green);
+  color: var(--dou-mint);
 }
 
 /* Hint box in left column - compact tooltip style */
@@ -1398,7 +1428,7 @@
   border: 1px solid var(--terminal-border);
 }
 
-/* Right panel - text + image */
+/* Right panel - text + image, centered within its full vertical space */
 .timeline-panel {
   display: flex;
   align-items: center;
@@ -1435,14 +1465,44 @@
   color: var(--terminal-white);
   line-height: 1.4;
   text-align: center;
-  max-width: 700px;
+  max-width: none;
 }
 
 .timeline-panel__text--emphasis {
   font-size: var(--slide-text-body);
   font-weight: 700;
-  color: var(--terminal-green);
-  text-shadow: var(--glow-text-green);
+  color: var(--dou-mint);
+  max-width: 1100px;
+}
+
+.timeline-panel__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  width: 100%;
+  max-width: 1100px;
+  text-align: left;
+}
+
+.timeline-panel__list li {
+  position: relative;
+  padding-left: 2.25rem;
+  font-family: var(--font-sans);
+  font-size: var(--slide-text-body);
+  color: var(--dou-white-dim);
+  line-height: 1.35;
+}
+
+.timeline-panel__list li::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--dou-magenta);
+  font-weight: 700;
 }
 
 .timeline-panel__image {

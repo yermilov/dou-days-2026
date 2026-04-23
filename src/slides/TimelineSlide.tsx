@@ -40,10 +40,9 @@ const timelineItems: TimelineItem[] = [
   { anchorDate: new Date(2025, 4),  text: 'claude code? спробуймо', image: claudeCodeEmail },
   {
     anchorDate: null,
-    text: 'відтоді не написав жодного рядка коду вручну',
+    text: 'не написав жодного рядка коду вручну',
     bullets: [
-      'відтоді не написав жодного рядка коду вручну',
-      'провів 2025-й, вибудовуючи свій ефективний ai agentic coding workflow',
+      'віднайшов свій комфортний ai agentic coding workflow',
       'євангелізую Claude Code у Superhuman: воркшопи, туторіали, 1-1',
       'будую внутрішні інструменти: плагіни, скіли, автономні агенти',
     ],
@@ -93,9 +92,14 @@ export const TimelineSlide: SlideDefinition = {
             <div className="timeline-panel__content" key={currentStage}>
               {/* Text */}
               {currentItem.bullets ? (
-                <ul className={`timeline-panel__list ${currentItem.emphasis ? 'timeline-panel__list--emphasis' : ''}`}>
-                  {currentItem.bullets.map((b, i) => <li key={i}>{b}</li>)}
-                </ul>
+                <>
+                  <div className="timeline-panel__text timeline-panel__text--emphasis">
+                    {currentItem.text}
+                  </div>
+                  <ul className="timeline-panel__list">
+                    {currentItem.bullets.map((b, i) => <li key={i}>{b}</li>)}
+                  </ul>
+                </>
               ) : (
                 <div className={`timeline-panel__text ${currentItem.emphasis ? 'timeline-panel__text--emphasis' : ''}`}>
                   {currentItem.text}
