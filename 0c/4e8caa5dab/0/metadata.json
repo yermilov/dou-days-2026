@@ -1,0 +1,37 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "0c4e8caa5dab",
+  "session_id": "9b05682c-9916-43c2-9530-6ad4fb21b091",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-23T08:22:05.73899Z",
+  "branch": "fix-timeline-layout",
+  "checkpoints_count": 9,
+  "files_touched": [
+    ".claude/skills/design-system/SKILL.md",
+    "CLAUDE.md",
+    "src/slides/TimelineSlide.tsx",
+    "src/styles/slides.css"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-opus-4-7[1m]",
+  "turn_id": "2171d4390d86",
+  "token_usage": {
+    "input_tokens": 277,
+    "cache_creation_tokens": 913412,
+    "cache_read_tokens": 26085453,
+    "output_tokens": 133063,
+    "api_call_count": 135
+  },
+  "session_metrics": {
+    "turn_count": 10
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-04-23T08:22:05.268027Z",
+    "agent_lines": 109,
+    "human_added": 0,
+    "human_modified": 2,
+    "human_removed": 0,
+    "total_committed": 111,
+    "agent_percentage": 98.1981981981982
+  }
+}

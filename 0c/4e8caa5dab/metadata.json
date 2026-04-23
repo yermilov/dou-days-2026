@@ -1,0 +1,28 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "0c4e8caa5dab",
+  "strategy": "manual-commit",
+  "branch": "fix-timeline-layout",
+  "checkpoints_count": 9,
+  "files_touched": [
+    ".claude/skills/design-system/SKILL.md",
+    "CLAUDE.md",
+    "src/slides/TimelineSlide.tsx",
+    "src/styles/slides.css"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0c/4e8caa5dab/0/metadata.json",
+      "transcript": "/0c/4e8caa5dab/0/full.jsonl",
+      "content_hash": "/0c/4e8caa5dab/0/content_hash.txt",
+      "prompt": "/0c/4e8caa5dab/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 277,
+    "cache_creation_tokens": 913412,
+    "cache_read_tokens": 26085453,
+    "output_tokens": 133063,
+    "api_call_count": 135
+  }
+}

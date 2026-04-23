@@ -1,0 +1,46 @@
+[Image #1] /frontend-design:frontend-design do you think this is aesthetically good layout?
+
+---
+
+let's fix the layout (And polish text)
+
+---
+
+/codexcli:codex-plan-review
+
+---
+
+[Image #2] let's center all right panel content to the full space, do not align it to timeline vertically
+
+---
+
+[Image #3] allow text to take full line
+
+---
+
+[Image #4] is it me or bullet points font look weird?
+
+---
+
+can you validate your design decision please with /design-system
+
+---
+
+switch bullet points to our standard dou font
+
+---
+
+switch bullet points and their text to our standard dou font
+
+---
+
+[Image #5] maybe let's use something else instead of bullet points - they look weird with this text
+
+---
+
+[Image #6] ooooops
+
+---
+
+ok, any improvements to design-system instruction you woulds suggest?
+also update CLAUDE.md to always strictly follow /design-system
