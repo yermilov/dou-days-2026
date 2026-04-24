@@ -1,0 +1,36 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "4cccd7018606",
+  "session_id": "332cb91e-8d38-4ff2-9c1c-32ed0550ad92",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-24T13:27:34.570085Z",
+  "branch": "fold-inception-into-every-org",
+  "checkpoints_count": 4,
+  "files_touched": [
+    "src/slides/EveryOrgRightNowSlide.tsx",
+    "src/slides/InceptionPatternsSlide.tsx",
+    "src/slides/index.ts"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-opus-4-7[1m]",
+  "turn_id": "a5cb5b1e0488",
+  "token_usage": {
+    "input_tokens": 199,
+    "cache_creation_tokens": 723259,
+    "cache_read_tokens": 23624863,
+    "output_tokens": 132491,
+    "api_call_count": 115
+  },
+  "session_metrics": {
+    "turn_count": 4
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-04-24T13:27:34.096413Z",
+    "agent_lines": 92,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 92,
+    "agent_percentage": 100
+  }
+}

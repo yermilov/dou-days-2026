@@ -1,0 +1,24 @@
+wdyt about merging "// all organizations start similar" and "$ pattern --inception" into one slide?
+
+---
+
+what abour removing fractal tree and moving advices from second slide to corresponding section of the first slide?
+
+---
+
+some additional asks:
+(1) translate slide to Ukrainian
+(2) [Image #1] make bell curve larger - there are some emtpy space
+(3) use /frontend-design:frontend-design and /design-system
+
+---
+
+[Image #2] there is still some free space to the right of the curve
+
+---
+
+nope, I mean can you make bell curve wider so it takes more free space to the right?
+
+---
+
+let's remove text from below the curve - it is too small to read anyway
