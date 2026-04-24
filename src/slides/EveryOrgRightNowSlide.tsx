@@ -1,5 +1,6 @@
+import { ReactNode } from 'react';
 import { SlideDefinition } from '../types/slides';
-import { SlideItem } from '../components/SlideElements';
+import { SlideItem, Emphasis } from '../components/SlideElements';
 
 // Bell curve helpers
 function buildCurvePoints(W: number, H: number, padTop: number, mu: number, sigma: number): string {
@@ -30,70 +31,99 @@ function buildOutlinePath(W: number, H: number, padTop: number, mu: number, sigm
     .join(' ');
 }
 
-const SECTIONS = [
+interface Section {
+  key: string;
+  label: string;
+  color: string;
+  glowColor: string;
+  x1Pct: number;
+  x2Pct: number;
+  items: ReactNode[];
+  growItems: ReactNode[];
+}
+
+const SECTIONS: Section[] = [
   {
     key: 'multipliers',
-    label: 'ai multipliers',
+    label: 'мультиплікатори',
     color: '#f0883e',
     glowColor: 'rgba(240,136,62,0.4)',
     x1Pct: 0,
     x2Pct: 0.18,
     items: [
-      'scale adoption across teams',
-      'author skills, plugins, tools',
-      'build software factories',
+      'масштабують ai на команди',
+      'пишуть скіли, плагіни, інструменти',
+      'будують software factories',
+    ],
+    growItems: [
+      '1–2 на компанію, щоб запустити процес',
+      <>
+        антипатерн <Emphasis color="orange">«ai-enablement team»</Emphasis> з блюпринтами — краще будуйте ai-інфраструктуру
+      </>,
     ],
   },
   {
     key: 'engineers',
-    label: 'ai-first engineers',
+    label: 'ai-first інженери',
     color: '#7ee787',
     glowColor: 'rgba(126,231,135,0.35)',
     x1Pct: 0.18,
     x2Pct: 0.42,
     items: [
-      'explore plugins & skills',
-      'follow novel approaches',
+      'досліджують плагіни та скіли',
+      'пробують нові підходи',
       'end-to-end agentic engineering',
-      'delegate high-level tasks to AI',
+      'делегують високорівневі задачі ai',
+    ],
+    growItems: [
+      '1–2 в команду, щоб запустити процес',
+      'дайте простір і час експериментувати',
+      'з’єднуйте успішних між командами',
+      'популяризуйте роботу — demos, fun days, slack',
     ],
   },
   {
     key: 'majority',
-    label: 'conservative majority',
+    label: 'консервативна більшість',
     color: '#79c0ff',
     glowColor: 'rgba(121,192,255,0.3)',
     x1Pct: 0.42,
     x2Pct: 0.74,
     items: [
-      'generate methods & test files',
-      'explore codebases with AI agents',
-      'vibe-code in unfamiliar stacks',
-      '"explain what X does"',
+      'генерують методи та тести',
+      'досліджують кодбази з ai-агентами',
+      'vibe-code у незнайомих стеках',
+      '«поясни, що робить X»',
+    ],
+    growItems: [
+      <>
+        антипатерн <Emphasis color="orange">«ai згори»</Emphasis> — мандати від керівництва не працюють
+      </>,
     ],
   },
   {
     key: 'deniers',
-    label: 'ai deniers',
+    label: 'ai-скептики',
     color: '#d2a8ff',
     glowColor: 'rgba(210,168,255,0.3)',
     x1Pct: 0.74,
     x2Pct: 1,
     items: [
-      '"haven\'t tried it yet"',
-      '"tried it, didn\'t work"',
-      '"I\'m faster without it"',
-      '"it\'s just LinkedIn hype"',
+      '«ще не пробував»',
+      '«пробував, не вийшло»',
+      '«я швидший без нього»',
+      '«це просто хайп з linkedin»',
     ],
+    growItems: [],
   },
 ];
 
 function EveryOrgContent({ revealStage }: { revealStage: number }) {
   const W = 700;
-  const H = 320;
+  const H = 500;
   const padTop = 10;
-  const mu = W * 0.58;
-  const sigma = W * 0.18;
+  const mu = W * 0.55;
+  const sigma = W * 0.24;
 
   const path = buildCurvePoints(W, H, padTop, mu, sigma);
   const outlinePath = buildOutlinePath(W, H, padTop, mu, sigma);
@@ -103,11 +133,15 @@ function EveryOrgContent({ revealStage }: { revealStage: number }) {
   const activeSection = SECTIONS[activeIdx];
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', gap: '0.8rem' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', gap: '0.8rem', marginRight: '-80px' }}>
+      <style>{`
+        .every-org-col .slide-item { margin-bottom: 0.25rem; }
+        .every-org-col .section-header { margin-top: 0.35rem; margin-bottom: 0.2rem; }
+      `}</style>
       <h2>
         <span className="text-dim">//</span>{' '}
-        <span className="text-green">all organizations</span>{' '}
-        <span className="text-orange">start similar</span>
+        <span className="text-green">всі організації</span>{' '}
+        <span className="text-orange">починають однаково</span>
       </h2>
 
       <div style={{ display: 'flex', flex: 1, gap: '2rem', alignItems: 'flex-start', minHeight: 0 }}>
@@ -115,7 +149,8 @@ function EveryOrgContent({ revealStage }: { revealStage: number }) {
         {/* Left column: section text */}
         <div
           key={activeSection?.key ?? 'intro'}
-          style={{ flex: '0 0 44%', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
+          className="every-org-col"
+          style={{ flex: '0 0 50%', display: 'flex', flexDirection: 'column', gap: '0.2rem' }}
         >
           {activeSection && (
             <>
@@ -134,6 +169,32 @@ function EveryOrgContent({ revealStage }: { revealStage: number }) {
                   <span style={{ color: activeSection.color, opacity: 0.85 }}>{item}</span>
                 </SlideItem>
               ))}
+
+              {activeSection.growItems.length > 0 && (
+                <>
+                  <div
+                    style={{
+                      marginTop: '0.35rem',
+                      paddingTop: '0.35rem',
+                      borderTop: `1px solid color-mix(in srgb, ${activeSection.color} 35%, transparent)`,
+                    }}
+                  />
+                  <div
+                    className="section-header"
+                    style={{ color: activeSection.color, opacity: 0.85 }}
+                  >
+                    {'// '}щоб виростити
+                  </div>
+                  {activeSection.growItems.map((item, j) => (
+                    <SlideItem
+                      key={`grow-${j}`}
+                      delay={(activeSection.items.length + j) * 0.08}
+                    >
+                      <span style={{ color: activeSection.color, opacity: 0.85 }}>{item}</span>
+                    </SlideItem>
+                  ))}
+                </>
+              )}
             </>
           )}
         </div>
@@ -141,7 +202,7 @@ function EveryOrgContent({ revealStage }: { revealStage: number }) {
         {/* Right column: bell curve */}
         <div style={{ flex: 1, height: '100%', display: 'flex', alignItems: 'center' }}>
           <svg
-            viewBox={`0 0 ${W} ${H + 40}`}
+            viewBox={`0 0 ${W} ${H + 6}`}
             style={{ width: '100%', display: 'block' }}
             preserveAspectRatio="xMidYMid meet"
             xmlns="http://www.w3.org/2000/svg"
@@ -196,28 +257,6 @@ function EveryOrgContent({ revealStage }: { revealStage: number }) {
               />
             ))}
 
-            {/* Section labels below baseline */}
-            {SECTIONS.map((s, i) => {
-              const cx = ((s.x1Pct + s.x2Pct) / 2) * W;
-              const isActive = i === activeIdx;
-              return (
-                <text
-                  key={i}
-                  x={cx}
-                  y={H + 28}
-                  textAnchor="middle"
-                  fill={s.color}
-                  fontSize={14}
-                  fontFamily="JetBrains Mono, monospace"
-                  fontWeight={isActive ? '700' : '400'}
-                  opacity={isActive ? 1 : revealStage === 0 ? 0.6 : 0.25}
-                  style={{ transition: 'opacity 0.4s ease' }}
-                >
-                  {s.label}
-                </text>
-              );
-            })}
-
             {/* Active section glow bar */}
             {activeSection && (
               <rect
@@ -240,5 +279,6 @@ export const EveryOrgRightNowSlide: SlideDefinition = {
   id: 'every-org-right-now',
   maxRevealStages: 4,
   content: ({ revealStage }) => <EveryOrgContent revealStage={revealStage} />,
-  notes: 'Innovation adoption curve — reveal one section at a time. Stage 0: curve overview. Stages 1-4: ai multipliers, ai-first engineers, conservative majority, ai deniers.',
+  notes:
+    'Крива адопції ai. Stage 0: overview. Stages 1-4: скептики → більшість → ai-first → мультиплікатори (reveal справа наліво, щоб закінчити на найважливішому левому кінці). Кожна секція показує // що вони роблять і // щоб виростити — крім скептиків, яких не конвертувати.',
 };
