@@ -100,6 +100,12 @@
   font-size: 4.5rem;
 }
 
+/* Slide-specific override: title is too long to fit on one line at 4.5rem,
+ * so we shrink it just enough to keep a single-line composition. */
+.slide--body h2.title--break-out-of-coding {
+  font-size: 3.75rem;
+}
+
 .slide h3 {
   font-size: var(--font-size-h3);
   font-weight: 600;
