@@ -20,12 +20,10 @@ function Prompt({ children }: { children: ReactNode }) {
 
 const TASKS: ReactNode[] = [
   <Prompt>hey claude, build static web site from scratch using Bun + React stack</Prompt>,
+  <Prompt>hey claude, copy the dou day template design system</Prompt>,
   <Prompt>hey claude, research internet for materials</Prompt>,
-  <Prompt>hey claude, study the dou template visually — sonar can land anywhere, even off-canvas</Prompt>,
-  <Prompt>hey claude, find and download images</Prompt>,
+  <Prompt>hey claude, how to generate qr code from link</Prompt>,
   <Prompt>hey claude, generate images using Nano Banana Pro</Prompt>,
-  <Prompt>hey claude, find all design-system overrides across slides and fix them</Prompt>,
-  <Prompt>hey claude, wdyt about merging the adoption-curve and inception slides?</Prompt>,
 ];
 
 const SCOPED_STYLES = `
@@ -43,13 +41,23 @@ function ClaudeCodeContent({ revealStage }: { revealStage: number }) {
           <span className="text-green">наприклад</span>
         </h2>
 
-        <div style={{ flex: 1, display: 'flex', gap: '2.5rem', alignItems: 'flex-start', minHeight: 0 }}>
+        <div style={{ flex: 1, display: 'flex', gap: '1.5rem', alignItems: 'center', minHeight: 0 }}>
 
-        {/* ── Left column: bullets ── */}
+        {/* ── Left column: thesis + evidence list ── */}
         <div className="cc-bullets" style={{ flex: '0 0 48%', display: 'flex', flexDirection: 'column', gap: '0.4rem', textAlign: 'left' }}>
           <SlideItem delay={0.05}>
             цю презентацію повністю створено у Claude Code
           </SlideItem>
+
+          <div
+            aria-hidden
+            style={{
+              height: '1px',
+              width: '60%',
+              margin: '0.6rem 0 0.4rem',
+              background: 'color-mix(in srgb, var(--dou-mint) 25%, transparent)',
+            }}
+          />
 
           {TASKS.map((task, i) =>
             revealStage >= i + 1 ? (
@@ -61,10 +69,10 @@ function ClaudeCodeContent({ revealStage }: { revealStage: number }) {
         </div>
 
         {/* ── Right column: QR code + link ── */}
-        <div style={{ flex: 1, alignSelf: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--space-lg)' }}>
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--space-md)' }}>
           <QRCodeSVG
             value={REPO_URL}
-            size={380}
+            size={520}
             bgColor="#270950"
             fgColor="#02feb9"
             level="M"
@@ -89,6 +97,7 @@ function ClaudeCodeContent({ revealStage }: { revealStage: number }) {
               fontFamily: 'var(--font-mono)',
               fontSize: 'var(--slide-text-normal)',
               textDecoration: 'none',
+              borderBottom: 'none',
               transition: 'all var(--transition-fast)',
             }}
           >
@@ -105,8 +114,8 @@ function ClaudeCodeContent({ revealStage }: { revealStage: number }) {
 
 export const ClaudeCodeSlide: SlideDefinition = {
   id: 'explore-and-have-fun',
-  maxRevealStages: 7,
+  maxRevealStages: 6,
   content: ({ revealStage }: SlideContentProps) => <ClaudeCodeContent revealStage={revealStage} />,
   notes:
-    'Stage 0: ця презентація повністю створена у Claude Code + repo link + QR. Stages 1-7: reveal tasks one by one — build, research, compose, design, images, interactive, generate.',
+    'Stage 0: ця презентація повністю створена у Claude Code + repo link + QR. Stages 1-6: reveal tasks one by one — build, copy template design system, research, images, gen images, editorial merge.',
 };
