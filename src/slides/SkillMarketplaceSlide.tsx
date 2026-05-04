@@ -7,78 +7,68 @@ export const SkillMarketplaceSlide: SlideDefinition = {
   id: 'skill-marketplace',
   maxRevealStages: 1,
   content: ({ revealStage }: SlideContentProps) => (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', gap: '0.8rem' }}>
-
+    <>
       <h2>
         <span className="text-dim">$</span>{' '}
         <span className="text-green">pattern</span>{' '}
-        <span className="text-orange">--skills-marketplace</span>
+        <span className="text-orange">--маркетплейс-скілів</span>
       </h2>
 
-      <div style={{ display: 'flex', flex: 1, gap: '2rem', alignItems: 'flex-start', minHeight: 0 }}>
-
-        {/* Left column — bullets swap on reveal */}
-        <div key={revealStage} style={{ flex: '0 0 45%', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+      <div className="skill-marketplace-body">
+        {/* Left — bullets swap on reveal (key forces SlideItem replay) */}
+        <div key={revealStage} className="skill-marketplace-body__text">
           {revealStage === 0 ? (
             <>
               <SlideItem delay={0.05}>
-                skills are small yet powerful <Emphasis color="green">building blocks</Emphasis> — share them across your team, build unique workflows on top
+                скіли — маленькі, але потужні{' '}
+                <Emphasis color="green">будівельні блоки</Emphasis> — діліться ними з командою, будуйте унікальні воркфлоу
               </SlideItem>
 
               <SlideItem delay={0.15}>
-                agents love documentation — convert all docs to skills; they <Emphasis color="green">self-improve</Emphasis> through usage
+                агенти люблять документацію — конвертуйте всю документацію в скіли; вони{' '}
+                <Emphasis color="green">самовдосконалюються</Emphasis> через використання
               </SlideItem>
 
               <SlideItem delay={0.25}>
-                every engineer using a skill contributes improvements — making everyone <Emphasis color="orange">instantly more productive</Emphasis>
+                кожен інженер, що використовує скіл, додає покращення — і всі стають{' '}
+                <Emphasis color="orange">миттєво продуктивнішими</Emphasis>
               </SlideItem>
 
               <SlideItem delay={0.35}>
-                at Superhuman, we needed a way to distribute — we built a system that clones a GitHub repo with skills and symlinks to <code>.claude</code> directory
+                у Superhuman нам потрібен був спосіб дистрибуції — ми зробили систему, що клонує GitHub-репо зі скілами і симлінкає їх у директорію <code>.claude</code>
               </SlideItem>
             </>
           ) : (
             <>
               <SlideItem delay={0} reveal>
-                Anthropic introduced <Emphasis color="green">marketplaces</Emphasis> — works exactly like that but natively
+                Anthropic представили <Emphasis color="green">marketplaces</Emphasis> — працює так само, але нативно
               </SlideItem>
 
               <SlideItem delay={0.12} reveal>
-                create ONE central internal <Emphasis color="orange">marketplace</Emphasis> for skills inside your organization
+                створіть ОДИН центральний внутрішній <Emphasis color="orange">marketplace</Emphasis> для скілів у вашій організації
               </SlideItem>
 
               <SlideItem delay={0.24} reveal>
-                use plugins for <Emphasis color="orange">namespacing</Emphasis> — every user can select which plugins to install
+                використовуйте плагіни для <Emphasis color="orange">неймспейсингу</Emphasis> — кожен користувач сам обирає, які плагіни встановити
               </SlideItem>
 
               <SlideItem delay={0.36} reveal>
-                use <Emphasis color="green">Claude Enterprise</Emphasis> controls to enforce marketplace and certain plugins on all accounts
+                використовуйте контролі <Emphasis color="green">Claude Enterprise</Emphasis>, щоб примусово встановити marketplace і певні плагіни на всі акаунти
               </SlideItem>
             </>
           )}
         </div>
 
-        {/* Right column — image swaps on reveal */}
-        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+        {/* Right — image swap on reveal, framed in a deck panel */}
+        <div className="skill-marketplace-body__media" key={`media-${revealStage}`}>
           {revealStage === 0 ? (
-            <img
-              src={diagramImage}
-              alt="Skill distribution diagram"
-              loading="lazy"
-              style={{ maxWidth: '100%', maxHeight: 'calc(var(--vh-full) - 220px)', objectFit: 'contain' }}
-            />
+            <img src={diagramImage} alt="Схема дистрибуції скілів через симлінки" loading="lazy" />
           ) : (
-            <img
-              src={superhumanAidevImage}
-              alt="Superhuman AI dev marketplace"
-              loading="lazy"
-              style={{ maxWidth: '100%', maxHeight: 'calc(var(--vh-full) - 220px)', objectFit: 'contain' }}
-            />
+            <img src={superhumanAidevImage} alt="Superhuman AI Dev marketplace" loading="lazy" />
           )}
         </div>
-
       </div>
-    </div>
+    </>
   ),
-  notes: 'Distribution is the unsexy but critical part. Without a marketplace, skills stay siloed. With one, they compound. Stage 0: show our custom symlink approach + diagram. Stage 1: Anthropic now has native marketplaces + Superhuman screenshot.',
+  notes: 'Дистрибуція — нудна, але критична частина. Без маркетплейсу скіли залишаються в силосах. З ним — мультиплікуються. Stage 0: наш самописний підхід через симлінки + діаграма. Stage 1: Anthropic тепер має нативні marketplaces + скріншот Superhuman.',
 };
