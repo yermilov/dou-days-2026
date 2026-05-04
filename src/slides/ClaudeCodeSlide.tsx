@@ -114,8 +114,8 @@ function ClaudeCodeContent({ revealStage }: { revealStage: number }) {
 
 export const ClaudeCodeSlide: SlideDefinition = {
   id: 'explore-and-have-fun',
-  maxRevealStages: 6,
+  maxRevealStages: TASKS.length,
   content: ({ revealStage }: SlideContentProps) => <ClaudeCodeContent revealStage={revealStage} />,
   notes:
-    'Stage 0: ця презентація повністю створена у Claude Code + repo link + QR. Stages 1-6: reveal tasks one by one — build, copy template design system, research, images, gen images, editorial merge.',
+    `Stage 0: ця презентація повністю створена у Claude Code + repo link + QR. Stages 1-${TASKS.length}: reveal tasks one by one.`,
 };

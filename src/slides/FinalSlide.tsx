@@ -1,6 +1,16 @@
+import { ReactNode } from 'react';
 import { SlideDefinition } from '../types/slides';
 import { SlideItem, Emphasis } from '../components/SlideElements';
 import linkedinQr from '/linkedin-qr.jpeg?url';
+
+const TAKEAWAYS: ReactNode[] = [
+  <>start with figuring out your personal <Emphasis color="green">vibe flow</Emphasis></>,
+  <>break out of just coding — use Claude for <Emphasis color="orange">everything</Emphasis> you do, especially closing feedback loops</>,
+  <>skills are your team's multiplier — build an <Emphasis color="green">infrastructure</Emphasis> to make them sharable and reusable</>,
+  <>semi-autonomous agents are the next frontier — start with <Emphasis color="orange">specific-task agents</Emphasis>: issue triage, code review, migrations, ...</>,
+  <><Emphasis color="green">humans</Emphasis> are the most important part — AI amplifies your team, it doesn't replace it</>,
+  <>let's connect on LinkedIn <span style={{ color: 'var(--terminal-blue)' }}>→</span></>,
+];
 
 export const FinalSlide: SlideDefinition = {
   id: 'final',
@@ -28,50 +38,15 @@ export const FinalSlide: SlideDefinition = {
             textAlign: 'left',
           }}
         >
-          {revealStage >= 1 && (
-            <SlideItem delay={0}>
-              start with figuring out your personal <Emphasis color="green">vibe flow</Emphasis>
-            </SlideItem>
-          )}
-
-          {revealStage >= 2 && (
-            <SlideItem delay={0}>
-              break out of just coding — use Claude for{' '}
-              <Emphasis color="orange">everything</Emphasis> you do, especially closing feedback loops
-            </SlideItem>
-          )}
-
-          {revealStage >= 3 && (
-            <SlideItem delay={0}>
-              skills are your team's multiplier — build an{' '}
-              <Emphasis color="green">infrastructure</Emphasis> to make them sharable and reusable
-            </SlideItem>
-          )}
-
-          {revealStage >= 4 && (
-            <SlideItem delay={0}>
-              semi-autonomous agents are the next frontier — start with{' '}
-              <Emphasis color="orange">specific-task agents</Emphasis>: issue triage, code review, migrations, ...
-            </SlideItem>
-          )}
-
-          {revealStage >= 5 && (
-            <SlideItem delay={0}>
-              <Emphasis color="green">humans</Emphasis> are the most important part —
-              AI amplifies your team, it doesn't replace it
-            </SlideItem>
-          )}
-
-          {revealStage >= 6 && (
-            <SlideItem delay={0}>
-              let's connect on LinkedIn{' '}
-              <span style={{ color: 'var(--terminal-blue)' }}>→</span>
-            </SlideItem>
+          {TAKEAWAYS.map((bullet, i) =>
+            revealStage >= i + 1 ? (
+              <SlideItem key={i} delay={0}>{bullet}</SlideItem>
+            ) : null,
           )}
         </div>
 
         {/* Right column - QR code (revealed with last point) */}
-        {revealStage >= 6 && (
+        {revealStage >= TAKEAWAYS.length && (
           <img
             className="final-qr-reveal"
             src={linkedinQr}
@@ -94,7 +69,7 @@ export const FinalSlide: SlideDefinition = {
       </div>
     </>
   ),
-  maxRevealStages: 6,
+  maxRevealStages: TAKEAWAYS.length,
   notes:
-    'Final slide - 5 key takeaways: vibe flow foundation, use Claude beyond coding, skills marketplace, specific-task agents first, connect on LinkedIn. Press r 5 times to reveal all points + QR code.',
+    'Final takeaways: vibe flow foundation, use Claude beyond coding, skills marketplace, specific-task agents first, humans are the most important part, connect on LinkedIn. The QR code reveals together with the last point.',
 };

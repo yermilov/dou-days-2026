@@ -359,7 +359,7 @@ function IndustryPatternsContent({ revealStage, slideId }: SlideContentProps) {
 export const IndustryPatternsSlide: SlideDefinition = {
   id: 'industry-patterns',
   content: (props: SlideContentProps) => <IndustryPatternsContent {...props} />,
-  maxRevealStages: 4,
+  maxRevealStages: bullets.length - 1,
   asyncSettle: true,
   notes:
     'The meta-lesson: Anthropic eats their own dog food. That creates a feedback loop no external user study can replicate.',

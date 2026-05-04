@@ -1,9 +1,17 @@
+import { ReactNode } from 'react';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
 import { SlideItem, Emphasis } from '../components/SlideElements';
 
+const BULLETS: ReactNode[] = [
+  <>every org decision should have an <Emphasis color="green">agent perspective</Emphasis> — optimize for what agents can do best; remove friction that exists only for historical reasons</>,
+  <>Anthropic chose TypeScript/React/Ink/Bun for Claude Code partly because <Emphasis color="orange">the model writes it best</Emphasis> — tool choices and AI capabilities should co-evolve</>,
+  <><Emphasis color="green">legacy codebases</Emphasis> are the biggest drag — it is often unrealistic to adapt massive legacy repositories to AI-first principles in a reasonable timeframe</>,
+  <>greenfield projects should be <Emphasis color="orange">AI-first from day one</Emphasis> — they give the highest velocity returns and prove what is possible at scale</>,
+];
+
 export const AutonomousAiSlide: SlideDefinition = {
   id: 'autonomous-ai',
-  maxRevealStages: 3,
+  maxRevealStages: BULLETS.length - 1,
   content: ({ revealStage }: SlideContentProps) => (
     <>
       <h2>
@@ -20,26 +28,10 @@ export const AutonomousAiSlide: SlideDefinition = {
           margin: '0 auto',
         }}
       >
-        <SlideItem delay={0.06}>
-          every org decision should have an <Emphasis color="green">agent perspective</Emphasis> — optimize for what agents can do best; remove friction that exists only for historical reasons
-        </SlideItem>
-
-        {revealStage >= 1 && (
-          <SlideItem delay={0}>
-            Anthropic chose TypeScript/React/Ink/Bun for Claude Code partly because <Emphasis color="orange">the model writes it best</Emphasis> — tool choices and AI capabilities should co-evolve
-          </SlideItem>
-        )}
-
-        {revealStage >= 2 && (
-          <SlideItem delay={0}>
-            <Emphasis color="green">legacy codebases</Emphasis> are the biggest drag — it is often unrealistic to adapt massive legacy repositories to AI-first principles in a reasonable timeframe
-          </SlideItem>
-        )}
-
-        {revealStage >= 3 && (
-          <SlideItem delay={0}>
-            greenfield projects should be <Emphasis color="orange">AI-first from day one</Emphasis> — they give the highest velocity returns and prove what is possible at scale
-          </SlideItem>
+        {BULLETS.map((bullet, i) =>
+          revealStage >= i ? (
+            <SlideItem key={i} delay={i === 0 ? 0.06 : 0}>{bullet}</SlideItem>
+          ) : null,
         )}
       </div>
     </>

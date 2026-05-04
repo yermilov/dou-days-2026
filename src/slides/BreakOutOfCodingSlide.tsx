@@ -15,6 +15,22 @@ function Prompt({ children }: { children: ReactNode }) {
   );
 }
 
+const LEFT_BULLETS: ReactNode[] = [
+  <>кодинг — очевидна точка старту, але це лише дуже розумне і дороге{' '}<Emphasis color="orange">автозаповнення</Emphasis></>,
+  <>поставте собі ціль: робити <Emphasis color="green">усе</Emphasis> з Claude Code</>,
+  <>пріоритизуйте те, що створить feedback loop для Claude Code</>,
+  <>встановіть <Emphasis color="green">CLI</Emphasis> (не MCP!) для всіх dev tools, якими користуєтесь</>,
+  <>використовуйте <Emphasis color="green">Claude Chrome extension</Emphasis> для випадків, коли CLI не може щось зробити</>,
+];
+
+const PROMPTS: ReactNode[] = [
+  <Prompt>hey claude, open artifactory in chrome and generate api token for my pnpm access</Prompt>,
+  <Prompt>hey claude, please commit my changes</Prompt>,
+  <Prompt>hey claude, configure dev environment for me</Prompt>,
+  <Prompt>hey claude, here is a bug report I've received: ...</Prompt>,
+  <Prompt>hey claude, take a look at the logs / metrics / AB test results / perf report: ...</Prompt>,
+];
+
 export const BreakOutOfCodingSlide: SlideDefinition = {
   id: 'break-out-of-coding',
   content: ({ revealStage }) => (
@@ -36,35 +52,10 @@ export const BreakOutOfCodingSlide: SlideDefinition = {
             textAlign: 'left',
           }}
         >
-          <SlideItem delay={0.05}>
-            кодинг — очевидна точка старту, але це лише дуже розумне і дороге{' '}
-            <Emphasis color="orange">автозаповнення</Emphasis>
-          </SlideItem>
-
-          {revealStage >= 1 && (
-            <SlideItem delay={0}>
-              поставте собі ціль: робити <Emphasis color="green">усе</Emphasis> з Claude Code
-            </SlideItem>
-          )}
-
-          {revealStage >= 2 && (
-            <SlideItem delay={0}>
-              пріоритизуйте те, що створить feedback loop для Claude Code
-            </SlideItem>
-          )}
-
-          {revealStage >= 3 && (
-            <SlideItem delay={0}>
-              встановіть <Emphasis color="green">CLI</Emphasis> (не MCP!) для всіх dev tools,
-              якими користуєтесь
-            </SlideItem>
-          )}
-
-          {revealStage >= 4 && (
-            <SlideItem delay={0}>
-              використовуйте <Emphasis color="green">Claude Chrome extension</Emphasis> для
-              випадків, коли CLI не може щось зробити
-            </SlideItem>
+          {LEFT_BULLETS.map((bullet, i) =>
+            revealStage >= i ? (
+              <SlideItem key={i} delay={i === 0 ? 0.05 : 0}>{bullet}</SlideItem>
+            ) : null,
           )}
         </div>
 
@@ -78,44 +69,16 @@ export const BreakOutOfCodingSlide: SlideDefinition = {
             textAlign: 'left',
           }}
         >
-          {revealStage >= 5 && (
-            <SlideItem delay={0}>
-              <Prompt>
-                hey claude, open artifactory in chrome and generate api token for my pnpm access
-              </Prompt>
-            </SlideItem>
-          )}
-
-          {revealStage >= 6 && (
-            <SlideItem delay={0}>
-              <Prompt>hey claude, please commit my changes</Prompt>
-            </SlideItem>
-          )}
-
-          {revealStage >= 7 && (
-            <SlideItem delay={0}>
-              <Prompt>hey claude, configure dev environment for me</Prompt>
-            </SlideItem>
-          )}
-
-          {revealStage >= 8 && (
-            <SlideItem delay={0}>
-              <Prompt>hey claude, here is a bug report I've received: ...</Prompt>
-            </SlideItem>
-          )}
-
-          {revealStage >= 9 && (
-            <SlideItem delay={0}>
-              <Prompt>
-                hey claude, take a look at the logs / metrics / AB test results / perf report: ...
-              </Prompt>
-            </SlideItem>
+          {PROMPTS.map((prompt, i) =>
+            revealStage >= LEFT_BULLETS.length + i ? (
+              <SlideItem key={i} delay={0}>{prompt}</SlideItem>
+            ) : null,
           )}
         </div>
       </div>
     </>
   ),
-  maxRevealStages: 9,
+  maxRevealStages: LEFT_BULLETS.length + PROMPTS.length - 1,
   notes:
-    'Один пункт на reveal. Ліва колонка (Stage 0–4): кодинг — це автозаповнення; ціль — робити все з Claude Code; feedback loops; CLI замість MCP; Chrome extension як escape hatch. Права колонка (Stage 5–9): конкретні приклади промптів через стадії SDLC.',
+    'Один пункт на reveal. Ліва колонка: кодинг — це автозаповнення; ціль — робити все з Claude Code; feedback loops; CLI замість MCP; Chrome extension як escape hatch. Права колонка: конкретні приклади промптів через стадії SDLC.',
 };

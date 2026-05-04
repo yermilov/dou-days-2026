@@ -277,7 +277,7 @@ function EveryOrgContent({ revealStage }: { revealStage: number }) {
 
 export const EveryOrgRightNowSlide: SlideDefinition = {
   id: 'every-org-right-now',
-  maxRevealStages: 4,
+  maxRevealStages: SECTIONS.length,
   content: ({ revealStage }) => <EveryOrgContent revealStage={revealStage} />,
   notes:
     'Крива адопції ai. Stage 0: overview. Stages 1-4: скептики → більшість → ai-first → мультиплікатори (reveal справа наліво, щоб закінчити на найважливішому левому кінці). Кожна секція показує // що вони роблять і // щоб виростити — крім скептиків, яких не конвертувати.',

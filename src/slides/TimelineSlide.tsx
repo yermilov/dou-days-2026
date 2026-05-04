@@ -53,7 +53,7 @@ const timelineItems: TimelineItem[] = [
 
 export const TimelineSlide: SlideDefinition = {
   id: 'timeline',
-  maxRevealStages: 5,
+  maxRevealStages: timelineItems.length - 1,
   content: ({ revealStage }) => {
     const currentStage = Math.min(revealStage, timelineItems.length - 1);
     const currentItem = timelineItems[currentStage];

@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
 import { SlideItem, Emphasis, SlideLink } from '../components/SlideElements';
 import aiCodeReviewImage from '/ai-code-review.png?url';
@@ -11,6 +12,16 @@ const STYLES = `
     animation: revealPanel 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 `;
+
+const BULLETS: ReactNode[] = [
+  <>volume of <Emphasis color="orange">AI-generated changes</Emphasis> increased dramatically</>,
+  <>engineers more confident contributing to <Emphasis color="green">unfamiliar codebases</Emphasis></>,
+  <>human reviews becoming <Emphasis color="orange">rubber stamps</Emphasis> — can't sustain rigor at this volume</>,
+  <>AI review often <Emphasis color="green">higher quality</Emphasis>; easy to enforce a consistent quality bar</>,
+  <>built an <Emphasis color="green">in-house agent</Emphasis> on Claude Code (+Codex) — uses same skills as engineers</>,
+  <>mixed <Emphasis color="green">deterministic</Emphasis> + <Emphasis color="orange">non-deterministic</Emphasis> execution; launches <Emphasis color="green">agent swarm</Emphasis> for multi-dimensional review</>,
+  <>Anthropic launched their own solution: <SlideLink href="https://code.claude.com/docs/en/code-review">code.claude.com</SlideLink></>,
+];
 
 function AgentExampleContent({ revealStage }: { revealStage: number }) {
   return (
@@ -27,40 +38,10 @@ function AgentExampleContent({ revealStage }: { revealStage: number }) {
 
         {/* ── Left column: bullets ── */}
         <div style={{ flex: '0 0 48%', display: 'flex', flexDirection: 'column', gap: '0.45rem', textAlign: 'left' }}>
-          {revealStage >= 1 && (
-            <SlideItem delay={0} reveal>
-              volume of <Emphasis color="orange">AI-generated changes</Emphasis> increased dramatically
-            </SlideItem>
-          )}
-          {revealStage >= 2 && (
-            <SlideItem delay={0} reveal>
-              engineers more confident contributing to <Emphasis color="green">unfamiliar codebases</Emphasis>
-            </SlideItem>
-          )}
-          {revealStage >= 3 && (
-            <SlideItem delay={0} reveal>
-              human reviews becoming <Emphasis color="orange">rubber stamps</Emphasis> — can't sustain rigor at this volume
-            </SlideItem>
-          )}
-          {revealStage >= 4 && (
-            <SlideItem delay={0} reveal>
-              AI review often <Emphasis color="green">higher quality</Emphasis>; easy to enforce a consistent quality bar
-            </SlideItem>
-          )}
-          {revealStage >= 5 && (
-            <SlideItem delay={0} reveal>
-              built an <Emphasis color="green">in-house agent</Emphasis> on Claude Code (+Codex) — uses same skills as engineers
-            </SlideItem>
-          )}
-          {revealStage >= 6 && (
-            <SlideItem delay={0} reveal>
-              mixed <Emphasis color="green">deterministic</Emphasis> + <Emphasis color="orange">non-deterministic</Emphasis> execution; launches <Emphasis color="green">agent swarm</Emphasis> for multi-dimensional review
-            </SlideItem>
-          )}
-          {revealStage >= 7 && (
-            <SlideItem delay={0} reveal>
-              Anthropic launched their own solution: <SlideLink href="https://code.claude.com/docs/en/code-review">code.claude.com</SlideLink>
-            </SlideItem>
+          {BULLETS.map((bullet, i) =>
+            revealStage >= i + 1 ? (
+              <SlideItem key={i} delay={0} reveal>{bullet}</SlideItem>
+            ) : null,
           )}
         </div>
 
@@ -83,7 +64,7 @@ function AgentExampleContent({ revealStage }: { revealStage: number }) {
 
 export const AgentExampleSlide: SlideDefinition = {
   id: 'agent-example',
-  maxRevealStages: 7,
+  maxRevealStages: BULLETS.length,
   initialRevealStage: 1,
   content: ({ revealStage }: SlideContentProps) => <AgentExampleContent revealStage={revealStage} />,
   notes:

@@ -1,8 +1,31 @@
+import { ReactNode } from 'react';
 import { SlideDefinition } from '../types/slides';
 import { SlideItem, Emphasis, SlideLink } from '../components/SlideElements';
 import spaceBg from '/skill-space-bg.png?url';
 import leftAstronaut from '/skill-was-it-md.png?url';
 import rightAstronaut from '/skill-always-been.png?url';
+
+const BULLETS: ReactNode[] = [
+  <>skill is just an <Emphasis color="green">md file</Emphasis> with instructions how to do something</>,
+  <>unlike <Emphasis color="orange">MCP server</Emphasis> — doesn't waste context window, loads only on model's demand</>,
+  <>unlike <Emphasis color="orange">slash command</Emphasis> — model can invoke it when it needs it</>,
+  <>can be a full <Emphasis color="green">library</Emphasis> of many md files hyperlinked — model navigates and loads as needed</>,
+  <>can package <Emphasis color="green">TypeScript / Python / bash scripts</Emphasis> for deterministic automation</>,
+  <>after success — switch to plan mode:{' '}
+    <span className="text-quote">
+      'please read{' '}
+      <SlideLink href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices">
+        platform.claude.com/docs/.../agent-skills/best-practices
+      </SlideLink>{' '}
+      and create a skill that will replicate how we did X'
+    </span>
+  </>,
+  <>every time something wasn't perfect — finish with:{' '}
+    <span className="text-quote">
+      'reflect on the session and update the skill files to avoid mistakes and streamline experience next time'
+    </span>
+  </>,
+];
 
 export const WhatIsSkillSlide: SlideDefinition = {
   id: 'what-is-skill',
@@ -99,61 +122,10 @@ export const WhatIsSkillSlide: SlideDefinition = {
               border: '1px solid rgba(255,255,255,0.07)',
             }}
           >
-            <SlideItem delay={0.05}>
-              skill is just an <Emphasis color="green">md file</Emphasis> with
-              instructions how to do something
-            </SlideItem>
-
-            {revealStage >= 1 && (
-              <SlideItem delay={0}>
-                unlike <Emphasis color="orange">MCP server</Emphasis> — doesn't
-                waste context window, loads only on model's demand
-              </SlideItem>
-            )}
-
-            {revealStage >= 2 && (
-              <SlideItem delay={0}>
-                unlike <Emphasis color="orange">slash command</Emphasis> — model
-                can invoke it when it needs it
-              </SlideItem>
-            )}
-
-            {revealStage >= 3 && (
-              <SlideItem delay={0}>
-                can be a full <Emphasis color="green">library</Emphasis> of many
-                md files hyperlinked — model navigates and loads as needed
-              </SlideItem>
-            )}
-
-            {revealStage >= 4 && (
-              <SlideItem delay={0}>
-                can package{' '}
-                <Emphasis color="green">TypeScript / Python / bash scripts</Emphasis>{' '}
-                for deterministic automation
-              </SlideItem>
-            )}
-
-            {revealStage >= 5 && (
-              <SlideItem delay={0}>
-                after success — switch to plan mode:{' '}
-                <span className="text-quote">
-                  'please read{' '}
-                  <SlideLink href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices">
-                    platform.claude.com/docs/.../agent-skills/best-practices
-                  </SlideLink>{' '}
-                  and create a skill that will replicate how we did X'
-                </span>
-              </SlideItem>
-            )}
-
-            {revealStage >= 6 && (
-              <SlideItem delay={0}>
-                every time something wasn't perfect — finish with:{' '}
-                <span className="text-quote">
-                  'reflect on the session and update the skill files to avoid
-                  mistakes and streamline experience next time'
-                </span>
-              </SlideItem>
+            {BULLETS.map((bullet, i) =>
+              revealStage >= i ? (
+                <SlideItem key={i} delay={i === 0 ? 0.05 : 0}>{bullet}</SlideItem>
+              ) : null,
             )}
           </div>
 
@@ -184,7 +156,7 @@ export const WhatIsSkillSlide: SlideDefinition = {
       </div>
     </div>
   ),
-  maxRevealStages: 6,
+  maxRevealStages: BULLETS.length - 1,
   notes:
     'A skill is just markdown. After achieving a result, create a skill from it. Then iterate: every imperfect use is a chance to improve the skill via reflect.',
 };
