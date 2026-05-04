@@ -75,15 +75,19 @@ function WhatIsSkillContent({ revealStage }: SlideContentProps) {
         style={{
           flex: 1,
           display: 'flex',
-          width: '100%',
+          // Push the row past the .slide--body 120px side padding so the
+          // astronauts hug the slide edges and the bullet card claims the
+          // central reading width.
+          marginLeft: '-120px',
+          marginRight: '-120px',
           alignItems: 'stretch',
-          gap: '1rem',
+          gap: '0.5rem',
         }}
       >
         {/* Left astronaut */}
         <div
           style={{
-            flex: '0 0 17%',
+            flex: '0 0 15%',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -138,7 +142,7 @@ function WhatIsSkillContent({ revealStage }: SlideContentProps) {
         {/* Right astronaut */}
         <div
           style={{
-            flex: '0 0 17%',
+            flex: '0 0 15%',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
