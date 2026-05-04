@@ -1,5 +1,5 @@
 import { SlideDefinition } from '../types/slides';
-import { Emphasis, SlideItem } from '../components/SlideElements';
+import { Emphasis, SectionHeader, SlideItem } from '../components/SlideElements';
 import { PacManCanvas } from '../components/pacman/PacManCanvas';
 
 export const ImportantSlide: SlideDefinition = {
@@ -7,9 +7,9 @@ export const ImportantSlide: SlideDefinition = {
   content: ({ revealStage }) => (
     <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%' }}>
       <h2>
-        <span className="text-dim">$</span>{' '}
-        <span className="text-green">pattern</span>{' '}
-        <span className="text-orange">--throughput-vs-latency</span>
+        <span className="text-dim">//</span>{' '}
+        <span className="text-green">об'єм роботи</span>{' '}
+        <span className="text-orange">vs швидкість роботи</span>
       </h2>
 
       <div
@@ -25,80 +25,82 @@ export const ImportantSlide: SlideDefinition = {
         {/* Left column - bullet points */}
         <div
           style={{
-            flex: '0 0 40%',
-            maxWidth: '550px',
+            flex: '1 1 60%',
+            maxWidth: '900px',
             textAlign: 'left',
           }}
         >
           <SlideItem delay={0.05}>
-            Claude Code increases <Emphasis>throughput</Emphasis> of your work, not
-            your latency
+            Claude Code дає <Emphasis>об'єм</Emphasis> роботи, не{' '}
+            <Emphasis color="orange">швидкість</Emphasis>
           </SlideItem>
 
-        {revealStage >= 1 && (
-          <SlideItem delay={0}>
-            give it a task and{' '}
-            <Emphasis>switch to something else</Emphasis>
-          </SlideItem>
-        )}
+          {revealStage >= 1 && (
+            <SlideItem delay={0}>
+              дайте задачу і <Emphasis>переключайтесь</Emphasis>
+            </SlideItem>
+          )}
 
-        {revealStage >= 2 && (
-          <SlideItem delay={0}>
-            Claude almost certainly understands your domain{' '}
-            <Emphasis color="orange">worse</Emphasis> than you
-          </SlideItem>
-        )}
+          {revealStage >= 2 && (
+            <SectionHeader color="purple">але є винятки</SectionHeader>
+          )}
 
-        {revealStage >= 2 && (
-          <SlideItem delay={0.07}>
-            often you can write{' '}
-            <Emphasis color="orange">MUCH</Emphasis> better code, and sometimes even{' '}
-            <Emphasis color="orange">faster</Emphasis> than it
-          </SlideItem>
-        )}
+          {revealStage >= 2 && (
+            <SlideItem delay={0}>
+              Claude розуміє ваш домен{' '}
+              <Emphasis color="orange">гірше</Emphasis> за вас
+            </SlideItem>
+          )}
 
-        {revealStage >= 2 && (
-          <SlideItem delay={0.14}>
-            <Emphasis>exception</Emphasis> — unfamiliar tech saves hours to weeks
-          </SlideItem>
-        )}
+          {revealStage >= 2 && (
+            <SlideItem delay={0.07}>
+              ви часто напишете код{' '}
+              <Emphasis color="orange">краще</Emphasis> і{' '}
+              <Emphasis color="orange">швидше</Emphasis>
+            </SlideItem>
+          )}
 
-        {revealStage >= 3 && (
-          <SlideItem delay={0}>
-            staring at the terminal ={' '}
-            <Emphasis color="orange">losing productivity</Emphasis>
-          </SlideItem>
-        )}
+          {revealStage >= 2 && (
+            <SlideItem delay={0.14}>
+              <Emphasis>виняток</Emphasis> — незнайомий стек: дні-тижні економії
+            </SlideItem>
+          )}
 
-        {revealStage >= 3 && (
-          <SlideItem delay={0.1}>
-            instead — launch claude to do something and{' '}
-            <Emphasis>switch</Emphasis>
-          </SlideItem>
-        )}
+          {revealStage >= 3 && (
+            <SlideItem delay={0}>
+              залипати в термінал ={' '}
+              <Emphasis color="orange">втрата продуктивності</Emphasis>
+            </SlideItem>
+          )}
 
-        {revealStage >= 4 && (
-          <SlideItem delay={0}>
-            or launch claude and go eat / rest
-          </SlideItem>
-        )}
+          {revealStage >= 3 && (
+            <SlideItem delay={0.1}>
+              натомість — запустіть і <Emphasis>переключайтесь</Emphasis>
+            </SlideItem>
+          )}
 
-      </div>
+          {revealStage >= 4 && (
+            <SlideItem delay={0}>
+              або запустіть claude і йдіть відпочивати
+            </SlideItem>
+          )}
 
-      {/* Right column - Pac-Man animation */}
-      <div
-        style={{
-          flex: '0 0 55%',
-          maxHeight: 'calc(var(--vh-full) - 220px)',
-          aspectRatio: '320 / 240',
-        }}
-      >
-        <PacManCanvas revealStage={revealStage} />
-      </div>
+        </div>
+
+        {/* Right column - Pac-Man animation */}
+        <div
+          style={{
+            flex: '0 0 40%',
+            maxHeight: 'calc(var(--vh-full) - 220px)',
+            aspectRatio: '320 / 240',
+          }}
+        >
+          <PacManCanvas revealStage={revealStage} />
+        </div>
       </div>
     </div>
   ),
   maxRevealStages: 4,
   notes:
-    'Important reality check with 8-bit animation. First 3 points visible immediately, press r 6 times for the rest. Value is in parallelization and delegation, watching Claude work is counterproductive, exception is unfamiliar technologies.',
+    "Перевірка реальності з 8-bit анімацією. Перші два пункти видно одразу, далі натискай r. Тема А — паралельність: Claude дає об'єм, а не швидкість, тому делегуйте і переключайтесь. Тема Б (stage 2, помічена SectionHeader) — Claude знає ваш домен гірше, ви часто напишете кращий код швидше; виняток — незнайомий стек. Розв'язка: залипання на термінал = втрата продуктивності; запустіть і йдіть відпочивати.",
 };
