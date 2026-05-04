@@ -67,8 +67,8 @@ function WhatIsSkillContent({ revealStage }: SlideContentProps) {
         }}
       >
         <span className="text-dim">$</span>{' '}
-        <span className="text-green">pattern</span>{' '}
-        <span className="text-orange">--skills</span>
+        <span className="text-green">що таке</span>{' '}
+        <span className="text-orange">--skill</span>
       </h2>
 
       <div
