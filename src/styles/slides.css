@@ -1258,6 +1258,148 @@
   to   { opacity: 1; transform: translateY(0)   scale(1); }
 }
 
+/* === META SKILLS — two-column body with panel-dominant SKILL.md ===========
+   Left column: bullets accumulate across reveal stages (3 → 4 → 5).
+   Right column: SKILL.md scrolling panel — full slide height, ≈70% width.
+   Bullet-column layout idiom mirrors .skill-marketplace-body__text. */
+.meta-skills-body {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  height: 100%;
+  gap: 64px;
+  text-align: left;
+  min-height: 0;
+}
+
+.meta-skills-bullets {
+  flex: 0 0 36%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 6px;
+  min-width: 0;
+  --slide-line-height-normal: 1.2;
+}
+
+.meta-skills-bullets .slide-item { margin-bottom: 0; }
+
+.meta-skills-panel {
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--dou-near-black) 60%, transparent);
+  border: 1px solid color-mix(in srgb, var(--dou-mint) 35%, transparent);
+  box-shadow:
+    0 18px 48px color-mix(in srgb, var(--dou-near-black) 60%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--dou-white) 10%, transparent);
+  font-family: var(--font-mono);
+  color: var(--dou-mint);
+  animation: metaSkillsPanelIn 480ms cubic-bezier(0.19, 1, 0.22, 1) both;
+}
+
+.meta-skills-panel__chrome {
+  padding: 10px 18px;
+  letter-spacing: 0.08em;
+  color: color-mix(in srgb, var(--dou-mint) 60%, transparent);
+  flex-shrink: 0;
+  z-index: 5;
+}
+.meta-skills-panel__chrome--top    { border-bottom: 1px solid color-mix(in srgb, var(--dou-mint) 22%, transparent); }
+.meta-skills-panel__chrome--bottom {
+  border-top: 1px solid color-mix(in srgb, var(--dou-mint) 22%, transparent);
+  color: color-mix(in srgb, var(--dou-mint) 35%, transparent);
+  letter-spacing: 0.12em;
+}
+
+.meta-skills-panel__viewport {
+  flex: 1 1 auto;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.meta-skills-panel__viewport::before,
+.meta-skills-panel__viewport::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 80px;
+  z-index: 4;
+  pointer-events: none;
+}
+.meta-skills-panel__viewport::before {
+  top: 0;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--dou-near-black) 90%, transparent),
+    transparent
+  );
+}
+.meta-skills-panel__viewport::after {
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--dou-near-black) 90%, transparent),
+    transparent
+  );
+}
+
+.meta-skills-panel__placeholder {
+  padding: 20px 24px;
+  color: color-mix(in srgb, var(--dou-mint) 50%, transparent);
+}
+
+.meta-skills-panel__error {
+  padding: 20px 24px;
+  color: color-mix(in srgb, var(--dou-magenta) 70%, transparent);
+}
+
+.meta-skills-panel__scroll {
+  padding: 20px 24px;
+  white-space: pre-wrap;
+  line-height: 1.6;
+  animation: metaSkillsScroll 120s linear infinite;
+  will-change: transform;
+}
+
+.meta-skills-panel__scroll-divider {
+  margin-top: 2em;
+  padding-top: 2em;
+  border-top: 1px solid color-mix(in srgb, var(--dou-mint) 15%, transparent);
+}
+
+.meta-skills-panel__loading-dot {
+  animation: metaSkillsLoadingDot 1.4s ease-in-out infinite;
+}
+.meta-skills-panel__loading-dot:nth-child(2) { animation-delay: 0.2s; }
+.meta-skills-panel__loading-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes metaSkillsPanelIn {
+  from { opacity: 0; transform: translateY(12px) scale(0.99); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+@keyframes metaSkillsScroll {
+  0%    { transform: translateY(0);     animation-timing-function: linear; }
+  12.5% { transform: translateY(-1%);   animation-timing-function: linear; }
+  25%   { transform: translateY(-5%);   animation-timing-function: linear; }
+  50%   { transform: translateY(-20%);  animation-timing-function: linear; }
+  100%  { transform: translateY(-100%); }
+}
+
+@keyframes metaSkillsLoadingDot {
+  0%, 80%, 100% { opacity: 0; }
+  40%           { opacity: 1; }
+}
+
 /* === IMAGE SLIDE === */
 /* For slides that display a single image filling available space */
 .image-slide {
