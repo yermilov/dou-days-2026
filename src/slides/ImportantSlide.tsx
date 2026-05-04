@@ -20,6 +20,7 @@ export const ImportantSlide: SlideDefinition = {
           gap: 'var(--space-xl)',
           flex: 1,
           minHeight: 0,
+          marginRight: '-100px',
         }}
       >
         {/* Left column - bullet points */}
@@ -87,11 +88,13 @@ export const ImportantSlide: SlideDefinition = {
 
         </div>
 
-        {/* Right column - Pac-Man animation */}
+        {/* Right column - Pac-Man animation. The parent row has a negative
+            right margin that bleeds past the slide's 120px right padding into
+            the chrome margin (the DOU logo sits well above this band), so the
+            canvas can claim that space too. */}
         <div
           style={{
-            flex: '0 0 40%',
-            maxHeight: 'calc(var(--vh-full) - 220px)',
+            flex: '0 0 53%',
             aspectRatio: '320 / 240',
           }}
         >

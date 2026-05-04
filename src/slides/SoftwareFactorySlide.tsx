@@ -12,9 +12,10 @@ export const SoftwareFactorySlide: SlideDefinition = {
 
       <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
         <h2>
-          <span className="text-dim">$</span>{' '}
-          <span className="text-green">antipattern</span>{' '}
-          <span className="text-orange">--software-factory</span>
+          <span className="text-dim">//</span>{' '}
+          <span className="text-green">антипатерн</span>
+          <span className="text-dim">:</span>{' '}
+          <span className="text-orange">софт-фабрика</span>
         </h2>
 
         <div style={{ flex: 1, display: 'flex', gap: '2.5rem', alignItems: 'center', minHeight: 0 }}>
