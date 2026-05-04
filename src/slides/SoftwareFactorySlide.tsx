@@ -22,25 +22,25 @@ export const SoftwareFactorySlide: SlideDefinition = {
           {/* Left column — bullets */}
           <div className="sf-bullets" style={{ flex: '0 0 48%', textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '1.6rem' }}>
             <SlideItem delay={0.05}>
-              you might feel temptation to build an{' '}
-              <Emphasis color="orange">autonomous workflow</Emphasis>
-              {' — '}feed it a task, receive done work
+              вас може спокусити побудувати{' '}
+              <Emphasis color="orange">автономний workflow</Emphasis>
+              {' — '}дати йому задачу, отримати готову роботу
             </SlideItem>
 
             {revealStage >= 1 && (
               <SlideItem delay={0}>
-                it might be something you built yourself
-                {' — '}a <Emphasis color="green">superpowers plugin</Emphasis>,
-                {' '}a <Emphasis color="green">ralph loop</Emphasis>,
-                {' '}a custom multi-agent pipeline
+                це може бути щось, що ви побудували самі
+                {' — '}<Emphasis color="green">superpowers plugin</Emphasis>,
+                {' '}<Emphasis color="green">ralph loop</Emphasis>,
+                {' '}кастомний multi-agent pipeline
               </SlideItem>
             )}
 
             {revealStage >= 2 && (
               <SlideItem delay={0}>
-                you will do careful tuning to your personal needs, but it's{' '}
-                <Emphasis color="orange">highly unlikely</Emphasis> anyone else
-                will be able to adopt it
+                ви ретельно затюните його під свої потреби, але{' '}
+                <Emphasis color="orange">дуже малоймовірно</Emphasis>, що хтось інший
+                зможе це впровадити
               </SlideItem>
             )}
           </div>
@@ -63,5 +63,5 @@ export const SoftwareFactorySlide: SlideDefinition = {
   ),
   maxRevealStages: 2,
   notes:
-    'Antipattern: building a "software factory" autonomous workflow. Stage 0: temptation to build feed-task-get-result pipeline. Stage 1: examples — custom builds, Devin, Cursor agents. Stage 2: over-tuned to personal needs, not adoptable by others.',
+    'Антипатерн: побудова автономного "software factory" workflow. Stage 0: спокуса побудувати pipeline "дай задачу — отримай результат". Stage 1: приклади — кастомні рішення, Devin, Cursor agents. Stage 2: затюнено під особисті потреби, не масштабується на команду.',
 };

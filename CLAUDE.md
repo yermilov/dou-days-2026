@@ -234,9 +234,9 @@ Quick rules:
 
 ## Development Guidelines
 
-### IMPORTANT: Use `/design-system` skill for every UI change
+### IMPORTANT: Use `/design-system` and `/frontend-design` together for every UI change
 
-**For ANY UI edit in this repo, invoke `/design-system` first and run its checklist before finishing.** This is the project-specific skill encoding DOU deck invariants (palette, typography, chrome, rail/node conventions, sonar backdrop). The generic `frontend-design` skill is for creative direction on new components outside this deck — do not use it instead of `/design-system` for DOU slide edits.
+**For ANY UI edit in this repo, invoke both `/design-system` and `/frontend-design` and run the `/design-system` checklist before finishing.** `/design-system` encodes DOU deck invariants (palette, typography, chrome, rail/node conventions, sonar backdrop); `/frontend-design` provides general creative direction (visual hierarchy, layout, polish). When the two skills give conflicting guidance, **`/design-system` always takes precedence** — DOU invariants override generic frontend best practices.
 
 ### IMPORTANT: Verify Changes in Browser
 
