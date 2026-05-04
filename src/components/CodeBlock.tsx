@@ -7,7 +7,7 @@ const terminalTheme: { [key: string]: React.CSSProperties } = {
   'code[class*="language-"]': {
     color: '#e2e8f0',
     fontFamily: 'var(--font-mono)',
-    fontSize: 'var(--font-size-code)',
+    fontSize: 'var(--slide-text-code)',
     textAlign: 'left',
     whiteSpace: 'pre',
     wordSpacing: 'normal',
@@ -20,7 +20,7 @@ const terminalTheme: { [key: string]: React.CSSProperties } = {
   'pre[class*="language-"]': {
     color: '#e2e8f0',
     fontFamily: 'var(--font-mono)',
-    fontSize: 'var(--font-size-code)',
+    fontSize: 'var(--slide-text-code)',
     textAlign: 'left',
     whiteSpace: 'pre',
     wordSpacing: 'normal',

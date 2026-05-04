@@ -8,6 +8,12 @@ import { TerminalInput } from './TerminalInput';
 import { SlideProgress } from './SlideProgress';
 import { Timer } from './Timer';
 import { OnboardingTooltip, ContextTooltip } from './OnboardingTooltip';
+import { RotateHint } from './RotateHint';
+import { exportRegistry } from './exportRegistry';
+
+const isExportMode =
+  typeof window !== 'undefined' &&
+  new URLSearchParams(window.location.search).get('export') === '1';
 
 const TIMER_STARTED_AT_KEY = 'timerStartedAt';
 const TIMER_ACCUMULATED_KEY = 'timerAccumulated';
@@ -47,10 +53,25 @@ function getInitialTimerState(): { seconds: number; running: boolean } {
 }
 
 export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
-  const { currentSlide, goToSlide, handleCommand: handleNavCommand, revealStage, nextSlide, prevSlide, revealNext, revealPrev } = useSlideNavigation(
-    slides,
-    initialSlide
-  );
+  const nav = useSlideNavigation(slides, initialSlide);
+  const { currentSlide, goToSlide, handleCommand: handleNavCommand, revealStage, nextSlide, prevSlide, revealNext, revealPrev } = nav;
+
+  // PDF export wiring. Only active under ?export=1; never reaches normal users.
+  useEffect(() => {
+    if (!isExportMode) return;
+    document.body.dataset.export = '1';
+    (window as unknown as { __deckExport: unknown }).__deckExport = {
+      goTo: nav.goToSlideWithReveal,
+      slideCount: slides.length,
+      maxRevealStagesAt: (i: number) => slides[i]?.maxRevealStages ?? 0,
+      slideIdAt: (i: number) => slides[i]?.id,
+      asyncSlideAt: (i: number) => Boolean(slides[i]?.asyncSettle),
+      markSlideSettled: exportRegistry.markSlideSettled,
+      markSlideError: exportRegistry.markSlideError,
+      waitForSettled: exportRegistry.waitForSettled,
+      reset: exportRegistry.reset,
+    };
+  }, [nav.goToSlideWithReveal, slides]);
 
   const goToSlideById = useCallback((id: string) => {
     const index = slides.findIndex(s => s.id === id);
@@ -136,7 +157,7 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
 
   const slideContent =
     typeof activeSlide.content === 'function'
-      ? activeSlide.content({ revealStage, inputText, activatedTools })
+      ? activeSlide.content({ revealStage, inputText, activatedTools, slideId: activeSlide.id })
       : activeSlide.content;
 
   return (
@@ -155,39 +176,44 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
           notes={activeSlide.notes}
           background={activeSlide.background}
           chrome={activeSlide.chrome ?? (activeSlide.hero ? 'hero' : 'global')}
+          slideId={activeSlide.id}
+          asyncSettle={activeSlide.asyncSettle}
         >
           {slideContent}
         </Slide>
       </div>
-      {currentSlide === 0 && !slideInteracted && activeSlide.chrome !== 'hero' && !activeSlide.hero && <OnboardingTooltip />}
-      {activeSlide.tooltip &&
+      {!isExportMode && <RotateHint />}
+      {!isExportMode && currentSlide === 0 && !slideInteracted && activeSlide.chrome !== 'hero' && !activeSlide.hero && <OnboardingTooltip />}
+      {!isExportMode && activeSlide.tooltip &&
         (activeSlide.maxRevealStages
           ? revealStage < activeSlide.maxRevealStages
           : !slideInteracted) && (
         <ContextTooltip>{activeSlide.tooltip}</ContextTooltip>
       )}
-      <div className="input-bar">
-        <Timer
-          elapsedSeconds={timerSeconds}
-          currentSlide={currentSlide}
-          totalSlides={slides.length}
-        />
-        <TerminalInput
-          onCommand={handleCommand}
-          onInputChange={setInputText}
-          onArrowLeft={revealPrev}
-          onArrowRight={revealNext}
-          placeholder="type anything to continue, 'prev' to go back, or slide number..."
-        />
-        {/* Show context progress once less than 50% of slides remain */}
-        {(currentSlide + 1) / slides.length > 0.5 && (
-          <SlideProgress
-            current={currentSlide + 1}
-            total={slides.length}
-            isFirst={currentSlide === Math.floor(slides.length / 2)}
+      {!isExportMode && (
+        <div className="input-bar">
+          <Timer
+            elapsedSeconds={timerSeconds}
+            currentSlide={currentSlide}
+            totalSlides={slides.length}
           />
-        )}
-      </div>
+          <TerminalInput
+            onCommand={handleCommand}
+            onInputChange={setInputText}
+            onArrowLeft={revealPrev}
+            onArrowRight={revealNext}
+            placeholder="type anything to continue, 'prev' to go back, or slide number..."
+          />
+          {/* Show context progress once less than 50% of slides remain */}
+          {(currentSlide + 1) / slides.length > 0.5 && (
+            <SlideProgress
+              current={currentSlide + 1}
+              total={slides.length}
+              isFirst={currentSlide === Math.floor(slides.length / 2)}
+            />
+          )}
+        </div>
+      )}
     </div>
     </NavigationContext.Provider>
   );

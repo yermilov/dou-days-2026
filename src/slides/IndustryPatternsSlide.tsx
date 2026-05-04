@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
 import { SlideItem, Emphasis } from '../components/SlideElements';
+import { exportRegistry } from '../components/exportRegistry';
 import releaseCalendar from '/anthropic-release-calendar.jpg?url';
 
 const STYLES = `
@@ -159,11 +160,13 @@ function StatusHistoryPanel({
   componentsUrl,
   incidentsUrl,
   maxComponents = 5,
+  onComplete,
 }: {
   label: string;
   componentsUrl: string;
   incidentsUrl: string;
   maxComponents?: number;
+  onComplete?: (err?: Error) => void;
 }) {
   const [rows, setRows] = useState<ComponentRow[]>([]);
   const [loading, setLoading] = useState(true);
@@ -192,12 +195,16 @@ function StatusHistoryPanel({
 
       setRows(built);
       setLoading(false);
-    }).catch(() => {
-      if (!cancelled) setLoading(false);
+      onComplete?.();
+    }).catch((err: Error) => {
+      if (!cancelled) {
+        setLoading(false);
+        onComplete?.(err);
+      }
     });
 
     return () => { cancelled = true; };
-  }, [componentsUrl, incidentsUrl, maxComponents]);
+  }, [componentsUrl, incidentsUrl, maxComponents, onComplete]);
 
   return (
     <div style={{
@@ -264,9 +271,19 @@ function StatusHistoryPanel({
 
 // --- slide ---
 
-function IndustryPatternsContent({ revealStage }: SlideContentProps) {
+function IndustryPatternsContent({ revealStage, slideId }: SlideContentProps) {
   const visibleCount = Math.min(revealStage + 1, bullets.length);
   const showStatus = revealStage >= 4;
+  const handleStatusLoaded = useCallback(
+    (err?: Error) => {
+      if (err) {
+        exportRegistry.markSlideError(slideId, err.message);
+      } else {
+        exportRegistry.markSlideSettled(slideId);
+      }
+    },
+    [slideId]
+  );
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%' }}>
@@ -329,6 +346,7 @@ function IndustryPatternsContent({ revealStage }: SlideContentProps) {
                 label="status.claude.com"
                 componentsUrl="https://status.claude.com/api/v2/components.json"
                 incidentsUrl="https://status.claude.com/api/v2/incidents.json?page_size=100"
+                onComplete={handleStatusLoaded}
               />
             </div>
           )}
@@ -342,6 +360,7 @@ export const IndustryPatternsSlide: SlideDefinition = {
   id: 'industry-patterns',
   content: (props: SlideContentProps) => <IndustryPatternsContent {...props} />,
   maxRevealStages: 4,
+  asyncSettle: true,
   notes:
     'The meta-lesson: Anthropic eats their own dog food. That creates a feedback loop no external user study can replicate.',
 };

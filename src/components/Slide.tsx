@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { SonarPattern, type SonarVariant } from './SonarPattern';
 import { SlideChrome } from './SlideChrome';
+import { exportRegistry } from './exportRegistry';
 import type { SlideChromeMode } from '../types/slides';
 
 interface SlideProps {
@@ -9,6 +10,9 @@ interface SlideProps {
   notes?: string;
   background?: string;
   chrome?: SlideChromeMode;
+  /** Threaded so non-async slides can auto-settle via exportRegistry. */
+  slideId?: string;
+  asyncSettle?: boolean;
 }
 
 const STAGE_WIDTH = 1920;
@@ -26,10 +30,19 @@ export function Slide({
   isActive = true,
   background,
   chrome = 'global',
+  slideId,
+  asyncSettle,
 }: SlideProps) {
   const [viewportEl, setViewportEl] = useState<HTMLDivElement | null>(null);
   const [scale, setScale] = useState(1);
   const isStaged = chrome !== 'none';
+
+  // Auto-settle on mount for slides that don't do their own async work.
+  // Slides with `asyncSettle: true` opt out and call markSlideSettled themselves.
+  useEffect(() => {
+    if (!isActive || asyncSettle || !slideId) return;
+    exportRegistry.markSlideSettled(slideId);
+  }, [isActive, asyncSettle, slideId]);
 
   useEffect(() => {
     if (!isStaged || !viewportEl) return;

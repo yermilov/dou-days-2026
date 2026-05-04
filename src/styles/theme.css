@@ -165,6 +165,74 @@
     --font-size-h3: 1.1rem;
     --font-size-body: 0.9rem;
     --font-size-code: 0.8rem;
-    --input-height: 2.75rem;
+    /* Chrome-only fluid sizing. These tokens never alias --slide-text-*,
+       so they don't bleed into the staged slide. The stage transform handles
+       slide content for us; here we only retune the chrome (timer, command
+       input, slide counter, onboarding tooltip) so it stays usable on phones. */
+    --input-height: clamp(2.25rem, 8vw, 3.5rem);
+    --input-padding-x: clamp(0.5rem, 3vw, 1.25rem);
+    --font-size-input: clamp(0.875rem, 3.2vw, 1.125rem);
+    --font-size-small: clamp(0.7rem, 2.5vw, 0.875rem);
+  }
+}
+
+/* === EXPORT MODE ===
+   Triggered via ?export=1 (Presentation.tsx sets body.dataset.export = '1').
+   Same triplet as reduced motion: snap every animation, finite or infinite,
+   to its final keyframe instantly so the Playwright capture is deterministic.
+   The explicit end-state block forces visibility on every reveal class — in
+   export we capture the FINAL state of each slide. */
+body[data-export="1"] *,
+body[data-export="1"] *::before,
+body[data-export="1"] *::after {
+  animation-duration: 0.001ms !important;
+  animation-delay: 0ms !important;
+  animation-iteration-count: 1 !important;
+  animation-fill-mode: forwards !important;
+  transition: none !important;
+}
+body[data-export="1"] .slide-item,
+body[data-export="1"] .code-reveal,
+body[data-export="1"] .activator-panel-reveal,
+body[data-export="1"] .auto-approve-reveal,
+body[data-export="1"] .sticker-reveal,
+body[data-export="1"] .final-qr-reveal,
+body[data-export="1"] [class*="reveal"] {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+/* === REDUCED MOTION ===
+   Snap every animation — finite or infinite — to its final keyframe instantly.
+   The triplet (0.001ms duration + iteration-count: 1 + forwards fill) collapses
+   loops and ends at the final keyframe. Plain `animation: none` would *break*
+   delayed reveals (SlideItem with delay, FinalSlide QR) which start at inline
+   `opacity: 0` and rely on the keyframe ending to become visible — that would
+   defeat the accessibility goal. The explicit end-state block below forces
+   visibility on every class that begins hidden. Update both audits when adding
+   new infinite animations or new opacity-0 reveal classes. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    animation-fill-mode: forwards !important;
+    transition-duration: 0.2s !important;
+  }
+  /* Force end-state on elements that begin hidden via inline style or keyframe.
+     Add new reveal classes here when introducing them. */
+  .slide-item,
+  .code-reveal,
+  .activator-panel-reveal,
+  .auto-approve-reveal,
+  .sticker-reveal,
+  .final-qr-reveal,
+  [class*="reveal"] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
   }
 }

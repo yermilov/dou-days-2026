@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
 import { SlideItem, Emphasis, SlideLink } from '../components/SlideElements';
+import { exportRegistry } from '../components/exportRegistry';
 
 const SKILL_MD_URL =
   'https://raw.githubusercontent.com/anthropics/claude-plugins-official/main/plugins/skill-creator/skills/skill-creator/SKILL.md';
@@ -27,7 +28,7 @@ const STYLES = `
   }
 `;
 
-function MetaSkillsContent({ revealStage }: { revealStage: number }) {
+function MetaSkillsContent({ revealStage, slideId }: { revealStage: number; slideId: string }) {
   const [content, setContent] = useState<string | null>(null);
   const [error, setError] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -39,9 +40,19 @@ function MetaSkillsContent({ revealStage }: { revealStage: number }) {
         if (!r.ok) throw new Error('fetch failed');
         return r.text();
       })
-      .then(setContent)
-      .catch(() => setError(true));
-  }, []);
+      .then(text => {
+        setContent(text);
+        exportRegistry.markSlideSettled(slideId);
+      })
+      .catch((err: Error) => {
+        setError(true);
+        // Don't fail the export over a remote-content fetch — just settle so the
+        // exporter moves on. The error fallback already renders a useful state.
+        exportRegistry.markSlideSettled(slideId);
+        // Surface in console for debugging during export runs.
+        if (typeof console !== 'undefined') console.warn('MetaSkills fetch failed:', err.message);
+      });
+  }, [slideId]);
 
   const colHeight = 'calc(var(--vh-full) - 400px)';
 
@@ -219,6 +230,7 @@ function MetaSkillsContent({ revealStage }: { revealStage: number }) {
 export const MetaSkillsSlide: SlideDefinition = {
   id: 'meta-skills',
   maxRevealStages: 2,
-  content: ({ revealStage }: SlideContentProps) => <MetaSkillsContent revealStage={revealStage} />,
+  asyncSettle: true,
+  content: ({ revealStage, slideId }: SlideContentProps) => <MetaSkillsContent revealStage={revealStage} slideId={slideId} />,
   notes: 'Meta-skills are the highest leverage investment. One good skill-creation skill multiplies the quality of everything else. Stage 1: reveal 4th bullet + scrolling SKILL.md panel.',
 };

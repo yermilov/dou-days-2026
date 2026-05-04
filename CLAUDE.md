@@ -54,7 +54,7 @@ src/
 │   └── diagram/              # SVG diagram components (DiagramCanvas, StageNode, FlowArrow, etc.)
 └── styles/
     ├── theme.css              # CSS design tokens
-    └── terminal.css           # Component styles
+    └── slides.css             # Component & slide styles
 ```
 
 ## Adding Slides
@@ -253,7 +253,7 @@ Workflow:
 - **2 font sizes per slide** (except title): heading (`--font-size-h2`) and text (`--slide-text-normal`). No inline `fontSize`.
 - **All colors via CSS variables** — never hardcode hex values in JSX `style={}`. Exception: SVG attributes use JS constants.
 - **Use `SlideElements.tsx` components** — `SlideItem`, `SectionHeader`, `Code`, `Emphasis`, `Quote`, `SlideLink` — instead of raw HTML.
-- **No new CSS classes** without checking `terminal.css` for existing ones first.
+- **No new CSS classes** without checking `slides.css` for existing ones first.
 - **If content doesn't fit**, reduce content or split slides — do NOT introduce new font sizes.
 
 ### Code Style

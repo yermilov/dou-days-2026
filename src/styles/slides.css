@@ -502,7 +502,10 @@
   margin: 0 !important;
   padding: var(--space-md) !important;
   background: transparent !important;
-  font-size: var(--font-size-code) !important;
+  /* Read --slide-text-code (stage-stable) directly so the responsive
+     --font-size-code overrides at 480/640/1024 don't leak into the
+     scaled stage. The stage transform handles every viewport width. */
+  font-size: var(--slide-text-code) !important;
   line-height: var(--line-height-relaxed) !important;
 }
 
@@ -643,7 +646,11 @@
   text-shadow: 0 0 6px var(--terminal-orange-glow);
 }
 
-/* Slide Item Animation */
+/* === Slide Item reveal animations ===
+   Tuned to ~300ms with ease-out-expo (cubic-bezier(0.19, 1, 0.22, 1))
+   so the cascade lands quickly without feeling abrupt. Variants below
+   give SlideItem a small palette of motion modes — pick via the
+   `reveal` prop, or keep the default `fadeIn` (slide-from-left). */
 @keyframes slideItemFadeIn {
   from {
     opacity: 0;
@@ -669,6 +676,56 @@
     transform: translateX(0);
   }
 }
+
+@keyframes slideItemRevealUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideItemRevealScale {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideItemRevealBlur {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* CSS-stagger fallback for parents that don't thread an explicit `delay`
+   index. Gated on the marker class `.slide-item--reveal` so static
+   `SlideItem`s without the marker stay unanimated. Use the explicit
+   `delay={i * 0.08}` form on `SlideItem` in new code; this fallback exists
+   only for the rare cases where indexing is awkward. */
+.slide-item--reveal {
+  opacity: 0;
+  animation: slideItemFadeIn 0.3s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+.slide-item--reveal:nth-child(1) { animation-delay: 0s; }
+.slide-item--reveal:nth-child(2) { animation-delay: 0.08s; }
+.slide-item--reveal:nth-child(3) { animation-delay: 0.16s; }
+.slide-item--reveal:nth-child(4) { animation-delay: 0.24s; }
+.slide-item--reveal:nth-child(5) { animation-delay: 0.32s; }
+.slide-item--reveal:nth-child(6) { animation-delay: 0.4s; }
+.slide-item--reveal:nth-child(n+7) { animation-delay: 0.48s; }
 
 /* === RESPONSIVE === */
 @media (max-width: 1024px) {
@@ -703,6 +760,40 @@
     padding: var(--space-sm) var(--space-md);
   }
 
+}
+
+/* === ROTATE HINT (portrait phones only) === */
+.rotate-hint {
+  display: none;
+}
+@media (orientation: portrait) and (max-width: 640px) {
+  .rotate-hint {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background: var(--dou-bg-gradient);
+    color: var(--dou-white);
+    font-family: var(--font-sans);
+    text-align: center;
+    padding: 2rem;
+    pointer-events: none;
+  }
+  .rotate-hint__icon {
+    font-size: 4rem;
+    color: var(--dou-magenta);
+    line-height: 1;
+    transform: rotate(-90deg);
+  }
+  .rotate-hint__text {
+    font-size: 1.125rem;
+    color: var(--dou-white-dim);
+    max-width: 18rem;
+  }
 }
 
 /* Bio slide is now a hero slide; see `.bio-hero` below. */
@@ -1720,7 +1811,7 @@
 
   /* Code blocks */
   .code-block pre {
-    font-size: var(--font-size-code) !important;
+    font-size: var(--slide-text-code) !important;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }

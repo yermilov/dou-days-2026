@@ -4,6 +4,7 @@ import { SlideDefinition } from '../types/slides';
 interface UseSlideNavigationReturn {
   currentSlide: number;
   goToSlide: (index: number) => void;
+  goToSlideWithReveal: (slideIndex: number, revealStage: number) => void;
   nextSlide: () => void;
   prevSlide: () => void;
   revealNext: () => void;
@@ -71,6 +72,21 @@ export function useSlideNavigation(
       updateHash(clampedIndex);
     },
     [clampIndex, updateHash]
+  );
+
+  // Drive both slide and reveal stage from outside (used by PDF exporter).
+  // Clamps both indices into valid range. Avoids the keyboard handlers,
+  // which reset reveal on slide change and don't clamp `r` past the max.
+  const goToSlideWithReveal = useCallback(
+    (slideIndex: number, targetReveal: number) => {
+      const clampedIndex = clampIndex(slideIndex);
+      const max = slides[clampedIndex]?.maxRevealStages ?? 0;
+      const clampedReveal = Math.max(0, Math.min(targetReveal, max));
+      setCurrentSlide(clampedIndex);
+      setRevealStage(clampedReveal);
+      updateHash(clampedIndex);
+    },
+    [clampIndex, slides, updateHash]
   );
 
   // Navigate to next slide
@@ -214,6 +230,7 @@ export function useSlideNavigation(
   return {
     currentSlide,
     goToSlide,
+    goToSlideWithReveal,
     nextSlide,
     prevSlide,
     revealNext,

@@ -6,10 +6,12 @@
   "homepage": "https://yermilov.github.io/dou-days-2026",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "check:async-slides": "bun run scripts/check-async-slides.ts",
+    "build": "bun run check:async-slides && tsc && vite build",
     "preview": "vite preview",
     "predeploy": "bun run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "pdf": "bash scripts/export-pdf.sh"
   },
   "dependencies": {
     "@fontsource/ibm-plex-sans": "^5.2.8",
@@ -26,6 +28,7 @@
     "@types/react-syntax-highlighter": "^15.5.13",
     "@vitejs/plugin-react": "^4.3.3",
     "gh-pages": "^6.2.0",
+    "playwright": "1.48.2",
     "typescript": "~5.6.2",
     "vite": "^5.4.10",
     "vite-plugin-imagemin": "^0.6.1"

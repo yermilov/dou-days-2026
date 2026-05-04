@@ -30,20 +30,36 @@ export function SectionHeader({
 }
 
 // List item with animation
+export type SlideItemRevealVariant = 'fade' | 'up' | 'scale' | 'left' | 'blur';
+
+const REVEAL_KEYFRAMES: Record<SlideItemRevealVariant, string> = {
+  fade: 'slideItemFadeIn',
+  up: 'slideItemRevealUp',
+  scale: 'slideItemRevealScale',
+  left: 'slideItemReveal',
+  blur: 'slideItemRevealBlur',
+};
+
 export function SlideItem({
   children,
   delay,
   reveal = false,
+  revealAs,
 }: {
   children: React.ReactNode;
+  /** Animation delay in **seconds** (note: not milliseconds). */
   delay?: number;
+  /** Legacy boolean — `true` picks the slightly-stronger `left` variant. */
   reveal?: boolean;
+  /** Explicit motion mode. Falls back to `left` if `reveal` is true, else `fade`. */
+  revealAs?: SlideItemRevealVariant;
 }) {
+  const variant: SlideItemRevealVariant = revealAs ?? (reveal ? 'left' : 'fade');
   const style: React.CSSProperties =
     delay !== undefined
       ? {
           opacity: 0,
-          animation: `${reveal ? 'slideItemReveal 0.4s cubic-bezier(0.22, 1, 0.36, 1)' : 'slideItemFadeIn 0.35s ease-out'} forwards`,
+          animation: `${REVEAL_KEYFRAMES[variant]} 0.3s cubic-bezier(0.19, 1, 0.22, 1) forwards`,
           animationDelay: `${delay}s`,
         }
       : {};

@@ -4,6 +4,8 @@ export interface SlideContentProps {
   revealStage: number;
   inputText: string;
   activatedTools: Set<string>;
+  /** Slide id, threaded so async slides can call exportRegistry.markSlideSettled. */
+  slideId: string;
 }
 
 export type HeroVariant = 'title' | 'speaker';
@@ -25,6 +27,13 @@ export interface SlideDefinition {
   maxRevealStages?: number;
   initialRevealStage?: number;
   chrome?: SlideChromeMode;
+  /**
+   * If true, the slide does runtime async work (fetch, etc.) and must call
+   * `exportRegistry.markSlideSettled(slideId)` itself when ready. PDF export
+   * waits on that signal before screenshotting.
+   * If false/undefined, `Slide.tsx` auto-settles on mount.
+   */
+  asyncSettle?: boolean;
   /** @deprecated use `chrome: 'hero'` — retained for in-flight migration. */
   hero?: boolean;
   /** @deprecated — only `'title'` remains in use; BioSlide (speaker) is reworked into a body slide. */

@@ -38,6 +38,28 @@ The design language for this deck: DOU magenta/mint/violet palette, IBM Plex San
 6. `bun run build` passes with no TypeScript errors.
 7. Visual parity verified on `bun run dev`. **Known caveat**: the Chrome extension's JS eval context reports `window.innerWidth: 0`, which triggers the legacy `@media (max-width: 1200/900/600)` blocks at `slides.css:1517+` and breaks layout measurements. Prefer a real browser window (1920+ wide) for screenshots, or measure DOM directly via `javascript_tool` with the understanding that `@media` rules are firing. The legacy `@media` block is inert at real viewports but should eventually be cleaned up.
 
+## Pre-edit modification checklist (run before touching any slide)
+
+The fixed 1920×1080 stage gives every slide a hard ceiling. Before adding
+content to an existing slide, walk this list:
+
+1. **Count existing elements** on the slide (heading, bullets, code lines,
+   images). Compare against the density table in
+   [references/full-spec.md §4a](references/full-spec.md). If you are at or
+   over the limit, **split the slide** before adding anything.
+2. **Adding an image?** Check existing density first. The image bound is
+   ≈540 stage-px tall (`.image-slide` already enforces this). If the slide
+   already has a heading + body content, it is too dense for an image.
+3. After **any** edit, confirm the slide still fits the 1920×1080 stage at
+   real desktop dimensions. The `transform: scale(...)` stage shrinks
+   uniformly, so anything that overflows at 1920×1080 will overflow at any
+   other viewport too.
+4. **Proactively split rather than tighten typography.** Splitting is
+   reversible; introducing a new font size violates the 2–3 sizes rule and
+   poisons the rest of the deck.
+
+---
+
 ## Adding or editing a slide
 
 - Compose `SectionHeader`, `SlideItem`, `Code`, `Emphasis`, `Quote`, `SlideLink` from `src/components/SlideElements.tsx`. Do not use raw HTML headings or lists.
@@ -52,3 +74,4 @@ The design language for this deck: DOU magenta/mint/violet palette, IBM Plex San
 - [references/blurred-background-pattern.md](references/blurred-background-pattern.md) — full-screen image + blurred content box pattern
 - [references/side-images-pattern.md](references/side-images-pattern.md) — full-height side-image layout pattern
 - [references/cohesive-chrome.md](references/cohesive-chrome.md) — body-slide chrome composition, random sonar pool + framing, badge placement tokens
+- [references/animation-feelings.md](references/animation-feelings.md) — effect-to-feeling reference table (Techy/Futuristic, Editorial, Playful, …)

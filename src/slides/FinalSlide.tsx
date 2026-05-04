@@ -73,6 +73,7 @@ export const FinalSlide: SlideDefinition = {
         {/* Right column - QR code (revealed with last point) */}
         {revealStage >= 6 && (
           <img
+            className="final-qr-reveal"
             src={linkedinQr}
             alt="LinkedIn QR code - Yarik Yermilov"
             style={{

@@ -162,6 +162,30 @@ placement tokens, and how to add a new slide.
 
 ---
 
+## 4a. Content density limits per slide type
+
+The fixed 1920×1080 stage gives every slide a hard ceiling. At our calibrated
+typography (`--slide-text-h2: 7.5rem` / `--slide-text-body: 2.375rem`) the
+following table is what reliably fits without overflow. **Use it as a hard
+cap when reviewing or composing slides** — overflow means split the slide,
+not shrink the type.
+
+| Slide type | Max content (at 7.5rem h2 / 2.375rem body) |
+| --- | --- |
+| Title (hero) | 1 heading + 1 subtitle + optional tagline |
+| Content (bullets) | 1 heading + 4–6 `SlideItem`s **or** 1 heading + 2 paragraphs |
+| Feature grid | 1 heading + 6 cards (2×3 or 3×2) |
+| Code | 1 heading + 8–10 lines of code |
+| Quote | 1 quote (≤3 lines) + attribution |
+| Image (`.image-slide`) | 1 heading + 1 image (≈540 stage-px tall, leaves room for chrome + heading) |
+
+The image bound is **stage pixels**, not vh — our stage is fixed-height so
+the upstream "≤60vh" idiom translates to ≈540 stage-px (1080 minus chrome
+margins and an h2). When uncertain, screenshot at desktop dimensions and
+verify with the design-system checklist.
+
+---
+
 ## 5. Do / Don't
 
 - ✅ IBM Plex Sans everywhere. CodeBlock keeps JetBrains Mono.
@@ -176,6 +200,33 @@ placement tokens, and how to add a new slide.
   slides if they overflow. Never introduce a new font size to fix one slide.
 - ❌ Don't edit `--hero-*` tokens while retuning body typography — the title
   slide's pixel-perfect calibration depends on them staying fixed.
+
+---
+
+## 5a. Working with `clamp()` (chrome only)
+
+The 1920×1080 stage transform handles every viewport size already, so
+**`clamp()` does not belong inside the stage** — it would desynchronise
+scaling. Reserve `clamp()` for chrome elements that live *outside* the
+stage transform (timer, command input, slide counter, onboarding tooltip).
+
+### Footgun: `calc(-1 * clamp(...))` is silently ignored
+
+When negating a `clamp()` value (e.g. for negative margins or translate),
+some browsers silently drop `calc(-1 * clamp(...))`. Use `calc(-1 *
+var(--token))` against a token-stored `clamp()` value instead, or precompute
+the negation. If a chrome rule needs negative spacing, store the positive
+value as a CSS variable first:
+
+```css
+:root {
+  --chrome-pad: clamp(0.5rem, 3vw, 1.25rem);
+  --chrome-pad-neg: calc(var(--chrome-pad) * -1);
+}
+```
+
+This is a future caveat — today the deck does not use chrome `clamp()`
+extensively. If you add the first one, follow this pattern.
 
 ---
 
