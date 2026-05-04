@@ -5,19 +5,6 @@ import warcraftWhat from '/warcraft-what.wav?url';
 import warcraftComplete from '/warcraft-complete.wav?url';
 import warcraftYes from '/warcraft-yes.wav?url';
 
-const STYLES = `
-  #warcraft-right .code-block {
-    margin: 0;
-  }
-  @keyframes warcraftReveal {
-    from { opacity: 0; transform: translateX(14px); }
-    to   { opacity: 1; transform: translateX(0); }
-  }
-  .warcraft-reveal {
-    animation: warcraftReveal 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
-`;
-
 const SKILL_CODE = `# warcraft-work-sounds
 # superhumans-org/superhuman-aidev marketplace
 
@@ -82,82 +69,82 @@ function Sound({ src }: { src: string }) {
   return <audio autoPlay src={src} />;
 }
 
+type PanelVariant = {
+  key: string;
+  label: string;
+  language: 'bash' | 'json';
+  code: string;
+};
+
+function panelFor(revealStage: number): PanelVariant {
+  if (revealStage >= 3) {
+    return { key: 'verify', label: 'verification', language: 'bash', code: VERIFY_CODE };
+  }
+  if (revealStage >= 2) {
+    return { key: 'hooks', label: '~/.claude/settings.json', language: 'json', code: HOOKS_CODE };
+  }
+  return { key: 'skill', label: 'warcraft-work-sounds/SKILL.md', language: 'bash', code: SKILL_CODE };
+}
+
 function WarcraftFunContent({ revealStage }: { revealStage: number }) {
+  const panel = panelFor(revealStage);
+
   return (
     <>
-      <style>{STYLES}</style>
-
       <h2>
         <span className="text-dim">$</span>{' '}
         <span className="text-green">pattern</span>{' '}
-        <span className="text-orange">--explore-and-have-fun</span>
+        <span className="text-orange">--досліджуй-і-веселись</span>
       </h2>
 
-      <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
-
-        {/* Left column: bullets */}
-        <div style={{ flex: '0 0 44%', display: 'flex', flexDirection: 'column', gap: '0.5rem', textAlign: 'left' }}>
-          <SlideItem delay={0.08}>
-            <Emphasis color="green">warcraft-work-sounds</Emphasis> — a skill that adds
-            {' '}Warcraft II <Emphasis color="orange">peon sounds</Emphasis> to your
-            Claude Code session lifecycle
+      <div className="warcraft-fun-body">
+        {/* Left column: bullets accumulate across reveal stages */}
+        <div className="warcraft-fun-bullets">
+          <SlideItem delay={0.05}>
+            <Emphasis color="green">warcraft-work-sounds</Emphasis> — скіл, що додає{' '}
+            <Emphasis color="orange">peon-звуки</Emphasis> з Warcraft II у життєвий цикл сесії Claude Code
           </SlideItem>
 
-          {revealStage === 1 && (
+          {revealStage >= 1 && (
             <SlideItem delay={0} reveal>
-              fetches .wav files from <Emphasis color="green">warcraft.wiki.gg</Emphasis>,
-              {' '}organizes into 4 categories, and configures hooks automatically —
-              {' '}one prompt is all it takes
+              тягне .wav файли з <Emphasis color="green">warcraft.wiki.gg</Emphasis>,
+              {' '}розкладає по 4 категоріях і автоматично налаштовує хуки —
+              {' '}<Emphasis color="orange">один промпт</Emphasis>, і все готово
+              <Sound src={warcraftYes} />
             </SlideItem>
           )}
-          {revealStage === 2 && (
+
+          {revealStage >= 2 && (
             <SlideItem delay={0} reveal>
-              <Emphasis color="orange">Notification</Emphasis> hook plays a random{' '}
-              <Emphasis color="green">"what?"</Emphasis> when Claude needs permission —
-              {' '}<Emphasis color="orange">Stop</Emphasis> hook plays{' '}
-              <Emphasis color="green">"job's done!"</Emphasis> when session ends
+              хук <Emphasis color="orange">Notification</Emphasis> програє випадкове{' '}
+              <Emphasis color="green">"what?"</Emphasis>, коли Claude чекає підтвердження —
+              {' '}хук <Emphasis color="orange">Stop</Emphasis> програє{' '}
+              <Emphasis color="green">"job's done!"</Emphasis>, коли сесія завершена
               <Sound src={warcraftWhat} />
             </SlideItem>
           )}
-          {revealStage === 3 && (
+
+          {revealStage >= 3 && (
             <SlideItem delay={0} reveal>
-              18 sounds across 4 categories — randomized playback, configurable
-              volume, drop in new .wav files to customize
+              18 звуків у 4 категоріях — рандомізоване відтворення, налаштовуваний{' '}
+              volume; додавайте свої .wav, щоб кастомізувати
               <Sound src={warcraftComplete} />
             </SlideItem>
           )}
         </div>
 
-        {/* Right column: code panels */}
-        <div
-          id="warcraft-right"
-          style={{
-            flex: 1,
-          } as React.CSSProperties}
-        >
-          {revealStage === 0 && (
-            <div key="0" className="warcraft-reveal">
-              <CodeBlock language="bash" filename="warcraft-work-sounds/SKILL.md" code={SKILL_CODE} />
-            </div>
-          )}
-          {revealStage === 1 && (
-            <div key="1" className="warcraft-reveal">
-              <CodeBlock language="bash" filename="warcraft-work-sounds/SKILL.md" code={SKILL_CODE} />
-              <Sound src={warcraftYes} />
-            </div>
-          )}
-          {revealStage === 2 && (
-            <div key="2" className="warcraft-reveal">
-              <CodeBlock language="json" filename="~/.claude/settings.json" code={HOOKS_CODE} />
-            </div>
-          )}
-          {revealStage === 3 && (
-            <div key="3" className="warcraft-reveal">
-              <CodeBlock language="bash" filename="verification" code={VERIFY_CODE} />
-            </div>
-          )}
+        {/* Right column: framed code panel — stable height across stages */}
+        <div className="warcraft-fun-panel" key={panel.key}>
+          <div className="warcraft-fun-panel__chrome warcraft-fun-panel__chrome--top">
+            ░░░ {panel.label} ░░░
+          </div>
+          <div className="warcraft-fun-panel__viewport">
+            <CodeBlock language={panel.language} code={panel.code} />
+          </div>
+          <div className="warcraft-fun-panel__chrome warcraft-fun-panel__chrome--bottom">
+            [END OF TRANSMISSION]
+          </div>
         </div>
-
       </div>
     </>
   );
@@ -168,5 +155,5 @@ export const WarcraftFunSlide: SlideDefinition = {
   maxRevealStages: 3,
   content: ({ revealStage }: SlideContentProps) => <WarcraftFunContent revealStage={revealStage} />,
   notes:
-    'Fun example of explore-and-have-fun. Stage 0: skill overview + SKILL.md code. Stage 1: how it works + same code. Stage 2: hook config + "what?" sound plays. Stage 3: verification + "work complete" sound plays.',
+    'Веселий приклад explore-and-have-fun. Stage 0: огляд скілу + SKILL.md. Stage 1: як працює + звук "yes, me lord". Stage 2: конфігурація хуків + звук "what?". Stage 3: верифікація + звук "work complete".',
 };
