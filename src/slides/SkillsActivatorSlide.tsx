@@ -2,19 +2,6 @@ import { SlideDefinition, SlideContentProps } from '../types/slides';
 import { SlideItem, Emphasis } from '../components/SlideElements';
 import { CodeBlock } from '../components/CodeBlock';
 
-const STYLES = `
-  #skills-activator-right .code-block {
-    margin: 0;
-  }
-  @keyframes activatorPanelIn {
-    from { opacity: 0; transform: translateX(14px); }
-    to   { opacity: 1; transform: translateX(0); }
-  }
-  .activator-panel-reveal {
-    animation: activatorPanelIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
-`;
-
 const SKILL_MD_CODE = `---
 activation:
   keywords:
@@ -32,73 +19,110 @@ const HOOKS_CODE = `{
   "PreToolUse":       "match tool name+input → suggest / block"
 }`;
 
-const PROMPT_INJECT_EXAMPLE = `# user: "create a pr for my changes"
-# keyword "create pr" matched → action: require
+const RUNTIME_EXAMPLES = `# user: "create a pr for my changes"
+# keyword "create pr" → require
 
 [activator] skill not loaded: cicd:update-pull-request
 [activator] BLOCKING — injecting into prompt:
-
   ⚠ SKILL REQUIRED: cicd:update-pull-request
-  Load it first with: /cicd:update-pull-request`;
+  Load it first with: /cicd:update-pull-request
 
-const TOOL_BLOCK_EXAMPLE = `# claude calls: Bash("git push origin main")
-# pattern "git (push|commit)" matched → action: require
+────────────────────────────────────
+
+# claude calls: Bash("git push origin main")
+# pattern "git (push|commit)" → require
 
 [activator] skill not loaded: cicd:commit-and-push
-[activator] BLOCKING tool call — returning to claude:
-
+[activator] BLOCKING tool call:
   { "decision": "block",
     "reason": "load cicd:commit-and-push first" }`;
 
+const OVERVIEW_TEXT = `# skills-activator
+# як це працює
+
+  Phase 1 │ index    SessionStart → scan SKILL.md activations
+  Phase 2 │ match    UserPromptSubmit + PreToolUse → suggest / block
+  Phase 3 │ inject   missing skill → prompt injection / tool decision
+
+  fail-safe: будь-яка помилка → стандартний Claude flow`;
+
+type PanelVariant =
+  | { key: string; label: string; mode: 'overview'; text: string }
+  | { key: string; label: string; mode: 'code'; language: 'yaml' | 'json' | 'bash'; code: string };
+
+function panelFor(revealStage: number): PanelVariant {
+  if (revealStage >= 3) {
+    return { key: 'runtime', label: 'runtime — інʼєкція + блокування', mode: 'code', language: 'bash', code: RUNTIME_EXAMPLES };
+  }
+  if (revealStage >= 2) {
+    return { key: 'hooks', label: '~/.claude/hooks.json — runtime', mode: 'code', language: 'json', code: HOOKS_CODE };
+  }
+  if (revealStage >= 1) {
+    return { key: 'skill', label: 'SKILL.md — активаційні правила', mode: 'code', language: 'yaml', code: SKILL_MD_CODE };
+  }
+  return { key: 'overview', label: 'skills-activator — як це працює', mode: 'overview', text: OVERVIEW_TEXT };
+}
+
 function SkillsActivatorContent({ revealStage }: { revealStage: number }) {
-  const showExamples = revealStage >= 1;
+  const panel = panelFor(revealStage);
 
   return (
     <>
-      <style>{STYLES}</style>
-
       <h2>
         <span className="text-dim">$</span>{' '}
         <span className="text-green">pattern</span>{' '}
-        <span className="text-orange">--skills-activator</span>
+        <span className="text-orange">--активатор-скілів</span>
       </h2>
 
-      <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-
-        {/* ── Left column: bullets ── */}
-        <div style={{ flex: '0 0 42%', display: 'flex', flexDirection: 'column', gap: '0.5rem', textAlign: 'left' }}>
-          <SlideItem delay={0.08}>
-            claude is still not very good at loading the <Emphasis color="orange">right skill</Emphasis>
+      <div className="skills-activator-body">
+        {/* Left column: bullets accumulate across reveal stages */}
+        <div className="skills-activator-bullets">
+          <SlideItem delay={0.05}>
+            claude все ще ненадійно завантажує{' '}
+            <Emphasis color="orange">потрібний скіл</Emphasis> — він часто існує, але мовчить
           </SlideItem>
 
-          <SlideItem delay={0.18}>
-            invest your time to build a system that invokes the right skill when needed — use claude code hooks to intercept session events, analyze them (by keywords, pattern matching, or even llm analysis) and inject skill suggestions or even block execution without required skills loaded
-          </SlideItem>
-        </div>
+          {revealStage >= 1 && (
+            <SlideItem delay={0} reveal>
+              ми зробили <Emphasis color="green">skills-activator</Emphasis> — у{' '}
+              <Emphasis color="orange">SKILL.md</Emphasis> описуємо правила активації:
+              {' '}ключові слова, патерни tool-викликів, директорії
+            </SlideItem>
+          )}
 
-        {/* ── Right column: config → examples on reveal ── */}
-        <div
-          id="skills-activator-right"
-          style={{
-            flex: 1,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '0.5rem',
-          } as React.CSSProperties}
-        >
-          {!showExamples ? (
-            <>
-              <CodeBlock language="yaml" filename="SKILL.md" code={SKILL_MD_CODE} />
-              <CodeBlock language="json" filename="hooks.json" code={HOOKS_CODE} />
-            </>
-          ) : (
-            <div className="activator-panel-reveal" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              <CodeBlock language="bash" filename="prompt injection" code={PROMPT_INJECT_EXAMPLE} />
-              <CodeBlock language="bash" filename="tool blocking" code={TOOL_BLOCK_EXAMPLE} />
-            </div>
+          {revealStage >= 2 && (
+            <SlideItem delay={0} reveal>
+              Claude Code <Emphasis color="green">хуки</Emphasis> перехоплюють події сесії
+              {' '}і <Emphasis color="green">підказують</Emphasis> або{' '}
+              <Emphasis color="orange">блокують</Emphasis>, доки потрібний скіл не завантажений
+            </SlideItem>
+          )}
+
+          {revealStage >= 3 && (
+            <SlideItem delay={0} reveal>
+              пропущений скіл → <Emphasis color="green">інʼєкція в промпт</Emphasis>;
+              {' '}небезпечний tool-виклик → <Emphasis color="orange">блокування</Emphasis>
+              {' '}з підказкою, який скіл завантажити
+            </SlideItem>
           )}
         </div>
 
+        {/* Right column: framed panel — stable height across all reveal stages */}
+        <div className="skills-activator-panel" key={panel.key}>
+          <div className="skills-activator-panel__chrome skills-activator-panel__chrome--top">
+            ░░░ {panel.label} ░░░
+          </div>
+          <div className="skills-activator-panel__viewport">
+            {panel.mode === 'overview' ? (
+              <div className="skills-activator-panel__overview">{panel.text}</div>
+            ) : (
+              <CodeBlock language={panel.language} code={panel.code} />
+            )}
+          </div>
+          <div className="skills-activator-panel__chrome skills-activator-panel__chrome--bottom">
+            [END OF TRANSMISSION]
+          </div>
+        </div>
       </div>
     </>
   );
@@ -106,7 +130,8 @@ function SkillsActivatorContent({ revealStage }: { revealStage: number }) {
 
 export const SkillsActivatorSlide: SlideDefinition = {
   id: 'skills-activator',
-  maxRevealStages: 1,
+  maxRevealStages: 3,
   content: ({ revealStage }: SlideContentProps) => <SkillsActivatorContent revealStage={revealStage} />,
-  notes: 'Skills discovery is the last mile problem. Stage 0: show the SKILL.md config + hooks wiring. Stage 1 (reveal): show what prompt injection and tool blocking look like in practice.',
+  notes:
+    'Skills discovery — last-mile проблема. Stage 0: проблема + overview панелі (3 фази: index → match → inject). Stage 1: SKILL.md активаційні правила (keywords / tools / directories). Stage 2: ~/.claude/hooks.json — як хуки перехоплюють події сесії. Stage 3: runtime — приклади інʼєкції в промпт і блокування tool-виклику.',
 };
