@@ -4,40 +4,24 @@ import { SlideItem, Emphasis } from '../components/SlideElements';
 import linkedinQr from '/linkedin-qr.jpeg?url';
 
 const TAKEAWAYS: ReactNode[] = [
-  <>start with figuring out your personal <Emphasis color="green">vibe flow</Emphasis></>,
-  <>break out of just coding — use Claude for <Emphasis color="orange">everything</Emphasis> you do, especially closing feedback loops</>,
-  <>skills are your team's multiplier — build an <Emphasis color="green">infrastructure</Emphasis> to make them sharable and reusable</>,
-  <>semi-autonomous agents are the next frontier — start with <Emphasis color="orange">specific-task agents</Emphasis>: issue triage, code review, migrations, ...</>,
-  <><Emphasis color="green">humans</Emphasis> are the most important part — AI amplifies your team, it doesn't replace it</>,
-  <>let's connect on LinkedIn <span style={{ color: 'var(--terminal-blue)' }}>→</span></>,
+  <>почніть із пошуку власного <Emphasis color="green">vibe flow</Emphasis></>,
+  <>вийдіть за межі коду — використовуйте Claude для <Emphasis color="orange">всього, що робите</Emphasis>, особливо для закриття feedback loops</>,
+  <>skills — це множник для команди; побудуйте <Emphasis color="green">інфраструктуру</Emphasis>, щоб ними було легко ділитися й перевикористовувати</>,
+  <>напівавтономні агенти — наступний рубіж; починайте зі <Emphasis color="orange">спеціалізованих агентів</Emphasis>: тріаж тікетів, код-рев'ю, міграції, …</>,
+  <><Emphasis color="green">люди</Emphasis> — найважливіша частина: AI підсилює команду, а не замінює її</>,
+  <>давайте знайомитися в LinkedIn <span className="final-slide__arrow">→</span></>,
 ];
 
 export const FinalSlide: SlideDefinition = {
   id: 'final',
   content: ({ revealStage }) => (
     <>
-      <h2 style={{ color: 'var(--terminal-blue)' }}>
+      <h2 className="final-slide__heading">
         compacting the conversation...
       </h2>
 
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: 'var(--space-3xl)',
-          width: '100%',
-          paddingBottom: 'var(--space-xl)',
-        }}
-      >
-        {/* Left column - bullets */}
-        <div
-          style={{
-            flex: 1,
-            maxWidth: '650px',
-            textAlign: 'left',
-          }}
-        >
+      <div className="final-slide">
+        <div className="final-slide__bullets">
           {TAKEAWAYS.map((bullet, i) =>
             revealStage >= i + 1 ? (
               <SlideItem key={i} delay={0}>{bullet}</SlideItem>
@@ -45,24 +29,11 @@ export const FinalSlide: SlideDefinition = {
           )}
         </div>
 
-        {/* Right column - QR code (revealed with last point) */}
         {revealStage >= TAKEAWAYS.length && (
           <img
-            className="final-qr-reveal"
+            className="final-slide__qr final-qr-reveal"
             src={linkedinQr}
             alt="LinkedIn QR code - Yarik Yermilov"
-            style={{
-              flexShrink: 0,
-              maxWidth: '600px',
-              maxHeight: 'calc(100vh - 180px)',
-              objectFit: 'contain',
-              borderRadius: 'var(--input-border-radius)',
-              border: '2px solid var(--terminal-border)',
-              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
-              opacity: 0,
-              animation: 'slideItemFadeIn 0.5s ease-out forwards',
-              animationDelay: '0.1s',
-            }}
             loading="lazy"
           />
         )}
@@ -71,5 +42,5 @@ export const FinalSlide: SlideDefinition = {
   ),
   maxRevealStages: TAKEAWAYS.length,
   notes:
-    'Final takeaways: vibe flow foundation, use Claude beyond coding, skills marketplace, specific-task agents first, humans are the most important part, connect on LinkedIn. The QR code reveals together with the last point.',
+    "Фінальні висновки: vibe flow як фундамент, Claude поза кодом, інфраструктура для skills, спеціалізовані агенти, люди — найважливіша частина, знайомимось у LinkedIn. QR-код з'являється разом із останнім пунктом.",
 };

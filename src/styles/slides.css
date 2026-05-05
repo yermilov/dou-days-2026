@@ -2118,6 +2118,55 @@
   border-radius: 1px;
 }
 
+/* === FINAL SLIDE ===
+   Closing slide: 6 takeaway bullets on the left, LinkedIn QR on the right that
+   reveals together with the last bullet. Heading kept in DOU violet to bookend
+   the deck against the mint-default body slides. */
+.slide h2.final-slide__heading {
+  color: var(--dou-violet);
+}
+
+/* `.slide--body` already pads the inner box to 1680×740 stage-px and flex-
+   centres its children, so this row only sets gap + alignment + sizing.
+   Bullets get a generous max-width so 38px Ukrainian text wraps into ~2 lines
+   per bullet rather than 3, leaving the QR room to land on the right. */
+.final-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xl);
+  width: 100%;
+}
+
+.final-slide__bullets {
+  flex: 1;
+  max-width: 1000px;
+  text-align: left;
+}
+
+/* Tighten the takeaway list so 6 bullets + QR clear the 740-px content box. */
+.final-slide__bullets .slide-item {
+  margin-bottom: 0.6rem;
+}
+
+.final-slide__qr {
+  flex-shrink: 0;
+  max-width: 600px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--input-border-radius);
+  border: 2px solid color-mix(in srgb, var(--dou-violet) 55%, transparent);
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--dou-near-black) 70%, transparent);
+  opacity: 0;
+  animation: slideItemFadeIn 0.5s ease-out forwards;
+  animation-delay: 0.1s;
+}
+
+.final-slide__arrow {
+  color: var(--dou-cyan);
+}
+
 /* === IMAGE SLIDE === */
 /* For slides that display a single image filling available space */
 .image-slide {
