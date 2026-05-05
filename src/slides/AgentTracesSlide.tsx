@@ -1,20 +1,7 @@
 import { SlideDefinition, SlideContentProps } from '../types/slides';
-import { SlideItem, Emphasis } from '../components/SlideElements';
+import { SlideItem, Emphasis, SlideLink, Code } from '../components/SlideElements';
 import { CodeBlock } from '../components/CodeBlock';
 import vibesImage from '/vibes.png?url';
-
-const STYLES = `
-  #agent-traces-right .code-block {
-    margin: 0;
-  }
-  @keyframes revealPanel {
-    from { opacity: 0; transform: translateX(14px); }
-    to   { opacity: 1; transform: translateX(0); }
-  }
-  .code-reveal {
-    animation: revealPanel 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
-`;
 
 const TRACER_CODE = `export function getSessionFilePath(
   sessionId: string, workDir: string,
@@ -39,77 +26,104 @@ export async function uploadSession(
   await fetch(VIBES_API_URL, { method: "POST", body: formData });
 }`;
 
+type PanelVariant = {
+  key: 'code' | 'image';
+  label: string;
+  body: React.ReactNode;
+  viewportModifier?: string;
+};
+
+function panelFor(revealStage: number): PanelVariant | null {
+  if (revealStage >= 3) {
+    return {
+      key: 'image',
+      label: "vibes.png — портал сесій для людей",
+      viewportModifier: 'agent-traces-panel__viewport--image',
+      body: (
+        <img
+          src={vibesImage}
+          alt="Портал vibes для шерингу сесій"
+          loading="lazy"
+        />
+      ),
+    };
+  }
+  if (revealStage >= 1) {
+    return {
+      key: 'code',
+      label: "vibes.ts — завантажувач сесій агентів",
+      body: <CodeBlock language="typescript" code={TRACER_CODE} />,
+    };
+  }
+  return null;
+}
+
 function AgentTracesContent({ revealStage }: { revealStage: number }) {
+  const panel = panelFor(revealStage);
+
   return (
     <>
-      <style>{STYLES}{`
-        .at-bullets .slide-item { margin-bottom: 0; }
-      `}</style>
+      <h2>
+        <span className="text-dim">$</span>{' '}
+        <span className="text-green">pattern</span>{' '}
+        <span className="text-orange">--треси-агентів</span>
+      </h2>
 
-      <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-        <h2>
-          <span className="text-dim">$</span>{' '}
-          <span className="text-green">pattern</span>{' '}
-          <span className="text-orange">--agent-traces</span>
-        </h2>
+      <div className="agent-traces-body">
+        {/* Left column: bullets accumulate across reveal stages */}
+        <div className="agent-traces-bullets">
+          <SlideItem delay={0.05}>
+            агенти працюють <Emphasis color="green">автономно</Emphasis> —
+            {' '}людина не встигає рев'юити кожне рішення, але ви маєте могти їх{' '}
+            <Emphasis color="orange">аудитити</Emphasis>
+          </SlideItem>
 
-        <div style={{ flex: 1, display: 'flex', gap: '2rem', alignItems: 'center', minHeight: 0 }}>
-
-        {/* ── Left column: bullets ── */}
-        <div className="at-bullets" style={{ flex: '0 0 44%', display: 'flex', flexDirection: 'column', gap: '1.2rem', textAlign: 'left' }}>
           {revealStage >= 1 && (
             <SlideItem delay={0} reveal>
-              since agents work autonomously, you need an <Emphasis color="green">observability system</Emphasis> — you can't review every decision, but you must be able to audit them
+              обгорніть <Emphasis color="orange">S3</Emphasis> тонким сервісом —
+              {' '}кожен агент після запуску заливає свій session log{' '}
+              (<Code>.jsonl</Code>)
             </SlideItem>
           )}
-          {revealStage >= 1 && (
-            <SlideItem delay={0.08} reveal>
-              build a thin wrapper around <Emphasis color="orange">S3</Emphasis> and have all agents upload their session log <code>.jsonl</code> files there after every run
-            </SlideItem>
-          )}
+
           {revealStage >= 2 && (
             <SlideItem delay={0} reveal>
-              create a <Emphasis color="green">skill</Emphasis> that downloads a sample of sessions, analyzes them, and suggests improvements to skills and agent instructions — agents improving agents
+              напишіть <Emphasis color="green">скіл</Emphasis>, який витягує семпл сесій,
+              {' '}аналізує їх і пропонує покращення скілам та інструкціям агентів —{' '}
+              <Emphasis color="orange">агенти, що покращують агентів</Emphasis>
             </SlideItem>
           )}
+
           {revealStage >= 3 && (
             <SlideItem delay={0} reveal>
-              vibe-code a nice <Emphasis color="orange">UI</Emphasis> around it so humans can also upload their own sessions for knowledge sharing and debugging — shared context between human and machine runs
-            </SlideItem>
-          )}
-          {revealStage >= 3 && (
-            <SlideItem delay={0.08} reveal>
-              <a href="https://entire.io" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--terminal-green)', textDecoration: 'underline' }}>entire.io</a>{' '}
-              and the <code>share-session</code> Claude Code feature are the first steps in this direction
+              vibe-кодіть зверху простий <Emphasis color="orange">UI</Emphasis> —
+              {' '}щоб люди теж заливали свої сесії;{' '}
+              <Emphasis color="green">спільний контекст</Emphasis> людських і машинних
+              {' '}прогонів (<SlideLink href="https://entire.io">entire.io</SlideLink>,
+              {' '}<Code>share-session</Code> — перші кроки)
             </SlideItem>
           )}
         </div>
 
-        {/* ── Right column: code / image panels ── */}
-        <div
-          id="agent-traces-right"
-          style={{
-            flex: 1,
-          } as React.CSSProperties}
-        >
-          {revealStage >= 1 && revealStage < 3 && (
-            <div key="code" className="code-reveal">
-              <CodeBlock language="typescript" filename="vibes.ts" code={TRACER_CODE} />
+        {/* Right column: framed mono panel — viewport content swaps per reveal stage */}
+        {panel && (
+          <div className="agent-traces-panel" key={panel.key}>
+            <div className="agent-traces-panel__chrome agent-traces-panel__chrome--top">
+              ░░░ {panel.label} ░░░
             </div>
-          )}
-          {revealStage === 3 && (
-            <div key="image" className="code-reveal" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-              <img
-                src={vibesImage}
-                alt="Vibes session sharing UI"
-                loading="lazy"
-                style={{ maxWidth: '100%', maxHeight: 'calc(var(--vh-full) - 220px)', objectFit: 'contain', borderRadius: '8px' }}
-              />
+            <div
+              className={
+                'agent-traces-panel__viewport' +
+                (panel.viewportModifier ? ` ${panel.viewportModifier}` : '')
+              }
+            >
+              {panel.body}
             </div>
-          )}
-        </div>
-
-        </div>
+            <div className="agent-traces-panel__chrome agent-traces-panel__chrome--bottom">
+              [END OF TRANSMISSION]
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
@@ -118,8 +132,8 @@ function AgentTracesContent({ revealStage }: { revealStage: number }) {
 export const AgentTracesSlide: SlideDefinition = {
   id: 'agent-traces',
   maxRevealStages: 3,
-  initialRevealStage: 1,
+  initialRevealStage: 0,
   content: ({ revealStage }: SlideContentProps) => <AgentTracesContent revealStage={revealStage} />,
   notes:
-    'Session traces are your audit log, your training data, and your improvement loop all in one. The UI makes it social — engineers start reading each other\'s sessions.',
+    'Треси агентів — observability для автономної роботи. Stage 0: агенти автономні, людина не встигає рев\'юити кожне рішення — потрібен аудит. Stage 1: тонкий S3-сервіс, кожен агент заливає session log .jsonl. Stage 2: скіл-аналізатор семплу сесій — агенти, що покращують агентів. Stage 3: UI поверх для шерингу людських сесій (entire.io, share-session у Claude Code) — спільний контекст між людськими і машинними прогонами.',
 };
