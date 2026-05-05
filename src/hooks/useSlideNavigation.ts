@@ -99,15 +99,18 @@ export function useSlideNavigation(
     goToSlide(currentSlide - 1);
   }, [currentSlide, goToSlide]);
 
-  // Reveal next stage if available, otherwise advance to next slide
+  // Reveal next stage if available, otherwise advance to next slide.
+  // On the very last slide at max reveal, stay put — falling through to
+  // nextSlide() there clamps the index back to the same slide and resets
+  // revealStage to 0, which loops the reveals.
   const revealNext = useCallback(() => {
     const maxReveal = slides[currentSlideRef.current]?.maxRevealStages ?? 0;
     if (revealStageRef.current < maxReveal) {
       setRevealStage(prev => prev + 1);
-    } else {
+    } else if (currentSlideRef.current < totalSlides - 1) {
       nextSlide();
     }
-  }, [slides, nextSlide]);
+  }, [slides, nextSlide, totalSlides]);
 
   // Roll back reveal stage if any revealed, otherwise go to previous slide
   const revealPrev = useCallback(() => {
@@ -155,7 +158,7 @@ export function useSlideNavigation(
         case 'r':
         case 'move':
         case 'm':
-          setRevealStage(prev => prev + 1);
+          revealNext();
           return;
         case 'next':
         case 'n':
@@ -164,7 +167,7 @@ export function useSlideNavigation(
         // No default - unrecognized commands do nothing
       }
     },
-    [goToSlide, nextSlide, prevSlide, totalSlides]
+    [goToSlide, nextSlide, prevSlide, revealNext, totalSlides]
   );
 
   // Keyboard navigation (when not focused on input)
