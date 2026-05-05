@@ -2,19 +2,6 @@ import { SlideDefinition, SlideContentProps } from '../types/slides';
 import { SlideItem, Emphasis } from '../components/SlideElements';
 import { CodeBlock } from '../components/CodeBlock';
 
-const STYLES = `
-  #agent-workflow-right .code-block {
-    margin: 0;
-  }
-  @keyframes revealPanel {
-    from { opacity: 0; transform: translateX(14px); }
-    to   { opacity: 1; transform: translateX(0); }
-  }
-  .code-reveal {
-    animation: revealPanel 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
-`;
-
 const SDK_CODE = `import { query } from "@anthropic-ai/claude-agent-sdk";
 
 for await (const message of query({
@@ -60,76 +47,88 @@ const SCHEMA_CODE = `const reviewResultSchema = z.object({
 });
 export type ReviewResult = z.infer<typeof reviewResultSchema>;`;
 
+type PanelVariant = {
+  key: string;
+  label: string;
+  language: 'typescript';
+  code: string;
+};
+
+function panelFor(revealStage: number): PanelVariant | null {
+  if (revealStage >= 4) {
+    return { key: 'schema', label: 'types.ts — structured output schema', language: 'typescript', code: SCHEMA_CODE };
+  }
+  if (revealStage >= 3) {
+    return { key: 'execution', label: 'federated-orchestrator.ts — mixed execution', language: 'typescript', code: EXECUTION_CODE };
+  }
+  if (revealStage >= 2) {
+    return { key: 'plugins', label: 'plugins.ts — marketplace injection', language: 'typescript', code: PLUGINS_CODE };
+  }
+  if (revealStage >= 1) {
+    return { key: 'sdk', label: 'agent.ts — claude agents sdk', language: 'typescript', code: SDK_CODE };
+  }
+  return null;
+}
+
 function AgentWorkflowContent({ revealStage }: { revealStage: number }) {
+  const panel = panelFor(revealStage);
+
   return (
     <>
-      <style>{STYLES}</style>
-
       <h2>
         <span className="text-dim">$</span>{' '}
         <span className="text-green">pattern</span>{' '}
-        <span className="text-orange">--agent-workflow</span>
+        <span className="text-orange">--воркфлов-агента</span>
       </h2>
 
-      <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
-
-        {/* ── Left column: bullets ── */}
-        <div style={{ flex: '0 0 44%', display: 'flex', flexDirection: 'column', gap: '0.5rem', textAlign: 'left' }}>
-          <SlideItem delay={0.08}>
-            you need an <Emphasis color="green">environment</Emphasis> for agent execution — start locally with human-controlled proof of concepts, then graduate to CI or a dedicated Kubernetes cluster
+      <div className="agent-workflow-body">
+        {/* Left column: bullets accumulate across reveal stages */}
+        <div className="agent-workflow-bullets">
+          <SlideItem delay={0.05}>
+            <Emphasis color="green">середовище виконання</Emphasis> —
+            {' '}від локальних PoC під контролем людини до CI чи окремого Kubernetes-кластера
           </SlideItem>
 
-          {revealStage === 1 && (
+          {revealStage >= 1 && (
             <SlideItem delay={0} reveal>
-              use <Emphasis color="orange">claude agents sdk</Emphasis> — essentially a TypeScript wrapper around the Claude Code CLI — as your agent runtime
+              <Emphasis color="orange">Claude Agent SDK</Emphasis>
+              {' '}— TypeScript-обгортка над Claude Code CLI — ваш рантайм для агентів
             </SlideItem>
           )}
-          {revealStage === 2 && (
+          {revealStage >= 2 && (
             <SlideItem delay={0} reveal>
-              always clone your <Emphasis color="green">skills marketplace</Emphasis> and inject it into the SDK execution context; enable needed plugins and skill activation hooks
+              клонуйте свій <Emphasis color="green">маркетплейс скілів</Emphasis>
+              {' '}у контекст SDK — вмикайте потрібні плагіни та хуки активації
             </SlideItem>
           )}
-          {revealStage === 3 && (
+          {revealStage >= 3 && (
             <SlideItem delay={0} reveal>
-              embrace <Emphasis color="orange">mixed deterministic/agentic execution</Emphasis>: write traditional scripts with loops and conditionals that invoke the Claude SDK only for the complex, non-deterministic work
+              <Emphasis color="orange">змішане детерміністичне/агентне виконання</Emphasis>:
+              {' '}звичайні скрипти кличуть Claude SDK лише для недетермінованої роботи
             </SlideItem>
           )}
-          {revealStage === 4 && (
+          {revealStage >= 4 && (
             <SlideItem delay={0} reveal>
-              use <Emphasis color="green">claude structured output</Emphasis> for decisions and deterministic code for all side effects — keeps agents predictable and auditable
+              <Emphasis color="green">Claude Structured Output</Emphasis> для рішень
+              {' '}+ детерміністичний код для сайд-ефектів — передбачувано та прозоро
             </SlideItem>
           )}
         </div>
 
-        {/* ── Right column: code panels ── */}
-        <div
-          id="agent-workflow-right"
-          style={{
-            flex: 1,
-          } as React.CSSProperties}
-        >
-          {revealStage === 1 && (
-            <div key="1" className="code-reveal">
-              <CodeBlock language="typescript" filename="agent.ts" code={SDK_CODE} />
+        {/* Right column: framed code panel — mounts only at reveal stage >= 1 */}
+        {panel && (
+          <div className="agent-workflow-panel" key={panel.key}>
+            <div className="agent-workflow-panel__chrome agent-workflow-panel__chrome--top">
+              ░░░ {panel.label} ░░░
             </div>
-          )}
-          {revealStage === 2 && (
-            <div key="2" className="code-reveal">
-              <CodeBlock language="typescript" filename="plugins.ts" code={PLUGINS_CODE} />
+            <div className="agent-workflow-panel__viewport">
+              <CodeBlock language={panel.language} code={panel.code} />
             </div>
-          )}
-          {revealStage === 3 && (
-            <div key="3" className="code-reveal">
-              <CodeBlock language="typescript" filename="federated-orchestrator.ts" code={EXECUTION_CODE} />
+            <div className="agent-workflow-panel__chrome agent-workflow-panel__chrome--bottom">
+              [END OF TRANSMISSION]
             </div>
-          )}
-          {revealStage === 4 && (
-            <div key="4" className="code-reveal">
-              <CodeBlock language="typescript" filename="types.ts" code={SCHEMA_CODE} />
-            </div>
-          )}
-        </div>
-
+          </div>
+        )}
       </div>
     </>
   );
@@ -140,5 +139,5 @@ export const AgentWorkflowSlide: SlideDefinition = {
   maxRevealStages: 4,
   content: ({ revealStage }: SlideContentProps) => <AgentWorkflowContent revealStage={revealStage} />,
   notes:
-    'The key insight: agents should be deterministic at the boundaries. Claude handles ambiguity in the middle; traditional code handles I/O, retries, and side effects.',
+    'Структурний blueprint побудови агентів. Stage 0: середовище виконання (локально → CI → K8s). Stage 1: Claude Agent SDK як рантайм. Stage 2: клонування маркетплейсу скілів у контекст SDK. Stage 3: змішане детерміністичне/агентне виконання. Stage 4: Structured Output для рішень + код для сайд-ефектів. Ключова теза: детермінізм на межах, агентність всередині.',
 };
