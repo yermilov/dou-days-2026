@@ -1,9 +1,17 @@
 import { SlideDefinition } from '../types/slides';
 
+// DOU palette — JS constants are the design-system-sanctioned exception
+// for SVG fill/stroke. Mirror --dou-magenta/--dou-mint/--dou-cyan/--dou-violet
+// in src/styles/theme.css.
+const DOU_MAGENTA = '#FF16B1';
+const DOU_MINT = '#02FEB9';
+const DOU_CYAN = '#02D6FE';
+const DOU_VIOLET = '#7626FF';
+
 const CURVE_STYLES = `
   @keyframes mysterGlow {
-    0%, 100% { opacity: 0.7; text-shadow: 0 0 12px #f0883e, 0 0 24px #f0883e; }
-    50%       { opacity: 1;   text-shadow: 0 0 20px #f0883e, 0 0 40px #f0883e, 0 0 60px rgba(240,136,62,0.4); }
+    0%, 100% { opacity: 0.7; text-shadow: 0 0 12px ${DOU_MAGENTA}, 0 0 24px ${DOU_MAGENTA}; }
+    50%       { opacity: 1;   text-shadow: 0 0 20px ${DOU_MAGENTA}, 0 0 40px ${DOU_MAGENTA}, 0 0 60px rgba(255,22,177,0.4); }
   }
 `;
 
@@ -21,7 +29,6 @@ function buildCurvePoints(W: number, H: number, padTop: number, padBot: number):
     const y = padTop + availH * (1 - norm);
     pts.push([x, y]);
   }
-  // Close at bottom
   return (
     pts.map(([x, y], i) => `${i === 0 ? 'M' : 'L'}${x.toFixed(1)},${y.toFixed(1)}`).join(' ') +
     ` L${W},${H} L0,${H} Z`
@@ -30,12 +37,12 @@ function buildCurvePoints(W: number, H: number, padTop: number, padBot: number):
 
 function AIInnovatorCurveContent() {
   const W = 1400;
-  const H = 340;
+  const H = 540;        // curve area
+  const BULLET_BAND = 200; // space below curve for two columns of bullets
   const padTop = 20;
   const padBot = 0;
 
   const path = buildCurvePoints(W, H, padTop, padBot);
-  // Curve outline only (open path, no fill)
   const mu = W * 0.75;
   const sigma = W * 0.16;
   const outlinePts: [number, number][] = [];
@@ -50,196 +57,201 @@ function AIInnovatorCurveContent() {
     .join(' ');
 
   // Section boundaries in pixels
-  const b1 = W * 0.15; // 0–15%: anthropic internally
-  const b2 = W * 0.42; // 15–42%: ai-first teams
-  const b3 = W * 0.75; // 42–75%: anthropic publicly
+  const b1 = W * 0.15; // 0–15%: Anthropic / всередині
+  const b2 = W * 0.42; // 15–42%: ai-first / інженери/команди
+  const b3 = W * 0.75; // 42–75%: Anthropic / публічно
 
   const sections = [
-    { x1: 0,   x2: b1, color: '#f0883e', labelColor: '#f0883e', dimColor: 'rgba(240,136,62,0.55)' },
-    { x1: b1,  x2: b2, color: '#7ee787', labelColor: '#7ee787', dimColor: 'rgba(126,231,135,0.55)' },
-    { x1: b2,  x2: b3, color: '#79c0ff', labelColor: '#79c0ff', dimColor: 'rgba(121,192,255,0.55)' },
-    { x1: b3,  x2: W,  color: '#d2a8ff', labelColor: '#d2a8ff', dimColor: 'rgba(210,168,255,0.55)' },
+    { x1: 0,  x2: b1, color: DOU_MAGENTA },
+    { x1: b1, x2: b2, color: DOU_MINT },
+    { x1: b2, x2: b3, color: DOU_CYAN },
+    { x1: b3, x2: W,  color: DOU_VIOLET },
   ];
 
-  // Bullet items below the curve per section
   const bullets: { section: number; items: string[] }[] = [
     {
       section: 1,
       items: [
-        'skills activator',
-        'skills metrics',
-        'agentic workflows',
-        'agents tracing',
+        'активатор скілів',
+        'метрики скілів',
+        'воркфлов агентів',
+        'треси агентів',
       ],
     },
     {
       section: 2,
-      items: ['plugins marketplace', 'meta skills', 'auto-approve', 'ai code review'],
+      items: [
+        'маркетплейс плагінів',
+        'мета-скіли',
+        'авто-підтвердження',
+        'ai-ревʼю коду',
+      ],
     },
   ];
 
-  // Labels above curve
   const labels = [
-    { section: 0, text: 'anthropic', text2: 'internally' },
-    { section: 1, text: 'ai-first', text2: 'engineers/teams' },
-    { section: 2, text: 'anthropic', text2: 'publicly' },
-    { section: 3, text: 'majority', text2: '' },
+    { section: 0, text: 'Anthropic', text2: 'всередині' },
+    { section: 1, text: 'AI-first', text2: 'інженери/команди' },
+    { section: 2, text: 'Anthropic', text2: 'публічно' },
+    { section: 3, text: 'більшість', text2: '' },
   ];
 
   const sectionCx = (s: { x1: number; x2: number }) => ((s.x1 + s.x2) / 2).toFixed(1);
-
-  // Bullet y-start (below curve bottom)
-  const bulletY = H + 18;
-  const bulletLineH = 28;
+  const bulletY = H + 36;
+  const bulletLineH = 38;
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.6rem', width: '100%' }}>
+    <div className="ainnovator-curve-body">
       <style>{CURVE_STYLES}</style>
 
       <div style={{ lineHeight: 1.4, textAlign: 'center' }}>
         <h2>
           <span className="text-dim">$</span>{' '}
           <span className="text-green">pattern</span>{' '}
-          <span className="text-orange">--ainnovator-curve</span>
+          <span className="text-orange">--крива-ai-інноваторів</span>
         </h2>
       </div>
 
-      <svg
-        viewBox={`0 0 ${W} ${H + 140}`}
-        style={{
-          width: '100%',
-          height: 'calc(var(--vh-full) - 380px)',
-          display: 'block',
-          overflow: 'visible',
-        }}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
+      <div className="ainnovator-curve-body__media">
+        <svg
+          viewBox={`0 0 ${W} ${H + BULLET_BAND}`}
+          preserveAspectRatio="xMidYMid meet"
+          style={{
+            width: '100%',
+            height: '100%',
+            display: 'block',
+            overflow: 'visible',
+          }}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            {sections.map((s, i) => (
+              <clipPath key={i} id={`clip-s${i}`}>
+                <rect x={s.x1} y={0} width={s.x2 - s.x1} height={H + BULLET_BAND + 20} />
+              </clipPath>
+            ))}
+          </defs>
+
+          {/* Filled curve — one per section, clipped */}
           {sections.map((s, i) => (
-            <clipPath key={i} id={`clip-s${i}`}>
-              <rect x={s.x1} y={0} width={s.x2 - s.x1} height={H + 200} />
-            </clipPath>
+            <path
+              key={i}
+              d={path}
+              fill={s.color}
+              fillOpacity={0.32}
+              clipPath={`url(#clip-s${i})`}
+            />
           ))}
-        </defs>
 
-        {/* Filled curve — one per section, clipped */}
-        {sections.map((s, i) => (
+          {/* Curve outline */}
           <path
-            key={i}
-            d={path}
-            fill={s.color}
-            fillOpacity={0.32}
-            clipPath={`url(#clip-s${i})`}
+            d={outlinePath}
+            fill="none"
+            stroke="rgba(255,255,255,0.55)"
+            strokeWidth={2.5}
+            strokeLinejoin="round"
+            strokeLinecap="round"
           />
-        ))}
 
-        {/* Curve outline */}
-        <path
-          d={outlinePath}
-          fill="none"
-          stroke="rgba(226,232,240,0.55)"
-          strokeWidth={2.5}
-          strokeLinejoin="round"
-          strokeLinecap="round"
-        />
+          {/* Baseline */}
+          <line x1={0} y1={H} x2={W} y2={H} stroke="rgba(255,255,255,0.15)" strokeWidth={1} />
 
-        {/* Baseline */}
-        <line x1={0} y1={H} x2={W} y2={H} stroke="rgba(226,232,240,0.15)" strokeWidth={1} />
+          {/* Vertical dividers */}
+          {[b1, b2, b3].map((bx, i) => (
+            <line
+              key={i}
+              x1={bx}
+              y1={padTop}
+              x2={bx}
+              y2={H + BULLET_BAND}
+              stroke="rgba(255,255,255,0.13)"
+              strokeWidth={1.5}
+              strokeDasharray="6 4"
+            />
+          ))}
 
-        {/* Vertical dividers */}
-        {[b1, b2, b3].map((bx, i) => (
-          <line
-            key={i}
-            x1={bx}
-            y1={padTop}
-            x2={bx}
-            y2={H + 140}
-            stroke="rgba(255,255,255,0.13)"
-            strokeWidth={1.5}
-            strokeDasharray="6 4"
-          />
-        ))}
+          {/* Section labels above curve (two lines) */}
+          {labels.map((lbl, i) => {
+            const s = sections[i];
+            const cx = parseFloat(sectionCx(s));
+            return (
+              <g key={i}>
+                <text
+                  x={cx}
+                  y={padTop - 38}
+                  textAnchor="middle"
+                  fill={s.color}
+                  fontSize={26}
+                  fontFamily="'IBM Plex Sans', sans-serif"
+                  fontWeight={600}
+                >
+                  {lbl.text}
+                </text>
+                {lbl.text2 && (
+                  <text
+                    x={cx}
+                    y={padTop - 12}
+                    textAnchor="middle"
+                    fill={s.color}
+                    fontSize={24}
+                    fontFamily="'IBM Plex Sans', sans-serif"
+                    fontWeight={500}
+                    opacity={0.9}
+                  >
+                    {lbl.text2}
+                  </text>
+                )}
+              </g>
+            );
+          })}
 
-        {/* Section labels above curve (two lines) */}
-        {labels.map((lbl, i) => {
-          const s = sections[i];
-          const cx = parseFloat(sectionCx(s));
-          return (
-            <g key={i}>
+          {/* Section 0 "????" glowing text inside curve */}
+          {(() => {
+            const s = sections[0];
+            const cx = parseFloat(sectionCx(s));
+            const midY = H * 0.62;
+            return (
               <text
                 x={cx}
-                y={padTop - 32}
+                y={midY}
                 textAnchor="middle"
-                fill={s.labelColor}
-                fontSize={20}
-                fontFamily="JetBrains Mono, monospace"
-                fontWeight="700"
+                fill={DOU_MAGENTA}
+                fontSize={40}
+                fontFamily="'IBM Plex Sans', sans-serif"
+                fontWeight={700}
+                style={{ animation: 'mysterGlow 2.4s ease-in-out infinite' }}
               >
-                {lbl.text}
+                ????
               </text>
-              {lbl.text2 && (
-                <text
-                  x={cx}
-                  y={padTop - 10}
-                  textAnchor="middle"
-                  fill={s.labelColor}
-                  fontSize={19}
-                  fontFamily="JetBrains Mono, monospace"
-                  fontWeight="600"
-                  opacity={0.9}
-                >
-                  {lbl.text2}
-                </text>
-              )}
-            </g>
-          );
-        })}
+            );
+          })()}
 
-        {/* Section 1 "????" glowing text inside curve */}
-        {(() => {
-          const s = sections[0];
-          const cx = parseFloat(sectionCx(s));
-          // Y midpoint of curve in this section (roughly middle vertically)
-          const midY = H * 0.65;
-          return (
-            <text
-              x={cx}
-              y={midY}
-              textAnchor="middle"
-              fill="#f0883e"
-              fontSize={28}
-              fontFamily="JetBrains Mono, monospace"
-              fontWeight="800"
-              style={{ animation: 'mysterGlow 2.4s ease-in-out infinite' }}
-            >
-              ????
-            </text>
-          );
-        })()}
-
-        {/* Bullet items below curve */}
-        {bullets.map(({ section, items }) => {
-          const s = sections[section];
-          const cx = parseFloat(sectionCx(s));
-          return (
-            <g key={section}>
-              {items.map((item, j) => (
-                <text
-                  key={j}
-                  x={cx}
-                  y={bulletY + j * bulletLineH}
-                  textAnchor="middle"
-                  fill={s.dimColor}
-                  fontSize={17}
-                  fontFamily="JetBrains Mono, monospace"
-                >
-                  {item}
-                </text>
-              ))}
-            </g>
-          );
-        })}
-      </svg>
+          {/* Bullet items below curve */}
+          {bullets.map(({ section, items }) => {
+            const s = sections[section];
+            const cx = parseFloat(sectionCx(s));
+            return (
+              <g key={section}>
+                {items.map((item, j) => (
+                  <text
+                    key={j}
+                    x={cx}
+                    y={bulletY + j * bulletLineH}
+                    textAnchor="middle"
+                    fill={s.color}
+                    fillOpacity={0.7}
+                    fontSize={24}
+                    fontFamily="'IBM Plex Sans', sans-serif"
+                    fontWeight={500}
+                  >
+                    {item}
+                  </text>
+                ))}
+              </g>
+            );
+          })}
+        </svg>
+      </div>
     </div>
   );
 }
@@ -247,5 +259,6 @@ function AIInnovatorCurveContent() {
 export const AIInnovatorCurveSlide: SlideDefinition = {
   id: 'ai-innovator-curve',
   content: <AIInnovatorCurveContent />,
-  notes: 'Rogers Innovation Adoption Curve applied to AI adoption. Section 1: Anthropic internal (black box). Section 2: ai-first engineers/teams — skills activator, metrics, agentic workflows, traces. Section 3: Anthropic publicly — marketplaces, meta skills. Section 4: laggards — still copy-pasting from ChatGPT.',
+  notes:
+    'Крива адопції інновацій Роджерса, прикладена до AI. Секція 1: Anthropic внутрішньо (чорна скринька). Секція 2: ai-first інженери/команди — активатор скілів, метрики, воркфлов агентів, треси. Секція 3: Anthropic публічно — маркетплейс плагінів, мета-скіли. Секція 4: більшість — ще копіпастять із ChatGPT.',
 };
