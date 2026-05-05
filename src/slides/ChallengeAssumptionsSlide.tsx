@@ -3,13 +3,13 @@ import { SlideDefinition } from '../types/slides';
 import { SlideItem, Emphasis } from '../components/SlideElements';
 
 const QUESTIONS: ReactNode[] = [
-  <>if we deliver 2×–10× faster, will we be able to <Emphasis color="orange">make decisions</Emphasis> as fast?</>,
-  <>do we need weeks writing design docs if we can build <Emphasis color="green">prototypes faster</Emphasis> than we can write the document?</>,
-  <>do we need to <Emphasis color="orange">plan in quarters</Emphasis> if we can ship a feature two weeks after inception and get user feedback one month after?</>,
-  <>can we trade some <Emphasis color="orange">uptime standards</Emphasis> for development velocity?</>,
-  <>can we relax <Emphasis color="green">rigorous code review</Emphasis> standards to allow AI-assisted code reviews?</>,
-  <>should we evaluate <Emphasis color="orange">AI-coding skills</Emphasis> in interviews?</>,
-  <>what discussions are <Emphasis color="orange">no longer meaningful</Emphasis> when code generation is increasingly cheap — do we need architecture if code can be fully regenerated weekly?</>,
+  <>якщо ми постачатимемо в 2–10 разів швидше — чи встигатимемо так само швидко <Emphasis color="orange">приймати рішення</Emphasis>?</>,
+  <>чи потрібні тижні на дизайн-доки, якщо <Emphasis color="green">прототип</Emphasis> збирається швидше, ніж пишеться документ про нього?</>,
+  <>чи треба <Emphasis color="orange">планувати кварталами</Emphasis>, якщо фічу можна випустити за два тижні після ідеї і отримати фідбек ще за місяць?</>,
+  <>чи можемо обміняти частину <Emphasis color="orange">стандартів аптайму</Emphasis> на швидкість розробки?</>,
+  <>чи можна послабити <Emphasis color="green">жорсткі стандарти код-рев'ю</Emphasis>, щоб AI допомагав із рев'ю?</>,
+  <>чи варто оцінювати <Emphasis color="orange">AI-кодинг скіли</Emphasis> на технічних інтерв'ю?</>,
+  <>які обговорення <Emphasis color="orange">втратили сенс</Emphasis>, коли генерація коду стає копійчаною — чи потрібна архітектура, якщо код можна щотижня перегенерувати з нуля?</>,
 ];
 
 export const ChallengeAssumptionsSlide: SlideDefinition = {
@@ -19,13 +19,13 @@ export const ChallengeAssumptionsSlide: SlideDefinition = {
       <h2>
         <span className="text-dim">$</span>{' '}
         <span className="text-green">pattern</span>{' '}
-        <span className="text-orange">--challenge-assumptions</span>
+        <span className="text-orange">--переглядаємо-припущення</span>
       </h2>
 
       <div
         style={{
           textAlign: 'left',
-          maxWidth: '1000px',
+          maxWidth: '1400px',
           width: '100%',
           margin: '0 auto',
         }}
@@ -40,5 +40,5 @@ export const ChallengeAssumptionsSlide: SlideDefinition = {
   ),
   maxRevealStages: QUESTIONS.length - 1,
   notes:
-    "These aren't rhetorical. Each question is a team conversation waiting to happen. Pick the two that would change the most for your org and start there.",
+    "Закриваюча секція AI-first: ці питання — не риторичні. Кожне з них — командна розмова, яка чекає, коли її почнуть. Запропонуйте слухачам обрати два питання, що найбільше змінять їхню організацію, і починати з них.",
 };
