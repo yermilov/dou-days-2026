@@ -1,62 +1,60 @@
-import { ReactNode } from 'react';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
 import { SlideItem, Emphasis, SlideLink } from '../components/SlideElements';
 import aiCodeReviewImage from '/ai-code-review.png?url';
 
-const STYLES = `
-  @keyframes revealPanel {
-    from { opacity: 0; transform: translateX(14px); }
-    to   { opacity: 1; transform: translateX(0); }
-  }
-  .code-reveal {
-    animation: revealPanel 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
-`;
-
-const BULLETS: ReactNode[] = [
-  <>volume of <Emphasis color="orange">AI-generated changes</Emphasis> increased dramatically</>,
-  <>engineers more confident contributing to <Emphasis color="green">unfamiliar codebases</Emphasis></>,
-  <>human reviews becoming <Emphasis color="orange">rubber stamps</Emphasis> — can't sustain rigor at this volume</>,
-  <>AI review often <Emphasis color="green">higher quality</Emphasis>; easy to enforce a consistent quality bar</>,
-  <>built an <Emphasis color="green">in-house agent</Emphasis> on Claude Code (+Codex) — uses same skills as engineers</>,
-  <>mixed <Emphasis color="green">deterministic</Emphasis> + <Emphasis color="orange">non-deterministic</Emphasis> execution; launches <Emphasis color="green">agent swarm</Emphasis> for multi-dimensional review</>,
-  <>Anthropic launched their own solution: <SlideLink href="https://code.claude.com/docs/en/code-review">code.claude.com</SlideLink></>,
-];
-
 function AgentExampleContent({ revealStage }: { revealStage: number }) {
   return (
     <>
-      <style>{STYLES}</style>
-
       <h2>
         <span className="text-dim">$</span>{' '}
         <span className="text-green">pattern</span>{' '}
-        <span className="text-orange">--ai-code-review</span>
+        <span className="text-orange">--ai-рев'ю-коду</span>
       </h2>
 
-      <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
+      <div className="agent-example-body">
+        <div className="agent-example-body__text">
+          <SlideItem delay={0.05}>
+            обсяг <Emphasis color="green">AI-згенерованих змін</Emphasis> вибухнув —
+            {' '}інженери впевненіше контриб'ютять у{' '}
+            <Emphasis color="orange">незнайомі кодбази</Emphasis>
+          </SlideItem>
 
-        {/* ── Left column: bullets ── */}
-        <div style={{ flex: '0 0 48%', display: 'flex', flexDirection: 'column', gap: '0.45rem', textAlign: 'left' }}>
-          {BULLETS.map((bullet, i) =>
-            revealStage >= i + 1 ? (
-              <SlideItem key={i} delay={0} reveal>{bullet}</SlideItem>
-            ) : null,
+          {revealStage >= 1 && (
+            <SlideItem delay={0} reveal>
+              людські рев'ю стають <Emphasis color="orange">штампами</Emphasis>
+              {' '}— на такому обсязі неможливо тримати рівень;
+              {' '}AI-рев'ю часто <Emphasis color="green">якісніше</Emphasis>
+              {' '}і дозволяє витримувати єдиний quality bar
+            </SlideItem>
+          )}
+
+          {revealStage >= 2 && (
+            <SlideItem delay={0} reveal>
+              ми зробили <Emphasis color="green">власного агента</Emphasis>
+              {' '}на Claude Code (+Codex) — той самий набір скілів, що в інженерів;
+              {' '}мікс <Emphasis color="green">детермінованого</Emphasis> +{' '}
+              <Emphasis color="orange">недетермінованого</Emphasis> виконання,
+              {' '}<Emphasis color="green">рій агентів</Emphasis> для багатовимірного рев'ю
+            </SlideItem>
+          )}
+
+          {revealStage >= 3 && (
+            <SlideItem delay={0} reveal>
+              Anthropic зашипили <Emphasis color="green">власне рішення</Emphasis>:{' '}
+              <SlideLink href="https://code.claude.com/docs/en/code-review">
+                code.claude.com
+              </SlideLink>
+            </SlideItem>
           )}
         </div>
 
-        {/* ── Right column: image (always visible) ── */}
-        <div style={{ flex: 1 }}>
-          <div className="code-reveal" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-            <img
-              src={aiCodeReviewImage}
-              alt="In-house AI code review agent"
-              loading="lazy"
-              style={{ maxWidth: '100%', maxHeight: 'calc(var(--vh-full) - 220px)', objectFit: 'contain', borderRadius: '8px' }}
-            />
-          </div>
+        <div className="agent-example-body__media">
+          <img
+            src={aiCodeReviewImage}
+            alt="In-house AI code review agent"
+            loading="lazy"
+          />
         </div>
-
       </div>
     </>
   );
@@ -64,9 +62,9 @@ function AgentExampleContent({ revealStage }: { revealStage: number }) {
 
 export const AgentExampleSlide: SlideDefinition = {
   id: 'agent-example',
-  maxRevealStages: BULLETS.length,
-  initialRevealStage: 1,
+  maxRevealStages: 3,
+  initialRevealStage: 0,
   content: ({ revealStage }: SlideContentProps) => <AgentExampleContent revealStage={revealStage} />,
   notes:
-    'AI code review: volume up, human reviews degrading, AI often better quality. Our in-house agent built on Claude Code SDK. Anthropic now has their own solution.',
+    'AI code review: обсяг AI-змін вибухнув, людські рев\'ю — штампи, AI-рев\'ю часто якісніше. Stage 0: проблема. Stage 1: людські рев\'ю не масштабуються. Stage 2: наш агент на Claude Code (+Codex) — мікс детермінованого+агентного, рій агентів. Stage 3: Anthropic зашипили code.claude.com.',
 };
