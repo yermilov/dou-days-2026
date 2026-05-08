@@ -599,7 +599,7 @@
   gap: 0.75rem;
   font-size: var(--slide-text-normal);
   line-height: var(--slide-line-height-normal);
-  margin-bottom: 1rem;
+  margin-bottom: var(--slide-bullet-gap);
   color: var(--terminal-white);
 }
 
@@ -1223,10 +1223,6 @@
   --slide-line-height-normal: 1.3;
 }
 
-.skill-marketplace-body__text .slide-item {
-  margin-bottom: 0;
-}
-
 .skill-marketplace-body__media {
   flex: 1 1 auto;
   display: flex;
@@ -1319,8 +1315,6 @@
   --slide-line-height-normal: 1.3;
 }
 
-.agent-example-body__text .slide-item { margin-bottom: 0; }
-
 .agent-example-body__media {
   flex: 1 1 auto;
   display: flex;
@@ -1371,8 +1365,6 @@
   min-width: 0;
   --slide-line-height-normal: 1.2;
 }
-
-.meta-skills-bullets .slide-item { margin-bottom: 0; }
 
 .meta-skills-panel {
   flex: 1 1 auto;
@@ -1517,8 +1509,6 @@
   --slide-line-height-normal: 1.3;
 }
 
-.warcraft-fun-bullets .slide-item { margin-bottom: 0; }
-
 .warcraft-fun-panel {
   flex: 1 1 auto;
   min-height: 0;
@@ -1604,8 +1594,6 @@
   min-width: 0;
   --slide-line-height-normal: 1.3;
 }
-
-.auto-approve-bullets .slide-item { margin-bottom: 0; }
 
 .auto-approve-panel {
   flex: 1 1 auto;
@@ -1703,8 +1691,6 @@
   min-width: 0;
   --slide-line-height-normal: 1.2;
 }
-
-.skills-activator-bullets .slide-item { margin-bottom: 0; }
 
 .skills-activator-panel {
   flex: 1 1 auto;
@@ -1804,8 +1790,6 @@
   --slide-line-height-normal: 1.22;
 }
 
-.agent-workflow-bullets .slide-item { margin-bottom: 0; }
-
 .agent-workflow-panel {
   flex: 1 1 auto;
   min-height: 0;
@@ -1892,8 +1876,6 @@
      as .agent-workflow-bullets (1.22) and .skill-marketplace-body__text (1.3). */
   --slide-line-height-normal: 1.2;
 }
-
-.agent-traces-bullets .slide-item { margin-bottom: 0; }
 
 .agent-traces-panel {
   flex: 1 1 auto;
@@ -1997,8 +1979,6 @@
      (1.2) and agent-workflow-bullets (1.22). */
   --slide-line-height-normal: 1.2;
 }
-
-.industry-patterns-bullets .slide-item { margin-bottom: 0; }
 
 .industry-patterns-panel {
   flex: 1 1 auto;

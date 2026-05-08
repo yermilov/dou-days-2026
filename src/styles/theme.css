@@ -55,7 +55,7 @@
      place. Values are sized aggressively for back-row readability in a
      400+ seat hall. */
   --slide-text-h2: 7.5rem;       /* headings (120px — bio-slide sizing adopted deck-wide) */
-  --slide-text-body: 2.375rem;   /* body text (38px — bio-slide sizing adopted deck-wide) */
+  --slide-text-body: 2.5rem;     /* body text (40px — slight bump for back-row readability) */
   --slide-text-code: 1.25rem;    /* code blocks */
 
   /* Backwards-compat aliases so older references keep working. Once every
@@ -81,6 +81,11 @@
   --letter-spacing-wide: 0.05em;
 
   --slide-line-height-normal: 1.55;
+
+  /* Default vertical spacing between consecutive bullets in a SlideItem
+     stack. Per-slide layouts that use a flex `gap` may override
+     `.slide-item { margin-bottom: 0 }` to opt out. */
+  --slide-bullet-gap: 1.4rem;
 
   /* Section headers use same text size as body */
   --slide-section-header: var(--slide-text-body);

@@ -6,10 +6,6 @@ export const SoftwareFactorySlide: SlideDefinition = {
   id: 'software-factory',
   content: ({ revealStage }) => (
     <>
-      <style>{`
-        .sf-bullets .slide-item { margin-bottom: 0; }
-      `}</style>
-
       <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
         <h2>
           <span className="text-dim">//</span>{' '}

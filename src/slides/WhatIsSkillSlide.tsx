@@ -1,6 +1,6 @@
 import { ReactNode, useEffect } from 'react';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
-import { SlideItem, Emphasis, SlideLink } from '../components/SlideElements';
+import { SlideItem, Emphasis } from '../components/SlideElements';
 import spaceBg from '/skill-space-bg.png?url';
 import leftAstronaut from '/skill-was-it-md.png?url';
 import rightAstronaut from '/skill-always-been.png?url';
@@ -41,9 +41,8 @@ function WhatIsSkillContent({ revealStage }: SlideContentProps) {
           0%, 100% { transform: translateY(0px) rotate(-2deg); }
           50%       { transform: translateY(-18px) rotate(2deg); }
         }
-        .what-is-skill__card .slide-item { margin-bottom: 0.7rem; }
         .what-is-skill__card .slide-item:last-child { margin-bottom: 0; }
-        .stage-viewport.what-is-skill-viewport .sonar-pattern { display: none; }
+.stage-viewport.what-is-skill-viewport .sonar-pattern { display: none; }
       `}</style>
 
       <h2

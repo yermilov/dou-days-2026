@@ -38,8 +38,6 @@ const DS_TASK_INDEX = 1;
 const DS_REVEAL_STAGE = DS_TASK_INDEX;
 
 const SCOPED_STYLES = `
-  .cc-bullets .slide-item { margin-bottom: 0; }
-
   /* Smooth transitions whenever the .cc-no-ds class is added/removed on the
      stage viewport — chrome elements, background, and slide-content colors
      all ease into / out of the DOU look. */

@@ -48,8 +48,7 @@ function EveryOrgContent({ revealStage }: { revealStage: number }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', gap: '0.8rem', marginRight: '-80px' }}>
       <style>{`
-        .every-org-col .slide-item { margin-bottom: 0.5rem; }
-        .every-org-col .section-header { margin-bottom: 1rem; }
+.every-org-col .section-header { margin-bottom: 1rem; }
       `}</style>
       <h2>
         <span className="text-dim">//</span>{' '}

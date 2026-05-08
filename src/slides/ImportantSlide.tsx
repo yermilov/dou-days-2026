@@ -46,7 +46,7 @@ export const ImportantSlide: SlideDefinition = {
 
           {revealStage >= 2 && (
             <SlideItem delay={0}>
-              просто дивитися в термінал як клод працює -{' '}
+              дивитися в термінал як клод працює -{' '}
               <Emphasis color="orange">втрата продуктивності і грошей</Emphasis>
             </SlideItem>
           )}
@@ -60,7 +60,7 @@ export const ImportantSlide: SlideDefinition = {
 
           {revealStage >= 4 && (
             <SlideItem delay={0.1}>
-              ну або запустіть клода і{' '}<Emphasis>сходіть відпочити</Emphasis>
+              ну або запустіть клода і{' '}<Emphasis>відпочиньте</Emphasis>
             </SlideItem>
           )}
         </div>
