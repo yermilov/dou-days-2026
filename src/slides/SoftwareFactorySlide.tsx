@@ -15,7 +15,7 @@ export const SoftwareFactorySlide: SlideDefinition = {
           <span className="text-dim">//</span>{' '}
           <span className="text-green">антипатерн</span>
           <span className="text-dim">:</span>{' '}
-          <span className="text-orange">софт-фабрика</span>
+          <span className="text-orange">software factory</span>
         </h2>
 
         <div style={{ flex: 1, display: 'flex', gap: '2.5rem', alignItems: 'center', minHeight: 0 }}>
@@ -23,25 +23,23 @@ export const SoftwareFactorySlide: SlideDefinition = {
           {/* Left column — bullets */}
           <div className="sf-bullets" style={{ flex: '0 0 48%', textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '1.6rem' }}>
             <SlideItem delay={0.05}>
-              вас може спокусити побудувати{' '}
-              <Emphasis color="orange">автономний workflow</Emphasis>
-              {' — '}дати йому задачу, отримати готову роботу
+              десятки агентів{' '}
+              <Emphasis color="orange">автономно</Emphasis>
+              {' — '}беруть задачі з джири і деплоять в продакшн
             </SlideItem>
 
             {revealStage >= 1 && (
               <SlideItem delay={0}>
-                це може бути щось, що ви побудували самі
-                {' — '}<Emphasis color="green">superpowers plugin</Emphasis>,
+                <Emphasis color="green">gas town</Emphasis>,
                 {' '}<Emphasis color="green">ralph loop</Emphasis>,
-                {' '}кастомний multi-agent pipeline
+                {' '}ваш внутрішній фреймворк який ви назвали <Emphasis color="green">міньйон</Emphasis>
               </SlideItem>
             )}
 
             {revealStage >= 2 && (
               <SlideItem delay={0}>
-                ви ретельно затюните його під свої потреби, але{' '}
-                <Emphasis color="orange">дуже малоймовірно</Emphasis>, що хтось інший
-                зможе це впровадити
+                чому антипатерн? ретельно затюнений під ваші потреби процес
+                {' '}<Emphasis color="orange">дуже важко</Emphasis> масштабувати на інших людей, інші команди, інші потреби
               </SlideItem>
             )}
           </div>

@@ -6,25 +6,11 @@ import leftAstronaut from '/skill-was-it-md.png?url';
 import rightAstronaut from '/skill-always-been.png?url';
 
 const BULLETS: ReactNode[] = [
-  <>skill — це просто <Emphasis color="green">md-файл</Emphasis> з інструкціями, як щось робити</>,
+  <>скілл — це просто <Emphasis color="green">SKILL.md</Emphasis> файл з інструкціями, як щось робити</>,
   <>на відміну від <Emphasis color="orange">MCP server</Emphasis> — не витрачає context window, завантажується лише за потребою моделі</>,
   <>на відміну від <Emphasis color="orange">slash command</Emphasis> — модель сама викликає його, коли потрібно</>,
   <>може бути цілою <Emphasis color="green">бібліотекою</Emphasis> md-файлів з посиланнями — модель навігує та завантажує за потребою</>,
   <>може містити <Emphasis color="green">TypeScript / Python / bash</Emphasis> скрипти для детермінованої автоматизації</>,
-  <>після успіху — переходь у plan mode:{' '}
-    <span className="text-quote">
-      'please read{' '}
-      <SlideLink href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices">
-        platform.claude.com/docs/.../agent-skills/best-practices
-      </SlideLink>{' '}
-      and create a skill that will replicate how we did X'
-    </span>
-  </>,
-  <>коли щось пішло не ідеально — заверши сесію промптом:{' '}
-    <span className="text-quote">
-      'reflect on the session and update the skill files to avoid mistakes and streamline experience next time'
-    </span>
-  </>,
 ];
 
 const VIEWPORT_BG = `linear-gradient(180deg,
@@ -55,7 +41,7 @@ function WhatIsSkillContent({ revealStage }: SlideContentProps) {
           0%, 100% { transform: translateY(0px) rotate(-2deg); }
           50%       { transform: translateY(-18px) rotate(2deg); }
         }
-        .what-is-skill__card .slide-item { margin-bottom: 0.3rem; }
+        .what-is-skill__card .slide-item { margin-bottom: 0.7rem; }
         .what-is-skill__card .slide-item:last-child { margin-bottom: 0; }
         .stage-viewport.what-is-skill-viewport .sonar-pattern { display: none; }
       `}</style>
@@ -66,31 +52,37 @@ function WhatIsSkillContent({ revealStage }: SlideContentProps) {
             '0 4px 24px color-mix(in srgb, var(--dou-near-black) 80%, transparent)',
         }}
       >
-        <span className="text-dim">$</span>{' '}
-        <span className="text-green">що таке</span>{' '}
-        <span className="text-orange">--skill</span>
+        <span className="text-dim">//</span>{' '}
+        <span className="text-green">скіли</span>{' '}-{' '}
+        <span className="text-orange">база, основа, фундамент</span>
       </h2>
 
       <div
         style={{
           flex: 1,
-          display: 'flex',
+          position: 'relative',
           // Push the row past the .slide--body 120px side padding so the
-          // astronauts hug the slide edges and the bullet card claims the
-          // central reading width.
+          // astronauts can hug the slide's outer edges.
           marginLeft: '-120px',
           marginRight: '-120px',
+          display: 'flex',
           alignItems: 'stretch',
-          gap: '0.5rem',
+          justifyContent: 'center',
         }}
       >
-        {/* Left astronaut */}
+        {/* Left astronaut — anchored to the slide's outer left edge so the
+            bullet card can claim more central reading width. */}
         <div
           style={{
-            flex: '0 0 15%',
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            left: 0,
+            width: '26%',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            pointerEvents: 'none',
           }}
         >
           <img
@@ -107,11 +99,13 @@ function WhatIsSkillContent({ revealStage }: SlideContentProps) {
           />
         </div>
 
-        {/* Bullets — frosted-glass card on the space backdrop */}
+        {/* Bullets — frosted-glass card on the space backdrop. Width fits
+            inside the gap between the two 26% astronaut bands so the card
+            never overlaps the astronauts' speech bubbles. */}
         <div
           className="what-is-skill__card"
           style={{
-            flex: 1,
+            width: '46%',
             alignSelf: 'stretch',
             maxHeight: '100%',
             overflow: 'hidden',
@@ -124,12 +118,14 @@ function WhatIsSkillContent({ revealStage }: SlideContentProps) {
             border:
               '1px solid color-mix(in srgb, var(--dou-white) 14%, transparent)',
             borderRadius: '14px',
-            padding: '0.4rem 1.5rem',
+            padding: '1.2rem 1.6rem',
             backdropFilter: 'blur(22px) saturate(140%)',
             WebkitBackdropFilter: 'blur(22px) saturate(140%)',
             boxShadow:
               '0 18px 48px color-mix(in srgb, var(--dou-near-black) 70%, transparent), inset 0 1px 0 color-mix(in srgb, var(--dou-white) 12%, transparent)',
-            ['--slide-line-height-normal' as string]: '1.22',
+            ['--slide-line-height-normal' as string]: '1.35',
+            position: 'relative',
+            zIndex: 1,
           } as React.CSSProperties}
         >
           {BULLETS.map((bullet, i) =>
@@ -139,13 +135,18 @@ function WhatIsSkillContent({ revealStage }: SlideContentProps) {
           )}
         </div>
 
-        {/* Right astronaut */}
+        {/* Right astronaut — anchored to the slide's outer right edge. */}
         <div
           style={{
-            flex: '0 0 15%',
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            right: 0,
+            width: '26%',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            pointerEvents: 'none',
           }}
         >
           <img

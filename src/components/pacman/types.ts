@@ -62,7 +62,7 @@ export interface ScenarioConfig {
 export interface StageEvent {
   spawnClawds?: { col: number; row: number; speed: number }[];
   enableAutoSpawn?: boolean;
-  personState?: 'moving' | 'sleeping';
+  personState?: 'moving' | 'idle' | 'sleeping';
 }
 
 export interface GameState {

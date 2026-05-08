@@ -1,5 +1,5 @@
 import { SlideDefinition } from '../types/slides';
-import { Emphasis, SectionHeader, SlideItem } from '../components/SlideElements';
+import { Emphasis, SlideItem } from '../components/SlideElements';
 import { PacManCanvas } from '../components/pacman/PacManCanvas';
 
 export const ImportantSlide: SlideDefinition = {
@@ -8,8 +8,8 @@ export const ImportantSlide: SlideDefinition = {
     <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%' }}>
       <h2>
         <span className="text-dim">//</span>{' '}
-        <span className="text-green">об'єм роботи</span>{' '}
-        <span className="text-orange">vs швидкість роботи</span>
+        <span className="text-green">ще одна</span>{' '}
+        <span className="text-orange">порада</span>
       </h2>
 
       <div
@@ -32,60 +32,37 @@ export const ImportantSlide: SlideDefinition = {
           }}
         >
           <SlideItem delay={0.05}>
-            Claude Code дає <Emphasis>об'єм</Emphasis> роботи, не{' '}
+            Claude Code збільшує <Emphasis>об'єм</Emphasis> роботи, не{' '}
             <Emphasis color="orange">швидкість</Emphasis>
           </SlideItem>
 
           {revealStage >= 1 && (
-            <SlideItem delay={0}>
-              дайте задачу і <Emphasis>переключайтесь</Emphasis>
-            </SlideItem>
-          )}
-
-          {revealStage >= 2 && (
-            <SectionHeader color="purple">але є винятки</SectionHeader>
-          )}
-
-          {revealStage >= 2 && (
-            <SlideItem delay={0}>
-              Claude розуміє ваш домен{' '}
-              <Emphasis color="orange">гірше</Emphasis> за вас
-            </SlideItem>
-          )}
-
-          {revealStage >= 2 && (
             <SlideItem delay={0.07}>
-              ви часто напишете код{' '}
-              <Emphasis color="orange">краще</Emphasis> і{' '}
+              самостійно ви напишете код як мінімум або{' '}
+              <Emphasis color="orange">краще</Emphasis> або{' '}
               <Emphasis color="orange">швидше</Emphasis>
             </SlideItem>
           )}
 
           {revealStage >= 2 && (
-            <SlideItem delay={0.14}>
-              <Emphasis>виняток</Emphasis> — незнайомий стек: дні-тижні економії
+            <SlideItem delay={0}>
+              просто дивитися в термінал як клод працює -{' '}
+              <Emphasis color="orange">втрата продуктивності і грошей</Emphasis>
             </SlideItem>
           )}
 
           {revealStage >= 3 && (
             <SlideItem delay={0}>
-              залипати в термінал ={' '}
-              <Emphasis color="orange">втрата продуктивності</Emphasis>
-            </SlideItem>
-          )}
-
-          {revealStage >= 3 && (
-            <SlideItem delay={0.1}>
-              натомість — запустіть і <Emphasis>переключайтесь</Emphasis>
+              знайдіть 2-3 задачі, які можна довірити клоду з мінімальним наглядом, а{' '}
+              <Emphasis color="orange">самі переключіться на одну ту саму задачу де необхідна вся ваша увага</Emphasis>
             </SlideItem>
           )}
 
           {revealStage >= 4 && (
-            <SlideItem delay={0}>
-              або запустіть claude і йдіть відпочивати
+            <SlideItem delay={0.1}>
+              ну або запустіть клода і{' '}<Emphasis>сходіть відпочити</Emphasis>
             </SlideItem>
           )}
-
         </div>
 
         {/* Right column - Pac-Man animation. The parent row has a negative
@@ -105,5 +82,5 @@ export const ImportantSlide: SlideDefinition = {
   ),
   maxRevealStages: 4,
   notes:
-    "Перевірка реальності з 8-bit анімацією. Перші два пункти видно одразу, далі натискай r. Тема А — паралельність: Claude дає об'єм, а не швидкість, тому делегуйте і переключайтесь. Тема Б (stage 2, помічена SectionHeader) — Claude знає ваш домен гірше, ви часто напишете кращий код швидше; виняток — незнайомий стек. Розв'язка: залипання на термінал = втрата продуктивності; запустіть і йдіть відпочивати.",
+    "Перевірка реальності з 8-bit анімацією. 5 reveal-стадій, кожна синхронізована з правою Pac-Man сценою: 0 — людина сама (Claude дає об'єм, не швидкість); 1 — без змін, людина сама (самостійно ви ефективні); 2 — з'являється clawd, людина freeze (дивитися = втрата продуктивності); 3 — ще 2 clawds, людина повертається до своєї задачі (делегуйте 2-3, фокусуйтесь на одній); 4 — людина спить (запустіть і йдіть відпочити).",
 };

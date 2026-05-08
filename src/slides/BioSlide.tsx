@@ -37,12 +37,11 @@ function BioItem({ level, children }: { level: Level; children: React.ReactNode 
 
 // One BIO_ITEM per reveal stage: index 0 is always visible, index N appears at revealStage >= N.
 const BIO_ITEMS: { level: Level; content: ReactNode }[] = [
-  { level: 'high',   content: <>0 -&gt; 1 проєкти</> },
-  { level: 'high',   content: <>у 2025: розгортаю AI-агентів для кодування у компанії</> },
-  { level: 'medium', content: <>до того: техлід платформної організації</> },
-  { level: 'medium', content: <>до того: техлід feature-фреймворків</> },
-  { level: 'medium', content: <>до того: розробляв продуктові фічі</> },
   { level: 'low',    content: <>починав як Java backend-інженер</> },
+  { level: 'medium', content: <>потім: розробляв продуктові фічі</> },
+  { level: 'medium', content: <>потім: техлід feature-фреймворків</> },
+  { level: 'medium', content: <>потім: техлід платформної організації</> },
+  { level: 'high',   content: <>зараз: AI-first розробка</> },
 ];
 
 export const BioSlide: SlideDefinition = {
@@ -52,10 +51,10 @@ export const BioSlide: SlideDefinition = {
     <div className="bio-body">
       <div className="bio-body__text">
         <h2 className="bio-body__title">
-          <span className="text-dim">$</span> whoami
+          <span className="text-dim">//</span>{' '}хто я
         </h2>
 
-        <p className="bio-body__subtitle">майже 9 років у Grammarly / Superhuman</p>
+        <p className="bio-body__subtitle">9 років у Superhuman (раніше відомої як Grammarly)</p>
 
         <div className="bio-body__items">
           {BIO_ITEMS.map((item, i) =>

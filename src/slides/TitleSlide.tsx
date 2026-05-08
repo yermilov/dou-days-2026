@@ -13,7 +13,7 @@ export const TitleSlide: SlideDefinition = {
         <div className="title-hero__description">
           <p className="title-hero__tagline">(про які неможливо мовчати)</p>
           <p className="title-hero__speaker">
-            Ярослав Єрмілов, Principal Software Engineer @ Superhuman/Grammarly
+            Ярослав Єрмілов, Principal Software Engineer @ Superhuman (formely Grammarly)
           </p>
         </div>
       </div>

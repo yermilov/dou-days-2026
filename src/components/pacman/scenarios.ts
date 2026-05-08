@@ -41,14 +41,19 @@ export const initialScenario: ScenarioConfig = {
   maze: MAZE,
 };
 
-// Stages 1–4: incremental events applied to live state
+// Stages 1–4: incremental events applied to live state.
+// Each stage mirrors the matching left-column bullet.
 export const stageEvents: StageEvent[] = [
-  // Stage 1: "Give it a task and switch" — spawn clawd from person
-  { spawnClawds: [{ col: -1, row: -1, speed: 0.7 }] }, // col/row -1 = spawn at person's position
-  // Stage 2: Domain knowledge bullets — text only, no maze change
+  // Stage 1: "самостійно ви напишете код як мінімум або краще або швидше"
+  //   No scenario change — person continues working alone, reinforcing the "solo is fine" thesis.
   {},
-  // Stage 3: "Don't stare, launch clawds" — spawn more + enable auto-spawn
-  { spawnClawds: [{ col: -1, row: -1, speed: 0.9 }, { col: -1, row: -1, speed: 0.6 }], enableAutoSpawn: true },
-  // Stage 4: "Launch clawds and go eat / rest" — person sleeps
+  // Stage 2: "просто дивитися в термінал як клод працює — втрата продуктивності"
+  //   First clawd appears and takes over; person freezes to "watch" (idle).
+  { spawnClawds: [{ col: -1, row: -1, speed: 0.7 }], personState: 'idle' },
+  // Stage 3: "знайдіть 2-3 задачі для клода, переключіться на одну ту саму задачу"
+  //   2 more clawds spawn (3 total — the "2–3 tasks"); person resumes their own task.
+  { spawnClawds: [{ col: -1, row: -1, speed: 0.6 }, { col: -1, row: -1, speed: 0.9 }], personState: 'moving' },
+  // Stage 4: "запустіть клода і сходіть відпочити"
+  //   Person sleeps; clawds keep going.
   { personState: 'sleeping' },
 ];

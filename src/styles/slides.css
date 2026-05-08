@@ -984,7 +984,7 @@
   height: 84px;
   display: inline-flex;
   align-items: center;
-  padding: 0 28px;
+  padding: 0;
   background: transparent;
   color: var(--dou-white);
   font-family: var(--font-sans);

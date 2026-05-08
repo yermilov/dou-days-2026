@@ -4,7 +4,7 @@
 
 | File | Source | Role |
 | --- | --- | --- |
-| `dou-logo.png` | DOU Days 2026 dark speaker template — slide 1, top-right embedded image | Browser tab favicon + title-slide top-right logo |
+| `dou-logo.png` | DOU Days 2026 dark speaker template — slide 1, top-right embedded image | Title-slide top-right logo |
 | `dou-sonar-hero.png` | DOU Days 2026 dark speaker template — full-bleed title-slide background | Title-slide sonar background |
 | `sonar/dou-sonar-01.png` | DOU Days 2026 dark speaker template — `ppt/media/image14.png` (used as full-bleed background on template slides 2, 8, 9, 11, 13, 14, 20, 22) | Body-slide sonar pool (variant 1) |
 | `sonar/dou-sonar-02.png` | DOU Days 2026 dark speaker template — `ppt/media/image17.png` (used as full-bleed background on template slides 7, 10, 15, 18, 21) | Body-slide sonar pool (variant 2) |

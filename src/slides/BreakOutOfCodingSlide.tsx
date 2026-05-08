@@ -16,19 +16,19 @@ function Prompt({ children }: { children: ReactNode }) {
 }
 
 const LEFT_BULLETS: ReactNode[] = [
-  <>кодинг — очевидна точка старту, але це лише дуже розумне і дороге{' '}<Emphasis color="orange">автозаповнення</Emphasis></>,
-  <>поставте собі ціль: робити <Emphasis color="green">усе</Emphasis> з Claude Code</>,
-  <>пріоритизуйте те, що створить feedback loop для Claude Code</>,
-  <>встановіть <Emphasis color="green">CLI</Emphasis> (не MCP!) для всіх dev tools, якими користуєтесь</>,
-  <>використовуйте <Emphasis color="green">Claude Chrome extension</Emphasis> для випадків, коли CLI не може щось зробити</>,
+  <>аі агент який генерує код - це дуже дорогий {' '}<Emphasis color="orange">автокомліт</Emphasis></>,
+  <>поставте собі ціль: робити <Emphasis color="green">усе</Emphasis> із середини Claude Code</>,
+  <>пріоритизуйте <Emphasis color="green">feedback loops</Emphasis></>,
+  <>встановіть <Emphasis color="green">CLI</Emphasis> (не MCP!) для всього чим користуєтесь</>,
+  <>використовуйте <Emphasis color="green">Claude Chrome extension</Emphasis>, коли CLI немає</>,
 ];
 
 const PROMPTS: ReactNode[] = [
-  <Prompt>hey claude, open artifactory in chrome and generate api token for my pnpm access</Prompt>,
   <Prompt>hey claude, please commit my changes</Prompt>,
+  <Prompt>hey claude, open github in chrome and generate ssh key for me</Prompt>,
   <Prompt>hey claude, configure dev environment for me</Prompt>,
-  <Prompt>hey claude, here is a bug report I've received: ...</Prompt>,
-  <Prompt>hey claude, take a look at the logs / metrics / AB test results / perf report: ...</Prompt>,
+  <Prompt>hey claude, here is a bug report I've received mycompany.slack.com/archives/p1778239</Prompt>,
+  <Prompt>hey claude, wdyt about these logs / metrics / AB test results / perf report: ...</Prompt>,
 ];
 
 export const BreakOutOfCodingSlide: SlideDefinition = {
@@ -37,8 +37,8 @@ export const BreakOutOfCodingSlide: SlideDefinition = {
     <>
       <h2 className="title--break-out-of-coding">
         <span className="text-dim">//</span>{' '}
-        <span className="text-green">порада щодо</span>{' '}
-        <span className="text-orange">персональної продуктивності</span>
+        <span className="text-green">не тільки</span>{' '}
+        <span className="text-orange">кодинг</span>
       </h2>
 
       <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
