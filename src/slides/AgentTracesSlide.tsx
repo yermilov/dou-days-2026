@@ -4,26 +4,33 @@ import { CodeBlock } from '../components/CodeBlock';
 import vibesImage from '/vibes.png?url';
 
 const TRACER_CODE = `export function getSessionFilePath(
-  sessionId: string, workDir: string,
+  sessionId: string,
+  workDir: string,
 ): string {
-  const encodedPath = workDir.replace(/\\//g, "-");
+  const encoded = workDir.replace(/\\//g, "-");
   return join(
     homedir(), ".claude", "projects",
-    encodedPath, \`\${sessionId}.jsonl\`,
+    encoded, \`\${sessionId}.jsonl\`,
   );
 }
 
 export async function uploadSession(
-  sessionId: string, workDir: string,
+  sessionId: string,
+  workDir: string,
 ) {
-  const filePath = getSessionFilePath(sessionId, workDir);
+  const file = getSessionFilePath(
+    sessionId, workDir,
+  );
   const formData = new FormData();
   formData.append(
     "file",
-    new Blob([await readFile(filePath)]),
+    new Blob([await readFile(file)]),
     \`\${sessionId}.jsonl\`,
   );
-  await fetch(VIBES_API_URL, { method: "POST", body: formData });
+  await fetch(VIBES_API_URL, {
+    method: "POST",
+    body: formData,
+  });
 }`;
 
 type PanelVariant = {

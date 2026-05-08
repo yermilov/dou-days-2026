@@ -56,7 +56,7 @@
      400+ seat hall. */
   --slide-text-h2: 7.5rem;       /* headings (120px — bio-slide sizing adopted deck-wide) */
   --slide-text-body: 2.5rem;     /* body text (40px — slight bump for back-row readability) */
-  --slide-text-code: 1.25rem;    /* code blocks */
+  --slide-text-code: 1.5rem;     /* code blocks (24px) */
 
   /* Backwards-compat aliases so older references keep working. Once every
      call site reads --slide-text-* directly, these can be removed. */

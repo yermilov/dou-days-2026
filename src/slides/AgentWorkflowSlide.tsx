@@ -2,50 +2,68 @@ import { SlideDefinition, SlideContentProps } from '../types/slides';
 import { SlideItem, Emphasis } from '../components/SlideElements';
 import { CodeBlock } from '../components/CodeBlock';
 
-const SDK_CODE = `import { query } from "@anthropic-ai/claude-agent-sdk";
+const SDK_CODE = `import { query } from
+  "@anthropic-ai/claude-agent-sdk";
 
 for await (const message of query({
-  prompt: "Review the PR and post comments on issues found",
-  options: { allowedTools: ["Bash", "Read", "Glob"] },
+  prompt:
+    "Review the PR and post comments on issues",
+  options: {
+    allowedTools: ["Bash", "Read", "Glob"],
+  },
 })) {
   // handle streaming messages
 }`;
 
-const PLUGINS_CODE = `for (const marketplace of marketplaces) {
-  const dir = \`/tmp/agent-runner/\${marketplace.owner}-\${marketplace.repo}\`;
-  await apiClient.cloneRepo(marketplace.owner, marketplace.repo, {
+const PLUGINS_CODE = `for (const mp of marketplaces) {
+  const dir =
+    \`/tmp/agent-runner/\${mp.owner}-\${mp.repo}\`;
+  await apiClient.cloneRepo(mp.owner, mp.repo, {
     targetDir: dir, depth: 1,
   });
-  for (const pluginsDir of marketplace.pluginsDirs) {
+  for (const pluginsDir of mp.pluginsDirs) {
     const found = discoverPluginsInDir(
       \`\${dir}/\${pluginsDir}\`,
-      marketplace.enabledPlugins,  // allowlist filter
+      // allowlist filter
+      mp.enabledPlugins,
     );
     pluginPaths.push(...found);
   }
 }`;
 
-const EXECUTION_CODE = `// agentic: Claude produces structured ReviewResult
-const { result } = await claudeClient.executeWithSkills<ReviewResult>(
-  steps, reviewResultSchema, plugins, ["cicd:github"],
+const EXECUTION_CODE = `// agentic: Claude → structured ReviewResult
+const { result } =
+  await claudeClient.executeWithSkills<ReviewResult>(
+    steps, reviewResultSchema,
+    plugins, ["cicd:github"],
+  );
+
+// deterministic: code processes the result
+// and drives side effects
+const valid = sanitizeReviewResult(
+  result, minConfidence, minSeverity,
 );
-// deterministic: traditional code processes result and drives side effects
-const valid = sanitizeReviewResult(result, minConfidence, minSeverity);
-for (const comment of valid.review.comments) {
-  await cicdClient.postInlineComment(prNumber, comment);
+for (const c of valid.review.comments) {
+  await cicdClient.postInlineComment(prNumber, c);
 }
-if (valid.review.approve) { await cicdClient.approvePR(prNumber); }`;
+if (valid.review.approve) {
+  await cicdClient.approvePR(prNumber);
+}`;
 
 const SCHEMA_CODE = `const reviewResultSchema = z.object({
   approve: z.boolean(),
   comments: z.array(z.object({
     file:         z.string().optional(),
     comment_body: z.string(),
-    severity:     z.enum(["critical", "high", "medium", "low"]),
-    confidence:   z.number().int().min(0).max(100),
+    severity: z.enum([
+      "critical", "high", "medium", "low",
+    ]),
+    confidence:
+      z.number().int().min(0).max(100),
   })),
 });
-export type ReviewResult = z.infer<typeof reviewResultSchema>;`;
+export type ReviewResult =
+  z.infer<typeof reviewResultSchema>;`;
 
 type PanelVariant = {
   key: string;

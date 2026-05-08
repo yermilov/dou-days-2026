@@ -5,62 +5,72 @@ import { CodeBlock } from '../components/CodeBlock';
 const SKILL_MD_CODE = `---
 activation:
   keywords:
-    - { keyword: "create pr",  action: require }  # block until loaded
-    - { keyword: "commit",     action: suggest }  # hint to load
+    # block until loaded
+    - { keyword: "create pr", action: require }
+    # hint to load
+    - { keyword: "commit",    action: suggest }
   tools:
-    - { tool: Bash, match: "git (push|commit)" }  # match tool calls
+    # match tool calls
+    - { tool: Bash, match: "git (push|commit)" }
   directories:
-    - { match: "my-service", action: require }    # required in this dir
+    # required in this dir
+    - { match: "my-service", action: require }
 ---`;
 
 const HOOKS_CODE = `{
-  "SessionStart":     "scan SKILL.md files → index activations",
-  "UserPromptSubmit": "match prompt keywords → suggest / block",
-  "PreToolUse":       "match tool name+input → suggest / block"
+  "SessionStart":
+    "scan SKILL.md files → index activations",
+  "UserPromptSubmit":
+    "match prompt keywords → suggest / block",
+  "PreToolUse":
+    "match tool name+input → suggest / block",
+  "PostToolUse":
+    "suggest skills based on tool result",
+  "PostToolUseFailure":
+    "suggest skills on tool failure",
+  "SessionEnd":
+    "cleanup session index"
 }`;
 
-const RUNTIME_EXAMPLES = `# user: "create a pr for my changes"
-# keyword "create pr" → require
+const SUGGEST_CODE = `// suggest — additionalContext injection
+console.log(JSON.stringify({
+  hookSpecificOutput: {
+    hookEventName: "UserPromptSubmit",
+    additionalContext:
+      "Relevant skills:\\n" +
+      formatSkill(skill) +
+      "\\n\\nConsider using Skill.",
+  },
+}));
+process.exit(0);`;
 
-[activator] skill not loaded: cicd:update-pull-request
-[activator] BLOCKING — injecting into prompt:
-  ⚠ SKILL REQUIRED: cicd:update-pull-request
-  Load it first with: /cicd:update-pull-request
+const BLOCK_CODE = `// block — stderr + exit 2
+console.error(
+  "BLOCKED: Required skill not loaded: " +
+  skillList + "\\n\\n" +
+  "ACTION REQUIRED:\\n" +
+  "1. Use Skill tool to load NOW.\\n" +
+  "2. READ and INTERNALIZE the skill.\\n" +
+  "3. REEVALUATE your approach."
+);
+process.exit(2);`;
 
-────────────────────────────────────
+type PanelVariant = { key: string; label: string; language: 'yaml' | 'json' | 'typescript'; code: string };
 
-# claude calls: Bash("git push origin main")
-# pattern "git (push|commit)" → require
-
-[activator] skill not loaded: cicd:commit-and-push
-[activator] BLOCKING tool call:
-  { "decision": "block",
-    "reason": "load cicd:commit-and-push first" }`;
-
-const OVERVIEW_TEXT = `# skills-activator
-# як це працює
-
-  Phase 1 │ index    SessionStart → scan SKILL.md activations
-  Phase 2 │ match    UserPromptSubmit + PreToolUse → suggest / block
-  Phase 3 │ inject   missing skill → prompt injection / tool decision
-
-  fail-safe: будь-яка помилка → стандартний Claude flow`;
-
-type PanelVariant =
-  | { key: string; label: string; mode: 'overview'; text: string }
-  | { key: string; label: string; mode: 'code'; language: 'yaml' | 'json' | 'bash'; code: string };
-
-function panelFor(revealStage: number): PanelVariant {
+function panelFor(revealStage: number): PanelVariant | null {
+  if (revealStage >= 4) {
+    return { key: 'block', label: 'match-prompt.js — block path', language: 'typescript', code: BLOCK_CODE };
+  }
   if (revealStage >= 3) {
-    return { key: 'runtime', label: 'runtime — інʼєкція + блокування', mode: 'code', language: 'bash', code: RUNTIME_EXAMPLES };
+    return { key: 'suggest', label: 'match-prompt.js — suggest path', language: 'typescript', code: SUGGEST_CODE };
   }
   if (revealStage >= 2) {
-    return { key: 'hooks', label: '~/.claude/hooks.json — runtime', mode: 'code', language: 'json', code: HOOKS_CODE };
+    return { key: 'hooks', label: '~/.claude/hooks.json — runtime', language: 'json', code: HOOKS_CODE };
   }
   if (revealStage >= 1) {
-    return { key: 'skill', label: 'SKILL.md — активаційні правила', mode: 'code', language: 'yaml', code: SKILL_MD_CODE };
+    return { key: 'skill', label: 'SKILL.md — активаційні правила', language: 'yaml', code: SKILL_MD_CODE };
   }
-  return { key: 'overview', label: 'skills-activator — як це працює', mode: 'overview', text: OVERVIEW_TEXT };
+  return null;
 }
 
 function SkillsActivatorContent({ revealStage }: { revealStage: number }) {
@@ -69,22 +79,24 @@ function SkillsActivatorContent({ revealStage }: { revealStage: number }) {
   return (
     <>
       <h2>
-        <span className="text-dim">$</span>{' '}
-        <span className="text-green">pattern</span>{' '}
-        <span className="text-orange">--активатор-скілів</span>
+        <span className="text-dim">//</span>{' '}
+        <span className="text-green">але найважливіше в усій цій історії</span>{' '}-{' '}
+        <span className="text-orange">це активатор скілів</span>
       </h2>
 
       <div className="skills-activator-body">
         {/* Left column: bullets accumulate across reveal stages */}
         <div className="skills-activator-bullets">
-          <SlideItem delay={0.05}>
-            claude все ще ненадійно завантажує{' '}
-            <Emphasis color="orange">потрібний скіл</Emphasis> — він часто існує, але мовчить
-          </SlideItem>
+          {revealStage === 0 && (
+            <SlideItem delay={0.05}>
+              claude все ще ненадійно завантажує{' '}
+              <Emphasis color="orange">потрібні скіли</Emphasis>
+            </SlideItem>
+          )}
 
-          {revealStage >= 1 && (
+          {revealStage === 1 && (
             <SlideItem delay={0} reveal>
-              ми зробили <Emphasis color="green">skills-activator</Emphasis> — у{' '}
+              тому ми зробили <Emphasis color="green">skills-activator</Emphasis> - у{' '}
               <Emphasis color="orange">SKILL.md</Emphasis> описуємо правила активації:
               {' '}ключові слова, патерни tool-викликів, директорії
             </SlideItem>
@@ -93,36 +105,44 @@ function SkillsActivatorContent({ revealStage }: { revealStage: number }) {
           {revealStage >= 2 && (
             <SlideItem delay={0} reveal>
               Claude Code <Emphasis color="green">хуки</Emphasis> перехоплюють події сесії
-              {' '}і <Emphasis color="green">підказують</Emphasis> або{' '}
-              <Emphasis color="orange">блокують</Emphasis>, доки потрібний скіл не завантажений
+              {' '}і <Emphasis color="green">аналізують</Emphasis>{' '}
+              промпти, bash-команди, виклики інструментів та їхні{' '}
+              <Emphasis color="orange">аутпути</Emphasis>
             </SlideItem>
           )}
 
           {revealStage >= 3 && (
             <SlideItem delay={0} reveal>
-              пропущений скіл → <Emphasis color="green">інʼєкція в промпт</Emphasis>;
-              {' '}небезпечний tool-виклик → <Emphasis color="orange">блокування</Emphasis>
-              {' '}з підказкою, який скіл завантажити
+              якщо хук бачить що потрібний скіл не завантажений —
+              {' '}<Emphasis color="green">підказує</Emphasis> claude-у,
+              {' '}інжектуючи контекст у промпт через{' '}
+              <Emphasis color="green">additionalContext</Emphasis>
+            </SlideItem>
+          )}
+
+          {revealStage >= 4 && (
+            <SlideItem delay={0} reveal>
+              а для критичних випадків — <Emphasis color="orange">блокує</Emphasis>
+              {' '}виклик через <Emphasis color="orange">exit 2</Emphasis> + stderr
+              {' '}з інструкцією, який скіл завантажити
             </SlideItem>
           )}
         </div>
 
-        {/* Right column: framed panel — stable height across all reveal stages */}
-        <div className="skills-activator-panel" key={panel.key}>
-          <div className="skills-activator-panel__chrome skills-activator-panel__chrome--top">
-            ░░░ {panel.label} ░░░
-          </div>
-          <div className="skills-activator-panel__viewport">
-            {panel.mode === 'overview' ? (
-              <div className="skills-activator-panel__overview">{panel.text}</div>
-            ) : (
+        {/* Right column: framed panel — appears from stage 1 onwards. */}
+        {panel && (
+          <div className="skills-activator-panel" key={panel.key}>
+            <div className="skills-activator-panel__chrome skills-activator-panel__chrome--top">
+              ░░░ {panel.label} ░░░
+            </div>
+            <div className="skills-activator-panel__viewport">
               <CodeBlock language={panel.language} code={panel.code} />
-            )}
+            </div>
+            <div className="skills-activator-panel__chrome skills-activator-panel__chrome--bottom">
+              [END OF TRANSMISSION]
+            </div>
           </div>
-          <div className="skills-activator-panel__chrome skills-activator-panel__chrome--bottom">
-            [END OF TRANSMISSION]
-          </div>
-        </div>
+        )}
       </div>
     </>
   );
@@ -130,8 +150,8 @@ function SkillsActivatorContent({ revealStage }: { revealStage: number }) {
 
 export const SkillsActivatorSlide: SlideDefinition = {
   id: 'skills-activator',
-  maxRevealStages: 3,
+  maxRevealStages: 4,
   content: ({ revealStage }: SlideContentProps) => <SkillsActivatorContent revealStage={revealStage} />,
   notes:
-    'Skills discovery — last-mile проблема. Stage 0: проблема + overview панелі (3 фази: index → match → inject). Stage 1: SKILL.md активаційні правила (keywords / tools / directories). Stage 2: ~/.claude/hooks.json — як хуки перехоплюють події сесії. Stage 3: runtime — приклади інʼєкції в промпт і блокування tool-виклику.',
+    'Skills discovery — last-mile проблема. Stage 0: проблема (одна репліка, без панелі справа). Stage 1: SKILL.md активаційні правила (keywords / tools / directories). Stage 2: ~/.claude/hooks.json — повний набір з 6 хуків (SessionStart → SessionEnd), які аналізують промпти, bash-команди, tool-виклики та їхні аутпути. Stage 3: suggest — інʼєкція в промпт через additionalContext, exit 0. Stage 4: block — stderr + exit 2 для критичних випадків.',
 };

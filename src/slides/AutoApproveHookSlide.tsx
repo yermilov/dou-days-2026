@@ -48,33 +48,21 @@ blocks: download+exec, credential leaks,
     "allow": ["Bash(npm install:*)"]
   },
   "autoMode": {
-    "environment": ["trusted: *.internal.acme.com"]
+    "environment": [
+      "trusted: *.internal.acme.com"
+    ]
   } }`;
 
-const OVERVIEW_TEXT = `# auto-approve.ts
-# 3-tier permission classifier
-
-  Tier 1 │ MCP annotation        ~0ms
-  Tier 2 │ SHA-256 cache         ~0ms
-  Tier 3 │ LLM-as-judge          ~2-18s
-
-  fail-safe: any error → manual prompt`;
-
-type PanelVariant =
-  | { key: string; label: string; mode: 'overview'; text: string }
-  | { key: string; label: string; mode: 'code'; language: 'bash'; code: string };
+type PanelVariant = { key: string; label: string; language: 'bash'; code: string };
 
 function panelFor(revealStage: number): PanelVariant {
-  if (revealStage >= 3) {
-    return { key: 'auto-mode', label: 'anthropic auto-mode', mode: 'code', language: 'bash', code: AUTO_MODE_CODE };
-  }
   if (revealStage >= 2) {
-    return { key: 'safety', label: 'SAFETY_PROMPT', mode: 'code', language: 'bash', code: SAFETY_CODE };
+    return { key: 'auto-mode', label: 'anthropic auto-mode', language: 'bash', code: AUTO_MODE_CODE };
   }
   if (revealStage >= 1) {
-    return { key: 'tiers', label: 'auto-approve.ts — 3-tier decision', mode: 'code', language: 'bash', code: TIER_CODE };
+    return { key: 'safety', label: 'SAFETY_PROMPT', language: 'bash', code: SAFETY_CODE };
   }
-  return { key: 'overview', label: 'auto-approve — overview', mode: 'overview', text: OVERVIEW_TEXT };
+  return { key: 'tiers', label: 'auto-approve.ts — 3-tier decision', language: 'bash', code: TIER_CODE };
 }
 
 function AutoApproveContent({ revealStage }: { revealStage: number }) {
@@ -83,28 +71,23 @@ function AutoApproveContent({ revealStage }: { revealStage: number }) {
   return (
     <>
       <h2>
-        <span className="text-dim">$</span>{' '}
-        <span className="text-green">pattern</span>{' '}
-        <span className="text-orange">--авто-підтвердження</span>
+        <span className="text-dim">//</span>{' '}
+        <span className="text-green">тепер</span>{' '}
+        <span className="text-orange">серйозно</span>
       </h2>
 
       <div className="auto-approve-body">
-        {/* Left column: bullets accumulate across reveal stages */}
+        {/* Left column: one bullet per reveal stage (swap, not accumulate). */}
         <div className="auto-approve-bullets">
-          <SlideItem delay={0.05}>
-            кожен виклик інструмента потребує ручного <Emphasis color="orange">approve / deny</Emphasis>
-            {' '}— це руйнує flow state і вбиває швидкість у довгих автономних сесіях
-          </SlideItem>
-
-          {revealStage === 1 && (
-            <SlideItem delay={0} reveal>
+          {revealStage === 0 && (
+            <SlideItem delay={0.05}>
               ми зробили <Emphasis color="green">3-рівневий хук авто-підтвердження</Emphasis>:
               {' '}MCP-анотації для миттєвих читань, SHA-256-кеш для повторних команд,
               {' '}LLM-as-judge для всього іншого — будь-яка помилка fail-safe → стандартний промпт
             </SlideItem>
           )}
 
-          {revealStage === 2 && (
+          {revealStage === 1 && (
             <SlideItem delay={0} reveal>
               safety-промпт класифікує команди як{' '}
               <Emphasis color="green">SAFE</Emphasis> чи{' '}
@@ -113,7 +96,7 @@ function AutoApproveContent({ revealStage }: { revealStage: number }) {
             </SlideItem>
           )}
 
-          {revealStage === 3 && (
+          {revealStage === 2 && (
             <SlideItem delay={0} reveal>
               Anthropic зашипили <Emphasis color="green">--permission-mode auto</Emphasis>
               {' '}— фоновий Sonnet-класифікатор з тією самою філософією: дозволяй безпечне
@@ -128,11 +111,7 @@ function AutoApproveContent({ revealStage }: { revealStage: number }) {
             ░░░ {panel.label} ░░░
           </div>
           <div className="auto-approve-panel__viewport">
-            {panel.mode === 'overview' ? (
-              <div className="auto-approve-panel__overview">{panel.text}</div>
-            ) : (
-              <CodeBlock language={panel.language} code={panel.code} />
-            )}
+            <CodeBlock language={panel.language} code={panel.code} />
           </div>
           <div className="auto-approve-panel__chrome auto-approve-panel__chrome--bottom">
             [END OF TRANSMISSION]
@@ -145,8 +124,8 @@ function AutoApproveContent({ revealStage }: { revealStage: number }) {
 
 export const AutoApproveHookSlide: SlideDefinition = {
   id: 'auto-approve-hook',
-  maxRevealStages: 3,
+  maxRevealStages: 2,
   content: ({ revealStage }: SlideContentProps) => <AutoApproveContent revealStage={revealStage} />,
   notes:
-    'Prompt fatigue — реальний вбивця швидкості. Stage 0: проблема + overview панелі. Stage 1: наш 3-рівневий плагін авто-підтвердження (MCP-анотації → кеш → LLM-як-суддя). Stage 2: правила safety-класифікації. Stage 3: Anthropic зашипили офіційну версію --permission-mode auto — та сама філософія, підтримка на рівні платформи.',
+    'Stage 0: наш 3-рівневий плагін авто-підтвердження (MCP-анотації → кеш → LLM-як-суддя). Stage 1: правила safety-класифікації. Stage 2: Anthropic зашипили офіційну версію --permission-mode auto — та сама філософія, підтримка на рівні платформи.',
 };
