@@ -27,6 +27,9 @@ export function OnboardingTooltip({ visible = true }: OnboardingTooltipProps) {
             <code>5</code> or number — Go to slide
           </div>
           <div className="onboarding-tooltip-item">
+            <code>last</code> — Jump to last slide
+          </div>
+          <div className="onboarding-tooltip-item">
             Arrow keys work too!
           </div>
         </div>

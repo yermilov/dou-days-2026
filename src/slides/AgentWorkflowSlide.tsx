@@ -1,6 +1,14 @@
+import { useEffect, useRef, useState } from 'react';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
 import { SlideItem, Emphasis } from '../components/SlideElements';
 import { CodeBlock } from '../components/CodeBlock';
+import yakImage from '/yak.jpg?url';
+
+// "25th frame" subliminal gag — Bos mutus (wild yak) flashes for ~120ms on the
+// 0→1 reveal transition. The Ukrainian "як?" / English "yak" homophone is the
+// joke. Skipped on first mount and on backwards navigation so the flash only
+// fires the intended forward step.
+const YAK_FLASH_MS = 120;
 
 const SDK_CODE = `import { query } from
   "@anthropic-ai/claude-agent-sdk";
@@ -91,32 +99,42 @@ function panelFor(revealStage: number): PanelVariant | null {
 function AgentWorkflowContent({ revealStage }: { revealStage: number }) {
   const panel = panelFor(revealStage);
 
+  // Track the previous revealStage so we only fire the yak flash on the
+  // forward 0→1 step. On mount the ref is seeded to the current stage, which
+  // means landing directly on stage 1 (e.g. via URL hash) doesn't trigger.
+  const prevStageRef = useRef(revealStage);
+  const [yakVisible, setYakVisible] = useState(false);
+
+  useEffect(() => {
+    const isForwardTransition =
+      prevStageRef.current === 0 && revealStage === 1;
+    prevStageRef.current = revealStage;
+    if (!isForwardTransition) return;
+    setYakVisible(true);
+    const t = window.setTimeout(() => setYakVisible(false), YAK_FLASH_MS);
+    return () => window.clearTimeout(t);
+  }, [revealStage]);
+
   return (
     <>
       <h2>
-        <span className="text-dim">$</span>{' '}
-        <span className="text-green">pattern</span>{' '}
-        <span className="text-orange">--воркфлов-агента</span>
+        <span className="text-dim">//</span>{' '}
+        <span className="text-green">як?</span>
       </h2>
 
       <div className="agent-workflow-body">
         {/* Left column: bullets accumulate across reveal stages */}
         <div className="agent-workflow-bullets">
-          <SlideItem delay={0.05}>
-            <Emphasis color="green">середовище виконання</Emphasis> —
-            {' '}від локальних PoC під контролем людини до CI чи окремого Kubernetes-кластера
-          </SlideItem>
-
           {revealStage >= 1 && (
             <SlideItem delay={0} reveal>
               <Emphasis color="orange">Claude Agent SDK</Emphasis>
-              {' '}— TypeScript-обгортка над Claude Code CLI — ваш рантайм для агентів
+              {' '}- TypeScript-обгортка над Claude Code CLI
             </SlideItem>
           )}
           {revealStage >= 2 && (
             <SlideItem delay={0} reveal>
               клонуйте свій <Emphasis color="green">маркетплейс скілів</Emphasis>
-              {' '}у контекст SDK — вмикайте потрібні плагіни та хуки активації
+              {' '}у контекст SDK - рев'ювер отримує вічно актуальні знання як має бути
             </SlideItem>
           )}
           {revealStage >= 3 && (
@@ -127,8 +145,8 @@ function AgentWorkflowContent({ revealStage }: { revealStage: number }) {
           )}
           {revealStage >= 4 && (
             <SlideItem delay={0} reveal>
-              <Emphasis color="green">Claude Structured Output</Emphasis> для рішень
-              {' '}+ детерміністичний код для сайд-ефектів — передбачувано та прозоро
+              <Emphasis color="green">structured output</Emphasis> для комунікації
+              {' '}між детермінованим кодом і ллм-кою
             </SlideItem>
           )}
         </div>
@@ -148,6 +166,23 @@ function AgentWorkflowContent({ revealStage }: { revealStage: number }) {
           </div>
         )}
       </div>
+
+      {/* 25th-frame yak — full-bleed flash on 0→1 transition. */}
+      {yakVisible && (
+        <div
+          aria-hidden
+          style={{
+            position: 'absolute',
+            inset: 0,
+            zIndex: 9999,
+            backgroundImage: `url(${yakImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            pointerEvents: 'none',
+          }}
+        />
+      )}
     </>
   );
 }

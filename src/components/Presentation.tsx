@@ -202,7 +202,7 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
             onInputChange={setInputText}
             onArrowLeft={revealPrev}
             onArrowRight={revealNext}
-            placeholder="type anything to continue, 'prev' to go back, or slide number..."
+            placeholder="type anything to continue, 'prev' to go back, 'last' to jump to the end, or slide number..."
           />
           {/* Show context progress once less than 50% of slides remain */}
           {(currentSlide + 1) / slides.length > 0.5 && (
