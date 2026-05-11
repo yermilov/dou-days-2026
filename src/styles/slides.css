@@ -2769,8 +2769,12 @@
 }
 
 
-/* === MOBILE: FIXED ELEMENT STACKING === */
-@media (max-width: 768px) and (pointer: coarse) {
+/* === TOUCH-ONLY: HIDE INPUT BAR + TOOLTIPS === */
+/* Targets phones (any orientation) and touch-only tablets, but not laptops
+   that happen to have a touchscreen (those still match `hover: hover`).
+   Viewport width isn't a useful filter here — phones in landscape are often
+   800–960 CSS px, well past a 768px breakpoint. */
+@media (hover: none) and (pointer: coarse) {
   /* Hide the bottom input bar on touch devices: the keyboard hides the slide
      when focused, swipes/taps cover navigation, and the bar steals vertical
      space from the 1920×1080 staged scale. Tooltips (both OnboardingTooltip
@@ -2778,7 +2782,10 @@
      bar and become meaningless once it's gone. */
   .input-bar { display: none; }
   .onboarding-tooltip { display: none; }
+}
 
+/* === MOBILE: FIXED ELEMENT STACKING === */
+@media (max-width: 768px) and (pointer: coarse) {
   .progress-bar {
     width: 80px;
   }
