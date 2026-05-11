@@ -1,11 +1,11 @@
 import { useRef, useEffect } from 'react';
 
 interface UseTouchNavigationOptions {
-  nextSlide: () => void;
-  prevSlide: () => void;
+  onNext: () => void;
+  onPrev: () => void;
 }
 
-export function useTouchNavigation({ nextSlide, prevSlide }: UseTouchNavigationOptions) {
+export function useTouchNavigation({ onNext, onPrev }: UseTouchNavigationOptions) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -52,9 +52,9 @@ export function useTouchNavigation({ nextSlide, prevSlide }: UseTouchNavigationO
 
       // Swipe threshold: 50px
       if (deltaX < -50) {
-        nextSlide();
+        onNext();
       } else if (deltaX > 50) {
-        prevSlide();
+        onPrev();
       }
     };
 
@@ -63,9 +63,9 @@ export function useTouchNavigation({ nextSlide, prevSlide }: UseTouchNavigationO
       const tapZone = clientX / width;
 
       if (tapZone < 0.2) {
-        prevSlide();
+        onPrev();
       } else if (tapZone > 0.8) {
-        nextSlide();
+        onNext();
       }
       // Center area (20%-80%) does nothing — allows links/interactive elements
     };
@@ -77,7 +77,7 @@ export function useTouchNavigation({ nextSlide, prevSlide }: UseTouchNavigationO
       container.removeEventListener('touchstart', handleTouchStart);
       container.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [nextSlide, prevSlide]);
+  }, [onNext, onPrev]);
 
   return { containerRef };
 }

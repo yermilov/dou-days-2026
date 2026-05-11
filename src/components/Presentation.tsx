@@ -54,7 +54,7 @@ function getInitialTimerState(): { seconds: number; running: boolean } {
 
 export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
   const nav = useSlideNavigation(slides, initialSlide);
-  const { currentSlide, goToSlide, handleCommand: handleNavCommand, revealStage, nextSlide, prevSlide, revealNext, revealPrev } = nav;
+  const { currentSlide, goToSlide, handleCommand: handleNavCommand, revealStage, revealNext, revealPrev } = nav;
 
   // PDF export wiring. Only active under ?export=1; never reaches normal users.
   useEffect(() => {
@@ -78,7 +78,7 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
     if (index !== -1) goToSlide(index);
   }, [slides, goToSlide]);
 
-  const { containerRef } = useTouchNavigation({ nextSlide, prevSlide });
+  const { containerRef } = useTouchNavigation({ onNext: revealNext, onPrev: revealPrev });
 
   // Track current input text for interactive slides
   const [inputText, setInputText] = useState('');

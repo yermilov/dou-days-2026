@@ -2771,16 +2771,16 @@
 
 /* === MOBILE: FIXED ELEMENT STACKING === */
 @media (max-width: 768px) and (pointer: coarse) {
-  .input-bar {
-    padding: var(--space-xs) var(--space-sm);
-  }
+  /* Hide the bottom input bar on touch devices: the keyboard hides the slide
+     when focused, swipes/taps cover navigation, and the bar steals vertical
+     space from the 1920×1080 staged scale. Tooltips (both OnboardingTooltip
+     and ContextTooltip share .onboarding-tooltip) are anchored to the input
+     bar and become meaningless once it's gone. */
+  .input-bar { display: none; }
+  .onboarding-tooltip { display: none; }
 
   .progress-bar {
     width: 80px;
-  }
-
-  .onboarding-tooltip {
-    bottom: calc(var(--input-height) + var(--space-xl) + var(--space-xl));
   }
 }
 
