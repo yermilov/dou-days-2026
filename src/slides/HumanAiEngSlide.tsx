@@ -3,10 +3,11 @@ import { SlideDefinition, SlideContentProps } from '../types/slides';
 import { SlideItem, Emphasis } from '../components/SlideElements';
 
 const BULLETS: ReactNode[] = [
-  <>найскладніше в Human+AI інженерії — це <Emphasis color="orange">люди</Emphasis>: насадити AI-кодинг наказом не вийде, людська інерція реальна</>,
-  <>не залишайте інженерів сам на сам: інвестуйте в <Emphasis color="green">регулярні тренінги, peer-менторинг, опініонований тулінг, office hours та історії перемог і поразок</Emphasis></>,
-  <>відомий біль — інженерам нема де подихнути, щоб пройти криву навчання — спробуйте на старті <Emphasis color="orange">зменшити очікування по дедлайнах</Emphasis>, щоб дати простір для навчання, а потім підняти їх вище ніж було</>,
-  <>люди завжди залишаються вашим <Emphasis color="orange">найважливішим активом</Emphasis> — зберігайте емпатію, будьте етичними, стежте за вигоранням, ведіть чесні розмови</>,
+  <>не дивлячись на AI-психоз, люди завжди залишаються вашим <Emphasis color="orange">найважливішим активом</Emphasis> - зберігайте емпатію, будьте етичними та залишайтеся чесними</>,
+  <>насадити AI-кодинг наказом по організації <Emphasis color="green">"всі використовують АІ"</Emphasis> не вийде: інвестуйте в регулярні тренінги, peer-менторинг, підвсічуйте історії перемог і поразок</>,
+  <>якщо ви менеджер - покажіть власним прикладом і <Emphasis color="orange">зробіть фічу за допомогою клод коду</Emphasis></>,
+  <>хочете щоб люди перейшли на новий шлях - <Emphasis color="green">зменшіть тимчасово очікування по дедлайнах</Emphasis>, щоб дати простір для навчання</>,
+  <>стежте за вигоранням: АІ змушує людей <Emphasis color="orange">працювати більше</Emphasis>, по ночах і вихідних, в метро з телефону</>
 ];
 
 export const HumanAiEngSlide: SlideDefinition = {
@@ -15,9 +16,9 @@ export const HumanAiEngSlide: SlideDefinition = {
   content: ({ revealStage }: SlideContentProps) => (
     <>
       <h2>
-        <span className="text-dim">$</span>{' '}
-        <span className="text-green">pattern</span>{' '}
-        <span className="text-orange">--людиноцентричність</span>
+        <span className="text-dim">//</span>{' '}
+        <span className="text-green">людино</span>
+        <span className="text-orange">центричність</span>
       </h2>
 
       <div

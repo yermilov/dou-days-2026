@@ -16,18 +16,18 @@ export function OnboardingTooltip({ visible = true }: OnboardingTooltipProps) {
       <div className="onboarding-tooltip-grid">
         <div className="onboarding-tooltip-col">
           <div className="onboarding-tooltip-item">
-            <code>next</code> or <code>n</code> — Next slide
+            <code>next</code> or <code>n</code> - Next slide
           </div>
           <div className="onboarding-tooltip-item">
-            <code>prev</code> or <code>p</code> — Previous slide
+            <code>prev</code> or <code>p</code> - Previous slide
           </div>
         </div>
         <div className="onboarding-tooltip-col">
           <div className="onboarding-tooltip-item">
-            <code>5</code> or number — Go to slide
+            <code>5</code> or number - Go to slide
           </div>
           <div className="onboarding-tooltip-item">
-            <code>last</code> — Jump to last slide
+            <code>last</code> - Jump to last slide
           </div>
           <div className="onboarding-tooltip-item">
             Arrow keys work too!

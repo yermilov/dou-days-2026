@@ -5,17 +5,10 @@ import { exportRegistry } from '../components/exportRegistry';
 import releaseCalendar from '/anthropic-release-calendar.jpg?url';
 
 const bullets = [
-  <>останній прогрес Anthropic — <Emphasis color="orange">чіткий стрибок уперед</Emphasis> у процесах розробки софту</>,
-  <>Anthropic релізить Claude Code <Emphasis color="orange">15–20 внутрішніх релізів на день</Emphasis>, з мажорними фічами раз на кілька днів</>,
-  <>Anthropic <Emphasis color="orange">будує інструменти, якими користується сама</Emphasis> — синергія інженерної культури й тулінгу; щільні feedback loops між розробниками й користувачами тулів</>,
-  <>Anthropic шипить <Emphasis color="green">багато фіч і швидко</Emphasis> — недополіровані, але отримують миттєвий фідбек; "vibes" замість A/B-тестів і UX-досліджень; що не зайшло — видаляється</>,
-  <>Anthropic толерує часті outage й деградації продуктивності — і це <Emphasis color="green">не шкодить</Emphasis> сприйняттю компанії з боку користувачів</>,
+  <>Anthropic релізить нову Claude Code/Desktop фічу <Emphasis color="orange">майже кожен день</Emphasis></>,
+  <>фічі ці звичайно недополіровані, але команда отримує миттєвий <Emphasis color="green">вайб-чек</Emphasis> замість довгих A/B-тестів і UX-досліджень; що не користувачам не зайшло - так само легко видаляється</>,
+  <>ціна - часті outage і баги в продакшині, але парадоксально це практично <Emphasis color="orange">не шкодить</Emphasis> сприйняттю компанії з боку користувачів і інвесторів</>,
 ];
-
-const PANEL_LABELS = {
-  image: '░░░ release-calendar.jpg — 52 дні релізів Anthropic ░░░',
-  status: '░░░ live: status.claude.com ░░░',
-};
 
 // --- types ---
 
@@ -96,16 +89,16 @@ const BAR_COLOR: Record<DayStatus, string> = {
 
 function UptimeBars({ history }: { history: DayStatus[] }) {
   return (
-    <div style={{ display: 'flex', gap: '1.5px', alignItems: 'flex-end', height: '20px' }}>
+    <div style={{ display: 'flex', gap: '3px', alignItems: 'flex-end', height: '36px' }}>
       {history.map((day, i) => (
         <div
           key={i}
           title={day}
           style={{
             flex: 1,
-            height: day === 'operational' ? '14px' : day === 'minor' ? '16px' : '20px',
+            height: day === 'operational' ? '24px' : day === 'minor' ? '30px' : '36px',
             background: BAR_COLOR[day],
-            borderRadius: '1px',
+            borderRadius: '2px',
             opacity: 0.9,
           }}
         />
@@ -122,12 +115,12 @@ function ComponentHistoryRow({ row }: { row: ComponentRow }) {
       : BAR_COLOR.major;
 
   return (
-    <div style={{ marginBottom: '0.55rem' }}>
+    <div style={{ marginBottom: '1rem' }}>
       <div style={{
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'baseline',
-        marginBottom: '3px',
+        marginBottom: '6px',
       }}>
         <span style={{
           color: 'var(--dou-white)',
@@ -238,7 +231,7 @@ function StatusHistoryPanel({
 
 function IndustryPatternsContent({ revealStage, slideId }: SlideContentProps) {
   const visibleCount = Math.min(revealStage + 1, bullets.length);
-  const showStatus = revealStage >= 4;
+  const showStatus = revealStage >= 2;
   const handleStatusLoaded = useCallback(
     (err?: Error) => {
       if (err) {
@@ -253,9 +246,9 @@ function IndustryPatternsContent({ revealStage, slideId }: SlideContentProps) {
   return (
     <>
       <h2>
-        <span className="text-dim">$</span>{' '}
-        <span className="text-green">pattern</span>{' '}
-        <span className="text-orange">--ai-first-організація</span>
+        <span className="text-dim">//</span>{' '}
+        <span className="text-green">ai-first</span>{' '}
+        <span className="text-orange">організація</span>
       </h2>
 
       <div className="industry-patterns-body">
@@ -266,36 +259,32 @@ function IndustryPatternsContent({ revealStage, slideId }: SlideContentProps) {
           ))}
         </div>
 
-        {/* Right: framed panel — image until stage 4, live status panel after */}
-        {revealStage >= 1 && (
-          <div className="industry-patterns-panel" key={showStatus ? 'status' : 'image'}>
-            <div className="industry-patterns-panel__chrome industry-patterns-panel__chrome--top">
-              {showStatus ? PANEL_LABELS.status : PANEL_LABELS.image}
+        {/* Right: bare release-calendar image on stages 0–1, framed status
+            panel on stage 2. */}
+        {showStatus ? (
+          <div className="industry-patterns-panel" key="status">
+            <div className="industry-patterns-panel__viewport">
+              <StatusHistoryPanel
+                label="status.claude.com"
+                componentsUrl="https://status.claude.com/api/v2/components.json"
+                incidentsUrl="https://status.claude.com/api/v2/incidents.json?page_size=100"
+                onComplete={handleStatusLoaded}
+              />
             </div>
-            <div
-              className={
-                'industry-patterns-panel__viewport' +
-                (showStatus ? '' : ' industry-patterns-panel__viewport--image')
-              }
-            >
-              {showStatus ? (
-                <StatusHistoryPanel
-                  label="status.claude.com"
-                  componentsUrl="https://status.claude.com/api/v2/components.json"
-                  incidentsUrl="https://status.claude.com/api/v2/incidents.json?page_size=100"
-                  onComplete={handleStatusLoaded}
-                />
-              ) : (
-                <img
-                  src={releaseCalendar}
-                  alt="Календар релізів Anthropic — 52 дні релізів від Claude Team"
-                  loading="lazy"
-                />
-              )}
-            </div>
-            <div className="industry-patterns-panel__chrome industry-patterns-panel__chrome--bottom">
-              [END OF TRANSMISSION]
-            </div>
+          </div>
+        ) : (
+          <div
+            className={
+              'industry-patterns-image' +
+              (revealStage >= 1 ? ' industry-patterns-image--zoom' : '')
+            }
+            key={`image-${revealStage >= 1 ? 'zoom' : 'static'}`}
+          >
+            <img
+              src={releaseCalendar}
+              alt="Календар релізів Anthropic — 52 дні релізів від Claude Team"
+              loading="lazy"
+            />
           </div>
         )}
       </div>
@@ -309,5 +298,5 @@ export const IndustryPatternsSlide: SlideDefinition = {
   maxRevealStages: bullets.length - 1,
   asyncSettle: true,
   notes:
-    'Мета-урок: Anthropic їсть власну собачу їжу — будує інструменти, якими користується сама. Це створює feedback loop, який жодне зовнішнє юзер-дослідження не повторить. Stage 0–3: календар релізів — 15–20 внутрішніх збірок на день, мажорні фічі раз на кілька днів. Stage 4: жива сторінка status.claude.com — часті outage не вбивають сприйняття, бо швидкість важливіша за полірування.',
+    'Мета-урок: Anthropic їсть власну собачу їжу — будує інструменти, якими користується сама. Це створює feedback loop, який жодне зовнішнє юзер-дослідження не повторить. Stages 0–1: календар релізів — 15–20 внутрішніх збірок на день, мажорні фічі раз на кілька днів. Stage 2: жива сторінка status.claude.com — часті outage не вбивають сприйняття, бо швидкість важливіша за полірування.',
 };

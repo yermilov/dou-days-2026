@@ -3,13 +3,11 @@ import { SlideDefinition } from '../types/slides';
 import { SlideItem, Emphasis } from '../components/SlideElements';
 
 const QUESTIONS: ReactNode[] = [
-  <>якщо ми постачатимемо в 2–10 разів швидше — чи встигатимемо так само швидко <Emphasis color="orange">приймати рішення</Emphasis>?</>,
-  <>чи потрібні тижні на дизайн-доки, якщо <Emphasis color="green">прототип</Emphasis> збирається швидше, ніж пишеться документ про нього?</>,
-  <>чи треба <Emphasis color="orange">планувати кварталами</Emphasis>, якщо фічу можна випустити за два тижні після ідеї і отримати фідбек ще за місяць?</>,
-  <>чи можемо обміняти частину <Emphasis color="orange">стандартів аптайму</Emphasis> на швидкість розробки?</>,
-  <>чи можна послабити <Emphasis color="green">жорсткі стандарти код-рев'ю</Emphasis>, щоб AI допомагав із рев'ю?</>,
-  <>чи варто оцінювати <Emphasis color="orange">AI-кодинг скіли</Emphasis> на технічних інтерв'ю?</>,
-  <>які обговорення <Emphasis color="orange">втратили сенс</Emphasis>, коли генерація коду стає копійчаною — чи потрібна архітектура, якщо код можна щотижня перегенерувати з нуля?</>,
+  <>якщо ми релізимо фічі в 10 разів швидше - чи встигатимемо ми так само швидко <Emphasis color="orange">приймати рішення</Emphasis>?</>,
+  <>чи потрібно тижні писати і обговорювати дизайн-доки, якщо <Emphasis color="green">прототип</Emphasis> можна запустити швидше, ніж пишеться документ про нього?</>,
+  <>чи варто <Emphasis color="orange">планувати кварталами</Emphasis>, якщо фічу можна випустити за два тижні після ідеї і отримати фідбек ще за місяць?</>,
+  <>чи можемо обміняти частину <Emphasis color="green">стандартів аптайму</Emphasis> на швидкість розробки?</>,
+  <>чи варто оцінювати <Emphasis color="orange">AI-кодінг скіли</Emphasis> на технічних інтерв'ю?</>
 ];
 
 export const ChallengeAssumptionsSlide: SlideDefinition = {
@@ -17,9 +15,9 @@ export const ChallengeAssumptionsSlide: SlideDefinition = {
   content: ({ revealStage }) => (
     <>
       <h2>
-        <span className="text-dim">$</span>{' '}
-        <span className="text-green">pattern</span>{' '}
-        <span className="text-orange">--переглядаємо-припущення</span>
+        <span className="text-dim">//</span>{' '}
+        <span className="text-green">складні</span>{' '}
+        <span className="text-orange">питання</span>
       </h2>
 
       <div
