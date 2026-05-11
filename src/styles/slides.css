@@ -2854,3 +2854,176 @@
 
 }
 
+/* === TOOL TAKES — Pokémon-style reveal grid of AI tool icons ============
+   8 cards (4×2). All start as mint-tinted silhouettes with a gentle pulse;
+   each reveal stage de-silhouettes one card left-to-right, top-to-bottom
+   with a brief mint glow burst and fades in its "honest take" below. */
+.tool-takes-title {
+  margin-bottom: 48px;
+}
+
+.tool-takes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 24px;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.tool-takes-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 28px 24px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--dou-near-black) 55%, transparent);
+  border: 1px solid color-mix(in srgb, var(--dou-mint) 18%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--dou-white) 6%, transparent);
+  overflow: hidden;
+  transition:
+    border-color 0.55s ease,
+    background 0.55s ease,
+    box-shadow 0.7s ease;
+}
+
+/* Card highlight when its take is currently shown — subtle mint border lift
+   so the audience can see which card the take belongs to, without de-
+   silhouetting the icon or revealing the name. */
+.tool-takes-card--take-shown {
+  border-color: color-mix(in srgb, var(--dou-mint) 38%, transparent);
+  background: color-mix(in srgb, var(--dou-near-black) 65%, transparent);
+  box-shadow:
+    0 18px 48px color-mix(in srgb, var(--dou-near-black) 60%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--dou-white) 10%, transparent);
+  animation: toolTakesBurst 0.7s ease-out;
+}
+
+.tool-takes-icon {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  transition: filter 0.55s ease, opacity 0.55s ease, transform 0.55s ease;
+  /* Pure-white tint + heavy blur turns the SVG into an unrecognizable
+     glowing blob — the "who's that Pokémon?" silhouette. */
+  filter: brightness(0) saturate(1) invert(1) blur(13px);
+  opacity: 0.45;
+  animation: toolTakesSilhouettePulse 3.2s ease-in-out infinite;
+}
+
+.tool-takes-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.tool-takes-icon__glyph {
+  font-family: var(--font-mono);
+  font-size: 88px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--dou-white);
+}
+
+/* Phase 2 — identity reveal: icon de-silhouettes (blur off, full opacity)
+   and the name renders in white instead of `???`. The pulse animation
+   stops on revealed icons. */
+.tool-takes-card--identity-shown .tool-takes-icon {
+  filter: none;
+  opacity: 1;
+  animation: toolTakesIconReveal 0.7s cubic-bezier(0.19, 1, 0.22, 1) both;
+}
+
+.tool-takes-card--identity-shown .tool-takes-icon__glyph {
+  color: var(--dou-mint);
+}
+
+/* Wildcard — the unknown next thing. No tool name row, a bigger ? glyph
+   filling the icon slot, and a dashed border to read as "placeholder". */
+.tool-takes-card--wildcard {
+  border-style: dashed;
+  border-color: color-mix(in srgb, var(--dou-mint) 28%, transparent);
+}
+
+.tool-takes-card--wildcard .tool-takes-icon {
+  width: auto;
+  height: auto;
+  margin-bottom: 22px;
+}
+
+.tool-takes-card--wildcard .tool-takes-icon__glyph {
+  font-size: 132px;
+}
+
+.tool-takes-name {
+  font-family: var(--font-mono);
+  font-size: calc(var(--slide-text-body) * 0.9);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--dou-white);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+
+.tool-takes-take {
+  font-size: calc(var(--slide-text-body) * 0.9);
+  line-height: 1.22;
+  color: var(--dou-white-dim);
+  opacity: 0;
+  transition: opacity 0.55s ease 0.15s;
+  min-height: 1em;
+}
+
+.tool-takes-card--take-shown .tool-takes-take {
+  opacity: 1;
+}
+
+@keyframes toolTakesSilhouettePulse {
+  0%, 100% {
+    opacity: 0.38;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes toolTakesIconReveal {
+  0% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes toolTakesBurst {
+  0% {
+    box-shadow:
+      0 0 0 0 color-mix(in srgb, var(--dou-mint) 0%, transparent),
+      inset 0 1px 0 color-mix(in srgb, var(--dou-white) 10%, transparent);
+  }
+  40% {
+    box-shadow:
+      0 0 0 18px color-mix(in srgb, var(--dou-mint) 32%, transparent),
+      inset 0 1px 0 color-mix(in srgb, var(--dou-white) 10%, transparent);
+  }
+  100% {
+    box-shadow:
+      0 18px 48px color-mix(in srgb, var(--dou-near-black) 60%, transparent),
+      inset 0 1px 0 color-mix(in srgb, var(--dou-white) 10%, transparent),
+      0 0 0 0 color-mix(in srgb, var(--dou-mint) 0%, transparent);
+  }
+}
