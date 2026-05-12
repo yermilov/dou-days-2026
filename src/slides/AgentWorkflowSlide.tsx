@@ -167,22 +167,31 @@ function AgentWorkflowContent({ revealStage }: { revealStage: number }) {
         )}
       </div>
 
-      {/* 25th-frame yak — full-bleed flash on 0→1 transition. */}
-      {yakVisible && (
-        <div
-          aria-hidden
+      {/* 25th-frame yak — always mounted so the image is painted to its own
+          layer ahead of time; we just toggle opacity for the flash. Mounting
+          the div conditionally was racing the browser paint cycle inside the
+          120 ms window. */}
+      <div
+        aria-hidden
+        style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 9999,
+          pointerEvents: 'none',
+          opacity: yakVisible ? 1 : 0,
+        }}
+      >
+        <img
+          src={yakImage}
+          alt=""
           style={{
-            position: 'absolute',
-            inset: 0,
-            zIndex: 9999,
-            backgroundImage: `url(${yakImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            pointerEvents: 'none',
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            display: 'block',
           }}
         />
-      )}
+      </div>
     </>
   );
 }
