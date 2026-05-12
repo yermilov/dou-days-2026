@@ -38,8 +38,7 @@ function BioItem({ level, children }: { level: Level; children: React.ReactNode 
 // One BIO_ITEM per reveal stage: index 0 is always visible, index N appears at revealStage >= N.
 const BIO_ITEMS: { level: Level; content: ReactNode }[] = [
   { level: 'low',    content: <>починав як Java backend-інженер</> },
-  { level: 'medium', content: <>потім: розробляв продуктові фічі</> },
-  { level: 'medium', content: <>потім: техлід feature-фреймворків</> },
+  { level: 'medium', content: <>потім: техлідив продуктові фічі</> },
   { level: 'medium', content: <>потім: техлід платформної організації</> },
   { level: 'high',   content: <>зараз: AI-first розробка</> },
 ];
