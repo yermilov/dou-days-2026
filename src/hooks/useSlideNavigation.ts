@@ -136,6 +136,12 @@ export function useSlideNavigation(
         return;
       }
 
+      // Negative number — N-th slide before the last (e.g. -1 = second to last)
+      if (!isNaN(slideNumber) && slideNumber < 0) {
+        goToSlide(totalSlides - 1 + slideNumber);
+        return;
+      }
+
       // Navigation commands
       switch (trimmed) {
         case 'prev':
