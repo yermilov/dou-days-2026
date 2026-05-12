@@ -24,9 +24,9 @@ const TRACER_CODE = `export async function uploadSession(
 // Phase 0: one thesis bullet + the uploader code panel.
 const FIRST_BULLET: ReactNode = (
   <>
-    щоб мати змогу подебажити вашого агента,
-    {' '}завантажуйте <Code>.jsonl</Code>-лог кожної сесії
+    завантажуйте <Code>.jsonl</Code>-лог кожної сесії агента
     {' '}на <Emphasis color="green">S3</Emphasis>
+    {' '}і <Emphasis color="orange">ви зможете подебажити</Emphasis> як він працює і що можна покращити
   </>
 );
 

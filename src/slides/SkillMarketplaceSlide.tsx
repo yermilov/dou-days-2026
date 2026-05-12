@@ -10,8 +10,8 @@ import superhumanAidevImage from '../assets/superhuman-aidev.png?url';
 const FIRST_SET: ReactNode[] = [
   <>скіли - <Emphasis color="green">будівельні блоки</Emphasis>, з яких кожен інженер може побудувати свій власний воркфлоу</>,
   <>люди не люблять читати і писати документацію, а <Emphasis color="orange">агенти це обожнюють</Emphasis> - конвертуйте всю документацію в скіли</>,
+  <>у Superhuman ми достатньо рано зробили скіли спільними, за допомогою тули що клонує GitHub-репо зі скілами і симлінкає їх у директорію <code>~/.claude/skills/</code></>,
   <>кожен інженер, що використовує скіл, додає покращення - і всі стають <Emphasis color="green">миттєво продуктивнішими</Emphasis></>,
-  <>у Superhuman нам потрібен був спосіб дистрибуції - ми зробили систему, що клонує GitHub-репо зі скілами і симлінкає їх у директорію <code>~/.claude/skills/</code></>,
 ];
 
 const SECOND_SET: ReactNode[] = [

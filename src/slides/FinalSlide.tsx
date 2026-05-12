@@ -6,7 +6,7 @@ import linkedinQr from '../assets/linkedin-qr.jpeg?url';
 const TAKEAWAYS: ReactNode[] = [
   <>почніть із пошуку власного <Emphasis color="green">vibe coding flow</Emphasis></>,
   <>далі виходьте за межі коду - використовуйте клода для <Emphasis color="orange">всього, що робите</Emphasis>, особливо для закриття feedback loops</>,
-  <>скіли - ваш мильтиплікатор для команди; побудуйте <Emphasis color="green">інфраструктуру</Emphasis>, щоб ними було легко ділитися й перевикористовувати</>,
+  <>скіли - ваш мультиплікатор для команди; побудуйте <Emphasis color="green">інфраструктуру</Emphasis>, щоб ними було легко ділитися й перевикористовувати</>,
   <>напівавтономні агенти - наступний рубіж; починайте зі <Emphasis color="orange">спеціалізованих агентів</Emphasis>: тріаж тікетів, код-рев'ю, міграції, …</>,
   <><Emphasis color="green">люди</Emphasis> - найважливіша частина: AI підсилює команду, а не замінює її</>,
 ];
