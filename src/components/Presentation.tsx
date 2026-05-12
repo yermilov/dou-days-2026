@@ -10,6 +10,7 @@ import { Timer } from './Timer';
 import { OnboardingTooltip, ContextTooltip } from './OnboardingTooltip';
 import { RotateHint } from './RotateHint';
 import { exportRegistry } from './exportRegistry';
+import { preloadSlideAssets } from '../utils/preloadAssets';
 
 const isExportMode =
   typeof window !== 'undefined' &&
@@ -93,6 +94,21 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
   useEffect(() => {
     setSlideInteracted(false);
   }, [currentSlide]);
+
+  // Warm the HTTP cache for every downstream slide asset while the title
+  // slide is on screen. Deferred to idle so the first paint is unblocked.
+  useEffect(() => {
+    const win = window as Window & {
+      requestIdleCallback?: (cb: () => void) => number;
+      cancelIdleCallback?: (handle: number) => void;
+    };
+    if (typeof win.requestIdleCallback === 'function') {
+      const handle = win.requestIdleCallback(preloadSlideAssets);
+      return () => win.cancelIdleCallback?.(handle);
+    }
+    const timeout = window.setTimeout(preloadSlideAssets, 200);
+    return () => window.clearTimeout(timeout);
+  }, []);
 
   // Timer state with localStorage persistence
   const [timerSeconds, setTimerSeconds] = useState(() => getInitialTimerState().seconds);

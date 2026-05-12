@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
 import { SlideItem, Emphasis, SlideLink } from '../components/SlideElements';
-import aiCodeReviewImage from '/ai-code-review.png?url';
+import aiCodeReviewImage from '../assets/ai-code-review.png?url';
 
 // Two-phase reveal (same idiom as SkillMarketplaceSlide / MetaSkillsSlide):
 // FIRST_SET shows three bullets full-width as one column; once they're all

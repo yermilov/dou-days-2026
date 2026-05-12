@@ -2,6 +2,7 @@ import { useState, useEffect, ReactNode } from 'react';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
 import { SlideItem, Emphasis, SlideLink } from '../components/SlideElements';
 import { exportRegistry } from '../components/exportRegistry';
+import skillMdFallback from '../assets/skill-creator-skill.md?raw';
 
 const SKILL_MD_URL =
   'https://raw.githubusercontent.com/anthropics/claude-plugins-official/main/plugins/skill-creator/skills/skill-creator/SKILL.md';
@@ -21,8 +22,9 @@ const SECOND_SET: ReactNode[] = [
 ];
 
 function MetaSkillsContent({ revealStage, slideId }: { revealStage: number; slideId: string }) {
-  const [content, setContent] = useState<string | null>(null);
-  const [error, setError] = useState(false);
+  // Start with the bundled snapshot so the panel renders immediately even on
+  // a flaky connection; swap to the live SKILL.md once the fetch resolves.
+  const [content, setContent] = useState<string>(skillMdFallback);
 
   useEffect(() => {
     fetch(SKILL_MD_URL)
@@ -35,9 +37,7 @@ function MetaSkillsContent({ revealStage, slideId }: { revealStage: number; slid
         exportRegistry.markSlideSettled(slideId);
       })
       .catch((err: Error) => {
-        setError(true);
-        // Don't fail the export over a remote-content fetch — just settle so the
-        // exporter moves on. The error fallback already renders a useful state.
+        // Keep the fallback content visible; just settle so the exporter moves on.
         exportRegistry.markSlideSettled(slideId);
         if (typeof console !== 'undefined') console.warn('MetaSkills fetch failed:', err.message);
       });
@@ -97,21 +97,10 @@ function MetaSkillsContent({ revealStage, slideId }: { revealStage: number; slid
             </div>
 
             <div className="meta-skills-panel__viewport">
-              {error ? (
-                <div className="meta-skills-panel__error">✗ failed to fetch SKILL.md</div>
-              ) : !content ? (
-                <div className="meta-skills-panel__placeholder">
-                  <span className="meta-skills-panel__loading-dot">●</span>
-                  <span className="meta-skills-panel__loading-dot">●</span>
-                  <span className="meta-skills-panel__loading-dot">●</span>
-                  {' '}loading SKILL.md
-                </div>
-              ) : (
-                <div className="meta-skills-panel__scroll">
-                  {content}
-                  <div className="meta-skills-panel__scroll-divider">{content}</div>
-                </div>
-              )}
+              <div className="meta-skills-panel__scroll">
+                {content}
+                <div className="meta-skills-panel__scroll-divider">{content}</div>
+              </div>
             </div>
 
             <div className="meta-skills-panel__chrome meta-skills-panel__chrome--bottom">

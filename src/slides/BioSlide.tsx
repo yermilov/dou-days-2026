@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { SlideDefinition } from '../types/slides';
-import yarikBadges from '/yarik-badges.jpg?url';
+import yarikBadges from '../assets/yarik-badges.jpg?url';
 
 type Level = 'high' | 'medium' | 'low';
 

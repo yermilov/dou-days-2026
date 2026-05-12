@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
 import { SlideItem, Emphasis } from '../components/SlideElements';
-import warcraftComplete from '/warcraft-complete.wav?url';
-import warcraftYes from '/warcraft-yes.wav?url';
-import warcraftWhat from '/warcraft-what.wav?url';
-import peasantFace from '/warcraft-peasant-permission.jpeg?url';
+import warcraftComplete from '../assets/warcraft-complete.wav?url';
+import warcraftYes from '../assets/warcraft-yes.wav?url';
+import warcraftWhat from '../assets/warcraft-what.wav?url';
+import peasantFace from '../assets/warcraft-peasant-permission.jpeg?url';
 
 const PROMPT_CODE = `claude> Fetch the Warcraft 2 peon/peasant quotes page at warcraft.wiki.gg/wiki/Quotes_of_Warcraft_II#Peon and download the Ready, Yes, Job Complete and What sounds for both Peasant (Alliance) and Peon (Horde). Skip the "Pissed" category.
 

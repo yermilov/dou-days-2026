@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
 import { SlideItem, Emphasis } from '../components/SlideElements';
-import superhumanAidevImage from '/superhuman-aidev.png?url';
+import superhumanAidevImage from '../assets/superhuman-aidev.png?url';
 
 // Two consecutive bullet sets revealed one-by-one. Set 1 = the DIY symlink
 // approach Superhuman built; set 2 = how Anthropic's native marketplaces

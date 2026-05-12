@@ -1,12 +1,12 @@
 import { ReactNode } from 'react';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
-import claudeLogo from '/logos/claude.svg?url';
-import openaiLogo from '/logos/openai.svg?url';
-import cursorLogo from '/logos/cursor.svg?url';
-import sourcegraphLogo from '/logos/sourcegraph.svg?url';
-import geminiLogo from '/logos/gemini.svg?url';
-import copilotLogo from '/logos/github-copilot.svg?url';
-import lovableLogo from '/logos/lovable.svg?url';
+import claudeLogo from '../assets/logos/claude.svg?url';
+import openaiLogo from '../assets/logos/openai.svg?url';
+import cursorLogo from '../assets/logos/cursor.svg?url';
+import sourcegraphLogo from '../assets/logos/sourcegraph.svg?url';
+import geminiLogo from '../assets/logos/gemini.svg?url';
+import copilotLogo from '../assets/logos/github-copilot.svg?url';
+import lovableLogo from '../assets/logos/lovable.svg?url';
 
 type Tool = {
   id: string;

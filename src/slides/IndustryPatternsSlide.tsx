@@ -2,7 +2,9 @@ import { useState, useEffect, useCallback } from 'react';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
 import { SlideItem, Emphasis } from '../components/SlideElements';
 import { exportRegistry } from '../components/exportRegistry';
-import releaseCalendar from '/anthropic-release-calendar.jpg?url';
+import releaseCalendar from '../assets/anthropic-release-calendar.jpg?url';
+import statusComponentsFallback from '../assets/status-components.json';
+import statusIncidentsFallback from '../assets/status-incidents.json';
 
 const bullets = [
   <>Anthropic релізить нову Claude Code/Desktop фічу <Emphasis color="orange">майже кожен день</Emphasis></>,
@@ -74,6 +76,22 @@ function buildHistory(incidents: ApiIncident[], componentId: string): DayStatus[
 function calcUptime(history: DayStatus[]): number {
   const ok = history.filter(d => d === 'operational').length;
   return Math.round((ok / history.length) * 1000) / 10;
+}
+
+function buildRows(
+  compData: { components?: ApiComponent[] } | null | undefined,
+  incData: { incidents?: ApiIncident[] } | null | undefined,
+  maxComponents: number,
+): ComponentRow[] {
+  const components: ApiComponent[] = compData?.components ?? [];
+  const incidents: ApiIncident[] = incData?.incidents ?? [];
+  const leaves = components
+    .filter(c => !c.group && c.name !== 'Visit our website')
+    .slice(0, maxComponents);
+  return leaves.map(c => {
+    const history = buildHistory(incidents, c.id);
+    return { id: c.id, name: c.name, history, uptime: calcUptime(history) };
+  });
 }
 
 // Semantic per-status colors. Treated like SVG fill constants per the design-system spec —
@@ -158,8 +176,11 @@ function StatusHistoryPanel({
   maxComponents?: number;
   onComplete?: (err?: Error) => void;
 }) {
-  const [rows, setRows] = useState<ComponentRow[]>([]);
-  const [loading, setLoading] = useState(true);
+  // Seed with the bundled snapshot so the panel renders fully populated even
+  // on a flaky connection; swap to live data once the fetch resolves.
+  const [rows, setRows] = useState<ComponentRow[]>(() =>
+    buildRows(statusComponentsFallback, statusIncidentsFallback, maxComponents)
+  );
 
   useEffect(() => {
     let cancelled = false;
@@ -169,28 +190,10 @@ function StatusHistoryPanel({
       fetch(incidentsUrl).then(r => r.json()),
     ]).then(([compData, incData]) => {
       if (cancelled) return;
-
-      const components: ApiComponent[] = compData.components ?? [];
-      const incidents: ApiIncident[] = incData.incidents ?? [];
-
-      // Top-level non-group components only (no group containers)
-      const leaves = components
-        .filter(c => !c.group && c.name !== 'Visit our website')
-        .slice(0, maxComponents);
-
-      const built: ComponentRow[] = leaves.map(c => {
-        const history = buildHistory(incidents, c.id);
-        return { id: c.id, name: c.name, history, uptime: calcUptime(history) };
-      });
-
-      setRows(built);
-      setLoading(false);
+      setRows(buildRows(compData, incData, maxComponents));
       onComplete?.();
     }).catch((err: Error) => {
-      if (!cancelled) {
-        setLoading(false);
-        onComplete?.(err);
-      }
+      if (!cancelled) onComplete?.(err);
     });
 
     return () => { cancelled = true; };
@@ -206,9 +209,6 @@ function StatusHistoryPanel({
 
       {/* Body */}
       <div className="industry-patterns-status__body">
-        {loading && (
-          <span className="industry-patterns-status__loading">завантаження...</span>
-        )}
         {rows.map(row => (
           <ComponentHistoryRow key={row.id} row={row} />
         ))}

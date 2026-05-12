@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { SlideDefinition } from '../types/slides';
-import agendaEngineerImg from '/agenda-engineer.png?url';
+import agendaEngineerImg from '../assets/agenda-engineer.png?url';
 
 const VIEWPORT_BG = `linear-gradient(180deg,
     color-mix(in srgb, var(--dou-near-black) 78%, transparent) 0%,

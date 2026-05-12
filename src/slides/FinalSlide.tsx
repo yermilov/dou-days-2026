@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { SlideDefinition } from '../types/slides';
 import { SlideItem, Emphasis } from '../components/SlideElements';
-import linkedinQr from '/linkedin-qr.jpeg?url';
+import linkedinQr from '../assets/linkedin-qr.jpeg?url';
 
 const TAKEAWAYS: ReactNode[] = [
   <>почніть із пошуку власного <Emphasis color="green">vibe coding flow</Emphasis></>,

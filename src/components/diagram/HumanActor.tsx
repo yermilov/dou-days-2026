@@ -1,5 +1,5 @@
 import { CSSProperties } from 'react';
-import humanSrc from '/actor-human.png?url';
+import humanSrc from '../../assets/actor-human.png?url';
 
 interface HumanActorProps {
   x: number;

@@ -1,5 +1,5 @@
 import { CSSProperties } from 'react';
-import agentSrc from '/actor-agent.png?url';
+import agentSrc from '../../assets/actor-agent.png?url';
 
 interface AgentActorProps {
   x: number;

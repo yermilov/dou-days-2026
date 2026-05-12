@@ -1,5 +1,5 @@
 import { SlideDefinition } from '../types/slides';
-import coworkImage from '/cowork-reimbursments.png?url';
+import coworkImage from '../assets/cowork-reimbursments.png?url';
 
 export const UltimateExampleSlide: SlideDefinition = {
   id: 'ultimate-example',

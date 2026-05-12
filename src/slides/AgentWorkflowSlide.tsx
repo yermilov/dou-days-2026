@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
 import { SlideItem, Emphasis } from '../components/SlideElements';
 import { CodeBlock } from '../components/CodeBlock';
-import yakImage from '/yak.jpg?url';
+import yakImage from '../assets/yak.jpg?url';
 
 // "25th frame" subliminal gag — Bos mutus (wild yak) flashes for ~120ms on the
 // 0→1 reveal transition. The Ukrainian "як?" / English "yak" homophone is the

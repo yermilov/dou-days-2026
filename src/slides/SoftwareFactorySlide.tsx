@@ -1,6 +1,6 @@
 import { SlideDefinition } from '../types/slides';
 import { SlideItem, Emphasis } from '../components/SlideElements';
-import softwareFactoryImg from '/software-factory.jpg?url';
+import softwareFactoryImg from '../assets/software-factory.jpg?url';
 
 export const SoftwareFactorySlide: SlideDefinition = {
   id: 'software-factory',

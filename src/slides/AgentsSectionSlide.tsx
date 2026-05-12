@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { SlideDefinition } from '../types/slides';
-import agentsSmithImage from '/agents-smith.png?url';
+import agentsSmithImage from '../assets/agents-smith.png?url';
 
 const MATRIX_STYLES = `
   @keyframes matrixFall {
