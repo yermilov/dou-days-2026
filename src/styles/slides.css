@@ -2629,7 +2629,7 @@
 }
 
 .timeline-panel__image--zoom-anim {
-  /* Pin pre-zoom size in stage px so scale(2.6) is guaranteed to fit the ~1500px panel width. */
+  /* Pin pre-zoom size in stage px so the final scale is guaranteed to fit the ~1500px panel width. */
   width: 500px;
   max-width: 500px;
   height: auto;
@@ -2641,7 +2641,7 @@
 
 @keyframes timeline-zoom-to-top {
   0%   { transform: scale(1); }
-  100% { transform: scale(2.6); }
+  100% { transform: scale(2.2); }
 }
 
 /* Emphasis panel state (final slide) */

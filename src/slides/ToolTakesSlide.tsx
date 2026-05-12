@@ -21,7 +21,7 @@ const TOOLS: Tool[] = [
   { id: 'cursor',   name: 'Cursor',       logo: cursorLogo,      take: 'для тих, хто не відпускає IDE' },
   { id: 'amp',      name: 'Amp',          logo: sourcegraphLogo, take: 'цікаво, але навіщо неясно' },
   { id: 'gemini',   name: 'Gemini CLI',   logo: geminiLogo,      take: 'просто навіщо неясно' },
-  { id: 'copilot',  name: 'Copilot',      logo: copilotLogo,     take: 'погано як і все що пов\'язано з гітхабом' },
+  { id: 'copilot',  name: 'Copilot',      logo: copilotLogo,     take: 'просто погано' },
   { id: 'lovable',  name: 'Lovable',      logo: lovableLogo,     take: 'для не інженерів' },
   { id: 'wildcard', name: '?',            logo: null,            take: '' },
 ];

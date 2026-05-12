@@ -24,11 +24,9 @@ const LEFT_BULLETS: ReactNode[] = [
 ];
 
 const PROMPTS: ReactNode[] = [
-  <Prompt>hey claude, please commit my changes</Prompt>,
   <Prompt>hey claude, open github in chrome and generate ssh key for me</Prompt>,
   <Prompt>hey claude, configure dev environment for me</Prompt>,
   <Prompt>hey claude, here is a bug report I've received mycompany.slack.com/archives/p1778239</Prompt>,
-  <Prompt>hey claude, wdyt about these logs / metrics / AB test results / perf report: ...</Prompt>,
 ];
 
 export const BreakOutOfCodingSlide: SlideDefinition = {
