@@ -86,7 +86,7 @@ function AIInnovatorCurveContent({ revealStage }: { revealStage: number }) {
         'маркетплейс плагінів',
         'мета-скіли',
         'авто-підтвердження доступів',
-        'ai код ревʼю',
+        'AI код-ревʼю',
       ],
     },
   ];

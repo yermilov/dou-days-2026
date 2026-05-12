@@ -8,17 +8,17 @@ import superhumanAidevImage from '../assets/superhuman-aidev.png?url';
 // land the same idea natively. The slide moves from set 1 → set 2 once all
 // of set 1's bullets have been revealed.
 const FIRST_SET: ReactNode[] = [
-  <>скіли - <Emphasis color="green">будівельні блоки</Emphasis>, з яких кожен інженер може побудувати свій власний воркфлоу</>,
-  <>люди не люблять читати і писати документацію, а <Emphasis color="orange">агенти це обожнюють</Emphasis> - конвертуйте всю документацію в скіли</>,
+  <>скіли — <Emphasis color="green">будівельні блоки</Emphasis>, з яких кожен інженер може побудувати свій власний воркфлоу</>,
+  <>люди не люблять читати і писати документацію, а <Emphasis color="orange">агенти це обожнюють</Emphasis> — конвертуйте всю документацію в скіли</>,
   <>у Superhuman ми достатньо рано зробили скіли спільними за допомогою тули що клонує GitHub-репо зі скілами і симлінкає їх у директорію <code>~/.claude/skills/</code></>,
-  <>кожен інженер, що використовує скіл, додає покращення - і всі стають <Emphasis color="green">миттєво продуктивнішими</Emphasis></>,
+  <>кожен інженер, який використовує скіл, додає покращення — і всі стають <Emphasis color="green">продуктивнішими</Emphasis></>,
 ];
 
 const SECOND_SET: ReactNode[] = [
-  <>ну а потім Anthropic представили <Emphasis color="green">marketplaces</Emphasis> - працює так само, але нативно</>,
+  <>ну а потім Anthropic представили <Emphasis color="green">marketplaces</Emphasis> — працює так само, але нативно</>,
   <>створіть ОДИН центральний внутрішній <Emphasis color="orange">marketplace</Emphasis> для скілів у вашій організації</>,
-  <>використовуйте плагіни для <Emphasis color="orange">неймспейсингу</Emphasis> - кожен користувач сам обирає, які плагіни встановити</>,
-  <>якщо є можливість - використовуйте <Emphasis color="green">Claude Enterprise</Emphasis>, щоб примусово встановити marketplace і певні плагіни всім в організації</>,
+  <>використовуйте плагіни для <Emphasis color="orange">неймспейсингу</Emphasis> — кожен користувач сам обирає, які плагіни встановити</>,
+  <>якщо є можливість — використовуйте <Emphasis color="green">Claude Enterprise</Emphasis>, щоб примусово встановити marketplace і певні плагіни всім в організації</>,
 ];
 
 export const SkillMarketplaceSlide: SlideDefinition = {

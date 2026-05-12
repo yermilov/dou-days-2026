@@ -80,7 +80,7 @@ function SkillsActivatorContent({ revealStage }: { revealStage: number }) {
     <>
       <h2>
         <span className="text-dim">//</span>{' '}
-        <span className="text-green">але найважливіше в усій цій історії</span>{' '}-{' '}
+        <span className="text-green">але найважливіше в усій цій історії</span>{' '}—{' '}
         <span className="text-orange">це активатор скілів</span>
       </h2>
 
@@ -89,14 +89,14 @@ function SkillsActivatorContent({ revealStage }: { revealStage: number }) {
         <div className="skills-activator-bullets">
           {revealStage === 0 && (
             <SlideItem delay={0.05}>
-              claude все ще ненадійно завантажує{' '}
+              Клод все ще ненадійно завантажує{' '}
               <Emphasis color="orange">потрібні скіли</Emphasis>
             </SlideItem>
           )}
 
           {revealStage === 1 && (
             <SlideItem delay={0} reveal>
-              тому ми зробили <Emphasis color="green">skills-activator</Emphasis> - у{' '}
+              тому ми зробили <Emphasis color="green">skills-activator</Emphasis> — у{' '}
               <Emphasis color="orange">SKILL.md</Emphasis> описуємо правила активації:
               {' '}ключові слова, патерни tool-викликів, директорії
             </SlideItem>
@@ -114,7 +114,7 @@ function SkillsActivatorContent({ revealStage }: { revealStage: number }) {
           {revealStage >= 3 && (
             <SlideItem delay={0} reveal>
               якщо хук бачить що потрібний скіл не завантажений —
-              {' '}<Emphasis color="green">підказує</Emphasis> claude-у,
+              {' '}<Emphasis color="green">підказує</Emphasis> Клоду,
               {' '}інжектуючи контекст у промпт через{' '}
               <Emphasis color="green">additionalContext</Emphasis>
             </SlideItem>

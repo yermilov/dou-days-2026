@@ -128,13 +128,13 @@ function AgentWorkflowContent({ revealStage }: { revealStage: number }) {
           {revealStage >= 1 && (
             <SlideItem delay={0} reveal>
               <Emphasis color="orange">Claude Agent SDK</Emphasis>
-              {' '}- TypeScript-обгортка над Claude Code CLI
+              {' '}— TypeScript-обгортка над Claude Code CLI
             </SlideItem>
           )}
           {revealStage >= 2 && (
             <SlideItem delay={0} reveal>
               клонуйте свій <Emphasis color="green">маркетплейс скілів</Emphasis>
-              {' '}у контекст SDK - рев'ювер отримує вічно актуальні знання як має бути
+              {' '}у контекст SDK — рев'ювер отримує вічно актуальні знання як має бути
             </SlideItem>
           )}
           {revealStage >= 3 && (
@@ -146,7 +146,7 @@ function AgentWorkflowContent({ revealStage }: { revealStage: number }) {
           {revealStage >= 4 && (
             <SlideItem delay={0} reveal>
               <Emphasis color="green">structured output</Emphasis> для комунікації
-              {' '}між детермінованим кодом і ллм-кою
+              {' '}між детермінованим кодом та LLM
             </SlideItem>
           )}
         </div>

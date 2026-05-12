@@ -7,9 +7,9 @@ import statusComponentsFallback from '../assets/status-components.json';
 import statusIncidentsFallback from '../assets/status-incidents.json';
 
 const bullets = [
-  <>Anthropic релізить нову Claude Code/Desktop фічу <Emphasis color="orange">майже кожен день</Emphasis></>,
-  <>фічі ці звичайно недополіровані, але команда отримує миттєвий <Emphasis color="green">вайб-чек</Emphasis> замість довгих A/B-тестів і UX-досліджень; що не користувачам не зайшло - так само легко видаляється</>,
-  <>ціна - часті outage і баги в продакшині, але парадоксально це практично <Emphasis color="orange">не шкодить</Emphasis> сприйняттю компанії з боку користувачів і інвесторів</>,
+  <>Anthropic релізить нову Claude Code/Desktop фічу <Emphasis color="orange">майже щодня</Emphasis></>,
+  <>ці фічі, звісно, часто недополіровані, але команда отримує миттєвий <Emphasis color="green">вайб-чек</Emphasis> замість довгих A/B-тестів і UX-досліджень; що не зайшло користувачам — так само легко видаляється</>,
+  <>ціна — часті outages та баги в продакшені, але парадоксально це практично <Emphasis color="orange">не шкодить</Emphasis> сприйняттю компанії з боку користувачів і інвесторів</>,
 ];
 
 // --- types ---
@@ -247,7 +247,7 @@ function IndustryPatternsContent({ revealStage, slideId }: SlideContentProps) {
     <>
       <h2>
         <span className="text-dim">//</span>{' '}
-        <span className="text-green">ai-first</span>{' '}
+        <span className="text-green">AI-first</span>{' '}
         <span className="text-orange">організація</span>
       </h2>
 

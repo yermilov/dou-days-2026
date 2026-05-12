@@ -61,11 +61,11 @@ function AutoApproveContent({ revealStage }: { revealStage: number }) {
         <div className="auto-approve-bullets">
           {revealStage === 0 && (
             <SlideItem delay={0.05}>
-              <Emphasis color="green">3-рівневий хук авто-підтвердження</Emphasis>:
-              {' '}MCP-анотації + SHA-256-кеш для миттєвих рішень, LLM-as-judge класифікує решту
+              <Emphasis color="green">хук авто-підтвердження</Emphasis>:
+              {' '}LLM-as-judge класифікує дії Клода
               {' '}як <Emphasis color="green">SAFE</Emphasis> (read-only, тести) чи{' '}
-              <Emphasis color="orange">UNSAFE</Emphasis> (деструктивне, credentials, інфра)
-              {' '}— помилка fail-safe → стандартний промпт
+              <Emphasis color="orange">UNSAFE</Emphasis> (деструктивне, credentials, інфра),
+              {' '}кешуємо всі рішення для швидкості
             </SlideItem>
           )}
 

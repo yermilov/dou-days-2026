@@ -6,10 +6,10 @@ import leftAstronaut from '../assets/skill-was-it-md.png?url';
 import rightAstronaut from '../assets/skill-always-been.png?url';
 
 const BULLETS: ReactNode[] = [
-  <>скілл — це просто <Emphasis color="green">SKILL.md</Emphasis> файл з інструкціями, як щось робити</>,
-  <>на відміну від <Emphasis color="orange">MCP server</Emphasis> — не витрачає context window, завантажується лише за потребою моделі</>,
-  <>на відміну від <Emphasis color="orange">slash command</Emphasis> — модель сама викликає його, коли потрібно</>,
-  <>може бути цілою <Emphasis color="green">бібліотекою</Emphasis> md-файлів з посиланнями — модель навігує та завантажує за потребою</>,
+  <>скіл — це просто <Emphasis color="green">SKILL.md</Emphasis>-файл з інструкціями, як щось робити</>,
+  <>на відміну від <Emphasis color="orange">MCP server</Emphasis>, не займає context window — завантажується лише тоді, коли це потрібно моделі</>,
+  <>на відміну від <Emphasis color="orange">slash command</Emphasis>, модель сама викликає його, коли це потрібно</>,
+  <>може бути цілою <Emphasis color="green">бібліотекою</Emphasis> md-файлів із посиланнями — модель сама навігує та завантажує їх за потреби</>,
   <>може містити <Emphasis color="green">TypeScript / Python / bash</Emphasis> скрипти для детермінованої автоматизації</>,
 ];
 
@@ -52,7 +52,7 @@ function WhatIsSkillContent({ revealStage }: SlideContentProps) {
         }}
       >
         <span className="text-dim">//</span>{' '}
-        <span className="text-green">скіли</span>{' '}-{' '}
+        <span className="text-green">скіли</span>{' '}—{' '}
         <span className="text-orange">база, основа, фундамент</span>
       </h2>
 

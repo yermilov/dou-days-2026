@@ -42,7 +42,7 @@ function TeamSectionContent() {
         }}
       >
         <span className="text-dim">//</span>{' '}
-        <span className="text-green">ai-first</span>{' '}
+        <span className="text-green">AI-first</span>{' '}
         <span className="text-orange">команди</span>
       </h2>
     </>

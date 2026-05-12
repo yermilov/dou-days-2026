@@ -38,29 +38,29 @@ export const ImportantSlide: SlideDefinition = {
 
           {revealStage >= 1 && (
             <SlideItem delay={0.07}>
-              самостійно ви напишете код як мінімум або{' '}
-              <Emphasis color="orange">краще</Emphasis> або{' '}
+              самостійно ви напишете код або{' '}
+              <Emphasis color="orange">краще</Emphasis>, або{' '}
               <Emphasis color="orange">швидше</Emphasis>
             </SlideItem>
           )}
 
           {revealStage >= 2 && (
             <SlideItem delay={0}>
-              дивитися в термінал як клод працює -{' '}
+              дивитися, як Клод працює в терміналі —{' '}
               <Emphasis color="orange">втрата продуктивності і грошей</Emphasis>
             </SlideItem>
           )}
 
           {revealStage >= 3 && (
             <SlideItem delay={0}>
-              знайдіть 2-3 задачі, які можна довірити клоду з мінімальним наглядом, а{' '}
-              <Emphasis color="orange">самі переключіться на одну ту саму задачу де необхідна вся ваша увага</Emphasis>
+              знайдіть 2–3 завдання, які можна довірити Клоду із мінімальним наглядом, а{' '}
+              <Emphasis color="orange">самі переключіться на те завдання, де необхідна вся ваша увага</Emphasis>
             </SlideItem>
           )}
 
           {revealStage >= 4 && (
             <SlideItem delay={0.1}>
-              ну або запустіть клода і{' '}<Emphasis>відпочиньте</Emphasis>
+              ну або запустіть Клода і{' '}<Emphasis>відпочиньте</Emphasis>
             </SlideItem>
           )}
         </div>

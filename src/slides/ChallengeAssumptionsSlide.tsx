@@ -3,10 +3,10 @@ import { SlideDefinition } from '../types/slides';
 import { SlideItem, Emphasis } from '../components/SlideElements';
 
 const QUESTIONS: ReactNode[] = [
-  <>якщо ми релізимо фічі в 10 разів швидше - чи встигатимемо ми так само швидко <Emphasis color="orange">приймати рішення</Emphasis>?</>,
-  <>чи потрібно тижні писати і обговорювати дизайн-доки, якщо <Emphasis color="green">прототип</Emphasis> можна запустити швидше, ніж пишеться документ про нього?</>,
-  <>чи можемо обміняти частину <Emphasis color="green">стандартів аптайму</Emphasis> на швидкість розробки?</>,
-  <>чи варто оцінювати <Emphasis color="orange">AI-кодінг скіли</Emphasis> на технічних інтерв'ю?</>
+  <>якщо ми релізимо фічі у 10 разів швидше — чи встигатимемо ми так само швидко <Emphasis color="orange">ухвалювати рішення</Emphasis>?</>,
+  <>чи потрібно тижнями писати й обговорювати дизайн-доки, якщо <Emphasis color="green">прототип</Emphasis> можна запустити швидше, ніж пишеться документ про нього?</>,
+  <>чи можемо ми обміняти частину <Emphasis color="green">стандартів аптайму</Emphasis> на швидкість розробки?</>,
+  <>чи варто оцінювати <Emphasis color="orange">AI-кодинг скіли</Emphasis> на технічних інтерв'ю?</>
 ];
 
 export const ChallengeAssumptionsSlide: SlideDefinition = {

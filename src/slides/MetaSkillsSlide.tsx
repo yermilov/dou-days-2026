@@ -11,14 +11,14 @@ const SKILL_MD_URL =
 // Set 1 = the meta-skill thesis + how to author one (full-width, no panel).
 // Set 2 = the prebuilt-vs-custom counterpoint + the live SKILL.md panel.
 const FIRST_SET: ReactNode[] = [
-  <>найважливіший скіл у вашому маркетплейсі - це <Emphasis color="orange">скіл, що створює скіли</Emphasis></>,
+  <>найважливіший скіл у вашому маркетплейсі — це <Emphasis color="orange">скіл, що створює скіли</Emphasis></>,
   <>від його якості залежить якість <Emphasis color="orange">усіх</Emphasis> скілів у вашому маркетплейсі</>,
-  <>змусьте клод прочитати <SlideLink href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices">https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices</SlideLink> як відправну точку</>,
+  <>змусьте Клода прочитати <SlideLink href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices">https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices</SlideLink> як відправну точку</>,
 ];
 
 const SECOND_SET: ReactNode[] = [
   <>або просто візьміть <Emphasis color="green">готовий</Emphasis> skill-creator від Anthropic: <SlideLink href="https://github.com/anthropics/claude-plugins-official/tree/main/plugins/skill-creator">https://github.com/anthropics/claude-plugins-official/tree/main/plugins/skill-creator</SlideLink></>,
-  <>ваша наступна проблема - баланс між <Emphasis color="green">готовими</Emphasis> скілом на який не треба витрачати час і зусилля та <Emphasis color="orange">кастомними</Emphasis> скілом який може врахувати всю вашу in-house специфіку</>,
+  <>ваша наступна проблема — баланс між <Emphasis color="green">готовим</Emphasis> скілом, на який не треба витрачати час і зусилля, та <Emphasis color="orange">кастомним</Emphasis> скілом, який може врахувати всю вашу in-house специфіку</>,
 ];
 
 function MetaSkillsContent({ revealStage, slideId }: { revealStage: number; slideId: string }) {

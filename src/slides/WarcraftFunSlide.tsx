@@ -97,24 +97,24 @@ function WarcraftFunContent({ revealStage }: { revealStage: number }) {
         <div className="warcraft-fun-bullets">
           {revealStage >= 1 && revealStage < 3 && (
             <SlideItem delay={0.05}>
-              що ви запускали клода з великою задачею, а повернувшись через{' '}
-              <Emphasis color="orange">30 хвилин</Emphasis> дізнавалися що він одразу
-              зупинився на дозволі зробити <Emphasis color="green">grep</Emphasis> по
-              вашому коду?
+              запускаєте Клода з великим завданням, повертаєтеся через{' '}
+              <Emphasis color="orange">30 хвилин</Emphasis> — а він увесь цей час
+              чекав на дозвіл виконати <Emphasis color="green">grep</Emphasis> у
+              вашому коді?
             </SlideItem>
           )}
 
           {revealStage >= 2 && (
             <SlideItem delay={0} reveal>
-              зробіть <Emphasis color="green">скіл</Emphasis> який буде вмикати{' '}
-              <Emphasis color="orange">звук юніта із воркрафта</Emphasis> кожен раз як клод зупиняється
+              зробіть <Emphasis color="green">скіл</Emphasis>, який вмикатиме{' '}
+              <Emphasis color="orange">звук юніта з Warcraft</Emphasis> щоразу, коли Клод зупиняється
             </SlideItem>
           )}
 
           {revealStage >= 3 && (
             <SlideItem delay={0} reveal>
-              але якщо цей скіл буде в <Emphasis color="orange">маркетплейсі</Emphasis>
-              {' '}— готуйтесь до того що ваш офіс буде звучати як{' '}
+              але якщо цей скіл потрапить у <Emphasis color="orange">маркетплейс</Emphasis>
+              {' '}— готуйтеся до того, що ваш офіс звучатиме як{' '}
               <Emphasis color="green">комп'ютерний клуб 2000-х</Emphasis>
             </SlideItem>
           )}

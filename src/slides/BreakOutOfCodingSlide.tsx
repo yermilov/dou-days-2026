@@ -16,10 +16,10 @@ function Prompt({ children }: { children: ReactNode }) {
 }
 
 const LEFT_BULLETS: ReactNode[] = [
-  <>аі агент який генерує код - це дуже дорогий {' '}<Emphasis color="orange">автокомліт</Emphasis></>,
-  <>поставте собі ціль: робити <Emphasis color="green">усе</Emphasis> із середини Claude Code</>,
+  <>AI-агент, який генерує код — це дуже дорогий {' '}<Emphasis color="orange">автокомпліт</Emphasis></>,
+  <>поставте собі ціль: робити <Emphasis color="green">все</Emphasis> за допомогою Claude Code</>,
   <>пріоритизуйте <Emphasis color="green">feedback loops</Emphasis></>,
-  <>встановіть <Emphasis color="green">CLI</Emphasis> (не MCP!) для всього чим користуєтесь</>,
+  <>встановіть <Emphasis color="green">CLI</Emphasis> (не MCP!) для всього, чим користуєтеся</>,
   <>використовуйте <Emphasis color="green">Claude Chrome extension</Emphasis>, коли CLI немає</>,
 ];
 

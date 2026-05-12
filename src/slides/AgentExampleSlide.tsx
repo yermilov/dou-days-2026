@@ -34,7 +34,7 @@ const SECOND_SET: ReactNode[] = [
     , є також непогане від Codex і погане від Copilot;
     а також декілька стартапів (CodeRabbit, Greplit, Graphite);
     але ми зробили <Emphasis color="green">власного агента</Emphasis>
-    {' '}на Claude Code (+Codex) -
+    {' '}на Claude Code (+Codex) —
     {' '}<Emphasis color="orange">як?</Emphasis> і{' '}
     <Emphasis color="orange">чому?</Emphasis>
   </>,

@@ -20,9 +20,9 @@ const TOOLS: Tool[] = [
   { id: 'codex',    name: 'Codex',        logo: openaiLogo,      take: 'класна модель, cli відстає' },
   { id: 'cursor',   name: 'Cursor',       logo: cursorLogo,      take: 'для тих, хто не відпускає IDE' },
   { id: 'amp',      name: 'Amp',          logo: sourcegraphLogo, take: 'цікаво, але навіщо неясно' },
-  { id: 'gemini',   name: 'Gemini CLI',   logo: geminiLogo,      take: 'просто навіщо неясно' },
+  { id: 'gemini',   name: 'Gemini CLI',   logo: geminiLogo,      take: 'загалом неясно навіщо' },
   { id: 'copilot',  name: 'Copilot',      logo: copilotLogo,     take: 'просто погано' },
-  { id: 'lovable',  name: 'Lovable',      logo: lovableLogo,     take: 'для не інженерів' },
+  { id: 'lovable',  name: 'Lovable',      logo: lovableLogo,     take: 'для фахівців не з інжинірингу' },
   { id: 'wildcard', name: '?',            logo: null,            take: '' },
 ];
 

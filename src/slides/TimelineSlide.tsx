@@ -38,11 +38,11 @@ const timelineItems: TimelineItem[] = [
   { anchorDate: new Date(2025, 3),  text: 'але ж це все ще іграшкова технологія, так?', image: aiTechDebt, imageClassName: 'timeline-panel__image--zoom-anim' },
   {
     anchorDate: new Date(2025, 4),
-    text: 'claude code proof of concept with Anthropic',
+    text: 'Claude Code proof of concept with Anthropic',
     bullets: [
       'побачив потенціал і умисно більше не писав жодного рядка коду вручну',
-      'шукав і знайшов свій комфортний ai agentic coding workflow',
-      'пропагував Claude Code у Superhuman: воркшопи, туторіали, 1-1',
+      'шукав і знайшов свій комфортний AI agentic coding workflow',
+      'просував Claude Code у Superhuman: воркшопи, туторіали, 1-1',
       'будував внутрішні інструменти: плагіни, скіли, автономні агенти',
     ],
     image: null,
@@ -66,7 +66,7 @@ export const TimelineSlide: SlideDefinition = {
     return (
       <div className="timeline-slide-v2">
         <h2 className="timeline-title-v2">
-          <span className="text-dim">//</span>{' '}ai-first рікап
+          <span className="text-dim">//</span>{' '}AI-first таймлайн
         </h2>
 
         <div className="timeline-layout">

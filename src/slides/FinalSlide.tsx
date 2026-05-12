@@ -5,14 +5,14 @@ import linkedinQr from '../assets/linkedin-qr.jpeg?url';
 
 const TAKEAWAYS: ReactNode[] = [
   <>почніть із пошуку власного <Emphasis color="green">vibe coding flow</Emphasis></>,
-  <>далі виходьте за межі коду - використовуйте клода для <Emphasis color="orange">всього, що робите</Emphasis>, особливо для закриття feedback loops</>,
-  <>скіли - ваш мультиплікатор для команди; побудуйте <Emphasis color="green">інфраструктуру</Emphasis>, щоб ними було легко ділитися й перевикористовувати</>,
-  <>напівавтономні агенти - наступний рубіж; починайте зі <Emphasis color="orange">спеціалізованих агентів</Emphasis>: тріаж тікетів, код-рев'ю, міграції, …</>,
-  <><Emphasis color="green">люди</Emphasis> - найважливіша частина: AI підсилює команду, а не замінює її</>,
+  <>далі виходьте за межі коду — використовуйте Клода для <Emphasis color="orange">всього, що робите</Emphasis>, особливо для закриття feedback loops</>,
+  <>скіли — ваш мультиплікатор для команди; побудуйте <Emphasis color="green">інфраструктуру</Emphasis>, щоб ними було легко ділитися й перевикористовувати</>,
+  <>напівавтономні агенти — наступний рубіж; починайте зі <Emphasis color="orange">спеціалізованих агентів</Emphasis>: тріажу тікетів, код-рев'ю, міграцій тощо</>,
+  <><Emphasis color="green">люди</Emphasis> — найбільша цінність: AI підсилює команду, а не замінює її</>,
 ];
 
 const LINKEDIN_BULLET: ReactNode = (
-  <>пишіть мені в LinkedIn, я люблю поспілкуватися про АІ</>
+  <>пишіть мені в LinkedIn, я люблю поспілкуватися про AI</>
 );
 
 // One extra reveal stage after the 5 takeaways for the LinkedIn bullet + QR

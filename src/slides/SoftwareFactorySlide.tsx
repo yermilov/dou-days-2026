@@ -21,14 +21,14 @@ export const SoftwareFactorySlide: SlideDefinition = {
             <SlideItem delay={0.05}>
               десятки агентів{' '}
               <Emphasis color="orange">автономно</Emphasis>
-              {' — '}беруть задачі з джири і деплоять в продакшн
+              {' '}беруть завдання з Jira і деплоять у продакшн
             </SlideItem>
 
             {revealStage >= 1 && (
               <SlideItem delay={0}>
                 <Emphasis color="green">gas town</Emphasis>,
                 {' '}<Emphasis color="green">ralph loop</Emphasis>,
-                {' '}ваш внутрішній фреймворк який ви назвали <Emphasis color="green">міньйон</Emphasis>
+                {' '}ваш внутрішній фреймворк, який ви назвали <Emphasis color="green">«міньйон»</Emphasis>
               </SlideItem>
             )}
 
