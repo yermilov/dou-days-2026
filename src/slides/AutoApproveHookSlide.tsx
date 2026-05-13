@@ -9,7 +9,7 @@ if tool.destructiveHint → deny
 # Tier 2: SHA-256 cache (~0ms)
 if cache.has(sha256(tool + cmd)) → cached_decision
 
-# Tier 3: LLM-as-judge with SAFETY_PROMPT (~2-18s)
+# Tier 3: LLM-as-a-judge with SAFETY_PROMPT (~2-18s)
 #   SAFE   | cat, ls, git status, npm test, kubectl get
 #   UNSAFE | rm -rf, terraform apply, sudo, env|SECRET
 verdict = llm.classify(cmd, SAFETY_PROMPT)
@@ -62,7 +62,7 @@ function AutoApproveContent({ revealStage }: { revealStage: number }) {
           {revealStage === 0 && (
             <SlideItem delay={0.05}>
               <Emphasis color="green">хук авто-підтвердження</Emphasis>:
-              {' '}LLM-as-judge класифікує дії Клода
+              {' '}LLM-as-a-judge класифікує дії Клода
               {' '}як <Emphasis color="green">SAFE</Emphasis> (read-only, тести) чи{' '}
               <Emphasis color="orange">UNSAFE</Emphasis> (деструктивне, credentials, інфра),
               {' '}кешуємо всі рішення для швидкості
@@ -72,8 +72,8 @@ function AutoApproveContent({ revealStage }: { revealStage: number }) {
           {revealStage === 1 && (
             <SlideItem delay={0} reveal>
               Anthropic зашипили <Emphasis color="green">--permission-mode auto</Emphasis>
-              {' '}— фоновий Sonnet-класифікатор з тією самою філософією: дозволяй безпечне
-              {' '}локальне, блокуй деструктивне, fail-safe → ручне підтвердження при невпевненості
+              {' '}— фоновий Sonnet-класифікатор із тією самою філософією: дозволяй
+              {' '}безпечні локальні дії, блокуй деструктивні, fail-safe → ручне підтвердження у разі невпевненості
             </SlideItem>
           )}
         </div>

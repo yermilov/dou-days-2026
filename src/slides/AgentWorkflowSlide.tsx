@@ -134,7 +134,7 @@ function AgentWorkflowContent({ revealStage }: { revealStage: number }) {
           {revealStage >= 2 && (
             <SlideItem delay={0} reveal>
               клонуйте свій <Emphasis color="green">маркетплейс скілів</Emphasis>
-              {' '}у контекст SDK — рев'ювер отримує вічно актуальні знання як має бути
+              {' '}у контекст SDK — рев'ювер отримуватиме завжди актуальні знання про те, як має бути
             </SlideItem>
           )}
           {revealStage >= 3 && (

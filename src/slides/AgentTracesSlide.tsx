@@ -25,8 +25,8 @@ const TRACER_CODE = `export async function uploadSession(
 const FIRST_BULLET: ReactNode = (
   <>
     завантажуйте <Code>.jsonl</Code>-лог кожної сесії агента
-    {' '}на <Emphasis color="green">S3</Emphasis>
-    {' '}і <Emphasis color="orange">ви зможете подебажити</Emphasis> як він працює і що можна покращити
+    {' '}в <Emphasis color="green">S3</Emphasis>
+    {' '}— і <Emphasis color="orange">ви зможете дебажити</Emphasis>, як саме він працює та що можна покращити
   </>
 );
 

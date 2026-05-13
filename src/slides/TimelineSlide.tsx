@@ -40,7 +40,7 @@ const timelineItems: TimelineItem[] = [
     anchorDate: new Date(2025, 4),
     text: 'Claude Code proof of concept with Anthropic',
     bullets: [
-      'побачив потенціал і умисно більше не писав жодного рядка коду вручну',
+      'побачив потенціал і свідомо більше не писав жодного рядка коду вручну',
       'шукав і знайшов свій комфортний AI agentic coding workflow',
       'просував Claude Code у Superhuman: воркшопи, туторіали, 1-1',
       'будував внутрішні інструменти: плагіни, скіли, автономні агенти',

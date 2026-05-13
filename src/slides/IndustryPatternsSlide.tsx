@@ -9,7 +9,7 @@ import statusIncidentsFallback from '../assets/status-incidents.json';
 const bullets = [
   <>Anthropic релізить нову Claude Code/Desktop фічу <Emphasis color="orange">майже щодня</Emphasis></>,
   <>ці фічі, звісно, часто недополіровані, але команда отримує миттєвий <Emphasis color="green">вайб-чек</Emphasis> замість довгих A/B-тестів і UX-досліджень; що не зайшло користувачам — так само легко видаляється</>,
-  <>ціна — часті outages та баги в продакшені, але парадоксально це практично <Emphasis color="orange">не шкодить</Emphasis> сприйняттю компанії з боку користувачів і інвесторів</>,
+  <>ціна — часті outages та баги в продакшені, але парадоксально, що це <Emphasis color="orange">майже не шкодить</Emphasis> сприйняттю компанії з боку користувачів та інвесторів</>,
 ];
 
 // --- types ---

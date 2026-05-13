@@ -53,7 +53,7 @@ export const BioSlide: SlideDefinition = {
           <span className="text-dim">//</span>{' '}хто я
         </h2>
 
-        <p className="bio-body__subtitle">9 років у Superhuman (раніше відомої як Grammarly)</p>
+        <p className="bio-body__subtitle">9 років у компанії Superhuman (раніше відомої як Grammarly)</p>
 
         <div className="bio-body__items">
           {BIO_ITEMS.map((item, i) =>
