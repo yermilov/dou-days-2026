@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { SlideDefinition } from '../types/slides';
+import { useLang } from '../context/LanguageContext';
+import { tr } from '../context/LanguageContext';
 import agendaEngineerImg from '../assets/agenda-engineer.png?url';
 
 const VIEWPORT_BG = `linear-gradient(180deg,
@@ -9,6 +11,7 @@ const VIEWPORT_BG = `linear-gradient(180deg,
   url(${agendaEngineerImg}) center/cover no-repeat var(--dou-near-black)`;
 
 function EngineerSectionContent() {
+  const lang = useLang();
   useEffect(() => {
     const vp = document.querySelector<HTMLElement>('.stage-viewport');
     if (!vp) return;
@@ -43,11 +46,11 @@ function EngineerSectionContent() {
       >
         <span style={{ display: 'block' }}>
           <span className="text-dim">//</span>{' '}
-          <span className="text-green">декілька порад щодо</span>
+          <span className="text-green">{tr(lang, 'декілька порад щодо', 'a few tips on')}</span>
         </span>
         <span style={{ display: 'block' }}>
           <span className="text-dim">//</span>{' '}
-          <span className="text-orange">персональної продуктивності</span>
+          <span className="text-orange">{tr(lang, 'персональної продуктивності', 'personal productivity')}</span>
         </span>
       </h2>
     </>

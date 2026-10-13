@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { SlideDefinition } from '../types/slides';
+import { tr } from '../context/LanguageContext';
 import { SlideItem, Emphasis } from '../components/SlideElements';
 
 function Prompt({ children }: { children: ReactNode }) {
@@ -15,13 +16,23 @@ function Prompt({ children }: { children: ReactNode }) {
   );
 }
 
-const LEFT_BULLETS: ReactNode[] = [
+const LEFT_BULLETS_UK: ReactNode[] = [
   <>AI-агент, який генерує код — це дуже дорогий {' '}<Emphasis color="orange">автокомпліт</Emphasis></>,
   <>поставте собі ціль: робити <Emphasis color="green">все</Emphasis> за допомогою Claude Code</>,
   <>пріоритизуйте <Emphasis color="green">feedback loops</Emphasis></>,
   <>встановіть <Emphasis color="green">CLI</Emphasis> (не MCP!) для всього, чим користуєтеся</>,
   <>використовуйте <Emphasis color="green">Claude Chrome extension</Emphasis>, коли CLI немає</>,
 ];
+
+const LEFT_BULLETS_EN: ReactNode[] = [
+  <>an AI agent that generates code is a very expensive{' '}<Emphasis color="orange">autocomplete</Emphasis></>,
+  <>set yourself a goal: do <Emphasis color="green">everything</Emphasis> with Claude Code</>,
+  <>prioritize <Emphasis color="green">feedback loops</Emphasis></>,
+  <>install a <Emphasis color="green">CLI</Emphasis> (not MCP!) for everything you use</>,
+  <>use the <Emphasis color="green">Claude Chrome extension</Emphasis> when there's no CLI</>,
+];
+
+const LEFT_BULLETS_COUNT = LEFT_BULLETS_UK.length;
 
 const PROMPTS: ReactNode[] = [
   <Prompt>hey claude, open github in chrome and generate ssh key for me</Prompt>,
@@ -31,12 +42,12 @@ const PROMPTS: ReactNode[] = [
 
 export const BreakOutOfCodingSlide: SlideDefinition = {
   id: 'break-out-of-coding',
-  content: ({ revealStage }) => (
+  content: ({ revealStage, lang }) => (
     <>
       <h2 className="title--break-out-of-coding">
         <span className="text-dim">//</span>{' '}
-        <span className="text-green">не тільки</span>{' '}
-        <span className="text-orange">кодинг</span>
+        <span className="text-green">{tr(lang, 'не тільки', 'not just')}</span>{' '}
+        <span className="text-orange">{tr(lang, 'кодинг', 'coding')}</span>
       </h2>
 
       <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
@@ -50,7 +61,7 @@ export const BreakOutOfCodingSlide: SlideDefinition = {
             textAlign: 'left',
           }}
         >
-          {LEFT_BULLETS.map((bullet, i) =>
+          {tr(lang, LEFT_BULLETS_UK, LEFT_BULLETS_EN).map((bullet, i) =>
             revealStage >= i ? (
               <SlideItem key={i} delay={i === 0 ? 0.05 : 0}>{bullet}</SlideItem>
             ) : null,
@@ -68,7 +79,7 @@ export const BreakOutOfCodingSlide: SlideDefinition = {
           }}
         >
           {PROMPTS.map((prompt, i) =>
-            revealStage >= LEFT_BULLETS.length + i ? (
+            revealStage >= LEFT_BULLETS_COUNT + i ? (
               <SlideItem key={i} delay={0}>{prompt}</SlideItem>
             ) : null,
           )}
@@ -76,7 +87,7 @@ export const BreakOutOfCodingSlide: SlideDefinition = {
       </div>
     </>
   ),
-  maxRevealStages: LEFT_BULLETS.length + PROMPTS.length - 1,
+  maxRevealStages: LEFT_BULLETS_COUNT + PROMPTS.length - 1,
   notes:
     'Один пункт на reveal. Ліва колонка: кодинг — це автозаповнення; ціль — робити все з Claude Code; feedback loops; CLI замість MCP; Chrome extension як escape hatch. Права колонка: конкретні приклади промптів через стадії SDLC.',
 };

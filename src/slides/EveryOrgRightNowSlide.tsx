@@ -1,6 +1,7 @@
 import { SlideDefinition } from '../types/slides';
 import { SlideItem } from '../components/SlideElements';
-import { ORG_SECTIONS } from './orgArchetypes';
+import { tr, useLang } from '../context/LanguageContext';
+import { ORG_SECTIONS, orgSections } from './orgArchetypes';
 
 // Bell curve helpers
 function buildCurvePoints(W: number, H: number, padTop: number, mu: number, sigma: number): string {
@@ -32,6 +33,8 @@ function buildOutlinePath(W: number, H: number, padTop: number, mu: number, sigm
 }
 
 function EveryOrgContent({ revealStage }: { revealStage: number }) {
+  const lang = useLang();
+  const sections = orgSections(lang);
   const W = 700;
   const H = 500;
   const padTop = 10;
@@ -40,10 +43,10 @@ function EveryOrgContent({ revealStage }: { revealStage: number }) {
 
   const path = buildCurvePoints(W, H, padTop, mu, sigma);
   const outlinePath = buildOutlinePath(W, H, padTop, mu, sigma);
-  const boundaries = ORG_SECTIONS.slice(1).map(s => s.x1Pct * W);
+  const boundaries = sections.slice(1).map(s => s.x1Pct * W);
 
-  const activeIdx = revealStage > 0 ? ORG_SECTIONS.length - revealStage : -1;
-  const activeSection = ORG_SECTIONS[activeIdx];
+  const activeIdx = revealStage > 0 ? sections.length - revealStage : -1;
+  const activeSection = sections[activeIdx];
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', gap: '0.8rem', marginRight: '-80px' }}>
@@ -52,8 +55,8 @@ function EveryOrgContent({ revealStage }: { revealStage: number }) {
       `}</style>
       <h2>
         <span className="text-dim">//</span>{' '}
-        <span className="text-green">тепер давайте поговоримо про</span>{' '}
-        <span className="text-orange">команди і організації</span>
+        <span className="text-green">{tr(lang, 'тепер давайте поговоримо про', "now let's talk about")}</span>{' '}
+        <span className="text-orange">{tr(lang, 'команди і організації', 'teams and organizations')}</span>
       </h2>
 
       <div style={{ display: 'flex', flex: 1, gap: '2rem', alignItems: 'center', minHeight: 0 }}>
@@ -101,7 +104,7 @@ function EveryOrgContent({ revealStage }: { revealStage: number }) {
             xmlns="http://www.w3.org/2000/svg"
           >
             <defs>
-              {ORG_SECTIONS.map((s, i) => (
+              {sections.map((s, i) => (
                 <clipPath key={i} id={`clip-eo${i}`}>
                   <rect x={s.x1Pct * W} y={0} width={(s.x2Pct - s.x1Pct) * W} height={H + 10} />
                 </clipPath>
@@ -109,7 +112,7 @@ function EveryOrgContent({ revealStage }: { revealStage: number }) {
             </defs>
 
             {/* Section fills — only active one is bright */}
-            {ORG_SECTIONS.map((s, i) => {
+            {sections.map((s, i) => {
               const isActive = i === activeIdx;
               return (
                 <path

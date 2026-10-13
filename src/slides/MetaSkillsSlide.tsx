@@ -1,5 +1,6 @@
 import { useState, useEffect, ReactNode } from 'react';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
+import { T } from '../context/LanguageContext';
 import { SlideItem, Emphasis, SlideLink } from '../components/SlideElements';
 import { exportRegistry } from '../components/exportRegistry';
 import skillMdFallback from '../assets/skill-creator-skill.md?raw';
@@ -11,14 +12,29 @@ const SKILL_MD_URL =
 // Set 1 = the meta-skill thesis + how to author one (full-width, no panel).
 // Set 2 = the prebuilt-vs-custom counterpoint + the live SKILL.md panel.
 const FIRST_SET: ReactNode[] = [
-  <>найважливіший скіл у вашому маркетплейсі — це <Emphasis color="orange">скіл, що створює скіли</Emphasis></>,
-  <>від його якості залежить якість <Emphasis color="orange">усіх</Emphasis> скілів у вашому маркетплейсі</>,
-  <>змусьте Клода прочитати <SlideLink href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices">https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices</SlideLink> як відправну точку</>,
+  <T
+    uk={<>найважливіший скіл у вашому маркетплейсі — це <Emphasis color="orange">скіл, що створює скіли</Emphasis></>}
+    en={<>the most important skill in your marketplace is the <Emphasis color="orange">skill that creates skills</Emphasis></>}
+  />,
+  <T
+    uk={<>від його якості залежить якість <Emphasis color="orange">усіх</Emphasis> скілів у вашому маркетплейсі</>}
+    en={<>its quality defines the quality of <Emphasis color="orange">every</Emphasis> skill in your marketplace</>}
+  />,
+  <T
+    uk={<>змусьте Клода прочитати <SlideLink href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices">https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices</SlideLink> як відправну точку</>}
+    en={<>make Claude read <SlideLink href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices">https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices</SlideLink> as a starting point</>}
+  />,
 ];
 
 const SECOND_SET: ReactNode[] = [
-  <>або просто візьміть <Emphasis color="green">готовий</Emphasis> skill-creator від Anthropic: <SlideLink href="https://github.com/anthropics/claude-plugins-official/tree/main/plugins/skill-creator">https://github.com/anthropics/claude-plugins-official/tree/main/plugins/skill-creator</SlideLink></>,
-  <>ваша наступна проблема — баланс між <Emphasis color="green">готовим</Emphasis> скілом, на який не треба витрачати час і зусилля, та <Emphasis color="orange">кастомним</Emphasis> скілом, який може врахувати всю вашу in-house специфіку</>,
+  <T
+    uk={<>або просто візьміть <Emphasis color="green">готовий</Emphasis> skill-creator від Anthropic: <SlideLink href="https://github.com/anthropics/claude-plugins-official/tree/main/plugins/skill-creator">https://github.com/anthropics/claude-plugins-official/tree/main/plugins/skill-creator</SlideLink></>}
+    en={<>or just grab Anthropic's <Emphasis color="green">ready-made</Emphasis> skill-creator: <SlideLink href="https://github.com/anthropics/claude-plugins-official/tree/main/plugins/skill-creator">https://github.com/anthropics/claude-plugins-official/tree/main/plugins/skill-creator</SlideLink></>}
+  />,
+  <T
+    uk={<>ваша наступна проблема — баланс між <Emphasis color="green">готовим</Emphasis> скілом, на який не треба витрачати час і зусилля, та <Emphasis color="orange">кастомним</Emphasis> скілом, який може врахувати всю вашу in-house специфіку</>}
+    en={<>your next problem is balancing a <Emphasis color="green">ready-made</Emphasis> skill that costs no time or effort against a <Emphasis color="orange">custom</Emphasis> skill that can capture all your in-house specifics</>}
+  />,
 ];
 
 function MetaSkillsContent({ revealStage, slideId }: { revealStage: number; slideId: string }) {
@@ -52,8 +68,8 @@ function MetaSkillsContent({ revealStage, slideId }: { revealStage: number; slid
     <>
       <h2>
         <span className="text-dim">//</span>{' '}
-        <span className="text-green">мета</span>{' '}
-        <span className="text-orange">скіл</span>
+        <span className="text-green"><T uk="мета" en="meta" /></span>{' '}
+        <span className="text-orange"><T uk="скіл" en="skill" /></span>
       </h2>
 
       <div

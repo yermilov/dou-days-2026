@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { SlideDefinition } from '../types/slides';
+import { tr, type Lang } from '../context/LanguageContext';
 import agendaOrgImg from '../assets/agenda-org.png?url';
 
 const VIEWPORT_BG = `linear-gradient(180deg,
@@ -8,7 +9,7 @@ const VIEWPORT_BG = `linear-gradient(180deg,
     transparent 50%),
   url(${agendaOrgImg}) center/cover no-repeat var(--dou-near-black)`;
 
-function OrgSectionContent() {
+function OrgSectionContent({ lang }: { lang: Lang }) {
   useEffect(() => {
     const vp = document.querySelector<HTMLElement>('.stage-viewport');
     if (!vp) return;
@@ -43,7 +44,7 @@ function OrgSectionContent() {
       >
         <span className="text-dim">//</span>{' '}
         <span className="text-green">AI-first</span>{' '}
-        <span className="text-orange">організації</span>
+        <span className="text-orange">{tr(lang, 'організації', 'organizations')}</span>
       </h2>
     </>
   );
@@ -52,5 +53,5 @@ function OrgSectionContent() {
 export const OrgSectionSlide: SlideDefinition = {
   id: 'org-section',
   background: VIEWPORT_BG,
-  content: () => <OrgSectionContent />,
+  content: ({ lang }) => <OrgSectionContent lang={lang} />,
 };

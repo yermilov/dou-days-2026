@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import type { Lang } from '../context/LanguageContext';
 
 export interface SlideContentProps {
   revealStage: number;
@@ -6,6 +7,8 @@ export interface SlideContentProps {
   activatedTools: Set<string>;
   /** Slide id, threaded so async slides can call exportRegistry.markSlideSettled. */
   slideId: string;
+  /** Active deck language, switched via the `english` / `ukrainian` commands. */
+  lang: Lang;
 }
 
 export type HeroVariant = 'title' | 'speaker';

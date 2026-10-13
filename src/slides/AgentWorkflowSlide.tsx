@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
+import { tr, type Lang } from '../context/LanguageContext';
 import { SlideItem, Emphasis } from '../components/SlideElements';
 import { CodeBlock } from '../components/CodeBlock';
 import yakImage from '../assets/yak.jpg?url';
@@ -96,7 +97,7 @@ function panelFor(revealStage: number): PanelVariant | null {
   return null;
 }
 
-function AgentWorkflowContent({ revealStage }: { revealStage: number }) {
+function AgentWorkflowContent({ revealStage, lang }: { revealStage: number; lang: Lang }) {
   const panel = panelFor(revealStage);
 
   // Track the previous revealStage so we only fire the yak flash on the
@@ -119,7 +120,7 @@ function AgentWorkflowContent({ revealStage }: { revealStage: number }) {
     <>
       <h2>
         <span className="text-dim">//</span>{' '}
-        <span className="text-green">як?</span>
+        <span className="text-green">{tr(lang, 'як?', 'how?')}</span>
       </h2>
 
       <div className="agent-workflow-body">
@@ -128,25 +129,41 @@ function AgentWorkflowContent({ revealStage }: { revealStage: number }) {
           {revealStage >= 1 && (
             <SlideItem delay={0} reveal>
               <Emphasis color="orange">Claude Agent SDK</Emphasis>
-              {' '}— TypeScript-обгортка над Claude Code CLI
+              {tr(lang, ' — TypeScript-обгортка над Claude Code CLI', ' — a TypeScript wrapper around the Claude Code CLI')}
             </SlideItem>
           )}
           {revealStage >= 2 && (
             <SlideItem delay={0} reveal>
-              клонуйте свій <Emphasis color="green">маркетплейс скілів</Emphasis>
-              {' '}у контекст SDK — рев'ювер отримуватиме завжди актуальні знання про те, як має бути
+              {tr(lang,
+                <>
+                  клонуйте свій <Emphasis color="green">маркетплейс скілів</Emphasis>
+                  {' '}у контекст SDK — рев'ювер отримуватиме завжди актуальні знання про те, як має бути
+                </>,
+                <>
+                  clone your <Emphasis color="green">skills marketplace</Emphasis>
+                  {' '}into the SDK context — the reviewer always gets up-to-date knowledge of how things should be
+                </>,
+              )}
             </SlideItem>
           )}
           {revealStage >= 3 && (
             <SlideItem delay={0} reveal>
-              <Emphasis color="orange">змішане детерміністичне/агентне виконання</Emphasis>:
-              {' '}звичайні скрипти кличуть Claude SDK лише для недетермінованої роботи
+              {tr(lang,
+                <>
+                  <Emphasis color="orange">змішане детерміністичне/агентне виконання</Emphasis>:
+                  {' '}звичайні скрипти кличуть Claude SDK лише для недетермінованої роботи
+                </>,
+                <>
+                  <Emphasis color="orange">mixed deterministic/agentic execution</Emphasis>:
+                  {' '}plain scripts call the Claude SDK only for non-deterministic work
+                </>,
+              )}
             </SlideItem>
           )}
           {revealStage >= 4 && (
             <SlideItem delay={0} reveal>
-              <Emphasis color="green">structured output</Emphasis> для комунікації
-              {' '}між детермінованим кодом та LLM
+              <Emphasis color="green">structured output</Emphasis>
+              {tr(lang, ' для комунікації між детермінованим кодом та LLM', ' for communication between deterministic code and the LLM')}
             </SlideItem>
           )}
         </div>
@@ -199,7 +216,7 @@ function AgentWorkflowContent({ revealStage }: { revealStage: number }) {
 export const AgentWorkflowSlide: SlideDefinition = {
   id: 'agent-workflow',
   maxRevealStages: 4,
-  content: ({ revealStage }: SlideContentProps) => <AgentWorkflowContent revealStage={revealStage} />,
+  content: ({ revealStage, lang }: SlideContentProps) => <AgentWorkflowContent revealStage={revealStage} lang={lang} />,
   notes:
     'Структурний blueprint побудови агентів. Stage 0: середовище виконання (локально → CI → K8s). Stage 1: Claude Agent SDK як рантайм. Stage 2: клонування маркетплейсу скілів у контекст SDK. Stage 3: змішане детерміністичне/агентне виконання. Stage 4: Structured Output для рішень + код для сайд-ефектів. Ключова теза: детермінізм на межах, агентність всередині.',
 };

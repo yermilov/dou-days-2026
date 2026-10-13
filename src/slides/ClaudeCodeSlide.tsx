@@ -2,6 +2,7 @@ import { ReactNode, useEffect } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
 import { SlideItem } from '../components/SlideElements';
+import { tr, useLang } from '../context/LanguageContext';
 
 const REPO_URL = 'https://github.com/yermilov/dou-days-2026';
 
@@ -104,6 +105,7 @@ const SCOPED_STYLES = `
 `;
 
 function ClaudeCodeContent({ revealStage }: { revealStage: number }) {
+  const lang = useLang();
   // Toggle the "no-design-system" class on the stage viewport while the
   // user hasn't yet revealed the "copy the dou day template" prompt.
   const dsApplied = revealStage >= DS_REVEAL_STAGE;
@@ -127,7 +129,7 @@ function ClaudeCodeContent({ revealStage }: { revealStage: number }) {
       <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
         <h2>
           <span className="text-dim">//</span>{' '}
-          <span className="text-green">ну наприклад</span>
+          <span className="text-green">{tr(lang, 'ну наприклад', 'for example')}</span>
         </h2>
 
         <div style={{ flex: 1, display: 'flex', gap: '1.5rem', alignItems: 'center', minHeight: 0 }}>
@@ -135,7 +137,7 @@ function ClaudeCodeContent({ revealStage }: { revealStage: number }) {
         {/* ── Left column: thesis + evidence list ── */}
         <div className="cc-bullets" style={{ flex: '0 0 48%', display: 'flex', flexDirection: 'column', gap: '0.4rem', textAlign: 'left' }}>
           <SlideItem delay={0.05}>
-            цю презентацію повністю створено у Claude Code
+            {tr(lang, 'цю презентацію повністю створено у Claude Code', 'this presentation was built entirely in Claude Code')}
           </SlideItem>
 
           <div

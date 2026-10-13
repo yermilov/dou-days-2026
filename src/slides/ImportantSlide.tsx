@@ -1,15 +1,16 @@
 import { SlideDefinition } from '../types/slides';
 import { Emphasis, SlideItem } from '../components/SlideElements';
 import { PacManCanvas } from '../components/pacman/PacManCanvas';
+import { tr } from '../context/LanguageContext';
 
 export const ImportantSlide: SlideDefinition = {
   id: 'important',
-  content: ({ revealStage }) => (
+  content: ({ revealStage, lang }) => (
     <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: '100%' }}>
       <h2>
         <span className="text-dim">//</span>{' '}
-        <span className="text-green">ще одна</span>{' '}
-        <span className="text-orange">порада</span>
+        <span className="text-green">{tr(lang, 'ще одна', 'one more')}</span>{' '}
+        <span className="text-orange">{tr(lang, 'порада', 'tip')}</span>
       </h2>
 
       <div
@@ -32,35 +33,76 @@ export const ImportantSlide: SlideDefinition = {
           }}
         >
           <SlideItem delay={0.05}>
-            Claude Code збільшує <Emphasis>об'єм</Emphasis> роботи, не{' '}
-            <Emphasis color="orange">швидкість</Emphasis>
+            {tr(
+              lang,
+              <>
+                Claude Code збільшує <Emphasis>об'єм</Emphasis> роботи, не{' '}
+                <Emphasis color="orange">швидкість</Emphasis>
+              </>,
+              <>
+                Claude Code increases the <Emphasis>volume</Emphasis> of work, not the{' '}
+                <Emphasis color="orange">speed</Emphasis>
+              </>,
+            )}
           </SlideItem>
 
           {revealStage >= 1 && (
             <SlideItem delay={0.07}>
-              самостійно ви напишете код або{' '}
-              <Emphasis color="orange">краще</Emphasis>, або{' '}
-              <Emphasis color="orange">швидше</Emphasis>
+              {tr(
+                lang,
+                <>
+                  самостійно ви напишете код або{' '}
+                  <Emphasis color="orange">краще</Emphasis>, або{' '}
+                  <Emphasis color="orange">швидше</Emphasis>
+                </>,
+                <>
+                  on your own, you'll write code either{' '}
+                  <Emphasis color="orange">better</Emphasis> or{' '}
+                  <Emphasis color="orange">faster</Emphasis>
+                </>,
+              )}
             </SlideItem>
           )}
 
           {revealStage >= 2 && (
             <SlideItem delay={0}>
-              дивитися, як Клод працює в терміналі —{' '}
-              <Emphasis color="orange">втрата продуктивності і грошей</Emphasis>
+              {tr(
+                lang,
+                <>
+                  дивитися, як Клод працює в терміналі —{' '}
+                  <Emphasis color="orange">втрата продуктивності і грошей</Emphasis>
+                </>,
+                <>
+                  watching Claude work in the terminal is a{' '}
+                  <Emphasis color="orange">waste of productivity and money</Emphasis>
+                </>,
+              )}
             </SlideItem>
           )}
 
           {revealStage >= 3 && (
             <SlideItem delay={0}>
-              знайдіть 2–3 завдання, які можна довірити Клоду із мінімальним наглядом, а{' '}
-              <Emphasis color="orange">самі переключіться на те завдання, де необхідна вся ваша увага</Emphasis>
+              {tr(
+                lang,
+                <>
+                  знайдіть 2–3 завдання, які можна довірити Клоду із мінімальним наглядом, а{' '}
+                  <Emphasis color="orange">самі переключіться на те завдання, де необхідна вся ваша увага</Emphasis>
+                </>,
+                <>
+                  find 2–3 tasks you can trust Claude with under minimal supervision, and{' '}
+                  <Emphasis color="orange">switch yourself to the task that needs your full attention</Emphasis>
+                </>,
+              )}
             </SlideItem>
           )}
 
           {revealStage >= 4 && (
             <SlideItem delay={0.1}>
-              ну або запустіть Клода і{' '}<Emphasis>відпочиньте</Emphasis>
+              {tr(
+                lang,
+                <>ну або запустіть Клода і{' '}<Emphasis>відпочиньте</Emphasis></>,
+                <>or just launch Claude and{' '}<Emphasis>take a break</Emphasis></>,
+              )}
             </SlideItem>
           )}
         </div>

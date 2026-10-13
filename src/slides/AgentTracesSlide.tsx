@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
+import { tr, type Lang } from '../context/LanguageContext';
 import { SlideItem, Emphasis, SlideLink, Code } from '../components/SlideElements';
 import { CodeBlock } from '../components/CodeBlock';
 
@@ -22,16 +23,26 @@ const TRACER_CODE = `export async function uploadSession(
 }`;
 
 // Phase 0: one thesis bullet + the uploader code panel.
-const FIRST_BULLET: ReactNode = (
+const FIRST_BULLET: Record<Lang, ReactNode> = {
+  uk: (
   <>
     завантажуйте <Code>.jsonl</Code>-лог кожної сесії агента
     {' '}в <Emphasis color="green">S3</Emphasis>
     {' '}— і <Emphasis color="orange">ви зможете дебажити</Emphasis>, як саме він працює та що можна покращити
   </>
-);
+  ),
+  en: (
+  <>
+    upload the <Code>.jsonl</Code> log of every agent session
+    {' '}to <Emphasis color="green">S3</Emphasis>
+    {' '}— and <Emphasis color="orange">you'll be able to debug</Emphasis> how exactly it works and what can be improved
+  </>
+  ),
+};
 
 // Phase 1 (stages 1..3): three bullets reveal one-by-one, no right column.
-const SECOND_SET: ReactNode[] = [
+const SECOND_SET: Record<Lang, ReactNode[]> = {
+  uk: [
   <>
     <Emphasis color="orange">СТОП, ПОПАЛИСЬ!</Emphasis>
     {' '}не робіть нічого вручну: напишіть <Emphasis color="green">скіл</Emphasis>,
@@ -49,9 +60,29 @@ const SECOND_SET: ReactNode[] = [
     {' '}а також напівавтоматично створювати чи оновлювати скіли
     {' '}на основі їхнього аналізу
   </>,
-];
+  ],
+  en: [
+  <>
+    <Emphasis color="orange">STOP, GOTCHA!</Emphasis>
+    {' '}don't do anything by hand: write a <Emphasis color="green">skill</Emphasis>
+    {' '}that pulls session samples, analyzes them and suggests improvements
+    {' '}to your skills and agent instructions
+  </>,
+  <>
+    people sharing their own sessions is even more valuable — it lays the foundation for{' '}
+    <Emphasis color="orange">team memory</Emphasis>;
+    {' '}you can reuse the same infrastructure or try{' '}
+    <SlideLink href="https://entire.io">entire.io</SlideLink>
+  </>,
+  <>
+    now agents can <Emphasis color="green">review people's sessions</Emphasis>,
+    {' '}and semi-automatically create or update skills
+    {' '}based on that analysis
+  </>,
+  ],
+};
 
-function AgentTracesContent({ revealStage }: { revealStage: number }) {
+function AgentTracesContent({ revealStage, lang }: { revealStage: number; lang: Lang }) {
   const setIndex = revealStage === 0 ? 0 : 1;
   const visibleCount = setIndex === 1 ? revealStage : 0;
 
@@ -59,8 +90,8 @@ function AgentTracesContent({ revealStage }: { revealStage: number }) {
     <>
       <h2>
         <span className="text-dim">//</span>{' '}
-        <span className="text-green">зберігайте</span>{' '}
-        <span className="text-orange">квитанції</span>
+        <span className="text-green">{tr(lang, 'зберігайте', 'keep')}</span>{' '}
+        <span className="text-orange">{tr(lang, 'квитанції', 'the receipts')}</span>
       </h2>
 
       <div
@@ -88,9 +119,9 @@ function AgentTracesContent({ revealStage }: { revealStage: number }) {
           }}
         >
           {setIndex === 0 ? (
-            <SlideItem delay={0.05}>{FIRST_BULLET}</SlideItem>
+            <SlideItem delay={0.05}>{FIRST_BULLET[lang]}</SlideItem>
           ) : (
-            SECOND_SET.slice(0, visibleCount).map((bullet, i) => (
+            SECOND_SET[lang].slice(0, visibleCount).map((bullet, i) => (
               <SlideItem key={i} delay={i === 0 ? 0.05 : 0}>{bullet}</SlideItem>
             ))
           )}
@@ -100,7 +131,7 @@ function AgentTracesContent({ revealStage }: { revealStage: number }) {
         {setIndex === 0 && (
           <div className="agent-traces-panel">
             <div className="agent-traces-panel__chrome agent-traces-panel__chrome--top">
-              ░░░ vibes.ts — завантажувач сесій агентів ░░░
+              ░░░ vibes.ts — {tr(lang, 'завантажувач сесій агентів', 'agent session uploader')} ░░░
             </div>
             <div className="agent-traces-panel__viewport">
               <CodeBlock language="typescript" code={TRACER_CODE} />
@@ -117,9 +148,9 @@ function AgentTracesContent({ revealStage }: { revealStage: number }) {
 
 export const AgentTracesSlide: SlideDefinition = {
   id: 'agent-traces',
-  maxRevealStages: SECOND_SET.length,
+  maxRevealStages: SECOND_SET.uk.length,
   initialRevealStage: 0,
-  content: ({ revealStage }: SlideContentProps) => <AgentTracesContent revealStage={revealStage} />,
+  content: ({ revealStage, lang }: SlideContentProps) => <AgentTracesContent revealStage={revealStage} lang={lang} />,
   notes:
     'Треси агентів — observability для автономної роботи. Phase 0 (stage 0): теза "завантажуйте .jsonl кожної сесії на S3" + компактний uploadSession TS-сніпет. Phase 1 (stages 1–3, по одному булету, без правої панелі): "СТОП, ПОПАЛИСЬ — напишіть скіл-аналізатор" → "людям шарити свої сесії ще цінніше — entire.io" → "агенти рев\'юють людські сесії і напів-автоматично оновлюють скіли".',
 };

@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
+import { T } from '../context/LanguageContext';
 import { SlideItem, Emphasis } from '../components/SlideElements';
 import warcraftComplete from '../assets/warcraft-complete.wav?url';
 import warcraftYes from '../assets/warcraft-yes.wav?url';
@@ -89,7 +90,7 @@ function WarcraftFunContent({ revealStage }: { revealStage: number }) {
       `}</style>
       <h2>
         <span className="text-dim">//</span>{' '}
-        <span className="text-green">а бувало у вас таке</span>
+        <span className="text-green"><T uk="а бувало у вас таке" en="has this ever happened to you" /></span>
       </h2>
 
       <div className="warcraft-fun-body">
@@ -97,25 +98,40 @@ function WarcraftFunContent({ revealStage }: { revealStage: number }) {
         <div className="warcraft-fun-bullets">
           {revealStage >= 1 && revealStage < 3 && (
             <SlideItem delay={0.05}>
-              запускаєте Клода з великим завданням, повертаєтеся через{' '}
+              <T
+                uk={<>запускаєте Клода з великим завданням, повертаєтеся через{' '}
               <Emphasis color="orange">30 хвилин</Emphasis> — а він увесь цей час
               чекав на дозвіл виконати <Emphasis color="green">grep</Emphasis> у
-              вашому коді?
+              вашому коді?</>}
+                en={<>you kick off Claude on a big task, come back{' '}
+              <Emphasis color="orange">30 minutes</Emphasis> later — and it's been
+              waiting all along for permission to run <Emphasis color="green">grep</Emphasis> on
+              your code?</>}
+              />
             </SlideItem>
           )}
 
           {revealStage >= 2 && (
             <SlideItem delay={0} reveal>
-              зробіть <Emphasis color="green">скіл</Emphasis>, який вмикатиме{' '}
-              <Emphasis color="orange">звук юніта з Warcraft</Emphasis> щоразу, коли Клод зупиняється
+              <T
+                uk={<>зробіть <Emphasis color="green">скіл</Emphasis>, який вмикатиме{' '}
+              <Emphasis color="orange">звук юніта з Warcraft</Emphasis> щоразу, коли Клод зупиняється</>}
+                en={<>build a <Emphasis color="green">skill</Emphasis> that plays a{' '}
+              <Emphasis color="orange">Warcraft unit sound</Emphasis> every time Claude stops</>}
+              />
             </SlideItem>
           )}
 
           {revealStage >= 3 && (
             <SlideItem delay={0} reveal>
-              але якщо цей скіл потрапить у <Emphasis color="orange">маркетплейс</Emphasis>
+              <T
+                uk={<>але якщо цей скіл потрапить у <Emphasis color="orange">маркетплейс</Emphasis>
               {' '}— готуйтеся до того, що ваш офіс звучатиме як{' '}
-              <Emphasis color="green">комп'ютерний клуб 2000-х</Emphasis>
+              <Emphasis color="green">комп'ютерний клуб 2000-х</Emphasis></>}
+                en={<>but if this skill lands in the <Emphasis color="orange">marketplace</Emphasis>
+              {' '}— get ready for your office to sound like a{' '}
+              <Emphasis color="green">2000s LAN gaming club</Emphasis></>}
+              />
             </SlideItem>
           )}
         </div>

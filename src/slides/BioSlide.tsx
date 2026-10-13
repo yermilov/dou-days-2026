@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { SlideDefinition } from '../types/slides';
+import { tr } from '../context/LanguageContext';
 import yarikBadges from '../assets/yarik-badges.jpg?url';
 
 type Level = 'high' | 'medium' | 'low';
@@ -36,29 +37,29 @@ function BioItem({ level, children }: { level: Level; children: React.ReactNode 
 }
 
 // One BIO_ITEM per reveal stage: index 0 is always visible, index N appears at revealStage >= N.
-const BIO_ITEMS: { level: Level; content: ReactNode }[] = [
-  { level: 'low',    content: <>починав як Java backend-інженер</> },
-  { level: 'medium', content: <>потім: техлідив продуктові фічі</> },
-  { level: 'medium', content: <>потім: техлід платформної організації</> },
-  { level: 'high',   content: <>зараз: AI-first розробка</> },
+const BIO_ITEMS: { level: Level; content: ReactNode; en: ReactNode }[] = [
+  { level: 'low',    content: <>починав як Java backend-інженер</>, en: <>started as a Java backend engineer</> },
+  { level: 'medium', content: <>потім: техлідив продуктові фічі</>, en: <>then: tech lead for product features</> },
+  { level: 'medium', content: <>потім: техлід платформної організації</>, en: <>then: tech lead of a platform org</> },
+  { level: 'high',   content: <>зараз: AI-first розробка</>, en: <>now: AI-first development</> },
 ];
 
 export const BioSlide: SlideDefinition = {
   id: 'bio',
   maxRevealStages: BIO_ITEMS.length - 1,
-  content: ({ revealStage }) => (
+  content: ({ revealStage, lang }) => (
     <div className="bio-body">
       <div className="bio-body__text">
         <h2 className="bio-body__title">
-          <span className="text-dim">//</span>{' '}хто я
+          <span className="text-dim">//</span>{' '}{tr(lang, 'хто я', 'who am I')}
         </h2>
 
-        <p className="bio-body__subtitle">9 років у компанії Superhuman (раніше відомої як Grammarly)</p>
+        <p className="bio-body__subtitle">{tr(lang, '9 років у компанії Superhuman (раніше відомої як Grammarly)', '9 years at Superhuman (formerly known as Grammarly)')}</p>
 
         <div className="bio-body__items">
           {BIO_ITEMS.map((item, i) =>
             revealStage >= i ? (
-              <BioItem key={i} level={item.level}>{item.content}</BioItem>
+              <BioItem key={i} level={item.level}>{tr(lang, item.content, item.en)}</BioItem>
             ) : null,
           )}
         </div>

@@ -1,4 +1,5 @@
 import { SlideDefinition, SlideContentProps } from '../types/slides';
+import { T } from '../context/LanguageContext';
 import { SlideItem, Emphasis } from '../components/SlideElements';
 import { CodeBlock } from '../components/CodeBlock';
 
@@ -52,8 +53,8 @@ function AutoApproveContent({ revealStage }: { revealStage: number }) {
     <>
       <h2>
         <span className="text-dim">//</span>{' '}
-        <span className="text-green">тепер</span>{' '}
-        <span className="text-orange">серйозно</span>
+        <span className="text-green"><T uk="тепер" en="now," /></span>{' '}
+        <span className="text-orange"><T uk="серйозно" en="seriously" /></span>
       </h2>
 
       <div className="auto-approve-body">
@@ -61,19 +62,31 @@ function AutoApproveContent({ revealStage }: { revealStage: number }) {
         <div className="auto-approve-bullets">
           {revealStage === 0 && (
             <SlideItem delay={0.05}>
-              <Emphasis color="green">хук авто-підтвердження</Emphasis>:
+              <T
+                uk={<><Emphasis color="green">хук авто-підтвердження</Emphasis>:
               {' '}LLM-as-a-judge класифікує дії Клода
               {' '}як <Emphasis color="green">SAFE</Emphasis> (read-only, тести) чи{' '}
               <Emphasis color="orange">UNSAFE</Emphasis> (деструктивне, credentials, інфра),
-              {' '}кешуємо всі рішення для швидкості
+              {' '}кешуємо всі рішення для швидкості</>}
+                en={<><Emphasis color="green">auto-approve hook</Emphasis>:
+              {' '}an LLM-as-a-judge classifies Claude's actions
+              {' '}as <Emphasis color="green">SAFE</Emphasis> (read-only, tests) or{' '}
+              <Emphasis color="orange">UNSAFE</Emphasis> (destructive, credentials, infra),
+              {' '}and we cache every decision for speed</>}
+              />
             </SlideItem>
           )}
 
           {revealStage === 1 && (
             <SlideItem delay={0} reveal>
-              Anthropic зашипили <Emphasis color="green">--permission-mode auto</Emphasis>
+              <T
+                uk={<>Anthropic зашипили <Emphasis color="green">--permission-mode auto</Emphasis>
               {' '}— фоновий Sonnet-класифікатор із тією самою філософією: дозволяй
-              {' '}безпечні локальні дії, блокуй деструктивні, fail-safe → ручне підтвердження у разі невпевненості
+              {' '}безпечні локальні дії, блокуй деструктивні, fail-safe → ручне підтвердження у разі невпевненості</>}
+                en={<>Anthropic shipped <Emphasis color="green">--permission-mode auto</Emphasis>
+              {' '}— a background Sonnet classifier with the same philosophy: allow
+              {' '}safe local actions, block destructive ones, fail-safe → manual approval when unsure</>}
+              />
             </SlideItem>
           )}
         </div>

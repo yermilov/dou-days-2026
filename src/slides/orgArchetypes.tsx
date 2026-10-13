@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { Emphasis } from '../components/SlideElements';
+import type { Lang } from '../context/LanguageContext';
 
 // Shared archetype metadata used by both EveryOrgRightNowSlide (bell-curve
 // overview) and GrowOrgSlide (growth playbook). Colors and ordering match
@@ -86,3 +87,63 @@ export const ORG_SECTIONS: OrgSection[] = [
     growItems: [],
   },
 ];
+
+// English copy for each archetype, keyed by `OrgSection.key`. Geometry and
+// colors stay shared with the Ukrainian ORG_SECTIONS above.
+const ORG_SECTIONS_EN: Record<string, Pick<OrgSection, 'label' | 'items' | 'growItems'>> = {
+  multipliers: {
+    label: 'multipliers',
+    items: [
+      'scale AI across teams',
+      'write skills, plugins, tools',
+      'build software factories',
+    ],
+    growItems: [
+      '1–2 per company to kick things off',
+      <>anti-pattern: an <Emphasis color="orange">“AI enablement team”</Emphasis> shipping blueprints — build AI infrastructure instead</>,
+    ],
+  },
+  engineers: {
+    label: 'AI-first engineers',
+    items: [
+      'explore plugins and skills',
+      'try new approaches',
+      'end-to-end agentic engineering',
+      'delegate high-level tasks to AI',
+    ],
+    growItems: [
+      '1–2 per team to kick things off',
+      'give them room and time to experiment',
+      'connect the successful ones across teams',
+      'showcase the work — demos, fun days, slack',
+    ],
+  },
+  majority: {
+    label: 'conservative majority',
+    items: [
+      'generate methods and tests',
+      'explore codebases with AI agents',
+      'vibe-code in unfamiliar stacks',
+      '“explain what X does”',
+    ],
+    growItems: [
+      <>anti-pattern: <Emphasis color="orange">“top-down AI”</Emphasis> — leadership mandates don't work</>,
+    ],
+  },
+  deniers: {
+    label: 'AI skeptics',
+    items: [
+      "“haven't tried it yet”",
+      "“tried it, didn't work”",
+      "“I'm faster without it”",
+      "“it's just LinkedIn hype”",
+    ],
+    growItems: [],
+  },
+};
+
+/** Archetypes in the active language. */
+export function orgSections(lang: Lang): OrgSection[] {
+  if (lang === 'uk') return ORG_SECTIONS;
+  return ORG_SECTIONS.map(s => ({ ...s, ...ORG_SECTIONS_EN[s.key] }));
+}

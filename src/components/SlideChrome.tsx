@@ -1,4 +1,5 @@
 import douLogo from '/dou-logo.png?url';
+import { T } from '../context/LanguageContext';
 
 /**
  * Chrome layer rendered inside the 1920×1080 stage on every staged slide.
@@ -19,7 +20,7 @@ import douLogo from '/dou-logo.png?url';
 export function SlideChrome({ showCityBadge = true }: { showCityBadge?: boolean }) {
   return (
     <div className="slide-chrome" aria-hidden="true">
-      {showCityBadge && <span className="slide-chrome__city-badge">Київ, 2026</span>}
+      {showCityBadge && <span className="slide-chrome__city-badge"><T uk="Київ, 2026" en="Kyiv, 2026" /></span>}
       <div className="slide-chrome__logo">
         <img className="slide-chrome__logo-image" src={douLogo} alt="" />
       </div>

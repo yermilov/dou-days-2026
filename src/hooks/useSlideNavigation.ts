@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { SlideDefinition } from '../types/slides';
+import type { Lang } from '../context/LanguageContext';
 
 interface UseSlideNavigationReturn {
   currentSlide: number;
@@ -17,7 +18,8 @@ interface UseSlideNavigationReturn {
 
 export function useSlideNavigation(
   slides: SlideDefinition[],
-  initialSlide: number = 0
+  initialSlide: number = 0,
+  onLanguageChange?: (lang: Lang) => void
 ): UseSlideNavigationReturn {
   const totalSlides = slides.length;
 
@@ -170,10 +172,16 @@ export function useSlideNavigation(
         case 'n':
           nextSlide();
           return;
+        case 'english':
+          onLanguageChange?.('en');
+          return;
+        case 'ukrainian':
+          onLanguageChange?.('uk');
+          return;
         // No default - unrecognized commands do nothing
       }
     },
-    [goToSlide, nextSlide, prevSlide, revealNext, totalSlides]
+    [goToSlide, nextSlide, prevSlide, revealNext, totalSlides, onLanguageChange]
   );
 
   // Keyboard navigation (when not focused on input)

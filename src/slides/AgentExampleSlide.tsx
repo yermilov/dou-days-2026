@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
+import { tr, type Lang } from '../context/LanguageContext';
 import { SlideItem, Emphasis, SlideLink } from '../components/SlideElements';
 import aiCodeReviewImage from '../assets/ai-code-review.png?url';
 
@@ -7,7 +8,8 @@ import aiCodeReviewImage from '../assets/ai-code-review.png?url';
 // FIRST_SET shows three bullets full-width as one column; once they're all
 // out, SECOND_SET swaps to a half-width bullet + the in-house AI code review
 // agent screenshot on the right.
-const FIRST_SET: ReactNode[] = [
+const FIRST_SET: Record<Lang, ReactNode[]> = {
+  uk: [
   <>
     завдяки <Emphasis color="green">AI асистентам</Emphasis> люди більше і впевненіше
     {' '}контриб'ютять навіть у <Emphasis color="orange">незнайомі кодбази</Emphasis>
@@ -23,9 +25,28 @@ const FIRST_SET: ReactNode[] = [
     {' '}на складних питаннях (навіщо? як?), а агент набагато ретельніше
     {' '}перевірить саме код
   </>,
-];
+  ],
+  en: [
+  <>
+    thanks to <Emphasis color="green">AI assistants</Emphasis>, people contribute more,
+    {' '}and more confidently, even to <Emphasis color="orange">unfamiliar codebases</Emphasis>
+  </>,
+  <>
+    human reviews turn into <Emphasis color="orange">rubber stamps</Emphasis>
+    {' '}— at these volumes you can't keep the old quality bar;
+    {' '}reviewers feel it's <Emphasis color="green">unfair</Emphasis>
+    {' '}given the time they put in
+  </>,
+  <>
+    AI review <Emphasis color="green">lets</Emphasis> humans focus
+    {' '}on the hard questions (why? how?), while an agent checks
+    {' '}the code itself far more thoroughly
+  </>,
+  ],
+};
 
-const SECOND_SET: ReactNode[] = [
+const SECOND_SET: Record<Lang, ReactNode[]> = {
+  uk: [
   <>
     Anthropic має власне рішення:{' '}
     <SlideLink href="https://code.claude.com/docs/en/code-review">
@@ -38,26 +59,41 @@ const SECOND_SET: ReactNode[] = [
     {' '}<Emphasis color="orange">як?</Emphasis> і{' '}
     <Emphasis color="orange">чому?</Emphasis>
   </>,
-];
+  ],
+  en: [
+  <>
+    Anthropic has its own solution:{' '}
+    <SlideLink href="https://code.claude.com/docs/en/code-review">
+      code.claude.com/docs/en/code-review
+    </SlideLink>
+    , there's also a decent one from Codex and a bad one from Copilot,
+    plus a few startups (CodeRabbit, Greplit, Graphite);
+    but we built <Emphasis color="green">our own agent</Emphasis>
+    {' '}on Claude Code (+Codex) —
+    {' '}<Emphasis color="orange">how?</Emphasis> and{' '}
+    <Emphasis color="orange">why?</Emphasis>
+  </>,
+  ],
+};
 
 export const AgentExampleSlide: SlideDefinition = {
   id: 'agent-example',
   // Stages 0..2 walk through FIRST_SET bullets one-by-one; stage 3 swaps to
   // the SECOND_SET single bullet alongside the in-house agent screenshot.
-  maxRevealStages: FIRST_SET.length + SECOND_SET.length - 1,
+  maxRevealStages: FIRST_SET.uk.length + SECOND_SET.uk.length - 1,
   initialRevealStage: 0,
-  content: ({ revealStage }: SlideContentProps) => {
-    const setIndex = revealStage < FIRST_SET.length ? 0 : 1;
-    const currentSet = setIndex === 0 ? FIRST_SET : SECOND_SET;
+  content: ({ revealStage, lang }: SlideContentProps) => {
+    const setIndex = revealStage < FIRST_SET[lang].length ? 0 : 1;
+    const currentSet = setIndex === 0 ? FIRST_SET[lang] : SECOND_SET[lang];
     const visibleCount =
-      setIndex === 0 ? revealStage + 1 : revealStage - FIRST_SET.length + 1;
+      setIndex === 0 ? revealStage + 1 : revealStage - FIRST_SET[lang].length + 1;
 
     return (
       <>
         <h2>
           <span className="text-dim">//</span>{' '}
           <span className="text-green">ai</span>{' '}
-          <span className="text-orange">код рев'ю</span>
+          <span className="text-orange">{tr(lang, "код рев'ю", 'code review')}</span>
         </h2>
 
         <div

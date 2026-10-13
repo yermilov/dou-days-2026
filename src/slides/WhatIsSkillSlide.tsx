@@ -1,16 +1,32 @@
 import { ReactNode, useEffect } from 'react';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
+import { T } from '../context/LanguageContext';
 import { SlideItem, Emphasis } from '../components/SlideElements';
 import spaceBg from '../assets/skill-space-bg.png?url';
 import leftAstronaut from '../assets/skill-was-it-md.png?url';
 import rightAstronaut from '../assets/skill-always-been.png?url';
 
 const BULLETS: ReactNode[] = [
-  <>скіл — це просто <Emphasis color="green">SKILL.md</Emphasis>-файл з інструкціями, як щось робити</>,
-  <>на відміну від <Emphasis color="orange">MCP server</Emphasis>, не займає context window — завантажується лише тоді, коли це потрібно моделі</>,
-  <>на відміну від <Emphasis color="orange">slash command</Emphasis>, модель сама викликає його, коли це потрібно</>,
-  <>може бути цілою <Emphasis color="green">бібліотекою</Emphasis> md-файлів із посиланнями — модель сама навігує та завантажує їх за потреби</>,
-  <>може містити <Emphasis color="green">TypeScript / Python / bash</Emphasis> скрипти для детермінованої автоматизації</>,
+  <T
+    uk={<>скіл — це просто <Emphasis color="green">SKILL.md</Emphasis>-файл з інструкціями, як щось робити</>}
+    en={<>a skill is just a <Emphasis color="green">SKILL.md</Emphasis> file with instructions on how to do something</>}
+  />,
+  <T
+    uk={<>на відміну від <Emphasis color="orange">MCP server</Emphasis>, не займає context window — завантажується лише тоді, коли це потрібно моделі</>}
+    en={<>unlike an <Emphasis color="orange">MCP server</Emphasis>, it doesn't eat the context window — it loads only when the model needs it</>}
+  />,
+  <T
+    uk={<>на відміну від <Emphasis color="orange">slash command</Emphasis>, модель сама викликає його, коли це потрібно</>}
+    en={<>unlike a <Emphasis color="orange">slash command</Emphasis>, the model invokes it on its own when needed</>}
+  />,
+  <T
+    uk={<>може бути цілою <Emphasis color="green">бібліотекою</Emphasis> md-файлів із посиланнями — модель сама навігує та завантажує їх за потреби</>}
+    en={<>can be a whole <Emphasis color="green">library</Emphasis> of linked md files — the model navigates and loads them as needed</>}
+  />,
+  <T
+    uk={<>може містити <Emphasis color="green">TypeScript / Python / bash</Emphasis> скрипти для детермінованої автоматизації</>}
+    en={<>can include <Emphasis color="green">TypeScript / Python / bash</Emphasis> scripts for deterministic automation</>}
+  />,
 ];
 
 const VIEWPORT_BG = `linear-gradient(180deg,
@@ -52,8 +68,8 @@ function WhatIsSkillContent({ revealStage }: SlideContentProps) {
         }}
       >
         <span className="text-dim">//</span>{' '}
-        <span className="text-green">скіли</span>{' '}—{' '}
-        <span className="text-orange">база, основа, фундамент</span>
+        <span className="text-green"><T uk="скіли" en="skills" /></span>{' '}—{' '}
+        <span className="text-orange"><T uk="база, основа, фундамент" en="the base, the core, the foundation" /></span>
       </h2>
 
       <div

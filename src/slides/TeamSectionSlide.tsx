@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { SlideDefinition } from '../types/slides';
+import { T } from '../context/LanguageContext';
 import agendaTeamImg from '../assets/agenda-team.png?url';
 
 const VIEWPORT_BG = `linear-gradient(180deg,
@@ -43,7 +44,7 @@ function TeamSectionContent() {
       >
         <span className="text-dim">//</span>{' '}
         <span className="text-green">AI-first</span>{' '}
-        <span className="text-orange">команди</span>
+        <span className="text-orange"><T uk="команди" en="teams" /></span>
       </h2>
     </>
   );

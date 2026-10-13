@@ -1,16 +1,24 @@
 import { useState, useEffect, useCallback } from 'react';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
+import { tr, type Lang } from '../context/LanguageContext';
 import { SlideItem, Emphasis } from '../components/SlideElements';
 import { exportRegistry } from '../components/exportRegistry';
 import releaseCalendar from '../assets/anthropic-release-calendar.jpg?url';
 import statusComponentsFallback from '../assets/status-components.json';
 import statusIncidentsFallback from '../assets/status-incidents.json';
 
-const bullets = [
+const bullets: Record<Lang, JSX.Element[]> = {
+  uk: [
   <>Anthropic релізить нову Claude Code/Desktop фічу <Emphasis color="orange">майже щодня</Emphasis></>,
   <>ці фічі, звісно, часто недополіровані, але команда отримує миттєвий <Emphasis color="green">вайб-чек</Emphasis> замість довгих A/B-тестів і UX-досліджень; що не зайшло користувачам — так само легко видаляється</>,
   <>ціна — часті outages та баги в продакшені, але парадоксально, що це <Emphasis color="orange">майже не шкодить</Emphasis> сприйняттю компанії з боку користувачів та інвесторів</>,
-];
+  ],
+  en: [
+  <>Anthropic ships a new Claude Code/Desktop feature <Emphasis color="orange">almost every day</Emphasis></>,
+  <>these features are often unpolished, of course, but the team gets an instant <Emphasis color="green">vibe check</Emphasis> instead of long A/B tests and UX research; whatever users don't like is just as easy to remove</>,
+  <>the price is frequent outages and production bugs, yet paradoxically it <Emphasis color="orange">barely hurts</Emphasis> how users and investors see the company</>,
+  ],
+};
 
 // --- types ---
 
@@ -229,8 +237,8 @@ function StatusHistoryPanel({
 
 // --- slide ---
 
-function IndustryPatternsContent({ revealStage, slideId }: SlideContentProps) {
-  const visibleCount = Math.min(revealStage + 1, bullets.length);
+function IndustryPatternsContent({ revealStage, slideId, lang }: SlideContentProps) {
+  const visibleCount = Math.min(revealStage + 1, bullets[lang].length);
   const showStatus = revealStage >= 2;
   const handleStatusLoaded = useCallback(
     (err?: Error) => {
@@ -248,13 +256,13 @@ function IndustryPatternsContent({ revealStage, slideId }: SlideContentProps) {
       <h2>
         <span className="text-dim">//</span>{' '}
         <span className="text-green">AI-first</span>{' '}
-        <span className="text-orange">організація</span>
+        <span className="text-orange">{tr(lang, 'організація', 'organization')}</span>
       </h2>
 
       <div className="industry-patterns-body">
         {/* Left: bullets */}
         <div className="industry-patterns-bullets">
-          {bullets.slice(0, visibleCount).map((bullet, i) => (
+          {bullets[lang].slice(0, visibleCount).map((bullet, i) => (
             <SlideItem key={i} delay={0}>{bullet}</SlideItem>
           ))}
         </div>
@@ -282,7 +290,7 @@ function IndustryPatternsContent({ revealStage, slideId }: SlideContentProps) {
           >
             <img
               src={releaseCalendar}
-              alt="Календар релізів Anthropic — 52 дні релізів від Claude Team"
+              alt={tr(lang, 'Календар релізів Anthropic — 52 дні релізів від Claude Team', 'Anthropic release calendar — 52 days of releases from the Claude Team')}
               loading="lazy"
             />
           </div>
@@ -295,7 +303,7 @@ function IndustryPatternsContent({ revealStage, slideId }: SlideContentProps) {
 export const IndustryPatternsSlide: SlideDefinition = {
   id: 'industry-patterns',
   content: (props: SlideContentProps) => <IndustryPatternsContent {...props} />,
-  maxRevealStages: bullets.length - 1,
+  maxRevealStages: bullets.uk.length - 1,
   asyncSettle: true,
   notes:
     'Мета-урок: Anthropic їсть власну собачу їжу — будує інструменти, якими користується сама. Це створює feedback loop, який жодне зовнішнє юзер-дослідження не повторить. Stages 0–1: календар релізів — 15–20 внутрішніх збірок на день, мажорні фічі раз на кілька днів. Stage 2: жива сторінка status.claude.com — часті outage не вбивають сприйняття, бо швидкість важливіша за полірування.',

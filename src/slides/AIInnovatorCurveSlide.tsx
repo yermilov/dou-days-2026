@@ -1,4 +1,5 @@
 import { SlideDefinition, SlideContentProps } from '../types/slides';
+import { tr, type Lang } from '../context/LanguageContext';
 
 // DOU palette — JS constants are the design-system-sanctioned exception
 // for SVG fill/stroke. Mirror --dou-magenta/--dou-mint/--dou-cyan/--dou-violet
@@ -35,7 +36,7 @@ function buildCurvePoints(W: number, H: number, padTop: number, padBot: number):
   );
 }
 
-function AIInnovatorCurveContent({ revealStage }: { revealStage: number }) {
+function AIInnovatorCurveContent({ revealStage, lang }: { revealStage: number; lang: Lang }) {
   // viewBox is wider (1700) and shorter aspect-wise so the SVG renders larger
   // inside the slide. padTop and BULLET_BAND grow proportionally so the
   // section labels above the curve and the bullet columns below can fit body
@@ -75,27 +76,35 @@ function AIInnovatorCurveContent({ revealStage }: { revealStage: number }) {
   const bullets: { section: number; items: string[] }[] = [
     {
       section: 1,
-      items: [
+      items: tr(lang, [
         'активатор скілів',
         'збереження сесій'
-      ],
+      ], [
+        'skills activator',
+        'session storage',
+      ]),
     },
     {
       section: 2,
-      items: [
+      items: tr(lang, [
         'маркетплейс плагінів',
         'мета-скіли',
         'авто-підтвердження доступів',
         'AI код-ревʼю',
-      ],
+      ], [
+        'plugin marketplace',
+        'meta-skills',
+        'permission auto-approval',
+        'AI code review',
+      ]),
     },
   ];
 
   const labels = [
-    { section: 0, text: 'Anthropic', text2: 'всередині' },
-    { section: 1, text: 'AI-first', text2: 'команди' },
-    { section: 2, text: 'Anthropic', text2: 'публічно' },
-    { section: 3, text: 'більшість', text2: '' },
+    { section: 0, text: 'Anthropic', text2: tr(lang, 'всередині', 'internally') },
+    { section: 1, text: 'AI-first', text2: tr(lang, 'команди', 'teams') },
+    { section: 2, text: 'Anthropic', text2: tr(lang, 'публічно', 'publicly') },
+    { section: 3, text: tr(lang, 'більшість', 'majority'), text2: '' },
   ];
 
   const sectionCx = (s: { x1: number; x2: number }) => ((s.x1 + s.x2) / 2).toFixed(1);
@@ -128,8 +137,8 @@ function AIInnovatorCurveContent({ revealStage }: { revealStage: number }) {
       <div style={{ lineHeight: 1.4, textAlign: 'center' }}>
         <h2>
           <span className="text-dim">//</span>{' '}
-          <span className="text-green">знайдіть своє</span>{' '}
-          <span className="text-orange">місце</span>
+          <span className="text-green">{tr(lang, 'знайдіть своє', 'find your')}</span>{' '}
+          <span className="text-orange">{tr(lang, 'місце', 'place')}</span>
         </h2>
       </div>
 
@@ -329,7 +338,7 @@ function AIInnovatorCurveContent({ revealStage }: { revealStage: number }) {
 export const AIInnovatorCurveSlide: SlideDefinition = {
   id: 'ai-innovator-curve',
   maxRevealStages: 3,
-  content: ({ revealStage }: SlideContentProps) => <AIInnovatorCurveContent revealStage={revealStage} />,
+  content: ({ revealStage, lang }: SlideContentProps) => <AIInnovatorCurveContent revealStage={revealStage} lang={lang} />,
   notes:
     'Крива адопції інновацій Роджерса, прикладена до AI. Чотири стадії, справа наліво: stage 0 — більшість (violet, копіпастять з ChatGPT); stage 1 — Anthropic публічно (cyan, маркетплейс/мета-скіли/auto-mode/ai code review); stage 2 — AI-first команди (mint, активатор + збереження сесій); stage 3 — Anthropic всередині (magenta, ????). Активна секція — повна непрозорість, інші ~0.18.',
 };

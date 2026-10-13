@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { PresentationProps } from '../types/slides';
 import { useSlideNavigation } from '../hooks/useSlideNavigation';
 import { NavigationContext } from '../context/NavigationContext';
+import { LanguageContext, LANG_STORAGE_KEY, getInitialLang, type Lang } from '../context/LanguageContext';
 import { useTouchNavigation } from '../hooks/useTouchNavigation';
 import { Slide } from './Slide';
 import { TerminalInput } from './TerminalInput';
@@ -54,7 +55,21 @@ function getInitialTimerState(): { seconds: number; running: boolean } {
 }
 
 export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
-  const nav = useSlideNavigation(slides, initialSlide);
+  const [lang, setLang] = useState<Lang>(getInitialLang);
+  const changeLang = useCallback((next: Lang) => {
+    setLang(next);
+    try {
+      localStorage.setItem(LANG_STORAGE_KEY, next);
+    } catch {
+      // Storage unavailable (private mode) — the switch still applies for this session.
+    }
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
+
+  const nav = useSlideNavigation(slides, initialSlide, changeLang);
   const { currentSlide, goToSlide, handleCommand: handleNavCommand, revealStage, revealNext, revealPrev } = nav;
 
   // PDF export wiring. Only active under ?export=1; never reaches normal users.
@@ -173,10 +188,11 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
 
   const slideContent =
     typeof activeSlide.content === 'function'
-      ? activeSlide.content({ revealStage, inputText, activatedTools, slideId: activeSlide.id })
+      ? activeSlide.content({ revealStage, inputText, activatedTools, slideId: activeSlide.id, lang })
       : activeSlide.content;
 
   return (
+    <LanguageContext.Provider value={lang}>
     <NavigationContext.Provider value={{ goToSlideById }}>
     <div className="presentation">
       {/* key={activeSlide.id} is load-bearing: it remounts the whole slide
@@ -232,5 +248,6 @@ export function Presentation({ slides, initialSlide = 0 }: PresentationProps) {
       )}
     </div>
     </NavigationContext.Provider>
+    </LanguageContext.Provider>
   );
 }

@@ -204,6 +204,10 @@ Type in the input box:
 - `first`, `home` → First slide (`start` activates the timer, not navigation)
 - `last`, `end` → Last slide
 - `reveal` or `r` → Reveal next content stage
+- `english` → Switch slides to English (persisted in localStorage)
+- `ukrainian` → Switch slides back to Ukrainian
+
+Slide copy is bilingual via `src/context/LanguageContext.tsx`: render-function slides read `lang` from their props and use `tr(lang, uk, en)`; static JSX uses `<T uk="…" en="…" />`. Speaker `notes` stay Ukrainian-only (not rendered).
 
 Timer commands:
 - `start` or `go` → Start timer

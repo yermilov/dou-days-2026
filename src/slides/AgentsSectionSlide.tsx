@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { SlideDefinition } from '../types/slides';
+import { T } from '../context/LanguageContext';
 import agentsSmithImage from '../assets/agents-smith.png?url';
 
 const MATRIX_STYLES = `
@@ -181,11 +182,11 @@ function AgentsSectionContent() {
           >
             <span style={{ display: 'block' }}>
               <span className="text-dim">//</span>{' '}
-              <span className="text-orange">автономні та напівавтономні</span>
+              <span className="text-orange"><T uk="автономні та напівавтономні" en="autonomous and semi-autonomous" /></span>
             </span>
             <span style={{ display: 'block' }}>
               <span className="text-dim">//</span>{' '}
-              <span className="text-green">агенти</span>
+              <span className="text-green"><T uk="агенти" en="agents" /></span>
             </span>
           </h2>
 

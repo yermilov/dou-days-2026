@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { SlideDefinition, SlideContentProps } from '../types/slides';
+import { T } from '../context/LanguageContext';
 import { SlideItem, Emphasis } from '../components/SlideElements';
 import superhumanAidevImage from '../assets/superhuman-aidev.png?url';
 
@@ -8,17 +9,41 @@ import superhumanAidevImage from '../assets/superhuman-aidev.png?url';
 // land the same idea natively. The slide moves from set 1 → set 2 once all
 // of set 1's bullets have been revealed.
 const FIRST_SET: ReactNode[] = [
-  <>скіли — <Emphasis color="green">будівельні блоки</Emphasis>, з яких кожен інженер може побудувати свій власний воркфлоу</>,
-  <>люди не люблять читати і писати документацію, а <Emphasis color="orange">агенти це обожнюють</Emphasis> — конвертуйте всю документацію в скіли</>,
-  <>у Superhuman ми достатньо рано зробили скіли спільними за допомогою тули, яка клонує GitHub-репо зі скілами і симлінкає їх у директорію <code>~/.claude/skills/</code></>,
-  <>кожен інженер, який використовує скіл, додає покращення — і всі стають <Emphasis color="green">продуктивнішими</Emphasis></>,
+  <T
+    uk={<>скіли — <Emphasis color="green">будівельні блоки</Emphasis>, з яких кожен інженер може побудувати свій власний воркфлоу</>}
+    en={<>skills are <Emphasis color="green">building blocks</Emphasis> every engineer can assemble into their own workflow</>}
+  />,
+  <T
+    uk={<>люди не люблять читати і писати документацію, а <Emphasis color="orange">агенти це обожнюють</Emphasis> — конвертуйте всю документацію в скіли</>}
+    en={<>people hate reading and writing docs, but <Emphasis color="orange">agents love it</Emphasis> — convert all your docs into skills</>}
+  />,
+  <T
+    uk={<>у Superhuman ми достатньо рано зробили скіли спільними за допомогою тули, яка клонує GitHub-репо зі скілами і симлінкає їх у директорію <code>~/.claude/skills/</code></>}
+    en={<>at Superhuman we shared skills early on with a tool that clones a GitHub repo of skills and symlinks them into <code>~/.claude/skills/</code></>}
+  />,
+  <T
+    uk={<>кожен інженер, який використовує скіл, додає покращення — і всі стають <Emphasis color="green">продуктивнішими</Emphasis></>}
+    en={<>every engineer who uses a skill adds improvements — and everyone becomes <Emphasis color="green">more productive</Emphasis></>}
+  />,
 ];
 
 const SECOND_SET: ReactNode[] = [
-  <>ну а потім Anthropic представили <Emphasis color="green">marketplaces</Emphasis> — працює так само, але нативно</>,
-  <>створіть ОДИН центральний внутрішній <Emphasis color="orange">marketplace</Emphasis> для скілів у вашій організації</>,
-  <>використовуйте плагіни для <Emphasis color="orange">неймспейсингу</Emphasis> — кожен користувач сам обирає, які плагіни встановити</>,
-  <>якщо є можливість — використовуйте <Emphasis color="green">Claude Enterprise</Emphasis>, щоб примусово встановити marketplace і певні плагіни всім в організації</>,
+  <T
+    uk={<>ну а потім Anthropic представили <Emphasis color="green">marketplaces</Emphasis> — працює так само, але нативно</>}
+    en={<>and then Anthropic introduced <Emphasis color="green">marketplaces</Emphasis> — same idea, but native</>}
+  />,
+  <T
+    uk={<>створіть ОДИН центральний внутрішній <Emphasis color="orange">marketplace</Emphasis> для скілів у вашій організації</>}
+    en={<>create ONE central internal <Emphasis color="orange">marketplace</Emphasis> for skills in your organization</>}
+  />,
+  <T
+    uk={<>використовуйте плагіни для <Emphasis color="orange">неймспейсингу</Emphasis> — кожен користувач сам обирає, які плагіни встановити</>}
+    en={<>use plugins for <Emphasis color="orange">namespacing</Emphasis> — each user picks which plugins to install</>}
+  />,
+  <T
+    uk={<>якщо є можливість — використовуйте <Emphasis color="green">Claude Enterprise</Emphasis>, щоб примусово встановити marketplace і певні плагіни всім в організації</>}
+    en={<>if you can, use <Emphasis color="green">Claude Enterprise</Emphasis> to force-install the marketplace and key plugins for everyone in the org</>}
+  />,
 ];
 
 export const SkillMarketplaceSlide: SlideDefinition = {
@@ -35,8 +60,12 @@ export const SkillMarketplaceSlide: SlideDefinition = {
       <>
         <h2>
           <span className="text-dim">//</span>{' '}
-          <span className="text-green">маркетплейс</span>{' '}
-          <span className="text-orange">скілів</span>
+          <T
+            uk={<><span className="text-green">маркетплейс</span>{' '}
+          <span className="text-orange">скілів</span></>}
+            en={<><span className="text-green">skills</span>{' '}
+          <span className="text-orange">marketplace</span></>}
+          />
         </h2>
 
         <div
