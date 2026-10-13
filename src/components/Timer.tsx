@@ -1,4 +1,4 @@
-const TOTAL_TIME = 25 * 60;
+const TOTAL_TIME = 40 * 60;
 
 interface TimerProps {
   elapsedSeconds: number;
